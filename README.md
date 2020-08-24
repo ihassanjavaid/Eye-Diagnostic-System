@@ -1,6 +1,6 @@
-# EYE DIAGNOSTIC SYSTEM
+# Eye Diagnostic System - EyeSee
 
-A project by COMSATS University Islamabad. ©
+A one-stop eye disease solution!
 
 ## Introduction
 
@@ -17,3 +17,7 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 ### Supervised By
 
 - [Hafiza Sundus Farooq](http://ww3.comsats.edu.pk/faculty/FacultyAtoZ.aspx)
+
+#
+
+A project by COMSATS University Islamabad. ©
