@@ -1,16 +1,17 @@
-# eye_diagnostic_system
+# EYE DIAGNOSTIC SYSTEM
 
-An Eye Diagnostic System
+A project by COMSATS University Islamabad. ©
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is made using Flutter, Python and Tensorflow 2.0
 
-A few resources to get you started if this is your first Flutter project:
+### Development Team:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- [Mahnoor Fatima Saad](https://twitter.com/agirlismahnoor)
+- [Muhammad Hasan Malik](https://twitter.com/ihassanjavaid)
+- [Muhammad Osama Saleem](https://twitter.com/osama_1_1_1)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Supervised By
+
+- [Hafiza Sundus Farooq](http://ww3.comsats.edu.pk/faculty/FacultyAtoZ.aspx)
