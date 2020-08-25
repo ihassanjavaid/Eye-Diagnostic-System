@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: <Widget>[
         Text(
           'Email',
-          style: kLoginLabelStyle,
+          style: kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
         ),
         SizedBox(height: 10.0),
         Container(
@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.only(top: 18.0),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.white,
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: <Widget>[
         Text(
           'Password',
-          style: kLoginLabelStyle,
+          style: kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
         ),
         SizedBox(height: 10.0),
         Container(
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
+              contentPadding: EdgeInsets.only(top: 18.0),
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.white,
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.only(right: 0.0),
         child: Text(
           'Forgot Password?',
-          style: kLoginLabelStyle,
+          style:kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
         ),
       ),
     );
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Text(
             'Remember me',
-            style: kLoginLabelStyle,
+            style: kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
           ),
         ],
       ),
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildLoginBtn() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
+      padding: EdgeInsets.only(top: 25.0, bottom: 12.0),
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
@@ -157,14 +157,14 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.w400,
           ),
         ),
-        SizedBox(height: 20.0),
+        SizedBox(height: 2.0),
       ],
     );
   }
 
   Widget _buildSocialBtnRow() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 24.0),
+      padding: EdgeInsets.only(top: 18.0, bottom: 18.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -249,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: kBgColorGradientArray,
+                    colors: kBgColorGradientArrayBlues,
                     stops: [0.1, 0.4, 0.7, 0.9],
                   ),
                 ),
@@ -259,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
+                    horizontal: 10.0,
                     vertical: 40.0,
                   ),
                   child: Column(
@@ -274,24 +274,54 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 120.0,
                         ),
                       ),
-                      Text(
-                        'Sign In',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        height: 440,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: kBgColorGradientArrayGreys,
+                            stops: [0.1, 0.4, 0.7, 0.9],
+                          ),
+                            border: Border.all(
+                              color: Colors.transparent,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                    color: kPurpleColor,
+                                    fontFamily: 'OpenSans',
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 18.0),
+                              _buildEmailTextField(),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              _buildPasswordTextField(),
+                              _buildForgotPasswordBtn(),
+                              _buildRememberMeCheckbox(),
+                              _buildLoginBtn(),
+                            ],
+                          ),
                         ),
                       ),
-                      SizedBox(height: 30.0),
-                      _buildEmailTextField(),
                       SizedBox(
-                        height: 30.0,
+                        height: 20.0,
                       ),
-                      _buildPasswordTextField(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
-                      _buildLoginBtn(),
                       _buildSignInWithText(),
                       _buildSocialBtnRow(),
                       _buildSignupBtn(),

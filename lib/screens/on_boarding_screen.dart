@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -70,7 +71,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [0.1, 0.4, 0.7, 0.9],
-              colors: kBgColorGradientArray,
+              colors: kBgColorGradientArrayBlues,
             ),
           ),
           child: Padding(
@@ -94,7 +95,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Container(
                   child: Image(
                     image: AssetImage(
-                        'assets/images/eye_1.png'
+                        'assets/images/eye.png'
                     ),
                     height: 220,
                     width: 220,
@@ -190,6 +191,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         child: GestureDetector(
           onTap: () {
             print('### Get Started');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+            );
           },
           child: Center(
             child: Padding(

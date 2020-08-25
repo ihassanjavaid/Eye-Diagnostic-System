@@ -36,11 +36,18 @@ final kLoginBoxDecorationStyle = BoxDecoration(
   ],
 );
 
-final kBgColorGradientArray = [
+final kBgColorGradientArrayBlues = [
   Color(0xFF3594DD),
   Color(0xFF4563DB),
   Color(0xFF5036D5),
   Color(0xFF5b16D0)
+];
+
+final kBgColorGradientArrayGreys = [
+  Color(0xFFFFFFFF),
+  Color(0xFFd1d1d1),
+  Color(0xFFb5b5b5),
+  Color(0xFF949494)
 ];
 
 final kGoldenColor = Color(0xFFc4ac2f);
