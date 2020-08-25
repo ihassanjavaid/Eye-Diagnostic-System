@@ -55,7 +55,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0),
+            padding: const EdgeInsets.only(top: 40.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -84,7 +84,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(40.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -93,12 +93,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 image: AssetImage(
                                   'assets/images/eye.png'
                                 ),
-                                height: 300.0,
-                                width: 300.0,
+                                height: 200.0,
+                                width: 200.0,
                               ),
                             ),
                             SizedBox(
-                              height: 20.0,
+                              height: 10.0,
                             ),
                             Text(
                               'World Class\ndiagnosis',
@@ -124,8 +124,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 image: AssetImage(
                                     'assets/images/eye.png'
                                 ),
-                                height: 300.0,
-                                width: 300.0,
+                                height: 200.0,
+                                width: 200.0,
                               ),
                             ),
                             SizedBox(
@@ -155,8 +155,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 image: AssetImage(
                                     'assets/images/eye.png'
                                 ),
-                                height: 300.0,
-                                width: 300.0,
+                                height: 200.0,
+                                width: 200.0,
                               ),
                             ),
                             SizedBox(
@@ -194,26 +194,29 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             curve: Curves.ease
                           );
                         },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Next',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22.0
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Next',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22.0
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.white,
-                              size: 30.0,
-                            )
-                          ],
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                                size: 30.0,
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     )
@@ -226,20 +229,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
       bottomNavigationBar: _currentPage == _numPages -1
       ? Container(
-        height: 100.0,
+        height: 50.0,
         width: double.infinity,
-        color: Colors.white,
+        color: Color(0xFF5B16D0),
         child: GestureDetector(
           onTap: () {
             print('### Get Started');
           },
           child: Center(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 10.0),
               child: Text(
                 'Get Started',
                 style: TextStyle(
-                    color: Color(0xFF5B16D0),
+                    color: Colors.white,
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold
                 ),
@@ -248,7 +251,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
         ),
       )
-      : Text(''),
+      : Container(
+        height: 1.0,
+        color: Color(0xFF5B16D0),
+      ),
     );
   }
 }
