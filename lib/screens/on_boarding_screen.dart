@@ -46,12 +46,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [
-                Color(0xFF3594DD),
-                Color(0xFF4563DB),
-                Color(0xFF5036D5),
-                Color(0xFF5b16D0)
-              ],
+              colors: kBgColorGradientArray,
             ),
           ),
           child: Padding(
@@ -83,98 +78,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       });
                     },
                     children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/images/eye.png'
-                                ),
-                                height: 200.0,
-                                width: 200.0,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            Text(
-                              'World Class\ndiagnosis',
-                              style: kOnBoardingTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 15.0,
-                            ),
-                            Text(
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                              style: kOnBoardingSubtitleStyle,
-                            ),
-                          ],
-                        ),
+                      buildTextBlock(
+                          'World Class\ndiagnosis',
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          AssetImage(
+                              'assets/images/eye_1.png'
+                          ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                    'assets/images/eye.png'
-                                ),
-                                height: 200.0,
-                                width: 200.0,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            Text(
-                              'Military grade\ntesting standards',
-                              style: kOnBoardingTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 15.0,
-                            ),
-                            Text(
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                              style: kOnBoardingSubtitleStyle,
-                            ),
-                          ],
-                        ),
+                      buildTextBlock(
+                        'Military grade\ntesting standards',
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          AssetImage(
+                              'assets/images/eye_2.png'
+                          )
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(40.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                    'assets/images/eye.png'
-                                ),
-                                height: 200.0,
-                                width: 200.0,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            Text(
-                              'All your solutions\nin one place',
-                              style: kOnBoardingTitleStyle,
-                            ),
-                            SizedBox(
-                              height: 15.0,
-                            ),
-                            Text(
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                              style: kOnBoardingSubtitleStyle,
-                            ),
-                          ],
-                        ),
+                      buildTextBlock(
+                        'All your solutions\nin one place',
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          AssetImage(
+                              'assets/images/eye_3.png'
+                          )
                       ),
                     ],
                   ),
@@ -256,5 +179,37 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         color: Color(0xFF5B16D0),
       ),
     );
+  }
+
+  Widget buildTextBlock(String mainText, String subText, AssetImage image) {
+    return Padding(
+                      padding: EdgeInsets.all(40.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Image(
+                              image: image,
+                              height: 220.0,
+                              width: 220.0,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            mainText,
+                            style: kOnBoardingTitleStyle,
+                          ),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          Text(
+                            subText,
+                            style: kOnBoardingSubtitleStyle,
+                          ),
+                        ],
+                      ),
+                    );
   }
 }

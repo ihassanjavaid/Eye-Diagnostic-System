@@ -1,4 +1,5 @@
-import 'package:eye_diagnostic_system/screens/OnboardingScreen.dart';
+import 'package:eye_diagnostic_system/screens/login_screen.dart';
+import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
