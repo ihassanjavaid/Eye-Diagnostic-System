@@ -84,7 +84,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.all(40.0),
+                        padding: EdgeInsets.all(10.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -98,7 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               ),
                             ),
                             SizedBox(
-                              height: 30.0,
+                              height: 20.0,
                             ),
                             Text(
                               'World Class\ndiagnosis',
@@ -183,11 +183,72 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
                 ),
+                _currentPage != _numPages -1
+                    ? Expanded(
+                    child: Align(
+                      alignment: FractionalOffset.bottomRight,
+                      child: FlatButton(
+                        onPressed: () {
+                          _pageController.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.ease
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Next',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22.0
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                              size: 30.0,
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                )
+                    : Text('')
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: _currentPage == _numPages -1
+      ? Container(
+        height: 100.0,
+        width: double.infinity,
+        color: Colors.white,
+        child: GestureDetector(
+          onTap: () {
+            print('### Get Started');
+          },
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 30.0),
+              child: Text(
+                'Get Started',
+                style: TextStyle(
+                    color: Color(0xFF5B16D0),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ),
+        ),
+      )
+      : Text(''),
     );
   }
 }
