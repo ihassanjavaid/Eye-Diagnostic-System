@@ -42,3 +42,6 @@ final kBgColorGradientArray = [
   Color(0xFF5036D5),
   Color(0xFF5b16D0)
 ];
+
+final kGoldenColor = Color(0xFFc4ac2f);
+final kPurpleColor = Color(0xFF5b16D0);

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,6 +15,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
+  Timer _timer;
+  double _circleWidth = 3.5;
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -33,6 +37,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
+  }
+
+  _animateCircle(){
+    setState(() {
+      _circleWidth = _circleWidth == 3.5 ? 0.1 : 3.5;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(Duration(milliseconds: 1000), (Timer ticker) {
+      _animateCircle();
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
   }
 
   @override
@@ -68,7 +92,24 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                 ),
                 Container(
-                  height: 600.0,
+                  child: Image(
+                    image: AssetImage(
+                        'assets/images/eye_1.png'
+                    ),
+                    height: 220,
+                    width: 220,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildLine(),
+                    _buildAnimatedContainer(),
+                    _buildLine(),
+                  ],
+                ),
+                Container(
+                  height: 310.0,
                   child: PageView(
                     physics: ClampingScrollPhysics(),
                     controller: _pageController,
@@ -81,23 +122,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       buildTextBlock(
                           'World Class\ndiagnosis',
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                          AssetImage(
-                              'assets/images/eye_1.png'
-                          ),
                       ),
                       buildTextBlock(
                         'Military grade\ntesting standards',
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                          AssetImage(
-                              'assets/images/eye_2.png'
-                          )
                       ),
                       buildTextBlock(
                         'All your solutions\nin one place',
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                          AssetImage(
-                              'assets/images/eye_3.png'
-                          )
                       ),
                     ],
                   ),
@@ -152,7 +184,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
       bottomNavigationBar: _currentPage == _numPages -1
       ? Container(
-        height: 50.0,
+        height: 60.0,
         width: double.infinity,
         color: Color(0xFF5B16D0),
         child: GestureDetector(
@@ -161,7 +193,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           },
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
+              padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
                 'Get Started',
                 style: TextStyle(
@@ -175,25 +207,53 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
       )
       : Container(
-        height: 1.0,
+        height: 0.1,
         color: Color(0xFF5B16D0),
       ),
     );
   }
 
-  Widget buildTextBlock(String mainText, String subText, AssetImage image) {
+  Widget _buildLine() {
+    return Container(
+                    height: 2.0,
+                    width: 92.0,
+                    color: kGoldenColor,
+                  );
+  }
+
+  Widget _buildAnimatedContainer() {
+    return Container(
+                height: 32,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  padding: EdgeInsets.all(6),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: kPurpleColor.withOpacity(0.8),
+                  ),
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.transparent,
+                      border: Border.all(
+                        color: kGoldenColor,
+                        width: _circleWidth,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+  }
+
+  Widget buildTextBlock(String mainText, String subText) {
     return Padding(
                       padding: EdgeInsets.all(40.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Center(
-                            child: Image(
-                              image: image,
-                              height: 220.0,
-                              width: 220.0,
-                            ),
-                          ),
                           SizedBox(
                             height: 10.0,
                           ),
