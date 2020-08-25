@@ -4,3 +4,4 @@
 [25/08/20 02:00 PM] [Hassan] On-boarding Screens Done and Debugged - Pushed to Github
 [25/08/20 04:00 PM] [Hassan] Making Login Screens
 [25/08/20 05:00 PM] [Hassan] Login Screens Done
+[25/08/20 11:00 PM] [Hassan] UI updates
