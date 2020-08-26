@@ -42,14 +42,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   _animateCircle(){
     setState(() {
-      _circleWidth = _circleWidth == 3.5 ? 0.1 : 3.5;
+      _circleWidth = _circleWidth == 10.0 ? 0.1 : 10.0;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(milliseconds: 1000), (Timer ticker) {
+    _timer = Timer.periodic(Duration(milliseconds: 2000), (Timer ticker) {
       _animateCircle();
     });
   }
@@ -93,21 +93,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                 ),
                 Container(
-                  child: Image(
-                    image: AssetImage(
-                        'assets/images/eye.png'
-                    ),
-                    height: 220,
-                    width: 220,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image(
+                        image: AssetImage(
+                            'assets/images/eye_noball.png'
+                        ),
+                        height: 220,
+                        width: 220,
+                      ),
+                      _buildAnimatedContainer(),
+                    ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildLine(),
-                    _buildAnimatedContainer(),
-                    _buildLine(),
-                  ],
+                Center(
+                    child: Container(
+                      height: 2.0,
+                      width: 300.0,
+                      color: kGoldenColor,
+                    ),
                 ),
                 Container(
                   height: 310.0,
@@ -218,28 +223,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  Widget _buildLine() {
-    return Container(
-                    height: 2.0,
-                    width: 92.0,
-                    color: kGoldenColor,
-                  );
-  }
-
   Widget _buildAnimatedContainer() {
     return Container(
-                height: 32,
+                height: 52,
                 child: AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
+                  duration: Duration(milliseconds: 2000),
                   padding: EdgeInsets.all(6),
-                  height: 50,
-                  width: 50,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: kPurpleColor.withOpacity(0.8),
                   ),
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 500),
+                    duration: Duration(milliseconds: 2000),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.transparent,
