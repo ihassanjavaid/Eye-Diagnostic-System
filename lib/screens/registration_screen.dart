@@ -1,14 +1,14 @@
-import 'package:eye_diagnostic_system/screens/registration_screen.dart';
+import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegistrationScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   bool _rememberMe = false;
 
   Widget _buildEmailTextField() {
@@ -33,6 +33,36 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.white,
               ),
               hintText: 'Enter your Email',
+              hintStyle: kLoginHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNameTextField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kLoginBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'CM Sans Serif',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 18.0),
+              prefixIcon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              hintText: 'Enter your Name',
               hintStyle: kLoginHintTextStyle,
             ),
           ),
@@ -142,11 +172,11 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            'Log In',
+            'Register',
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 22.0,
-              fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold
             ),
           ),
           SizedBox(
@@ -184,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Sign in with',
+            'Register with',
             style: kLoginLabelStyle.copyWith(fontSize: 20),
           ),
           SizedBox(
@@ -225,14 +255,14 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => RegistrationScreen()),
+          MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'Don\'t have an Account? ',
+              text: 'Already have an Account? ',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -240,7 +270,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             TextSpan(
-              text: 'Sign Up',
+              text: 'Sign In',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -285,12 +315,37 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        child: Image(
-                          image: AssetImage('assets/images/eye.png'),
-                          height: 180.0,
-                          width: 180.0,
-                        ),
+                      Stack(
+                        children: [
+                          Container(
+                            alignment: Alignment.centerRight,
+                            child: FlatButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                                );
+                              },
+                              child: Text(
+                                'Sign In',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0
+                                ),
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: Container(
+                              margin: EdgeInsets.only(top: 12.0),
+                              child: Image(
+                                image: AssetImage('assets/images/eye.png'),
+                                height: 180.0,
+                                width: 180.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Center(
                         child: Container(
@@ -302,7 +357,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 28.0, bottom: 10.0),
                         child: Text(
-                          'Sign In',
+                          'Sign Up',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
@@ -311,14 +366,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 18.0),
+                      SizedBox(height: 15.0),
+                      _buildNameTextField(),
+                      SizedBox(height: 30.0),
                       _buildEmailTextField(),
                       SizedBox(
                         height: 30.0,
                       ),
                       _buildPasswordTextField(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
+                      SizedBox(height: 18.0),
                       _buildLoginBtn(),
                       SizedBox(
                         height: 20.0,
