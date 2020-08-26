@@ -1,4 +1,5 @@
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
+import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      home: OnBoardingScreen(),
+      home: Dashboard(),
     );
   }
 }

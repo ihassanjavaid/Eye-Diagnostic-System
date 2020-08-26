@@ -40,15 +40,21 @@ final kBgColorGradientArrayBlues = [
   Color(0xFF3594DD),
   Color(0xFF4563DB),
   Color(0xFF5036D5),
-  Color(0xFF5b16D0)
+  Color(0xFF5b16D0),
 ];
 
 final kBgColorGradientArrayGreys = [
-  Color(0xFFFFFFFF),
+  Color(0xFF949494),
   Color(0xFFd1d1d1),
   Color(0xFFb5b5b5),
-  Color(0xFF949494)
+  Color(0xFF949494),
 ];
 
 final kGoldenColor = Color(0xFFffbd00);
 final kPurpleColor = Color(0xFF5b16D0);
+
+final TextStyle kDashboardTitleTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 32.0,
+  fontFamily: 'CM Sans Serif',
+);
