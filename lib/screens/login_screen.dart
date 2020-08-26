@@ -14,11 +14,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          'Email',
-          style: kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
-        ),
-        SizedBox(height: 10.0),
         Container(
           alignment: Alignment.centerLeft,
           decoration: kLoginBoxDecorationStyle,
@@ -49,11 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          'Password',
-          style: kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
-        ),
-        SizedBox(height: 10.0),
         Container(
           alignment: Alignment.centerLeft,
           decoration: kLoginBoxDecorationStyle,
@@ -88,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.only(right: 0.0),
         child: Text(
           'Forgot Password?',
-          style:kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
+          style: kLoginLabelStyle.copyWith(color: kGoldenColor),
         ),
       ),
     );
@@ -96,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildRememberMeCheckbox() {
     return Container(
-      height: 20.0,
+      height: 22.0,
       child: Row(
         children: <Widget>[
           Theme(
@@ -114,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Text(
             'Remember me',
-            style: kLoginLabelStyle.copyWith(color: Color(0xFF527DAA)),
+            style: kLoginLabelStyle.copyWith(color: kGoldenColor),
           ),
         ],
       ),
@@ -122,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLoginBtn() {
-    return Container(
+    /*return Container(
       padding: EdgeInsets.only(top: 25.0, bottom: 12.0),
       width: double.infinity,
       child: RaisedButton(
@@ -136,13 +126,37 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Text(
           'LOGIN',
           style: TextStyle(
-            color: Color(0xFF527DAA),
+            color: kGoldenColor,
             letterSpacing: 1.5,
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'CM Sans Serif',
           ),
         ),
+      ),
+    );*/
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            'Log In',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 22.0,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          SizedBox(
+            width: 10.0,
+          ),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.white,
+            size: 30.0,
+          )
+        ],
       ),
     );
   }
@@ -164,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSocialBtnRow() {
     return Padding(
-      padding: EdgeInsets.only(top: 18.0, bottom: 18.0),
+      padding: EdgeInsets.only(top: 18.0, bottom: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -259,7 +273,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
-                    horizontal: 10.0,
+                    horizontal: 22.0,
                     vertical: 40.0,
                   ),
                   child: Column(
@@ -267,63 +281,47 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: <Widget>[
                       Container(
                         child: Image(
-                          image: AssetImage(
-                              'assets/images/eye.png'
-                          ),
-                          height: 120.0,
-                          width: 120.0,
+                          image: AssetImage('assets/images/eye.png'),
+                          height: 180.0,
+                          width: 180.0,
                         ),
                       ),
-                      Container(
-                        height: 440,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: kBgColorGradientArrayGreys,
-                            stops: [0.1, 0.4, 0.7, 0.9],
-                          ),
-                            border: Border.all(
-                              color: Colors.transparent,
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      Center(
+                        child: Container(
+                          height: 2.0,
+                          width: 300.0,
+                          color: kGoldenColor,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Text(
-                                  'Sign In',
-                                  style: TextStyle(
-                                    color: kPurpleColor,
-                                    fontFamily: 'OpenSans',
-                                    fontSize: 30.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 18.0),
-                              _buildEmailTextField(),
-                              SizedBox(
-                                height: 30.0,
-                              ),
-                              _buildPasswordTextField(),
-                              _buildForgotPasswordBtn(),
-                              _buildRememberMeCheckbox(),
-                              _buildLoginBtn(),
-                            ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 28.0, bottom: 10.0),
+                        child: Text(
+                          'Sign In',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
+                      SizedBox(height: 18.0),
+                      _buildEmailTextField(),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      _buildPasswordTextField(),
+                      _buildForgotPasswordBtn(),
+                      _buildRememberMeCheckbox(),
+                      _buildLoginBtn(),
                       SizedBox(
                         height: 20.0,
                       ),
                       _buildSignInWithText(),
                       _buildSocialBtnRow(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
                       _buildSignupBtn(),
                     ],
                   ),

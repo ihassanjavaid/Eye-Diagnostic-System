@@ -50,5 +50,5 @@ final kBgColorGradientArrayGreys = [
   Color(0xFF949494)
 ];
 
-final kGoldenColor = Color(0xFFc4ac2f);
+final kGoldenColor = Color(0xFFffbd00);
 final kPurpleColor = Color(0xFF5b16D0);
