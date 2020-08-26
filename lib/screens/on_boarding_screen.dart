@@ -82,7 +82,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Container(
                   alignment: Alignment.centerRight,
                   child: FlatButton(
-                    onPressed: () { print('### skip button pressed'); },
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
                     child: Text(
                       'Skip',
                       style: TextStyle(
@@ -144,15 +149,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
                 ),
-                _currentPage != _numPages -1
-                    ? Expanded(
+                Expanded(
                     child: Align(
                       alignment: FractionalOffset.bottomRight,
                       child: FlatButton(
                         onPressed: () {
+                          _currentPage != _numPages -1 ?
                           _pageController.nextPage(
                             duration: Duration(milliseconds: 500),
                             curve: Curves.ease
+                          ) :
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginScreen()),
                           );
                         },
                         child: Padding(
@@ -162,7 +171,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Next',
+                                _currentPage != _numPages -1 ?
+                                'Next' : 'Get Started',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 22.0
@@ -181,14 +191,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ),
                       ),
                     )
-                )
-                    : Text('')
+                ),
               ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar: _currentPage == _numPages -1
+      /*bottomNavigationBar: _currentPage == _numPages -1
       ? Container(
         height: 60.0,
         width: double.infinity,
@@ -219,7 +228,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       : Container(
         height: 0.1,
         color: Color(0xFF5B16D0),
-      ),
+      ),*/
     );
   }
 
