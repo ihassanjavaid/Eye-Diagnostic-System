@@ -34,7 +34,7 @@ class _DashboardState extends State<Dashboard> {
       height: 8.0,
       width: isActive ? 24.0 : 8.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.white : Color(0xFF7B51D3),
+        color: isActive ? kGoldenColor : Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -110,38 +110,70 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-                  child: Container(
-                    height: 350.0,
-                    child: PageView(
-                      physics: ClampingScrollPhysics(),
-                      controller: _pageController,
-                      onPageChanged: (int page) {
-                        setState(() {
-                          _currentPage = page;
-                        });
-                      },
-                      children: <Widget>[
-                        _buildMainDashboardContainer(
-                            'Eye Sight\nTest',
-                            'assets/images/svgs/eye_sight.svg'
-                        ),
-                        _buildMainDashboardContainer(
-                            'Disease\nDiagnosis',
-                            'assets/images/svgs/disease.svg'
-                        ),
-                        _buildMainDashboardContainer(
-                            'Fundus\nAnalysis',
-                            'assets/images/svgs/fundo.svg'
-                        ),
-                      ],
-                    ),
+                Container(
+                  height: 384.0,
+                  child: PageView(
+                    physics: ClampingScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
+                    children: <Widget>[
+                      _buildMainDashboardContainer(
+                          'Eye Sight\nTest',
+                          'assets/images/svgs/eye_sight.svg'
+                      ),
+                      _buildMainDashboardContainer(
+                          'Disease\nDiagnosis',
+                          'assets/images/svgs/disease.svg'
+                      ),
+                      _buildMainDashboardContainer(
+                          'Fundus\nAnalysis',
+                          'assets/images/svgs/fundo.svg'
+                      ),
+                    ],
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
+                ),
+                SizedBox(
+                  height: 40.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.people,
+                          color: kGoldenColor,
+                          size: 42.0,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.alarm,
+                          color: kGoldenColor,
+                          size: 42.0,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.power_settings_new,
+                          color: kGoldenColor,
+                          size: 42.0,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Expanded(
                     child: Align(
@@ -194,39 +226,42 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Container _buildMainDashboardContainer(String title, String image) {
-    return Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            stops: [0.1, 0.4, 0.7, 0.9],
-                            colors: kBgColorGradientArrayGreys,
+  Widget _buildMainDashboardContainer(String title, String image) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+      child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: [0.1, 0.4, 0.7, 0.9],
+                              colors: kBgColorGradientArrayGreys,
+                            ),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(12.0)
+                            ),
                           ),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(12.0)
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                bottom: 18.0,
+                                left: 20.0,
+                                child: Text(
+                                  title,
+                                  style: kDashboardTitleTextStyle,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 70.0,
+                                left: 50.0,
+                                child: SvgPicture.asset(
+                                  image,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              bottom: 18.0,
-                              left: 20.0,
-                              child: Text(
-                                title,
-                                style: kDashboardTitleTextStyle,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 70.0,
-                              left: 50.0,
-                              child: SvgPicture.asset(
-                                image,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
+    );
   }
 
   Widget _buildAnimatedEyeBall() {

@@ -34,7 +34,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       height: 8.0,
       width: isActive ? 24.0 : 8.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.white : Color(0xFF7B51D3),
+        color: isActive ? kGoldenColor : Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
