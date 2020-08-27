@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
             data: ThemeData(unselectedWidgetColor: Colors.white),
             child: Checkbox(
               value: _rememberMe,
-              checkColor: Colors.green,
+              checkColor: kGoldenColor,
               activeColor: Colors.white,
               onChanged: (value) {
                 setState(() {
@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSignInWithText() {
+  Widget _buildORText() {
     return Column(
       children: <Widget>[
         Text(
@@ -323,7 +323,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      _buildSignInWithText(),
+                      _buildORText(),
                       _buildSocialBtnRow(),
                       SizedBox(
                         height: 20.0,
