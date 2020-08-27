@@ -14,6 +14,7 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
+      // routes to be defined
       home: Dashboard(),
     );
   }
