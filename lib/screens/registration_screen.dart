@@ -1,15 +1,26 @@
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
+import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
+import 'package:eye_diagnostic_system/services/auth_service.dart';
+import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class RegistrationScreen extends StatefulWidget {
+  static const String id = 'registration_screen';
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool _rememberMe = false;
+  String _name;
+  String _email;
+  String _password;
+  bool _waiting = false;
+  Auth _auth = Auth();
 
   Widget _buildEmailTextField() {
     return Column(
@@ -21,6 +32,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
+            onChanged: (value){
+              this._email = value;
+            },
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'CM Sans Serif',
@@ -51,6 +65,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
+            onChanged: (value){
+              this._name = value;
+            },
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'CM Sans Serif',
@@ -81,6 +98,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           height: 60.0,
           child: TextField(
             obscureText: true,
+            onChanged: (value){
+              this._password = value;
+            },
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'CM Sans Serif',
@@ -115,79 +135,54 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 22.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLoginLabelStyle.copyWith(color: kGoldenColor),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildLoginBtn() {
-    /*return Container(
-      padding: EdgeInsets.only(top: 25.0, bottom: 12.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 5.0,
-        onPressed: () => print('### Login Button Pressed'),
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: Colors.white,
-        child: Text(
-          'LOGIN',
-          style: TextStyle(
-            color: kGoldenColor,
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'CM Sans Serif',
-          ),
-        ),
-      ),
-    );*/
+  Widget _buildRegistrationBtn() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            'Register',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold
+      child: GestureDetector(
+        onTap:() async{
+          setState(() {
+            _waiting = true;
+          });
+          try{
+            await _auth.registerUser(email:removeSpaces(_email), password: _password);
+            Navigator.pushNamed(context, Dashboard.id);
+          }
+          catch(e){
+            AlertWidget()
+                .generateAlert(
+                context: context,
+                title: "Error",
+                description: e.toString()).show();
+            print(e);
+          }
+          setState(() {
+            _waiting = false;
+          });
+
+
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              'Register',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold
+              ),
             ),
-          ),
-          SizedBox(
-            width: 10.0,
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.white,
-            size: 30.0,
-          )
-        ],
+            SizedBox(
+              width: 10.0,
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white,
+              size: 30.0,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -250,13 +245,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  Widget _buildSignupBtn() {
+  Widget _buildSignInBtn() {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
-        );
+        Navigator.pushNamed(context, LoginScreen.id);
       },
       child: RichText(
         text: TextSpan(
@@ -283,113 +275,115 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
+  String removeSpaces(String email) => email.replaceAll(' ', '');
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: kBgColorGradientArrayBlues,
-                    stops: [0.1, 0.4, 0.7, 0.9],
+    return ModalProgressHUD(
+      inAsyncCall: _waiting,
+      child: Scaffold(
+        body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: kBgColorGradientArrayBlues,
+                      stops: [0.1, 0.4, 0.7, 0.9],
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 22.0,
-                    vertical: 40.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Stack(
-                        children: [
-                          Container(
-                            alignment: Alignment.centerRight,
-                            child: FlatButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                                );
-                              },
-                              child: Text(
-                                'Sign In',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20.0
+                Container(
+                  height: double.infinity,
+                  child: SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 22.0,
+                      vertical: 40.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Stack(
+                          children: [
+                            Container(
+                              alignment: Alignment.centerRight,
+                              child: FlatButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, LoginScreen.id);
+                                },
+                                child: Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Center(
-                            child: Container(
-                              margin: EdgeInsets.only(top: 12.0),
-                              child: Image(
-                                image: AssetImage('assets/images/eye.png'),
-                                height: 180.0,
-                                width: 180.0,
+                            Center(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 12.0),
+                                child: Image(
+                                  image: AssetImage('assets/images/eye.png'),
+                                  height: 180.0,
+                                  width: 180.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Center(
-                        child: Container(
-                          height: 2.0,
-                          width: 300.0,
-                          color: kGoldenColor,
+                          ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 28.0, bottom: 10.0),
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'OpenSans',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
+                        Center(
+                          child: Container(
+                            height: 2.0,
+                            width: 300.0,
+                            color: kGoldenColor,
                           ),
                         ),
-                      ),
-                      SizedBox(height: 15.0),
-                      _buildNameTextField(),
-                      SizedBox(height: 30.0),
-                      _buildEmailTextField(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      _buildPasswordTextField(),
-                      SizedBox(height: 18.0),
-                      _buildLoginBtn(),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      _buildSignInWithText(),
-                      _buildSocialBtnRow(),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      _buildSignupBtn(),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 28.0, bottom: 10.0),
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'OpenSans',
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15.0),
+                        _buildNameTextField(),
+                        SizedBox(height: 30.0),
+                        _buildEmailTextField(),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildPasswordTextField(),
+                        SizedBox(height: 18.0),
+                        _buildRegistrationBtn(),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        _buildSignInWithText(),
+                        _buildSocialBtnRow(),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        _buildSignInBtn(),
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 class OnBoardingScreen extends StatefulWidget {
+  static const String id = 'on_boarding_screen';
+
   @override
   _OnBoardingScreenState createState() => _OnBoardingScreenState();
 }
@@ -83,10 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   alignment: Alignment.centerRight,
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
+                      Navigator.pushNamed(context, LoginScreen.id);
                     },
                     child: Text(
                       'Skip',
@@ -159,10 +158,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             duration: Duration(milliseconds: 500),
                             curve: Curves.ease
                           ) :
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
-                          );
+                          Navigator.pushNamed(context, LoginScreen.id);
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),

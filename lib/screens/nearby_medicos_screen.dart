@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NearbyMedicos extends StatefulWidget {
+  static const String id = 'nearby_medicos_screen';
+
   @override
   _NearbyMedicosState createState() => _NearbyMedicosState();
 }

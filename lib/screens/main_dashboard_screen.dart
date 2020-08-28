@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
+import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,12 +8,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Dashboard extends StatefulWidget {
+  static const String id = 'main_dashboard_screen';
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 
 class _DashboardState extends State<Dashboard> {
-
+  Auth _auth = Auth();
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
@@ -165,7 +168,10 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          _auth.signOut();
+                          Navigator.pushNamed(context, LoginScreen.id);
+                        },
                         child: Icon(
                           Icons.power_settings_new,
                           color: kGoldenColor,
