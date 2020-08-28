@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -18,12 +19,105 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: WebView(
-          initialUrl: 'https://www.google.com/maps/search/optometrist/',
-          onWebViewCreated: (WebViewController webViewController) {
-            this._webViewController = webViewController;
-            _controller.complete(webViewController);
-          },
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: kBgColorGradientArrayBlues,
+            stops: [0.1, 0.4, 0.7, 0.9],
+          ),
+        ),
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Container(
+                    child: Image(
+                      image: AssetImage('assets/images/eye.png'),
+                      height: 140.0,
+                      width: 140.0,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 14.0, right: 14.0, bottom: 12.0),
+                  child: Container(
+                    height: 400,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(24.0),
+                        child: WebView(
+                          javascriptMode: JavascriptMode.unrestricted,
+                          gestureNavigationEnabled: true,
+                          debuggingEnabled: false,
+                          initialUrl: 'https://www.google.com/maps/search/optometrist/',
+                          onWebViewCreated: (WebViewController webViewController) {
+                            this._webViewController = webViewController;
+                            _controller.complete(webViewController);
+                          },
+                        ),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    height: 100,
+                    color: kPurpleColor,
+                    child: NavigationControls(_controller.future),
+                  ),
+                ),
+                Container(
+                  height: 64.0,
+                  //color: kPurpleColor,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 24.0,
+                          ),
+                          Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            'Back',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ],
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: Text(
+                            'Powered by Google Maps ©',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontStyle: FontStyle.italic
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -45,21 +139,34 @@ class NavigationControls extends StatelessWidget {
         final bool webViewReady =
             snapshot.connectionState == ConnectionState.done;
         final WebViewController controller = snapshot.data;
-        return Row(
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              onPressed: !webViewReady
-                  ? null
-                  : () => navigate(context, controller, goBack: true),
-            ),
-            IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
-              onPressed: !webViewReady
-                  ? null
-                  : () => navigate(context, controller, goBack: false),
-            ),
-          ],
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 22.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Color(0xFFffbd00),
+                  size: 48.0,
+                ),
+                onPressed: !webViewReady
+                    ? null
+                    : () => navigate(context, controller, goBack: true),
+              ),
+              IconButton(
+                color: kGoldenColor,
+                icon: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Color(0xFFffbd00),
+                    size: 48.0
+                ),
+                onPressed: !webViewReady
+                    ? null
+                    : () => navigate(context, controller, goBack: false),
+              ),
+            ],
+          ),
         );
       },
     );
