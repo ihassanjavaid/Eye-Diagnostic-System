@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "901359929076",
+    "firebase_url": "https://eye-diagnostic-system-e87e7.firebaseio.com",
+    "project_id": "eye-diagnostic-system-e87e7",
+    "storage_bucket": "eye-diagnostic-system-e87e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901359929076:android:a0f0d20e42f58bb84c40a1",
+        "android_client_info": {
+          "package_name": "com.cui.eye_diagnostic_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901359929076-7d1n34duueica378ksn1v0jqstdq23mj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6x0xUOucatpJ1-O2L1goPbcTR9eYUIdA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901359929076-7d1n34duueica378ksn1v0jqstdq23mj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
