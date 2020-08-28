@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -47,9 +48,9 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
                 Padding(
                   padding: const EdgeInsets.only(left: 14.0, right: 14.0, bottom: 12.0),
                   child: Container(
-                    height: 400,
+                    height: 450,
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(18.0),
                         child: WebView(
                           javascriptMode: JavascriptMode.unrestricted,
                           gestureNavigationEnabled: true,
@@ -65,7 +66,7 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
                 ),
                 Center(
                   child: Container(
-                    height: 100,
+                    height: 80,
                     color: kPurpleColor,
                     child: NavigationControls(_controller.future),
                   ),
@@ -75,29 +76,35 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
                   //color: kPurpleColor,
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 24.0,
-                          ),
-                          Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                            size: 30.0,
-                          ),
-                          SizedBox(
-                            width: 8.0,
-                          ),
-                          Text(
-                            'Back',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.bold
+                      GestureDetector(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 24.0,
                             ),
-                          ),
-                        ],
+                            Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                              size: 30.0,
+                            ),
+                            SizedBox(
+                              width: 8.0,
+                            ),
+                            Text(
+                              'Back',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.pushNamed(context, Dashboard.id);
+                        },
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
