@@ -19,7 +19,7 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      initialRoute: OnBoardingScreen.id,
+      initialRoute: NearbyMedicos.id,
       routes: {
         LoginScreen.id: (context) => LoginScreen(),
         Dashboard.id: (context) => Dashboard(),

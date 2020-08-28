@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -10,9 +11,9 @@ class AlertWidget{
       desc: description,
       buttons: [
         DialogButton(
-          color: Colors.brown,
+          color: kPurpleColor,
           child: Text(
-            "Try Again!",
+            "Try Again",
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           onPressed: () {
