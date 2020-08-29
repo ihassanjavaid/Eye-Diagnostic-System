@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Dashboard extends StatefulWidget {
   static const String id = 'main_dashboard_screen';
@@ -168,7 +169,9 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          final SharedPreferences pref = await SharedPreferences.getInstance();
+                          await pref.setString('email', null);
                           _auth.signOut();
                           Navigator.pushNamed(context, LoginScreen.id);
                         },

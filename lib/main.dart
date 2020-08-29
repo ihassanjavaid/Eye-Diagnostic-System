@@ -3,6 +3,7 @@ import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
+import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,9 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      initialRoute: NearbyMedicos.id,
+      initialRoute: AutoLoginService.id,
       routes: {
+        AutoLoginService.id:(context) => AutoLoginService(),
         LoginScreen.id: (context) => LoginScreen(),
         Dashboard.id: (context) => Dashboard(),
         NearbyMedicos.id: (context) => NearbyMedicos(),

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -139,8 +140,15 @@ class _LoginScreenState extends State<LoginScreen> {
             _waiting = true;
           });
           try{
-            await _auth.loginUserWithEmailAndPassword(email: removeSpaces(this._email),password: this._password);
-            Navigator.pushNamed(context, Dashboard.id);
+            if(_rememberMe) {
+              final SharedPreferences pref = await SharedPreferences
+                  .getInstance();
+              await pref.setString('email', removeSpaces(this._email));
+            }
+              await _auth.loginUserWithEmailAndPassword(
+                  email: removeSpaces(this._email), password: this._password);
+              Navigator.pushNamed(context, Dashboard.id);
+            
           }
           catch (e) {
             AlertWidget()

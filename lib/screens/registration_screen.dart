@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
@@ -145,6 +146,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             _waiting = true;
           });
           try{
+            final SharedPreferences pref = await SharedPreferences.getInstance();
+            await pref.setString('email', removeSpaces(this._email));
             await _auth.registerUser(email:removeSpaces(_email), password: _password);
             Navigator.pushNamed(context, Dashboard.id);
           }
