@@ -122,21 +122,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('### Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLoginLabelStyle.copyWith(color: kGoldenColor),
-        ),
-      ),
-    );
-  }
-
-
   Widget _buildRegistrationBtn() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),

@@ -90,20 +90,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('### Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLoginLabelStyle.copyWith(color: kGoldenColor),
-        ),
-      ),
-    );
-  }
-
   Widget _buildRememberMeCheckbox() {
     return Container(
       height: 22.0,
@@ -114,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Checkbox(
               value: _rememberMe,
               checkColor: kGoldenColor,
-              activeColor: Colors.white,
+              activeColor: Colors.black,
               onChanged: (value) {
                 setState(() {
                   _rememberMe = value;
@@ -122,9 +108,12 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
           ),
-          Text(
-            'Remember me',
-            style: kLoginLabelStyle.copyWith(color: kGoldenColor),
+          Padding(
+            padding: const EdgeInsets.only(top: 2.5),
+            child: Text(
+              'Keep me signed in',
+              style: kLoginLabelStyle.copyWith(color: kGoldenColor),
+            ),
           ),
         ],
       ),
@@ -343,8 +332,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 30.0,
                         ),
                         _buildPasswordTextField(),
-                        _buildForgotPasswordBtn(),
+                        SizedBox(
+                          height: 30.0,
+                        ),
                         _buildRememberMeCheckbox(),
+                        SizedBox(
+                          height: 10.0,
+                        ),
                         _buildLoginBtn(),
                         SizedBox(
                           height: 20.0,
