@@ -3,6 +3,7 @@ import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -124,12 +125,22 @@ class _DashboardState extends State<Dashboard> {
                       });
                     },
                     children: <Widget>[
-                      _buildMainDashboardContainer('Eye Sight\nTest',
-                          'assets/images/svgs/eye_sight.svg'),
-                      _buildMainDashboardContainer('Disease\nDiagnosis',
-                          'assets/images/svgs/disease.svg'),
-                      _buildMainDashboardContainer(
-                          'Fundus\nAnalysis', 'assets/images/svgs/fundo.svg'),
+                      GestureDetector(
+                        onTap: () {},
+                        child: _buildMainDashboardContainer('Eye Sight\nTest',
+                            'assets/images/svgs/eye_sight.svg'),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: _buildMainDashboardContainer(
+                            'Disease\nDiagnosis',
+                            'assets/images/svgs/disease.svg'),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: _buildMainDashboardContainer(
+                            'Fundus\nAnalysis', 'assets/images/svgs/fundo.svg'),
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, NearbyMedicos.id);
@@ -167,7 +178,7 @@ class _DashboardState extends State<Dashboard> {
                             height: 10.0,
                           ),
                           Text(
-                              'Community',
+                            'Community',
                             style: kDashboardButtonLabelStyle,
                           ),
                         ],
@@ -220,21 +231,21 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 Expanded(
-                    child: Align(
-                  alignment: FractionalOffset.bottomRight,
-                  child: FlatButton(
-                    onPressed: () {
-                      _currentPage != _numPages - 1
-                          ? _pageController.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease)
-                          : Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
-                            );
-                    },
-                    child: Padding(
+                  child: Align(
+                    alignment: FractionalOffset.bottomRight,
+                    child: FlatButton(
+                      onPressed: () {
+                        _currentPage != _numPages - 1
+                            ? _pageController.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.ease)
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()),
+                              );
+                      },
+                      /*child: Padding(
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -257,14 +268,16 @@ class _DashboardState extends State<Dashboard> {
                           )
                         ],
                       ),
+                    ),*/
                     ),
                   ),
-                )),
+                ),
               ],
             ),
           ),
         ),
       ),
+      floatingActionButton: ButtonWidget().speedDial(context),
     );
   }
 
