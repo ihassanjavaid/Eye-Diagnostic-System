@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/screens/community/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
@@ -20,9 +21,10 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      initialRoute: AutoLoginService.id,
+      initialRoute: Forum.id,
       routes: {
         AutoLoginService.id:(context) => AutoLoginService(),
+        Forum.id:(context) => Forum(),
         LoginScreen.id: (context) => LoginScreen(),
         Dashboard.id: (context) => Dashboard(),
         NearbyMedicos.id: (context) => NearbyMedicos(),
