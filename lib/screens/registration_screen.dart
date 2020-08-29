@@ -134,7 +134,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             final SharedPreferences pref = await SharedPreferences.getInstance();
             await pref.setString('email', removeSpaces(this._email));
             await _auth.registerUser(email:removeSpaces(_email), password: _password);
-            Navigator.pushNamed(context, Dashboard.id);
+            Navigator.popAndPushNamed(context, Dashboard.id);
           }
           catch(e){
             AlertWidget()

@@ -58,3 +58,8 @@ final TextStyle kDashboardTitleTextStyle = TextStyle(
   fontSize: 32.0,
   fontFamily: 'CM Sans Serif',
 );
+
+final kDashboardButtonLabelStyle = TextStyle(
+  color: kGoldenColor,
+  fontFamily: 'CM Sans Serif',
+);

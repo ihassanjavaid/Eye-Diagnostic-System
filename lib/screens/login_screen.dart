@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
             }
               await _auth.loginUserWithEmailAndPassword(
                   email: removeSpaces(this._email), password: this._password);
-              Navigator.pushNamed(context, Dashboard.id);
+              Navigator.popAndPushNamed(context, Dashboard.id);
 
           }
           catch (e) {

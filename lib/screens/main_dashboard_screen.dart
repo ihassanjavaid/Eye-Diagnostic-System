@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
+import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   Auth _auth = Auth();
-  final int _numPages = 3;
+  final int _numPages = 4;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   Timer _timer;
@@ -25,7 +26,7 @@ class _DashboardState extends State<Dashboard> {
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
-    for ( int i = 0 ; i < _numPages ; i++ ){
+    for (int i = 0; i < _numPages; i++) {
       list.add(i == _currentPage ? _indicator(true) : _indicator(false));
     }
     return list;
@@ -44,7 +45,7 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  _animateCircle(){
+  _animateCircle() {
     setState(() {
       _circleWidth = _circleWidth == 3.5 ? 0.1 : 3.5;
     });
@@ -88,9 +89,7 @@ class _DashboardState extends State<Dashboard> {
                     alignment: Alignment.center,
                     children: [
                       Image(
-                        image: AssetImage(
-                            'assets/images/eye_noball.png'
-                        ),
+                        image: AssetImage('assets/images/eye_noball.png'),
                         height: 100,
                         width: 100,
                       ),
@@ -100,18 +99,18 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 Center(
                   child: RichText(
-                    text: TextSpan(
-                    children: [
+                    text: TextSpan(children: [
                       TextSpan(
                         text: 'Eye\t',
-                        style: kDashboardTitleTextStyle.copyWith(color: kPurpleColor),
+                        style: kDashboardTitleTextStyle.copyWith(
+                            color: kPurpleColor),
                       ),
                       TextSpan(
                         text: 'See',
-                        style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                        style: kDashboardTitleTextStyle.copyWith(
+                            color: kGoldenColor),
                       ),
-                    ]
-                  ),
+                    ]),
                   ),
                 ),
                 Container(
@@ -125,17 +124,19 @@ class _DashboardState extends State<Dashboard> {
                       });
                     },
                     children: <Widget>[
+                      _buildMainDashboardContainer('Eye Sight\nTest',
+                          'assets/images/svgs/eye_sight.svg'),
+                      _buildMainDashboardContainer('Disease\nDiagnosis',
+                          'assets/images/svgs/disease.svg'),
                       _buildMainDashboardContainer(
-                          'Eye Sight\nTest',
-                          'assets/images/svgs/eye_sight.svg'
-                      ),
-                      _buildMainDashboardContainer(
-                          'Disease\nDiagnosis',
-                          'assets/images/svgs/disease.svg'
-                      ),
-                      _buildMainDashboardContainer(
-                          'Fundus\nAnalysis',
-                          'assets/images/svgs/fundo.svg'
+                          'Fundus\nAnalysis', 'assets/images/svgs/fundo.svg'),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, NearbyMedicos.id);
+                        },
+                        child: _buildMainDashboardContainer(
+                            'Nearby\nOptometrists',
+                            'assets/images/svgs/google_maps.svg'),
                       ),
                     ],
                   ),
@@ -152,81 +153,113 @@ class _DashboardState extends State<Dashboard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.people,
-                          color: kGoldenColor,
-                          size: 42.0,
-                        ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.people,
+                              color: kGoldenColor,
+                              size: 42.0,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                              'Community',
+                            style: kDashboardButtonLabelStyle,
+                          ),
+                        ],
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.alarm,
-                          color: kGoldenColor,
-                          size: 42.0,
-                        ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.alarm,
+                              color: kGoldenColor,
+                              size: 42.0,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            'Reminders',
+                            style: kDashboardButtonLabelStyle,
+                          ),
+                        ],
                       ),
-                      GestureDetector(
-                        onTap: () async {
-                          final SharedPreferences pref = await SharedPreferences.getInstance();
-                          await pref.setString('email', null);
-                          _auth.signOut();
-                          Navigator.pushNamed(context, LoginScreen.id);
-                        },
-                        child: Icon(
-                          Icons.power_settings_new,
-                          color: kGoldenColor,
-                          size: 42.0,
-                        ),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () async {
+                              final SharedPreferences pref =
+                                  await SharedPreferences.getInstance();
+                              await pref.setString('email', null);
+                              _auth.signOut();
+                              Navigator.pushNamed(context, LoginScreen.id);
+                            },
+                            child: Icon(
+                              Icons.power_settings_new,
+                              color: kGoldenColor,
+                              size: 42.0,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            'Sign Out',
+                            style: kDashboardButtonLabelStyle,
+                          ),
+                        ],
                       )
                     ],
                   ),
                 ),
                 Expanded(
                     child: Align(
-                      alignment: FractionalOffset.bottomRight,
-                      child: FlatButton(
-                        onPressed: () {
-                          _currentPage != _numPages -1 ?
-                          _pageController.nextPage(
+                  alignment: FractionalOffset.bottomRight,
+                  child: FlatButton(
+                    onPressed: () {
+                      _currentPage != _numPages - 1
+                          ? _pageController.nextPage(
                               duration: Duration(milliseconds: 500),
-                              curve: Curves.ease
-                          ) :
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                _currentPage != _numPages -1 ?
-                                'Next' : 'Get Started',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22.0
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.white,
-                                size: 30.0,
-                              )
-                            ],
+                              curve: Curves.ease)
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()),
+                            );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            _currentPage != _numPages - 1
+                                ? 'Next'
+                                : 'Get Started',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 22.0),
                           ),
-                        ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.white,
+                            size: 30.0,
+                          )
+                        ],
                       ),
-                    )
-                ),
+                    ),
+                  ),
+                )),
               ],
             ),
           ),
@@ -239,37 +272,35 @@ class _DashboardState extends State<Dashboard> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
       child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              stops: [0.1, 0.4, 0.7, 0.9],
-                              colors: kBgColorGradientArrayGreys,
-                            ),
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(12.0)
-                            ),
-                          ),
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                bottom: 18.0,
-                                left: 20.0,
-                                child: Text(
-                                  title,
-                                  style: kDashboardTitleTextStyle,
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 70.0,
-                                left: 50.0,
-                                child: SvgPicture.asset(
-                                  image,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.1, 0.4, 0.7, 0.9],
+            colors: kBgColorGradientArrayGreys,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 18.0,
+              left: 20.0,
+              child: Text(
+                title,
+                style: kDashboardTitleTextStyle,
+              ),
+            ),
+            Positioned(
+              bottom: 70.0,
+              left: 50.0,
+              child: SvgPicture.asset(
+                image,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

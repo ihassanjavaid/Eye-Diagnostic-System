@@ -85,7 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   alignment: Alignment.centerRight,
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, LoginScreen.id);
+                      Navigator.popAndPushNamed(context, LoginScreen.id);
                     },
                     child: Text(
                       'Skip',
@@ -158,7 +158,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             duration: Duration(milliseconds: 500),
                             curve: Curves.ease
                           ) :
-                          Navigator.pushNamed(context, LoginScreen.id);
+                          Navigator.popAndPushNamed(context, LoginScreen.id);
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
