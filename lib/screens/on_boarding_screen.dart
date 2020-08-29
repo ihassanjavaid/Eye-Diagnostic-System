@@ -193,38 +193,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
         ),
       ),
-      /*bottomNavigationBar: _currentPage == _numPages -1
-      ? Container(
-        height: 60.0,
-        width: double.infinity,
-        color: Color(0xFF5B16D0),
-        child: GestureDetector(
-          onTap: () {
-            print('### Get Started');
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
-          },
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.0),
-              child: Text(
-                'Get Started',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-          ),
-        ),
-      )
-      : Container(
-        height: 0.1,
-        color: Color(0xFF5B16D0),
-      ),*/
     );
   }
 
