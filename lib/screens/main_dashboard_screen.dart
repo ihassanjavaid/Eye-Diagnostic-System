@@ -10,6 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'community/forum_screen.dart';
+
 class Dashboard extends StatefulWidget {
   static const String id = 'main_dashboard_screen';
 
@@ -167,7 +169,9 @@ class _DashboardState extends State<Dashboard> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, Forum.id);
+                            },
                             child: Icon(
                               Icons.people,
                               color: kGoldenColor,

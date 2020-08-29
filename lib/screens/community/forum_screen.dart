@@ -46,7 +46,7 @@ class _ForumState extends State<Forum> {
                         width: 40,
                       ),
                       SizedBox(
-                        width: 30.0,
+                        width: 15.0,
                       ),
                       Container(
                         padding: const EdgeInsets.all(8.0),
