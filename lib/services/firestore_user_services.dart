@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:eye_diagnostic_system/utilities/user_data.dart';
+import 'package:eye_diagnostic_system/models/user_data.dart';
 
 import 'auth_service.dart';
 
