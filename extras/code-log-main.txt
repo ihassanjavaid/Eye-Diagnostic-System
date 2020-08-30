@@ -24,3 +24,4 @@
 [29/08/20 10:30 PM] [Mahnoor] Forum UI Screen
 
 [30/08/20 12:00 PM] [Mahnoor] Forum Details UI Screen
+[30/08/20 03:45 PM] [Mahnoor] Firebase Firestore User Integration

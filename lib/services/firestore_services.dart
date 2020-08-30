@@ -58,7 +58,6 @@ class FirestoreService {
     await documentReference.setData({
       'displayName': displayName,
       'email': email,
-      'isAdmin': isAdmin,
     });
   }
 
@@ -76,7 +75,6 @@ class FirestoreService {
       userData = UserData(
         email: userDocument['email'],
         displayName: userDocument['displayName'],
-        isAdmin: userDocument['isAdmin'],
       );
     }
 
@@ -99,8 +97,7 @@ class FirestoreService {
       if (user['email'] != currentUser.email) {
         UserData userData = UserData(
             displayName: user['displayName'],
-            email: user['email'],
-            isAdmin: user['isAdmin']);
+            email: user['email']);
         users.add(userData);
       }
     }

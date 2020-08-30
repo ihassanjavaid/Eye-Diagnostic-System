@@ -1,6 +1,7 @@
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
+import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String _password;
   bool _waiting = false;
   Auth _auth = Auth();
+  FirestoreUserService _firestoreUserService = FirestoreUserService();
 
   Widget _buildEmailTextField() {
     return Column(
@@ -134,6 +136,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             final SharedPreferences pref = await SharedPreferences.getInstance();
             await pref.setString('email', removeSpaces(this._email));
             await _auth.registerUser(email:removeSpaces(_email), password: _password);
+            await _firestoreUserService.registerUser(displayName: this._name, email: this._email);
             Navigator.popAndPushNamed(context, Dashboard.id);
           }
           catch(e){
