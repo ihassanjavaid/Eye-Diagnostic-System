@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/screens/community/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -94,40 +95,45 @@ class _ForumState extends State<Forum> {
             child: new ListView.builder(
               itemCount:  15,
               itemBuilder: (_, index) {
-                return new ListTile(
-                  leading: new CircleAvatar(
-                    radius: 25.0,
-                    backgroundColor: Colors.blueGrey,
-                    child: new Text("User"),
-                    foregroundColor: Colors.white,
-                  ),
-                  title: new Text("I was diagnosed with Galucoma. Who else was diagnosed?",
-                    style: new TextStyle(
-                      fontWeight: FontWeight.bold,
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, ForumDetails.id);
+                  },
+                  child: new ListTile(
+                    leading: new CircleAvatar(
+                      radius: 25.0,
+                      backgroundColor: Colors.blueGrey,
+                      child: new Text("User"),
+                      foregroundColor: Colors.white,
                     ),
-                  ),
-                  subtitle: new Row(
-                    children: <Widget>[
-                      new Chip(
-                        backgroundColor: Color(0xff611cdf),
-                        label: new Text("Diseases",
-                          style: new TextStyle(
-                            //fontWeight: FontWeight.bold,
-                              color: Colors.white
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  trailing: new Chip(
-                    backgroundColor: kGoldenColor,
-                    shape: BeveledRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10),
-                    ),
-                    label: new Text("25 Views",
+                    title: new Text("I was diagnosed with Galucoma. Who else was diagnosed?",
                       style: new TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: new Row(
+                      children: <Widget>[
+                        new Chip(
+                          backgroundColor: Color(0xff611cdf),
+                          label: new Text("Diseases",
+                            style: new TextStyle(
+                              //fontWeight: FontWeight.bold,
+                                color: Colors.white
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    trailing: new Chip(
+                      backgroundColor: kGoldenColor,
+                      shape: BeveledRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10),
+                      ),
+                      label: new Text("25 Replies",
+                        style: new TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black
+                        ),
                       ),
                     ),
                   ),
