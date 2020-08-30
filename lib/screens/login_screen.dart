@@ -1,5 +1,7 @@
+import 'package:eye_diagnostic_system/models/user_data.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
+import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +9,6 @@ import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -19,10 +20,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String _email;
   String _password;
+  UserData _userData;
   bool _rememberMe = false;
   Auth _auth = Auth();
   bool _waiting = false;
-  //FirestoreService _firestoreService = FirestoreService();
+  FirestoreUserService _firestore = FirestoreUserService();
 
   Widget _buildEmailTextField() {
     return Column(
@@ -34,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            onChanged: (value){
+            onChanged: (value) {
               this._email = value;
             },
             style: TextStyle(
@@ -67,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 60.0,
           child: TextField(
             obscureText: true,
-            onChanged: (value){
+            onChanged: (value) {
               this._password = value;
             },
             style: TextStyle(
@@ -124,27 +126,34 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
       child: GestureDetector(
-        onTap:() async {
+        onTap: () async {
           setState(() {
             _waiting = true;
           });
-          try{
-            if(_rememberMe) {
-              final SharedPreferences pref = await SharedPreferences
-                  .getInstance();
+          try {
+            final SharedPreferences pref =
+                await SharedPreferences.getInstance();
+            await _auth.loginUserWithEmailAndPassword(
+                email: removeSpaces(this._email), password: this._password);
+            if (_rememberMe) {
               await pref.setString('email', removeSpaces(this._email));
             }
-              await _auth.loginUserWithEmailAndPassword(
-                  email: removeSpaces(this._email), password: this._password);
-              Navigator.popAndPushNamed(context, Dashboard.id);
-
-          }
-          catch (e) {
+            /*
+            * Set name always in shared prefs
+            * so that if remember is checked, it is saved in shared prefs
+            * if remember be is not checked, the name is saved, and overwritten by next time sign-in
+            */
+            _userData = await _firestore.getUserData(email: _email);
+            await pref.setString('displayName', _userData.displayName);
+            //  Navigate
+            Navigator.popAndPushNamed(context, Dashboard.id);
+          } catch (e) {
             AlertWidget()
                 .generateAlert(
-                context: context,
-                title: 'Invalid Credentials!',
-                description: e.toString()).show();
+                    context: context,
+                    title: 'Invalid Credentials!',
+                    description: e.toString())
+                .show();
             print(e);
           }
           setState(() {
@@ -159,8 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 22.0,
-                fontWeight: FontWeight.bold
-              ),
+                  fontWeight: FontWeight.bold),
             ),
             SizedBox(
               width: 10.0,
@@ -315,7 +323,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 28.0, bottom: 10.0),
+                          padding:
+                              const EdgeInsets.only(top: 28.0, bottom: 10.0),
                           child: Text(
                             'Sign In',
                             style: TextStyle(

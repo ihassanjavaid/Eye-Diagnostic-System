@@ -1,6 +1,5 @@
 import 'dart:ui';
-
-import 'package:eye_diagnostic_system/screens/community/forum_screen.dart';
+import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 

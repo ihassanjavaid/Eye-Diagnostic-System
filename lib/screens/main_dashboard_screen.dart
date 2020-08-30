@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
+import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'community/forum_screen.dart';
+import 'community_screens/forum_screen.dart';
 
 class Dashboard extends StatefulWidget {
   static const String id = 'main_dashboard_screen';
@@ -116,6 +116,35 @@ class _DashboardState extends State<Dashboard> {
                     ]),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 12.0),
+                  child: FutureBuilder(
+                    future: _getUserName(),
+                    builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot)
+                    {
+                      return RichText(
+                          text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '${Greetings.showGreetings()},\t',
+                                  style: kDashboardSubtitleTextStyle
+                                      .copyWith(
+                                      color: kPurpleColor
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '${snapshot.data}!',
+                                  style: kDashboardSubtitleTextStyle
+                                      .copyWith(
+                                      color: kGoldenColor
+                                  ),
+                                ),
+                              ]
+                          )
+                      );
+                    },
+                  ),
+                ),
                 Container(
                   height: 384.0,
                   child: PageView(
@@ -213,6 +242,7 @@ class _DashboardState extends State<Dashboard> {
                               final SharedPreferences pref =
                                   await SharedPreferences.getInstance();
                               await pref.setString('email', null);
+                              await pref.setString('displayName', null);
                               _auth.signOut();
                               Navigator.pushNamed(context, LoginScreen.id);
                             },
@@ -249,30 +279,6 @@ class _DashboardState extends State<Dashboard> {
                                     builder: (context) => LoginScreen()),
                               );
                       },
-                      /*child: Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            _currentPage != _numPages - 1
-                                ? 'Next'
-                                : 'Get Started',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 22.0),
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.white,
-                            size: 30.0,
-                          )
-                        ],
-                      ),
-                    ),*/
                     ),
                   ),
                 ),
@@ -281,13 +287,13 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
       ),
-      floatingActionButton: ButtonWidget().speedDial(context),
+      /*floatingActionButton: ButtonWidget().speedDial(context),*/
     );
   }
 
   Widget _buildMainDashboardContainer(String title, String image) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -345,4 +351,18 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
+
+  Future<String> _getUserName() async {
+    String _name;
+    final SharedPreferences pref =
+    await SharedPreferences.getInstance();
+    _name = pref.getString('displayName');
+    // to display only first name
+    if (_name.contains(' ')){
+      _name = _name.substring(0, _name.indexOf(' '));
+    }
+    return _name;
+  }
+
 }
+

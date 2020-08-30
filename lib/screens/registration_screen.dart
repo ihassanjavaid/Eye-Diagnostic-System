@@ -133,10 +133,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             _waiting = true;
           });
           try{
+            // register user in Firebase Auth
+            await _auth.registerUser(email:removeSpaces(_email), password: _password);
+            // register user in Firebase Firestore
+            await _firestoreUserService.registerUserInFirebase(displayName: this._name, email: this._email);
+            // register user in device locally - shared prefs
             final SharedPreferences pref = await SharedPreferences.getInstance();
             await pref.setString('email', removeSpaces(this._email));
-            await _auth.registerUser(email:removeSpaces(_email), password: _password);
-            await _firestoreUserService.registerUser(displayName: this._name, email: this._email);
+            await pref.setString('displayName', this._name);
+            // Navigate
             Navigator.popAndPushNamed(context, Dashboard.id);
           }
           catch(e){
