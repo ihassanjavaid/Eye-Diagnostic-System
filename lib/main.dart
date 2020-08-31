@@ -8,6 +8,11 @@ import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/duoChrome.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/nearVision.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSesitivity1.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSensitivity2.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/menu.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +29,7 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      initialRoute: AutoLoginService.id,
+      initialRoute: Menu.id,
       routes: {
         AutoLoginService.id:(context) => AutoLoginService(),
         QuestionScreen.id:(context) => QuestionScreen(),
@@ -36,6 +41,12 @@ class EyeSee extends StatelessWidget {
         OnBoardingScreen.id: (context) => OnBoardingScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         Extras.id: (context) => Extras(),
+        Menu.id: (context) => Menu(),
+        DuoChrome.id: (context) => DuoChrome(),
+        NearVision.id: (context) => NearVision(),
+        ContrastSensitivity.id: (context) => ContrastSensitivity(),
+        ContrastSensitivity2.id: (context) => ContrastSensitivity2()
+
       },
     );
   }

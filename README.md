@@ -12,7 +12,7 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 
 - [Mahnoor Fatima Saad](https://twitter.com/agirlismahnoor)
 - [Muhammad Hasan Malik](https://twitter.com/ihassanjavaid)
-- [Muhammad Osama Saleem](https://twitter.com/osama_1_1_1)
+- [Muhammad Osama Saleem](https://twitter.com/iosamasaleem)
 
 ### Supervised By
 
