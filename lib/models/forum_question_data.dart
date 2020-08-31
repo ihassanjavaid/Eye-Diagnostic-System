@@ -5,4 +5,3 @@ class Question{
   int views;
   final String uID;
 }
-
