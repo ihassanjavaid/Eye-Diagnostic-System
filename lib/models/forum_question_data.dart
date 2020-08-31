@@ -1,10 +1,8 @@
 class Question{
-  Question({this.questionID,this.question,this.tag,this.views, this.userName, this.userEmail});
-  final String questionID;
+  Question({this.question,this.tag,this.views, this.uID});
   final String question;
   final String tag;
   int views;
-  final String userEmail;
-  final String userName;
+  final String uID;
 }
 

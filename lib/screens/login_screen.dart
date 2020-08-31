@@ -3,6 +3,7 @@ import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -25,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Auth _auth = Auth();
   bool _waiting = false;
   FirestoreUserService _firestore = FirestoreUserService();
+  User _fbuser;
 
   Widget _buildEmailTextField() {
     return Column(
@@ -145,6 +147,10 @@ class _LoginScreenState extends State<LoginScreen> {
             */
             _userData = await _firestore.getUserData(email: _email);
             await pref.setString('displayName', _userData.displayName);
+            /* Set UID in shared prefs so that it can be accessed in community forums*/
+
+            _fbuser = await _auth.getCurrentUser();
+            await pref.setString('uid', _fbuser.uid);
             //  Navigate
             Navigator.popAndPushNamed(context, Dashboard.id);
           } catch (e) {

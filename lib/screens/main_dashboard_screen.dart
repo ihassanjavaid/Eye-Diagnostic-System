@@ -262,6 +262,7 @@ class _DashboardState extends State<Dashboard> {
                                   await SharedPreferences.getInstance();
                               await pref.setString('email', null);
                               await pref.setString('displayName', null);
+                              await pref.setString('uid', null);
                               _auth.signOut();
                               Navigator.pushNamed(context, LoginScreen.id);
                             },

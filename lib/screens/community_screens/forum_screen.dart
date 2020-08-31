@@ -1,8 +1,10 @@
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
+import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Forum extends StatefulWidget {
   static const String id = 'forum_screen';
@@ -10,7 +12,11 @@ class Forum extends StatefulWidget {
   _ForumState createState() => _ForumState();
 }
 
+
 class _ForumState extends State<Forum> {
+Future <String> _uid;
+FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
+
   @override
   Widget build(BuildContext context) {
     return new Material(
@@ -19,7 +25,7 @@ class _ForumState extends State<Forum> {
           new Stack(
             children: <Widget>[
               new Container(
-                height: MediaQuery.of(context).size.height * 0.33,
+                height: MediaQuery.of(context).size.height * 0.25,
                 width:  MediaQuery.of(context).size.width,
                 decoration: new BoxDecoration(
                     gradient: LinearGradient(
@@ -60,18 +66,14 @@ class _ForumState extends State<Forum> {
                       ),
                     ],
                 ),
-                actions: <Widget>[
-                  new Icon(Icons.search, size: 30.0,),
-                  new SizedBox(width: 8.0,),
-                ],
               ),
               Column(
                 children: [
                   SizedBox(
-                    height: 90.0,
+                    height: MediaQuery.of(context).size.height*0.13,
                   ),
                   Container(
-                    child:_buildForumTypesContainer(),
+                    child:_buildTopPanel(),
                   ),
                 ],
               ),
@@ -89,7 +91,7 @@ class _ForumState extends State<Forum> {
             ),
           ),
           new SizedBox(
-            height: 10.0,
+            height: 5.0,
           ),
           new Expanded(
             child: new ListView.builder(
@@ -146,7 +148,7 @@ class _ForumState extends State<Forum> {
     ) ;
   }
 
-  Container _buildForumTypesContainer() {
+  Container _buildTopPanel() {
     return Container(
       child: Column(
         children: [
@@ -154,22 +156,22 @@ class _ForumState extends State<Forum> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(right: 15),
                 child: Column(
                   children: [
                     GestureDetector(
                       onTap: (){},
                       child: Icon(
-                        Icons.local_hospital,
+                        Icons.person,
                         color: kDeepGoldenColor,
-                        size: 24.0,
+                        size: 34.0,
                       ),
                     ),
                     SizedBox(
                       height: 5.0,
                     ),
                     Text(
-                      'Hospitals',
+                      'Profile',
                       style: TextStyle(
                         color: kDeepGoldenColor,
                       ),
@@ -178,22 +180,26 @@ class _ForumState extends State<Forum> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(left:25.0, right: 25),
                 child: Column(
                   children: [
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        _uid = _getUserID();
+
+
+                      },
                       child: Icon(
-                        Icons.money,
+                        Icons.add_comment_rounded,
                         color: kDeepGoldenColor,
-                        size: 24.0,
+                        size: 34.0,
                       ),
                     ),
                     SizedBox(
                       height: 5.0,
                     ),
                     Text(
-                      'Expenses',
+                      'Question',
                       style: TextStyle(
                         color: kDeepGoldenColor,
                       ),
@@ -202,22 +208,22 @@ class _ForumState extends State<Forum> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(left:25.0, right: 25),
                 child: Column(
                   children: [
                     GestureDetector(
                       onTap: (){},
                       child: Icon(
-                        Icons.sick,
+                        Icons.search_rounded,
                         color: kDeepGoldenColor,
-                        size: 24.0,
+                        size: 34.0,
                       ),
                     ),
                     SizedBox(
                       height: 5.0,
                     ),
                     Text(
-                      'Symptoms',
+                      'Search',
                       style: TextStyle(
                         color: kDeepGoldenColor,
                       ),
@@ -226,22 +232,22 @@ class _ForumState extends State<Forum> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(left:25.0, right: 0),
                 child: Column(
                   children: [
                     GestureDetector(
                       onTap: (){},
                       child: Icon(
-                        Icons.wheelchair_pickup,
+                        Icons.help_outlined,
                         color: kDeepGoldenColor,
-                        size: 24.0,
+                        size: 34.0,
                       ),
                     ),
                     SizedBox(
                       height: 5.0,
                     ),
                     Text(
-                      'Disability',
+                      'Help',
                       style: TextStyle(
                         color: kDeepGoldenColor,
                       ),
@@ -252,110 +258,17 @@ class _ForumState extends State<Forum> {
             ],
 
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(
-                        Icons.people,
-                        color: kDeepGoldenColor,
-                        size: 24.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Family',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(
-                        Icons.help_center,
-                        color: kDeepGoldenColor,
-                        size: 24.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Questions',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(
-                        Icons.question_answer,
-                        color: kDeepGoldenColor,
-                        size: 24.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Suggestions',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(
-                        Icons.support_agent,
-                        color: kDeepGoldenColor,
-                        size: 24.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Support',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
         ],
       ),
     );
+  }
+
+  Future<String> _getUserID() async {
+    String _uid;
+    final SharedPreferences pref =
+    await SharedPreferences.getInstance();
+    _uid = pref.getString('uid');
+    return _uid;
   }
   }
 
