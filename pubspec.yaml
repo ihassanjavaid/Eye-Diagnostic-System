@@ -31,10 +31,14 @@ dependencies:
   flutter_speed_dial: ^1.2.5
   material_design_icons_flutter: ^2.7.94
   auto_size_text: ^2.1.0
+  google_sign_in: ^4.5.3
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  tcard: ^1.2.2
+  group_radio_button: ^1.0.1
 
 # The following section is specific to Flutter.
 flutter:
@@ -44,6 +48,10 @@ flutter:
     - assets/images/
     - assets/logos/
     - assets/images/svgs/
+    - assets/images/colorblindness/
+    - assets/images/menu1.png
+    - assets/images/menu2.png
+    - assets/images/menu3.png
 
   # fonts:
   #   - family: Schyler
