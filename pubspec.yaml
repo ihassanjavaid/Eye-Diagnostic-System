@@ -48,9 +48,6 @@ flutter:
     - assets/logos/
     - assets/images/svgs/
     - assets/images/colorblindness/
-    - assets/images/menu1.png
-    - assets/images/menu2.png
-    - assets/images/menu3.png
 
   # fonts:
   #   - family: Schyler
