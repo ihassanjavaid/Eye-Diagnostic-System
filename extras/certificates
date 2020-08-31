@@ -1,0 +1,8 @@
+Variant: profileUnitTest
+Config: debug
+Store: C:\Users\Hassan Javaid\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: FA:39:62:85:75:FC:B7:F6:20:C1:27:C3:14:97:AF:C0
+SHA1: 33:E2:76:0D:5D:8F:29:2C:3F:26:25:84:A4:EE:BF:B6:EA:6C:84:4D
+SHA-256: 00:68:DF:EE:3E:0A:DF:59:89:D6:7D:F5:DE:D9:66:A5:1F:05:A2:8B:A2:F4:CC:17:B9:F2:AE:B0:20:FF:4E:E7
+Valid until: Sunday, March 6, 2050

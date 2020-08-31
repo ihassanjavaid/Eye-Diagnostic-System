@@ -1,11 +1,32 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:eye_diagnostic_system/services/firestore_services.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth {
 
   final _auth = FirebaseAuth.instance;
+  final _gSignIn = GoogleSignIn();
+
+  signInWithG() async {
+    GoogleSignInAccount googleSignInAccount = await _gSignIn.signIn();
+
+    if (googleSignInAccount != null){
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+
+      AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken
+      );
+
+      // changed from AuthResult
+      UserCredential authResult = await _auth.signInWithCredential(credential);
+      // changes from FirebaseUser
+      User user = await _auth.currentUser;
+
+      pr
+    }
+  }
 
   Future<User> getCurrentUser() async => await _auth.currentUser;
 
