@@ -121,28 +121,21 @@ class _DashboardState extends State<Dashboard> {
                   padding: const EdgeInsets.only(left: 20.0, top: 12.0),
                   child: FutureBuilder(
                     future: _getUserName(),
-                    builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot)
-                    {
+                    builder: (BuildContext context,
+                        AsyncSnapshot<dynamic> snapshot) {
                       return RichText(
-                          text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '${Greetings.showGreetings()},\t',
-                                  style: kDashboardSubtitleTextStyle
-                                      .copyWith(
-                                      color: kPurpleColor
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: '${snapshot.data}!',
-                                  style: kDashboardSubtitleTextStyle
-                                      .copyWith(
-                                      color: kGoldenColor
-                                  ),
-                                ),
-                              ]
-                          )
-                      );
+                          text: TextSpan(children: [
+                        TextSpan(
+                          text: '${Greetings.showGreetings()},\t',
+                          style: kDashboardSubtitleTextStyle.copyWith(
+                              color: kPurpleColor),
+                        ),
+                        TextSpan(
+                          text: '${snapshot.data}!',
+                          style: kDashboardSubtitleTextStyle.copyWith(
+                              color: kGoldenColor),
+                        ),
+                      ]));
                     },
                   ),
                 ),
@@ -200,7 +193,12 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, Extras.id);
+                              //Navigator.pushNamed(context, Extras.id);
+                              Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                      transitionDuration: Duration(seconds: 2),
+                                      pageBuilder: (_, __, ___) => Extras()));
                             },
                             child: Hero(
                               tag: 'extras',
@@ -221,7 +219,7 @@ class _DashboardState extends State<Dashboard> {
                         ],
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width/4,
+                        width: MediaQuery.of(context).size.width / 4,
                       ),
                       Column(
                         children: [
@@ -335,15 +333,12 @@ class _DashboardState extends State<Dashboard> {
 
   Future<String> _getUserName() async {
     String _name;
-    final SharedPreferences pref =
-    await SharedPreferences.getInstance();
+    final SharedPreferences pref = await SharedPreferences.getInstance();
     _name = pref.getString('displayName');
     // to display only first name
-    if (_name.contains(' ')){
+    if (_name.contains(' ')) {
       _name = _name.substring(0, _name.indexOf(' '));
     }
     return _name;
   }
-
 }
-
