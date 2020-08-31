@@ -7,11 +7,11 @@ import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/duo_chrome_screen.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/near_vision_screen.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSesitivity1_screen.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSensitivity2_screen.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/menu_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSesitivity1_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitivity2_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

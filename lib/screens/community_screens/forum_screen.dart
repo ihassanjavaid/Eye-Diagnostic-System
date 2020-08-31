@@ -1,8 +1,7 @@
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
-import 'package:eye_diagnostic_system/utilities/custom_textfield.dart';
-import 'file:///C:/Source/flutterprojects/Eye-Diagnostic-System/lib/widgets/question_dialogue_box.dart';
+import 'package:eye_diagnostic_system/widgets/question_dialogue_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
