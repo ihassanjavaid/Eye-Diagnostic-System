@@ -1,40 +1,50 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth {
-
   final _auth = FirebaseAuth.instance;
   final _gSignIn = GoogleSignIn();
 
-  signInWithG() async {
-    GoogleSignInAccount googleSignInAccount = await _gSignIn.signIn();
+  Future<void> signInWithG() async {
+    await checkInternConnection();
+    try {
+      GoogleSignInAccount googleSignInAccount = await _gSignIn.signIn();
 
-    if (googleSignInAccount != null){
-      GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
+      if (googleSignInAccount != null) {
+        GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
 
-      AuthCredential credential = GoogleAuthProvider.credential(
-        idToken: googleSignInAuthentication.idToken,
-        accessToken: googleSignInAuthentication.accessToken
-      );
+        AuthCredential credential = GoogleAuthProvider.credential(
+            idToken: googleSignInAuthentication.idToken,
+            accessToken: googleSignInAuthentication.accessToken);
 
-      // changed from AuthResult
-      UserCredential authResult = await _auth.signInWithCredential(credential);
-      // changes from FirebaseUser
-      User user = await _auth.currentUser;
-
-      //pr
+        // changed from AuthResult
+        UserCredential authResult =
+            await _auth.signInWithCredential(credential);
+        // changes from FirebaseUser
+        User user = await _auth.currentUser;
+      }
+    } catch (e) {
+      print(e.toString());
+      throw(e);
     }
+
   }
 
   Future<User> getCurrentUser() async => await _auth.currentUser;
 
   Future<void> signOut() async {
+    User user = await _auth.currentUser;
+    if (user.providerData[1].providerId == 'google.com') {
+      await _gSignIn.disconnect();
+    }
     await _auth.signOut();
   }
 
-  Future<void> loginUserWithEmailAndPassword({String email, String password}) async {
+  Future<void> loginUserWithEmailAndPassword(
+      {String email, String password}) async {
     await checkInternConnection();
 
     // Use the email and password to sign-in the user
@@ -78,10 +88,9 @@ class Auth {
 
   Future<void> checkInternConnection() async {
     final ConnectivityResult connectivityStatus =
-    await (Connectivity().checkConnectivity());
+        await (Connectivity().checkConnectivity());
 
     if (connectivityStatus == ConnectivityResult.none)
       throw 'No internet connection';
   }
-
 }
