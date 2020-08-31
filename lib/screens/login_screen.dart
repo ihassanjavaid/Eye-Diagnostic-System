@@ -219,8 +219,18 @@ class _LoginScreenState extends State<LoginScreen> {
             width: 25.0,
           ),
           GestureDetector(
-            onTap: () {
-              print("### Sign-in with Google pressed");
+            onTap: () async{
+              try{
+                await _auth.signInWithG();
+              }catch(e){
+                AlertWidget()
+                    .generateAlert(
+                    context: context,
+                    title: 'Could not Sign In',
+                    description: e.toString())
+                    .show();
+                print(e);
+              }
             },
             child: Container(
               height: 60.0,

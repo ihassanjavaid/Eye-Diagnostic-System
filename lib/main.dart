@@ -28,7 +28,7 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      initialRoute: Menu.id,
+      initialRoute: AutoLoginService.id,
       routes: {
         AutoLoginService.id:(context) => AutoLoginService(),
         ForumDetails.id:(context) => ForumDetails(),
