@@ -1,4 +1,5 @@
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
+import 'package:eye_diagnostic_system/screens/community_screens/forum_question_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
@@ -26,6 +27,7 @@ class EyeSee extends StatelessWidget {
       initialRoute: AutoLoginService.id,
       routes: {
         AutoLoginService.id:(context) => AutoLoginService(),
+        QuestionScreen.id:(context) => QuestionScreen(),
         ForumDetails.id:(context) => ForumDetails(),
         Forum.id:(context) => Forum(),
         LoginScreen.id: (context) => LoginScreen(),

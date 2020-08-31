@@ -1,4 +1,5 @@
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
+import 'package:eye_diagnostic_system/screens/community_screens/forum_question_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -185,9 +186,7 @@ FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
                   children: [
                     GestureDetector(
                       onTap: (){
-                        _uid = _getUserID();
-
-
+                       Navigator.pushNamed(context, QuestionScreen.id);
                       },
                       child: Icon(
                         Icons.add_comment_rounded,
@@ -208,37 +207,13 @@ FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left:25.0, right: 25),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(
-                        Icons.search_rounded,
-                        color: kDeepGoldenColor,
-                        size: 34.0,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Search',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(left:25.0, right: 0),
                 child: Column(
                   children: [
                     GestureDetector(
                       onTap: (){},
                       child: Icon(
-                        Icons.help_outlined,
+                        Icons.tag,
                         color: kDeepGoldenColor,
                         size: 34.0,
                       ),
@@ -247,7 +222,7 @@ FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
                       height: 5.0,
                     ),
                     Text(
-                      'Help',
+                      'Tags',
                       style: TextStyle(
                         color: kDeepGoldenColor,
                       ),

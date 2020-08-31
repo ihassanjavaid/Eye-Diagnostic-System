@@ -205,6 +205,7 @@ class _ExtrasState extends State<Extras> {
                             await SharedPreferences.getInstance();
                         await pref.setString('email', null);
                         await pref.setString('displayName', null);
+                        await pref.setString('uid', null);
                         _auth.signOut();
                         Navigator.pushNamed(context, LoginScreen.id);
                       },

@@ -240,33 +240,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ],
                       ),
-                      Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () async {
-                              final SharedPreferences pref =
-                                  await SharedPreferences.getInstance();
-                              await pref.setString('email', null);
-                              await pref.setString('displayName', null);
-                              await pref.setString('uid', null);
-                              _auth.signOut();
-                              Navigator.pushNamed(context, LoginScreen.id);
-                            },
-                            child: Icon(
-                              Icons.power_settings_new,
-                              color: kMaroonColor,
-                              size: 42.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            'Sign Out',
-                            style: kDashboardButtonLabelStyle.copyWith(color: kMaroonColor),
-                          ),
-                        ],
-                      )
+
                     ],
                   ),
                 ),
