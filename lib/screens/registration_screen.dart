@@ -1,8 +1,10 @@
+import 'package:eye_diagnostic_system/models/user_data.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -24,6 +26,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   bool _waiting = false;
   Auth _auth = Auth();
   FirestoreUserService _firestoreUserService = FirestoreUserService();
+  FirestoreUserService _firestore = FirestoreUserService();
+  User _fbuser;
+  String _uid;
 
   Widget _buildEmailTextField() {
     return Column(
@@ -35,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            onChanged: (value){
+            onChanged: (value) {
               this._email = value;
             },
             style: TextStyle(
@@ -68,7 +73,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            onChanged: (value){
+            onChanged: (value) {
               this._name = value;
             },
             style: TextStyle(
@@ -101,7 +106,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           height: 60.0,
           child: TextField(
             obscureText: true,
-            onChanged: (value){
+            onChanged: (value) {
               this._password = value;
             },
             style: TextStyle(
@@ -128,45 +133,42 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
       child: GestureDetector(
-        onTap:() async{
+        onTap: () async {
           setState(() {
             _waiting = true;
           });
-          try{
+          try {
             // register user in Firebase Auth
-            await _auth.registerUser(email:removeSpaces(_email), password: _password);
+            await _auth.registerUser(
+                email: removeSpaces(_email), password: _password);
             // register user in Firebase Firestore
-            await _firestoreUserService.registerUserInFirebase(displayName: this._name, email: this._email);
+            await _firestoreUserService.registerUserInFirebase(
+                displayName: this._name, email: this._email);
             // register user in device locally - shared prefs
-            final SharedPreferences pref = await SharedPreferences.getInstance();
+            final SharedPreferences pref =
+                await SharedPreferences.getInstance();
             await pref.setString('email', removeSpaces(this._email));
             await pref.setString('displayName', this._name);
             // Navigate
             Navigator.popAndPushNamed(context, Dashboard.id);
-          }
-          catch(e){
+          } catch (e) {
             AlertWidget()
                 .generateAlert(
-                context: context,
-                title: "Error",
-                description: e.toString()).show();
+                    context: context, title: "Error", description: e.toString())
+                .show();
             print(e);
           }
           setState(() {
             _waiting = false;
           });
-
-
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 4.0),
-              child: Text(
-                'Register',
-                style: kBottomNavBarTextStyle.copyWith(fontSize: 22.0)
-              ),
+              child: Text('Register',
+                  style: kBottomNavBarTextStyle.copyWith(fontSize: 22.0)),
             ),
             SizedBox(
               width: 10.0,
@@ -197,7 +199,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  Widget _buildSocialBtnRow() {
+  Widget _buildGSignUp() {
     return Padding(
       padding: EdgeInsets.only(top: 18.0, bottom: 20.0),
       child: Row(
@@ -211,8 +213,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             width: 25.0,
           ),
           GestureDetector(
-            onTap: () {
-              print("### Sign-in with Google pressed");
+            onTap: () async {
+              try {
+                await _auth.signInWithG();
+                _fbuser = await _auth.getCurrentUser();
+                _uid = _fbuser.uid;
+                final SharedPreferences pref =
+                    await SharedPreferences.getInstance();
+
+                await pref.setString('uid', _uid);
+                await pref.setString('email', _fbuser.email);
+                await pref.setString('displayName', _fbuser.displayName);
+                UserData userforcheck = await _firestore.getUserData(email:_fbuser.email);
+                if (userforcheck == null) {
+                  await _firestore.registerUserInFirebase(displayName: _fbuser.displayName, email: _fbuser.email);
+                }
+                Navigator.popAndPushNamed(context, Dashboard.id);
+              } catch (e) {
+                AlertWidget()
+                    .generateAlert(
+                    context: context,
+                    title: 'Sign Up Error!',
+                    description: 'Google Sign Up Failed. Please Try Again.')
+                    .show();
+                print(e);
+              }
             },
             child: Container(
               height: 60.0,
@@ -340,11 +365,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 28.0, bottom: 10.0),
-                          child: Text(
-                            'Sign Up',
-                            style: kBottomNavBarTextStyle.copyWith(fontSize: 30.0)
-                          ),
+                          padding:
+                              const EdgeInsets.only(top: 28.0, bottom: 10.0),
+                          child: Text('Sign Up',
+                              style: kBottomNavBarTextStyle.copyWith(
+                                  fontSize: 30.0)),
                         ),
                         SizedBox(height: 15.0),
                         _buildNameTextField(),
@@ -360,7 +385,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           height: 20.0,
                         ),
                         _buildSignInWithText(),
-                        _buildSocialBtnRow(),
+                        _buildGSignUp(),
                         SizedBox(
                           height: 20.0,
                         ),

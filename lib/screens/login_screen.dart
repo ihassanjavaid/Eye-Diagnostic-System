@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSocialBtnRow() {
+  Widget _buildGSignIn() {
     return Padding(
       padding: EdgeInsets.only(top: 18.0, bottom: 20.0),
       child: Row(
@@ -378,7 +378,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 20.0,
                         ),
                         _buildORText(),
-                        _buildSocialBtnRow(),
+                        _buildGSignIn(),
                         SizedBox(
                           height: 20.0,
                         ),
