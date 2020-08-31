@@ -30,6 +30,7 @@ dependencies:
   shared_preferences: ^0.5.6+3
   flutter_speed_dial: ^1.2.5
   material_design_icons_flutter: ^2.7.94
+  auto_size_text: ^2.1.0
 
 dev_dependencies:
   flutter_test:

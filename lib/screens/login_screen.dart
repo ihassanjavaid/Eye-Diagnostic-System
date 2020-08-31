@@ -298,13 +298,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   height: double.infinity,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: kBgColorGradientArrayBlues,
-                      stops: [0.1, 0.4, 0.7, 0.9],
-                    ),
+                  decoration: BoxDecoration(gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: kBgColorGradientArrayBlues,
+                    stops: [0.1, 0.4, 0.7, 0.9],
+                  ),
+
                   ),
                 ),
                 Container(

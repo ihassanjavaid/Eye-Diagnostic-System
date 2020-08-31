@@ -1,11 +1,14 @@
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
-import 'package:eye_diagnostic_system/screens/community_screens/forum_question_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/utilities/custom_textfield.dart';
+import 'package:eye_diagnostic_system/utilities/question_dialogue_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class Forum extends StatefulWidget {
   static const String id = 'forum_screen';
@@ -16,7 +19,9 @@ class Forum extends StatefulWidget {
 
 class _ForumState extends State<Forum> {
 Future <String> _uid;
+bool _showSpinner = false;
 FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
+MessageDialog msgdlg = MessageDialog();
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +35,10 @@ FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
                 width:  MediaQuery.of(context).size.width,
                 decoration: new BoxDecoration(
                     gradient: LinearGradient(
-                        colors:  [
-                          Color(0xFF3594DD),
-                          Color(0xFF4563DB),
-                          Color(0xff611cdf)
-                        ]
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [0.1, 0.4, 0.7, 0.9],
+                      colors: kBgColorGradientArrayBlues,
                     ),
                     borderRadius: new BorderRadius.only(
                         bottomLeft: Radius.circular(30),
@@ -48,21 +52,28 @@ FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
                 centerTitle: true,
                 title: Row(
                     children:[
-                      Image(
+                      /*Image(
                         image: AssetImage('assets/images/eye.png'),
                         height: 40,
                         width: 40,
-                      ),
+                      ),*/
                       SizedBox(
                         width: 15.0,
                       ),
                       Container(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Community Forums',
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
+                        child: RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                              text: 'Eye See\t',
+                              style: kDashboardTitleTextStyle.copyWith(
+                                  color: kPurpleColor),
+                            ),
+                            TextSpan(
+                              text: 'Forums',
+                              style: kDashboardTitleTextStyle.copyWith(
+                                  color: kGoldenColor),
+                            ),
+                          ]),
                         ),
                       ),
                     ],
@@ -151,89 +162,96 @@ FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
 
   Container _buildTopPanel() {
     return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(
-                        Icons.person,
-                        color: kDeepGoldenColor,
-                        size: 34.0,
+      child: Container(
+        color: kPurpleColor,
+        height: MediaQuery.of(context).size.height*0.1,
+        width: MediaQuery.of(context).size.width*.8,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: (){},
+                        child: Icon(
+                          Icons.person,
+                          color: kDeepGoldenColor,
+                          size: 34.0,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Profile',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
+                      SizedBox(
+                        height: 5.0,
                       ),
-                    ),
-                  ],
+                      Text(
+                        'Profile',
+                        style: TextStyle(
+                          color: kDeepGoldenColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left:25.0, right: 25),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                       Navigator.pushNamed(context, QuestionScreen.id);
-                      },
-                      child: Icon(
-                        Icons.add_comment_rounded,
-                        color: kDeepGoldenColor,
-                        size: 34.0,
+                Padding(
+                  padding: const EdgeInsets.only(left:25.0, right: 25),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: (){
+                          msgdlg.announce(context);
+                        },
+                        child: Icon(
+                          Icons.add_comment_rounded,
+                          color: kDeepGoldenColor,
+                          size: 34.0,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Question',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
+                      SizedBox(
+                        height: 5.0,
                       ),
-                    ),
-                  ],
+                      Text(
+                        'Question',
+                        style: TextStyle(
+                          color: kDeepGoldenColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left:25.0, right: 0),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(
-                        Icons.tag,
-                        color: kDeepGoldenColor,
-                        size: 34.0,
+                Padding(
+                  padding: const EdgeInsets.only(left:25.0, right: 0),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: (){},
+                        child: Icon(
+                          Icons.tag,
+                          color: kDeepGoldenColor,
+                          size: 34.0,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Tags',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
+                      SizedBox(
+                        height: 5.0,
                       ),
-                    ),
-                  ],
+                      Text(
+                        'Tags',
+                        style: TextStyle(
+                          color: kDeepGoldenColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
 
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -245,5 +263,9 @@ FirestoreQuestionService _firestoreQestionService = FirestoreQuestionService();
     _uid = pref.getString('uid');
     return _uid;
   }
-  }
+
+
+
+
+}
 
