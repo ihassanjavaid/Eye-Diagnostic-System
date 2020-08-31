@@ -26,3 +26,5 @@
 [30/08/20 12:00 PM] [Mahnoor] Forum Details UI Screen
 [30/08/20 03:45 PM] [Mahnoor] Firebase Firestore User Integration
 [30/08/20 03:45 PM] [Hassan] Welcome Text Integration
+
+[31/08/20 03:45 PM] [Hassan] Extras Screen and Dashboard UI changes

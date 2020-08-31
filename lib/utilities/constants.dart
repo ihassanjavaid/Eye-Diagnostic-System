@@ -67,7 +67,14 @@ final TextStyle kDashboardSubtitleTextStyle = TextStyle(
 );
 
 final kDashboardButtonLabelStyle = TextStyle(
+  fontSize: 15.0,
   color: kGoldenColor,
+  fontFamily: 'CM Sans Serif',
+);
+
+final kBottomNavBarTextStyle = TextStyle(
+  fontSize: 22.0,
+  color: Colors.white,
   fontFamily: 'CM Sans Serif',
 );
 

@@ -1,5 +1,6 @@
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
+import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
@@ -32,6 +33,7 @@ class EyeSee extends StatelessWidget {
         NearbyMedicos.id: (context) => NearbyMedicos(),
         OnBoardingScreen.id: (context) => OnBoardingScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
+        Extras.id: (context) => Extras(),
       },
     );
   }

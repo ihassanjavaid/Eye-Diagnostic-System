@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'community_screens/forum_screen.dart';
+import 'extras_screen.dart';
 
 class Dashboard extends StatefulWidget {
   static const String id = 'main_dashboard_screen';
@@ -120,28 +121,21 @@ class _DashboardState extends State<Dashboard> {
                   padding: const EdgeInsets.only(left: 20.0, top: 12.0),
                   child: FutureBuilder(
                     future: _getUserName(),
-                    builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot)
-                    {
+                    builder: (BuildContext context,
+                        AsyncSnapshot<dynamic> snapshot) {
                       return RichText(
-                          text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '${Greetings.showGreetings()},\t',
-                                  style: kDashboardSubtitleTextStyle
-                                      .copyWith(
-                                      color: kPurpleColor
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: '${snapshot.data}!',
-                                  style: kDashboardSubtitleTextStyle
-                                      .copyWith(
-                                      color: kGoldenColor
-                                  ),
-                                ),
-                              ]
-                          )
-                      );
+                          text: TextSpan(children: [
+                        TextSpan(
+                          text: '${Greetings.showGreetings()},\t',
+                          style: kDashboardSubtitleTextStyle.copyWith(
+                              color: kPurpleColor),
+                        ),
+                        TextSpan(
+                          text: '${snapshot.data}!',
+                          style: kDashboardSubtitleTextStyle.copyWith(
+                              color: kGoldenColor),
+                        ),
+                      ]));
                     },
                   ),
                 ),
@@ -193,47 +187,39 @@ class _DashboardState extends State<Dashboard> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Column(
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, Forum.id);
+                              //Navigator.pushNamed(context, Extras.id);
+                              Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                      transitionDuration: Duration(seconds: 2),
+                                      pageBuilder: (_, __, ___) => Extras()));
                             },
-                            child: Icon(
-                              Icons.people,
-                              color: kGoldenColor,
-                              size: 42.0,
+                            child: Hero(
+                              tag: 'extras',
+                              child: Icon(
+                                Icons.person,
+                                color: kGoldenColor,
+                                size: 42.0,
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: 10.0,
                           ),
                           Text(
-                            'Community',
+                            'My EyeSee',
                             style: kDashboardButtonLabelStyle,
                           ),
                         ],
                       ),
-                      Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.alarm,
-                              color: kGoldenColor,
-                              size: 42.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            'Reminders',
-                            style: kDashboardButtonLabelStyle,
-                          ),
-                        ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
                       ),
                       Column(
                         children: [
@@ -374,15 +360,12 @@ class _DashboardState extends State<Dashboard> {
 
   Future<String> _getUserName() async {
     String _name;
-    final SharedPreferences pref =
-    await SharedPreferences.getInstance();
+    final SharedPreferences pref = await SharedPreferences.getInstance();
     _name = pref.getString('displayName');
     // to display only first name
-    if (_name.contains(' ')){
+    if (_name.contains(' ')) {
       _name = _name.substring(0, _name.indexOf(' '));
     }
     return _name;
   }
-
 }
-

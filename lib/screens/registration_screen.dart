@@ -161,12 +161,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              'Register',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: Text(
+                'Register',
+                style: kBottomNavBarTextStyle.copyWith(fontSize: 22.0)
               ),
             ),
             SizedBox(
@@ -317,10 +316,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 },
                                 child: Text(
                                   'Sign In',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0
-                                  ),
+                                  style: kBottomNavBarTextStyle,
                                 ),
                               ),
                             ),
@@ -347,12 +343,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           padding: const EdgeInsets.only(top: 28.0, bottom: 10.0),
                           child: Text(
                             'Sign Up',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: kBottomNavBarTextStyle.copyWith(fontSize: 30.0)
                           ),
                         ),
                         SizedBox(height: 15.0),
