@@ -89,10 +89,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     child: Text(
                       'Skip',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0
-                      ),
+                      style: kBottomNavBarTextStyle
                     ),
                   ),
                 ),
@@ -166,12 +163,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
-                                _currentPage != _numPages -1 ?
-                                'Next' : 'Get Started',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22.0
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  _currentPage != _numPages -1 ?
+                                  'Next' : 'Get Started',
+                                  style: kBottomNavBarTextStyle
                                 ),
                               ),
                               SizedBox(

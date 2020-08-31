@@ -163,12 +163,12 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              'Log In',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: Text(
+                'Log In',
+                style: kBottomNavBarTextStyle.copyWith(fontSize: 22.0)
+              ),
             ),
             SizedBox(
               width: 10.0,
@@ -331,12 +331,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               const EdgeInsets.only(top: 28.0, bottom: 10.0),
                           child: Text(
                             'Sign In',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'OpenSans',
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: kBottomNavBarTextStyle.copyWith(fontSize: 30.0)
                           ),
                         ),
                         SizedBox(height: 18.0),

@@ -72,3 +72,9 @@ final kDashboardButtonLabelStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
+final kBottomNavBarTextStyle = TextStyle(
+  fontSize: 22.0,
+  color: Colors.white,
+  fontFamily: 'CM Sans Serif',
+);
+

@@ -202,10 +202,13 @@ class _DashboardState extends State<Dashboard> {
                             onTap: () {
                               Navigator.pushNamed(context, Extras.id);
                             },
-                            child: Icon(
-                              Icons.blur_on,
-                              color: kGoldenColor,
-                              size: 42.0,
+                            child: Hero(
+                              tag: 'extras',
+                              child: Icon(
+                                Icons.person,
+                                color: kGoldenColor,
+                                size: 42.0,
+                              ),
                             ),
                           ),
                           SizedBox(

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -66,54 +67,57 @@ class _ExtrasState extends State<Extras> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: kBgColorGradientArrayBlues,
-          stops: [0.1, 0.4, 0.7, 0.9],
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: kBgColorGradientArrayBlues,
+            stops: [0.1, 0.4, 0.7, 0.9],
+          ),
         ),
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 40.0),
-            child: Container(
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/eye_noball.png'),
-                    height: 100,
-                    width: 100,
-                  ),
-                  _buildAnimatedEyeBall(),
-                ],
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 40.0),
+              child: Container(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image(
+                      image: AssetImage('assets/images/eye_noball.png'),
+                      height: 100,
+                      width: 100,
+                    ),
+                    _buildAnimatedEyeBall(),
+                  ],
+                ),
               ),
             ),
-          ),
-          Center(
-            child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text: 'Eye\t',
-                  style: kDashboardTitleTextStyle.copyWith(color: kPurpleColor),
-                ),
-                TextSpan(
-                  text: 'See',
-                  style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
-                ),
-              ]),
+            Center(
+              child: RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: 'Eye\t',
+                    style:
+                        kDashboardTitleTextStyle.copyWith(color: kPurpleColor),
+                  ),
+                  TextSpan(
+                    text: 'See',
+                    style:
+                        kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                  ),
+                ]),
+              ),
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 48.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
@@ -121,10 +125,13 @@ class _ExtrasState extends State<Extras> {
                       onTap: () {
                         Navigator.pushNamed(context, Forum.id);
                       },
-                      child: Icon(
-                        Icons.person,
-                        color: kGoldenColor,
-                        size: 50.0,
+                      child: Hero(
+                        tag: 'extras',
+                        child: Icon(
+                          Icons.person,
+                          color: kGoldenColor,
+                          size: 50.0,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -135,6 +142,9 @@ class _ExtrasState extends State<Extras> {
                       style: kDashboardButtonLabelStyle,
                     ),
                   ],
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 4,
                 ),
                 Column(
                   children: [
@@ -159,12 +169,11 @@ class _ExtrasState extends State<Extras> {
                 ),
               ],
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 48.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
@@ -185,12 +194,15 @@ class _ExtrasState extends State<Extras> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 4,
+                ),
                 Column(
                   children: [
                     GestureDetector(
                       onTap: () async {
                         final SharedPreferences pref =
-                        await SharedPreferences.getInstance();
+                            await SharedPreferences.getInstance();
                         await pref.setString('email', null);
                         await pref.setString('displayName', null);
                         _auth.signOut();
@@ -206,15 +218,47 @@ class _ExtrasState extends State<Extras> {
                       height: 10.0,
                     ),
                     Text(
-                      'Sign Out',
+                      // extra white-spaces for indentation - don't remove
+                      '  Sign Out  ',
                       style: kDashboardButtonLabelStyle,
                     ),
                   ],
                 )
               ],
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 52.0,
+        color: kPurpleColor,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.popAndPushNamed(context, Dashboard.id);
+            },
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 20.0,
+                ),
+                Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(
+                  'Back',
+                  style: kBottomNavBarTextStyle
+                ),
+              ],
+            ),
+          )
+        ),
       ),
     );
   }
