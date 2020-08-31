@@ -238,6 +238,25 @@ class _DashboardState extends State<Dashboard> {
                       Column(
                         children: [
                           GestureDetector(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.mic,
+                              color: kGoldenColor,
+                              size: 42.0,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            'Assistant',
+                            style: kDashboardButtonLabelStyle,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          GestureDetector(
                             onTap: () async {
                               final SharedPreferences pref =
                                   await SharedPreferences.getInstance();
@@ -248,7 +267,7 @@ class _DashboardState extends State<Dashboard> {
                             },
                             child: Icon(
                               Icons.power_settings_new,
-                              color: kGoldenColor,
+                              color: kMaroonColor,
                               size: 42.0,
                             ),
                           ),
@@ -257,7 +276,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           Text(
                             'Sign Out',
-                            style: kDashboardButtonLabelStyle,
+                            style: kDashboardButtonLabelStyle.copyWith(color: kMaroonColor),
                           ),
                         ],
                       )

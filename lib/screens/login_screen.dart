@@ -272,7 +272,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  String removeSpaces(String email) => email.replaceAll(' ', '');
+  String removeSpaces(String email) {
+    if (email == null)
+      return 'null';
+    return email.replaceAll(' ', '');
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -53,6 +53,7 @@ final kBgColorGradientArrayGreys = [
 final kGoldenColor = Color(0xFFffbd00);
 final kPurpleColor = Color(0xFF5b16D0);
 final kDeepGoldenColor = Color(0xFFdbba58);
+final kMaroonColor = Color(0xFF8C1212);
 
 final TextStyle kDashboardTitleTextStyle = TextStyle(
   color: Colors.white,

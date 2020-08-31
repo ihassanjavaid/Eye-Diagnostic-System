@@ -11,11 +11,11 @@ class AutoLoginService extends StatelessWidget {
     final String user_email = pref.getString('email');
 
     if (user_email != null) {
-      print('Logged in automatically');
+      print('Returning User - Logged in automatically');
       Navigator.pushReplacementNamed(context, Dashboard.id);
       return;
     } else {
-      print('First time sign in');
+      print('New User - First time sign in');
       Navigator.pushReplacementNamed(context, OnBoardingScreen.id);
     }
   }
