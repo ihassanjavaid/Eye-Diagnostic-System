@@ -2,13 +2,15 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_scr
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/utilities/custom_textfield.dart';
-import 'package:eye_diagnostic_system/utilities/question_dialogue_box.dart';
+import 'file:///C:/Source/flutterprojects/Eye-Diagnostic-System/lib/widgets/question_dialogue_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+
+import '../extras_screen.dart';
 
 class Forum extends StatefulWidget {
   static const String id = 'forum_screen';
@@ -64,7 +66,7 @@ MessageDialog msgdlg = MessageDialog();
                         child: RichText(
                           text: TextSpan(children: [
                             TextSpan(
-                              text: 'Eye See\t',
+                              text: 'EyeSee\t',
                               style: kDashboardTitleTextStyle.copyWith(
                                   color: kPurpleColor),
                             ),
@@ -160,92 +162,86 @@ MessageDialog msgdlg = MessageDialog();
     ) ;
   }
 
-  Container _buildTopPanel() {
-    return Container(
+  Widget _buildTopPanel() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Container(
         color: kPurpleColor,
         height: MediaQuery.of(context).size.height*0.1,
-        width: MediaQuery.of(context).size.width*.8,
+        width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: (){},
-                        child: Icon(
-                          Icons.person,
-                          color: kDeepGoldenColor,
-                          size: 34.0,
-                        ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, Extras.id);
+                      },
+                      child: Icon(
+                        Icons.person,
+                        color: kDeepGoldenColor,
+                        size: 34.0,
                       ),
-                      SizedBox(
-                        height: 5.0,
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    Text(
+                      'Personal',
+                      style: TextStyle(
+                        color: kDeepGoldenColor,
                       ),
-                      Text(
-                        'Profile',
-                        style: TextStyle(
-                          color: kDeepGoldenColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left:25.0, right: 25),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          msgdlg.announce(context);
-                        },
-                        child: Icon(
-                          Icons.add_comment_rounded,
-                          color: kDeepGoldenColor,
-                          size: 34.0,
-                        ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        msgdlg.announce(context);
+                      },
+                      child: Icon(
+                        Icons.add_comment_rounded,
+                        color: kDeepGoldenColor,
+                        size: 34.0,
                       ),
-                      SizedBox(
-                        height: 5.0,
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    Text(
+                      'New',
+                      style: TextStyle(
+                        color: kDeepGoldenColor,
                       ),
-                      Text(
-                        'Question',
-                        style: TextStyle(
-                          color: kDeepGoldenColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left:25.0, right: 0),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: (){},
-                        child: Icon(
-                          Icons.tag,
-                          color: kDeepGoldenColor,
-                          size: 34.0,
-                        ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){},
+                      child: Icon(
+                        Icons.tag,
+                        color: kDeepGoldenColor,
+                        size: 34.0,
                       ),
-                      SizedBox(
-                        height: 5.0,
+                    ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    Text(
+                      'Tags',
+                      style: TextStyle(
+                        color: kDeepGoldenColor,
                       ),
-                      Text(
-                        'Tags',
-                        style: TextStyle(
-                          color: kDeepGoldenColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
 

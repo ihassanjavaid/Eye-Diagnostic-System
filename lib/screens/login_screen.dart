@@ -172,10 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 4.0),
-              child: Text(
-                'Log In',
-                style: kBottomNavBarTextStyle.copyWith(fontSize: 22.0)
-              ),
+              child: Text('Log In',
+                  style: kBottomNavBarTextStyle.copyWith(fontSize: 22.0)),
             ),
             SizedBox(
               width: 10.0,
@@ -220,26 +218,28 @@ class _LoginScreenState extends State<LoginScreen> {
             width: 25.0,
           ),
           GestureDetector(
-            onTap: () async{
-              try{
+            onTap: () async {
+              try {
                 await _auth.signInWithG();
                 _fbuser = await _auth.getCurrentUser();
                 _uid = _fbuser.uid;
                 final SharedPreferences pref =
-                await SharedPreferences.getInstance();
+                    await SharedPreferences.getInstance();
 
                 await pref.setString('uid', _uid);
                 await pref.setString('email', _fbuser.email);
                 await pref.setString('displayName', _fbuser.displayName);
-
+                UserData userforcheck = await _firestore.getUserData(email:_fbuser.email);
+                if (userforcheck == null) {
+                  await _firestore.registerUserInFirebase(displayName: _fbuser.displayName, email: _fbuser.email);
+                }
                 Navigator.popAndPushNamed(context, Dashboard.id);
-
-              }catch(e){
+              } catch (e) {
                 AlertWidget()
                     .generateAlert(
-                    context: context,
-                    title: 'Sign In Error!',
-                    description: 'Google Sign in Failed. Please Try Again.')
+                        context: context,
+                        title: 'Sign In Error!',
+                        description: 'Google Sign in Failed. Please Try Again.')
                     .show();
                 print(e);
               }
@@ -301,8 +301,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String removeSpaces(String email) {
-    if (email == null)
-      return 'null';
+    if (email == null) return 'null';
     return email.replaceAll(' ', '');
   }
 
@@ -320,13 +319,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   height: double.infinity,
                   width: double.infinity,
-                  decoration: BoxDecoration(gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: kBgColorGradientArrayBlues,
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: kBgColorGradientArrayBlues,
+                      stops: [0.1, 0.4, 0.7, 0.9],
+                    ),
                   ),
                 ),
                 Container(
@@ -357,10 +356,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding:
                               const EdgeInsets.only(top: 28.0, bottom: 10.0),
-                          child: Text(
-                            'Sign In',
-                            style: kBottomNavBarTextStyle.copyWith(fontSize: 30.0)
-                          ),
+                          child: Text('Sign In',
+                              style: kBottomNavBarTextStyle.copyWith(
+                                  fontSize: 30.0)),
                         ),
                         SizedBox(height: 18.0),
                         _buildEmailTextField(),
