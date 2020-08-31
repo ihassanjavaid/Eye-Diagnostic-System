@@ -24,7 +24,7 @@ class Auth {
       // changes from FirebaseUser
       User user = await _auth.currentUser;
 
-      pr
+      //pr
     }
   }
 
