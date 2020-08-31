@@ -27,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _waiting = false;
   FirestoreUserService _firestore = FirestoreUserService();
   User _fbuser;
+  String _uid;
 
   Widget _buildEmailTextField() {
     return Column(
@@ -222,12 +223,23 @@ class _LoginScreenState extends State<LoginScreen> {
             onTap: () async{
               try{
                 await _auth.signInWithG();
+                _fbuser = await _auth.getCurrentUser();
+                _uid = _fbuser.uid;
+                final SharedPreferences pref =
+                await SharedPreferences.getInstance();
+
+                await pref.setString('uid', _uid);
+                await pref.setString('email', _fbuser.email);
+                await pref.setString('displayName', _fbuser.displayName);
+
+                Navigator.popAndPushNamed(context, Dashboard.id);
+
               }catch(e){
                 AlertWidget()
                     .generateAlert(
                     context: context,
-                    title: 'Could not Sign In',
-                    description: e.toString())
+                    title: 'Sign In Error!',
+                    description: 'Google Sign in Failed. Please Try Again.')
                     .show();
                 print(e);
               }

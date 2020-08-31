@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "901359929076-7du5ht4dhj6tf2834sb9vf661ri7fju2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cui.eye_diagnostic_system",
+            "certificate_hash": "2aaea9758a9dd263da9e88c76f9d7dad6e34006a"
+          }
+        },
+        {
           "client_id": "901359929076-hq58vc7l2n9dja6jn7s0oukcg2k2icms.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

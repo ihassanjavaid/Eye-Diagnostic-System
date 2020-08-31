@@ -1,4 +1,5 @@
 import 'package:connectivity/connectivity.dart';
+import 'package:eye_diagnostic_system/models/user_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -37,7 +38,7 @@ class Auth {
 
   Future<void> signOut() async {
     User user = await _auth.currentUser;
-    if (user.providerData[1].providerId == 'google.com') {
+    if (user.providerData[0].providerId == 'google.com') {
       await _gSignIn.disconnect();
     }
     await _auth.signOut();
@@ -66,6 +67,8 @@ class Auth {
       throw 'User already exists';
     }
   }
+
+
 
   /*Future<void> updateUserInfo({String displayName = '', String photoURL = '',}) async {
     final userUpdateInfo = UserUpdateInfo();

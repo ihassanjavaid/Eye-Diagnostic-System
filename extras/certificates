@@ -8,7 +8,7 @@ SHA1: 33:E2:76:0D:5D:8F:29:2C:3F:26:25:84:A4:EE:BF:B6:EA:6C:84:4D
 SHA-256: 00:68:DF:EE:3E:0A:DF:59:89:D6:7D:F5:DE:D9:66:A5:1F:05:A2:8B:A2:F4:CC:17:B9:F2:AE:B0:20:FF:4E:E7
 Valid until: Sunday, March 6, 2050
 
-=====TERMINAL GENERATED=====
+=====HASSAN'S TERMINAL GENERATED=====
 Alias name: androiddebugkey
 Creation date: Mar 13, 2020
 Entry type: PrivateKeyEntry
@@ -21,6 +21,24 @@ Valid from: Fri Mar 13 12:22:27 PKT 2020 until: Sun Mar 06 12:22:27 PKT 2050
 Certificate fingerprints:
          SHA1: 33:E2:76:0D:5D:8F:29:2C:3F:26:25:84:A4:EE:BF:B6:EA:6C:84:4D
          SHA256: 00:68:DF:EE:3E:0A:DF:59:89:D6:7D:F5:DE:D9:66:A5:1F:05:A2:8B:A2:F4:CC:17:B9:F2:AE:B0:20:FF:4E:E7
+Signature algorithm name: SHA1withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 1
+
+
+=====MAHNOOR'S TERMINAL GENERATED=====
+Alias name: androiddebugkey
+Creation date: Aug 27, 2020
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: C=US, O=Android, CN=Android Debug
+Issuer: C=US, O=Android, CN=Android Debug
+Serial number: 1
+Valid from: Thu Aug 27 23:07:36 PKT 2020 until: Sat Aug 20 23:07:36 PKT 2050
+Certificate fingerprints:
+         SHA1: 2A:AE:A9:75:8A:9D:D2:63:DA:9E:88:C7:6F:9D:7D:AD:6E:34:00:6A
+         SHA256: 2A:80:68:11:56:7F:36:50:47:3F:B0:17:33:B9:2A:0C:19:CC:25:F6:39:DB:DE:85:7E:9F:86:7C:F9:AA:E3:8E
 Signature algorithm name: SHA1withRSA
 Subject Public Key Algorithm: 2048-bit RSA key
 Version: 1
