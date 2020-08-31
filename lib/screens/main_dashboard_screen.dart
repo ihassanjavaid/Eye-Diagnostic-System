@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'community_screens/forum_screen.dart';
+import 'extras_screen.dart';
 
 class Dashboard extends StatefulWidget {
   static const String id = 'main_dashboard_screen';
@@ -193,16 +194,16 @@ class _DashboardState extends State<Dashboard> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 28.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Column(
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, Forum.id);
+                              Navigator.pushNamed(context, Extras.id);
                             },
                             child: Icon(
-                              Icons.people,
+                              Icons.blur_on,
                               color: kGoldenColor,
                               size: 42.0,
                             ),
@@ -211,29 +212,13 @@ class _DashboardState extends State<Dashboard> {
                             height: 10.0,
                           ),
                           Text(
-                            'Community',
+                            'My EyeSee',
                             style: kDashboardButtonLabelStyle,
                           ),
                         ],
                       ),
-                      Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.alarm,
-                              color: kGoldenColor,
-                              size: 42.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            'Reminders',
-                            style: kDashboardButtonLabelStyle,
-                          ),
-                        ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width/4,
                       ),
                       Column(
                         children: [
@@ -254,32 +239,6 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ],
                       ),
-                      Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () async {
-                              final SharedPreferences pref =
-                                  await SharedPreferences.getInstance();
-                              await pref.setString('email', null);
-                              await pref.setString('displayName', null);
-                              _auth.signOut();
-                              Navigator.pushNamed(context, LoginScreen.id);
-                            },
-                            child: Icon(
-                              Icons.power_settings_new,
-                              color: kMaroonColor,
-                              size: 42.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            'Sign Out',
-                            style: kDashboardButtonLabelStyle.copyWith(color: kMaroonColor),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
