@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
+import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -201,18 +202,19 @@ class _ExtrasState extends State<Extras> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        final SharedPreferences pref =
-                            await SharedPreferences.getInstance();
-                        await pref.setString('email', null);
-                        await pref.setString('displayName', null);
-                        await pref.setString('uid', null);
-                        _auth.signOut();
-                        Navigator.pushNamed(context, LoginScreen.id);
+                        Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                                transitionDuration: Duration(seconds: 2),
+                                pageBuilder: (_, __, ___) => SignOutScreen()));
                       },
-                      child: Icon(
-                        Icons.power_settings_new,
-                        color: kGoldenColor,
-                        size: 50.0,
+                      child: Hero(
+                        tag: 'sign_out_icon',
+                        child: Icon(
+                          Icons.power_settings_new,
+                          color: kGoldenColor,
+                          size: 50.0,
+                        ),
                       ),
                     ),
                     SizedBox(
