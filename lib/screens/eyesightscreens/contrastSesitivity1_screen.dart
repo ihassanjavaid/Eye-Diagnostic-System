@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:group_radio_button/group_radio_button.dart';
-import 'duoChrome.dart  ';
+import 'duo_chrome_screen.dart';
 
 class ContrastSensitivity extends StatefulWidget {
   static const String id = 'ContrastSensitivity';
@@ -10,10 +10,9 @@ class ContrastSensitivity extends StatefulWidget {
 }
 
 class _ContrastSestivityState extends State<ContrastSensitivity> {
-  String q1,q2,q3,q4,q5;
+  String q1, q2, q3, q4, q5;
 
   List<String> _status = ["Often", "Sometimes", "Never"];
-
 
   @override
   Widget build(BuildContext context) {
@@ -23,25 +22,23 @@ class _ContrastSestivityState extends State<ContrastSensitivity> {
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
-
-      body:ListView(
-        children: <Widget >[
-
-
-          Padding(padding: EdgeInsets.all(1),
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(1),
             child: Container(
               height: 150,
-              child:Card(
-                child:Column(
+              child: Card(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("Problems driving in the rain or at night",
+                    Text(
+                      "Problems driving in the rain or at night",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     RadioGroup<String>.builder(
                       direction: Axis.horizontal,
                       groupValue: q1,
@@ -57,25 +54,23 @@ class _ContrastSestivityState extends State<ContrastSensitivity> {
                   ],
                 ),
               ),
-
             ),
           ),
-
-
-          Padding(padding: EdgeInsets.all(1),
+          Padding(
+            padding: EdgeInsets.all(1),
             child: Container(
               height: 150,
-              child:Card(
-                child:Column(
+              child: Card(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("Difficulty pouring coffee into a dark mug",
+                    Text(
+                      "Difficulty pouring coffee into a dark mug",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     RadioGroup<String>.builder(
                       direction: Axis.horizontal,
                       groupValue: q2,
@@ -91,24 +86,23 @@ class _ContrastSestivityState extends State<ContrastSensitivity> {
                   ],
                 ),
               ),
-
             ),
           ),
-
-          Padding(padding: EdgeInsets.all(1),
+          Padding(
+            padding: EdgeInsets.all(1),
             child: Container(
               height: 150,
-              child:Card(
-                child:Column(
+              child: Card(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("Difficulty walking down steps",
+                    Text(
+                      "Difficulty walking down steps",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     RadioGroup<String>.builder(
                       direction: Axis.horizontal,
                       groupValue: q3,
@@ -124,24 +118,23 @@ class _ContrastSestivityState extends State<ContrastSensitivity> {
                   ],
                 ),
               ),
-
             ),
           ),
-
-          Padding(padding: EdgeInsets.all(1),
+          Padding(
+            padding: EdgeInsets.all(1),
             child: Container(
               height: 150,
-              child:Card(
-                child:Column(
+              child: Card(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("Focusing on reading instructions",
+                    Text(
+                      "Focusing on reading instructions",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     RadioGroup<String>.builder(
                       direction: Axis.horizontal,
                       groupValue: q4,
@@ -157,24 +150,23 @@ class _ContrastSestivityState extends State<ContrastSensitivity> {
                   ],
                 ),
               ),
-
             ),
           ),
-
-          Padding(padding: EdgeInsets.all(1),
+          Padding(
+            padding: EdgeInsets.all(1),
             child: Container(
               height: 150,
-              child:Card(
-                child:Column(
+              child: Card(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("Eyes easily tiring while reading or watching television",
+                    Text(
+                      "Eyes easily tiring while reading or watching television",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     RadioGroup<String>.builder(
                       direction: Axis.horizontal,
                       groupValue: q5,
@@ -190,17 +182,16 @@ class _ContrastSestivityState extends State<ContrastSensitivity> {
                   ],
                 ),
               ),
-
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Padding(padding: EdgeInsets.all(1),
+              Padding(
+                padding: EdgeInsets.all(1),
                 child: Container(
                   width: 200,
                   child: RaisedButton(
-
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -208,28 +199,19 @@ class _ContrastSestivityState extends State<ContrastSensitivity> {
                     textColor: Colors.white,
                     color: Colors.redAccent,
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DuoChrome()),);
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DuoChrome()),
+                      );
                     },
                     child: Text("Submit"),
                   ),
                 ),
-
-
               ),
             ],
           )
-
-
-
-
-
-
         ],
       ),
     );
   }
 }
-
-
-

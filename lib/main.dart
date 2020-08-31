@@ -8,11 +8,11 @@ import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/duoChrome.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/nearVision.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSesitivity1.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSensitivity2.dart';
-import 'package:eye_diagnostic_system/screens/eyesightscreens/menu.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/duo_chrome_screen.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/near_vision_screen.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSesitivity1_screen.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/contrastSensitivity2_screen.dart';
+import 'package:eye_diagnostic_system/screens/eyesightscreens/menu_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,6 @@ class EyeSee extends StatelessWidget {
         NearVision.id: (context) => NearVision(),
         ContrastSensitivity.id: (context) => ContrastSensitivity(),
         ContrastSensitivity2.id: (context) => ContrastSensitivity2()
-
       },
     );
   }

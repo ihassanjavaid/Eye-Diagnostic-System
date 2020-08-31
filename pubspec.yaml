@@ -31,13 +31,12 @@ dependencies:
   flutter_speed_dial: ^1.2.5
   material_design_icons_flutter: ^2.7.94
   google_sign_in: ^4.5.3
-
+  tcard: ^1.2.2
+  group_radio_button: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  tcard: ^1.2.2
-  group_radio_button: ^1.0.1
 
 # The following section is specific to Flutter.
 flutter:

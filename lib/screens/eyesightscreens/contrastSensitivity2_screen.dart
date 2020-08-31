@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:tcard/tcard.dart';
-import 'duoChrome.dart';
+import 'duo_chrome_screen.dart';
 
-List<String> images =  [
+List<String> images = [
   'images/nearvision15.png',
   'images/nearvision18.png',
   'images/nearvision13.png',
   'images/nearvision11.png',
-
-
 ];
 
 int index;
 
 List<Widget> cards = List.generate(
   images.length,
-      (int index) {
+  (int index) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -40,7 +38,6 @@ List<Widget> cards = List.generate(
   },
 );
 
-
 class ContrastSensitivity2 extends StatefulWidget {
   static const String id = 'ContrastSensitivity2';
   @override
@@ -63,39 +60,34 @@ class _ContrastSensitivity2State extends State<ContrastSensitivity2> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius:
-                BorderRadius.circular(18.0),
+                borderRadius: BorderRadius.circular(18.0),
                 child: Container(
                   child: TCard(
                     cards: cards,
-
-
-
                     controller: _controller,
                     onForward: (index, info) {
                       print(index);
                       print(info.direction);
                       if (info.direction == SwipDirection.Right) {
                         print('Test Passed');
-
-                      }
-                      else if(info.direction == SwipDirection.Left){
+                      } else if (info.direction == SwipDirection.Left) {
                         print('Test Failed');
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> DuoChrome()),);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => DuoChrome()),
+                        );
                       }
-
                     },
                     onBack: (index) {
-
                       print('Test Failed');
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DuoChrome()),);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DuoChrome()),
+                      );
                     },
                     onEnd: () {
                       print('end');
                     },
-
-
-
                   ),
                 ),
               ),
@@ -105,7 +97,8 @@ class _ContrastSensitivity2State extends State<ContrastSensitivity2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -119,19 +112,23 @@ class _ContrastSensitivity2State extends State<ContrastSensitivity2> {
                             onPressed: () {
                               print(_controller);
                               print(_controller.index);
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> DuoChrome()),);
-
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DuoChrome()),
+                              );
                             },
                             child: Text("not Visible"),
                           ),
-                          SizedBox(width: 30,),
+                          SizedBox(
+                            width: 30,
+                          ),
                           RaisedButton(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             elevation: 20,
                             textColor: Colors.white,
-
                             color: Colors.green,
                             onPressed: () {
                               _controller.forward();
@@ -139,11 +136,7 @@ class _ContrastSensitivity2State extends State<ContrastSensitivity2> {
                             child: Text('Visible'),
                           ),
                         ],
-                      )
-                  )
-                  ,
-
-
+                      )),
                 ],
               ),
             ],

@@ -275,6 +275,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.1+1"
+  group_radio_button:
+    dependency: "direct main"
+    description:
+      name: group_radio_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   http:
     dependency: "direct main"
     description:
@@ -497,6 +504,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety"
+  tcard:
+    dependency: "direct main"
+    description:
+      name: tcard
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.2"
   term_glyph:
     dependency: transitive
     description:
