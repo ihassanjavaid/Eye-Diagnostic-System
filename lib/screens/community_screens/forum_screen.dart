@@ -101,47 +101,55 @@ class _ForumState extends State<Forum> {
                       onTap: () {
                         Navigator.pushNamed(context, ForumDetails.id);
                       },
-                      child: Container(
-                        decoration: BoxDecoration(
-
-                        ),
-                        child: new ListTile(
-                          leading: new CircleAvatar(
-                            radius: 25.0,
-                            backgroundColor: kDeepGoldenColor,
-                            child: new Text("A"),
-                            foregroundColor: kPurpleColor,
-                          ),
-                          title: new Text(
-                            "I was diagnosed with Galucoma. Who else was diagnosed?",
-                            style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white70
-                            ),
-                          ),
-                          subtitle: new Row(
-                            children: <Widget>[
-                              new Chip(
-                                backgroundColor: Color(0xff611cdf),
-                                label: new Text(
-                                  "Diseases",
-                                  style: new TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                    color: kGoldenColor,
+                                    width: 2.0,
+                                  )
                               )
-                            ],
                           ),
-                          trailing: new Chip(
-                            backgroundColor: kGoldenColor,
-                            shape: BeveledRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10),
+                          child: new ListTile(
+                            leading: new CircleAvatar(
+                              radius: 25.0,
+                              backgroundColor: Colors.blueGrey,
+                              child: new Text("A"),
+                              foregroundColor: kPurpleColor,
                             ),
-                            label: new Text(
-                              "25 Replies",
+                            title: new Text(
+                              "I was diagnosed with Galucoma. Who else was diagnosed?",
                               style: new TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white70
+                              ),
+                            ),
+                            subtitle: new Row(
+                              children: <Widget>[
+                                new Chip(
+                                  backgroundColor: kDeepGoldenColor,
+                                  label: new Text(
+                                    "Diseases",
+                                    style: new TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ),
+                                )
+                              ],
+                            ),
+                            trailing: new Chip(
+                              backgroundColor: kGoldenColor,
+                              shape: BeveledRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10),
+                              ),
+                              label: new Text(
+                                "25 Replies",
+                                style: new TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
+                              ),
                             ),
                           ),
                         ),
