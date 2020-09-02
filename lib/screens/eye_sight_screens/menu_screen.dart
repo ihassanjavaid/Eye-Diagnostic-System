@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'duo_chrome_screen.dart';
 
 class Menu extends StatelessWidget {
-  static const String id = 'Menu';
+  static const String id = 'vision_testing_menu_screen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
