@@ -1,6 +1,5 @@
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
-import 'package:eye_diagnostic_system/screens/community_screens/forum_user_user_questions.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -16,13 +15,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 import '../extras_screen.dart';
 
-class Forum extends StatefulWidget {
-  static const String id = 'forum_screen';
+class ForumUserQuestions extends StatefulWidget {
+  static const String id = 'forum_user_questions_screen';
   @override
   _ForumState createState() => _ForumState();
 }
 
-class _ForumState extends State<Forum> {
+class _ForumState extends State<ForumUserQuestions> {
   String _uid;
   bool _showSpinner = false;
   FirestoreQuestionService _questionService =  FirestoreQuestionService();
@@ -88,7 +87,7 @@ class _ForumState extends State<Forum> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 0),
                 child: new Text(
-                  "All Posts",
+                  "My Posts",
                   style: new TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -127,8 +126,8 @@ class _ForumState extends State<Forum> {
                             title: new Text(
                               "I was diagnosed with Galucoma. Who else was diagnosed?",
                               style: new TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white70
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white70
                               ),
                             ),
                             subtitle: new Row(
@@ -138,7 +137,7 @@ class _ForumState extends State<Forum> {
                                   label: new Text(
                                     "Diseases",
                                     style: new TextStyle(
-                                        //fontWeight: FontWeight.bold,
+                                      //fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   ),
                                 )
@@ -191,7 +190,7 @@ class _ForumState extends State<Forum> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, ForumUserQuestions.id);
+
                       },
                       child: Icon(
                         Icons.person,
@@ -262,7 +261,7 @@ class _ForumState extends State<Forum> {
     );
   }
 
- /* Future<Widget> _getUserQuestions(String uid) async{
+/* Future<Widget> _getUserQuestions(String uid) async{
     _fbuser = await _auth.getCurrentUser();
     _uid = _fbuser.uid;
     List<Question> questions = await _questionService.getUserQuestions(uid);

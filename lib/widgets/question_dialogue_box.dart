@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:eye_diagnostic_system/services/auth_service.dart';
+import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -15,6 +18,12 @@ class MessageDialog {
   final messageTextController = TextEditingController();
 
   bool _showSpinner = false;
+  bool _questionsent = false;
+
+  FirestoreQuestionService _questionService = FirestoreQuestionService();
+  User _fbuser;
+  Auth _auth = Auth();
+  String _uid;
 
   announce(context) {
     showDialog(
@@ -27,15 +36,15 @@ class MessageDialog {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              child: _announcementCard(),
+              child: _announcementCard(context),
             ),
           );
         });
   }
 
-  _announcementCard() {
+  _announcementCard(context) {
     String messageTitle;
-    String messageText;
+    String questionText;
 
     return ModalProgressHUD(
       inAsyncCall: _showSpinner,
@@ -60,7 +69,7 @@ class MessageDialog {
                   alignment: Alignment.center,
                   child: AutoSizeText(
                     'Ask a Question',
-                    style: kDashboardButtonLabelStyle.copyWith(fontSize: 28),
+                    style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: Colors.white70),
                   ),
                 ),
               ),
@@ -75,7 +84,7 @@ class MessageDialog {
                   maxLines: null,
                   controller: this.messageTextController,
                   onChanged: (value) {
-                    messageText = value;
+                    questionText = value;
                   },
                 ),
               ),
@@ -85,6 +94,19 @@ class MessageDialog {
                   minWidth: double.maxFinite,
                   height: 50,
                   child: RaisedButton(
+                    onPressed: ()async{
+                      try{
+                        _fbuser = await _auth.getCurrentUser();
+                        _uid = _fbuser.uid;
+                        _questionService.askQuestion(question: questionText, tag:'Disease',views: 0,uID: _uid);
+                        _questionsent = true;
+                      }catch(e){
+                        print(e.toString());
+                        throw(e);
+                      }
+                      messageTextController.clear();
+                      Navigator.pop(context);
+                    },
                     color: kPurpleColor,
                     focusColor: kGoldenColor,
                     autofocus: true,
