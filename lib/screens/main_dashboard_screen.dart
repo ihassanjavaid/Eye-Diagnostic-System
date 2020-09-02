@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'assistant_screen.dart';
 import 'community_screens/forum_screen.dart';
 import 'extras_screen.dart';
 
@@ -224,7 +226,9 @@ class _DashboardState extends State<Dashboard> {
                       Column(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, Assistant.id);
+                            },
                             child: Icon(
                               Icons.mic,
                               color: kGoldenColor,

@@ -52,6 +52,7 @@ final kBgColorGradientArrayGreys = [
 
 final kGoldenColor = Color(0xFFffbd00);
 final kPurpleColor = Color(0xFF5b16D0);
+final kDarkPurpleColor = Color(0xFF451991);
 final kDeepGoldenColor = Color(0xFFdbba58);
 final kMaroonColor = Color(0xFF8C1212);
 
@@ -75,6 +76,11 @@ final kDashboardButtonLabelStyle = TextStyle(
 final kBottomNavBarTextStyle = TextStyle(
   fontSize: 22.0,
   color: Colors.white,
+  fontFamily: 'CM Sans Serif',
+);
+
+final TextStyle kHintTextStyle = TextStyle(
+  color: Colors.white54,
   fontFamily: 'CM Sans Serif',
 );
 

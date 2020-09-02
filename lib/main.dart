@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
@@ -43,7 +44,8 @@ class EyeSee extends StatelessWidget {
         DuoChrome.id: (context) => DuoChrome(),
         NearVision.id: (context) => NearVision(),
         ContrastSensitivity.id: (context) => ContrastSensitivity(),
-        ContrastSensitivity2.id: (context) => ContrastSensitivity2()
+        ContrastSensitivity2.id: (context) => ContrastSensitivity2(),
+        Assistant.id: (context) => Assistant()
       },
     );
   }

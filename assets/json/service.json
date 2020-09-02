@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "eye-diagnostic-system-e87e7",
+  "private_key_id": "d4eb1ec14007d666a31c436ffef4b30652fd635c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCrPot3VPRzsSSl\nUbHZunKFzZ16soRa7noZRO+5SWmBLGBuhCAbHprrHfgszTuxfmbaiFKZPxW988nT\nlLvsPvaMlt8nNImVu/XFX1SnERR1XLibEHXntBmJ8nxx/LZQO3F3e8SW4YeYn37r\nkbgfQUHY17Lccv1l5EiMuH90KTchOGC+L2X+bMMvIOBJ/B3rwU6oYkw1qxwRSwoN\n+aMqoTe3iwy7bCSocW56UmMENtnKkbTLgpDg+T7m6uL0p1GiSbOYWRAbdpONPhqD\n2V1GffKtWCrsvLYpj42qdZaZ9+NkXdRKb86Mr6wrQCWlGaXNP4AFqPKFjlbVrIj3\nrbyQfC55AgMBAAECggEADEfkAJ7bGSDvG9wMAS1Z4TapwI7k5xCLORy0hHk7U8Q2\n9jYLh2ZefdYcYjolucjy32E/azYW/RRquP3FrF+nltWLE2i1JUPhkFIR5BlZekE4\nDAbWLdPAsR/uxM321TIuJP9/TcLG0q89ju9YYQVxD3gIn76vZYtFmLHykgYSqhMe\n7OcVhUkcMDB0NLtci6dgrwdXzpieTabcgPJeyEULcg+5h9hga5fn2Vj+3PKssyFV\ne5NZdqNCm5ipyl7QWpctmhYZvr9FdD7BqpJPq7QtioTMKPZFATjT+V4PeV2gdDhO\nBVy7RaA7sTGyDUDAaI7rPHFFDMO+jhAFKZIxBI+3sQKBgQDbMUFo/xSx37mYIF46\nxRFhSkaWfST9h2lBIdN1X5RQDXzTY4ijyzZyXKn4GuA2X0Wi1qraSLBYclN7FCjT\nVtHKvia0zWU1cVaZNGOTbK//GrLKBTRLVz87nNkvI3n4obaauBRfWU2r2OMjMOi8\nxjtqRLRfg5VdyijdlZbT6W2mRwKBgQDIABMcyWLhhn17u9UoRTGK+eKw0m1zYpn8\nyVnUUlvKTNn09G9c6riCeY3TYmRGShHdZk8M+2CUmQQMbFXSGWIcoxdZhAt5Xo/Q\n+rWAwPmtDZ3TMQqZCcV4fzrAYtLJwtRrl2+pdkvsoq7AtrURevXvOaEMQHVqPXwW\nDc7essglPwKBgFeVf+h/fHpyxgs2a9CZ7A7vCfOZ/8zabcFbzc3pqi6upQEmlXO1\ngIUD59q+inbPbNjbZBuizewZiqf0bze7Skrz3i2CoP1Q02SWXW+MD2sk9OnqWHH+\nY8LjMpk2WMdzfq6l/WX4HiQbnu7x3R2JLDaTS2ua/XUjkV6xJjp43JqDAoGACSYn\nuatkwJhcaSqgh6USrR7dReV6aErcbHnxiAr0c/6sAc6kwYVjR2S0HjVkDOsaghxK\nBXgCZQnS65aRHnlWyaSUTt4BgF3ZCmBNqUQqp8X1sFGQAIw34lk/oMlkhyJIgVt+\nGix1MLAIenxhMBmF4pmqSlswg9moMYIUMo/PJBUCgYEAgUdlk7wkfLFldlDvaaTy\nbRj7YTYlUJcJYuiQbjGLgcZdsonLx6EAz1FbngpC+PBw/YNHFSRWF9kGevarlV7a\nSnGDPRUiWowbtKhGJ4I7FOWYMuszgdvu+7vq3edDLmychdqIOD/U6RnS63U4R1Is\nTJdiTGbphNlXHyOxktETiYU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "eyesee-diaflogflow@eye-diagnostic-system-e87e7.iam.gserviceaccount.com",
+  "client_id": "100575984898694182392",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/eyesee-diaflogflow%40eye-diagnostic-system-e87e7.iam.gserviceaccount.com"
+}
