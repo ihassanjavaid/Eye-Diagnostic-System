@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DuoChrome extends StatelessWidget {
-  static const String id = 'duoChrome';
+  static const String id = 'duo_chrome_screen';
   String status;
   @override
   Widget build(BuildContext context) {

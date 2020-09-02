@@ -39,7 +39,7 @@ List<Widget> cards = List.generate(
 );
 
 class NearVision extends StatefulWidget {
-  static const String id = 'NearVision';
+  static const String id = 'near_vision_screen';
 
   @override
   _NearVisionState createState() => _NearVisionState();

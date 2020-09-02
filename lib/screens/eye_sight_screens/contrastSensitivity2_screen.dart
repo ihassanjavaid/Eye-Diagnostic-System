@@ -39,7 +39,7 @@ List<Widget> cards = List.generate(
 );
 
 class ContrastSensitivity2 extends StatefulWidget {
-  static const String id = 'ContrastSensitivity2';
+  static const String id = 'ContrastSensitivity2_screen';
   @override
   _ContrastSensitivity2State createState() => _ContrastSensitivity2State();
 }
