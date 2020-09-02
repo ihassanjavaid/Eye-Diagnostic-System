@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_user_user_questions.dart';
@@ -25,10 +26,13 @@ class Forum extends StatefulWidget {
 class _ForumState extends State<Forum> {
   String _uid;
   bool _showSpinner = false;
-  FirestoreQuestionService _questionService =  FirestoreQuestionService();
+  FirestoreQuestionService _questionService = FirestoreQuestionService();
   MessageDialog msgdlg = MessageDialog();
   User _fbuser;
   Auth _auth = Auth();
+  List<Question> _questions = [];
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,28 +105,27 @@ class _ForumState extends State<Forum> {
               new Expanded(
                 child: new ListView.builder(
                   itemCount: 15,
-                  itemBuilder: (_, index) {
+                  itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, ForumDetails.id);
                       },
                       child: Container(
-                        decoration: BoxDecoration(
-
-                        ),
+                        decoration: BoxDecoration(),
                         child: new ListTile(
                           leading: new CircleAvatar(
                             radius: 25.0,
                             backgroundColor: kDeepGoldenColor,
-                            child: new Text("A"),
+                            child: new Text(
+                              'A'
+                            ),
                             foregroundColor: kPurpleColor,
                           ),
                           title: new Text(
                             "I was diagnosed with Galucoma. Who else was diagnosed?",
                             style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white70
-                            ),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white70),
                           ),
                           subtitle: new Row(
                             children: <Widget>[
@@ -182,8 +185,9 @@ class _ForumState extends State<Forum> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, ForumUserQuestions.id);
+                      onTap: () async {
+                        _questions = await _getQuestions();
+                        // Navigator.pushNamed(context, ForumUserQuestions.id);
                       },
                       child: Icon(
                         Icons.person,
@@ -254,14 +258,16 @@ class _ForumState extends State<Forum> {
     );
   }
 
- /* Future<Widget> _getUserQuestions(String uid) async{
+  Future<List<Question>> _getQuestions() async {
     _fbuser = await _auth.getCurrentUser();
     _uid = _fbuser.uid;
-    List<Question> questions = await _questionService.getUserQuestions(uid);
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) => new ForumPost(ForumPostArr[index]),
-      itemCount: ForumPostArr.length,
-    );
+    List<Question> questions = await _questionService.getUserQuestions(_uid);
+    return questions;
+  }
 
-  }*/
+  Future<List<Question>> _getAllQuestions() async {
+    List<Question> questions = await _questionService.getAllQuestions();
+    return questions;
+  }
+
 }

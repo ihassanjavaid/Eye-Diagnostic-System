@@ -29,6 +29,9 @@ class _ForumState extends State<ForumUserQuestions> {
   User _fbuser;
   Auth _auth = Auth();
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -261,14 +264,5 @@ class _ForumState extends State<ForumUserQuestions> {
     );
   }
 
-/* Future<Widget> _getUserQuestions(String uid) async{
-    _fbuser = await _auth.getCurrentUser();
-    _uid = _fbuser.uid;
-    List<Question> questions = await _questionService.getUserQuestions(uid);
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) => new ForumPost(ForumPostArr[index]),
-      itemCount: ForumPostArr.length,
-    );
 
-  }*/
 }
