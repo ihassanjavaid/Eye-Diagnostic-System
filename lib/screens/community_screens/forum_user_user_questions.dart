@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
-import 'package:eye_diagnostic_system/screens/community_screens/forum_user_user_questions.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -17,21 +15,21 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 import '../extras_screen.dart';
 
-class Forum extends StatefulWidget {
-  static const String id = 'forum_screen';
+class ForumUserQuestions extends StatefulWidget {
+  static const String id = 'forum_user_questions_screen';
   @override
   _ForumState createState() => _ForumState();
 }
 
-class _ForumState extends State<Forum> {
+class _ForumState extends State<ForumUserQuestions> {
   String _uid;
   bool _showSpinner = false;
-  FirestoreQuestionService _questionService = FirestoreQuestionService();
+  FirestoreQuestionService _questionService =  FirestoreQuestionService();
   MessageDialog msgdlg = MessageDialog();
   User _fbuser;
   Auth _auth = Auth();
-  List<Question> _questions = [];
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
 
 
   @override
@@ -92,7 +90,7 @@ class _ForumState extends State<Forum> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 0),
                 child: new Text(
-                  "All Posts",
+                  "My Posts",
                   style: new TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -105,51 +103,60 @@ class _ForumState extends State<Forum> {
               new Expanded(
                 child: new ListView.builder(
                   itemCount: 15,
-                  itemBuilder: (context, index) {
+                  itemBuilder: (_, index) {
                     return GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, ForumDetails.id);
                       },
-                      child: Container(
-                        decoration: BoxDecoration(),
-                        child: new ListTile(
-                          leading: new CircleAvatar(
-                            radius: 25.0,
-                            backgroundColor: kDeepGoldenColor,
-                            child: new Text(
-                              'A'
-                            ),
-                            foregroundColor: kPurpleColor,
-                          ),
-                          title: new Text(
-                            "I was diagnosed with Galucoma. Who else was diagnosed?",
-                            style: new TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white70),
-                          ),
-                          subtitle: new Row(
-                            children: <Widget>[
-                              new Chip(
-                                backgroundColor: Color(0xff611cdf),
-                                label: new Text(
-                                  "Diseases",
-                                  style: new TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                    color: kGoldenColor,
+                                    width: 2.0,
+                                  )
                               )
-                            ],
                           ),
-                          trailing: new Chip(
-                            backgroundColor: kGoldenColor,
-                            shape: BeveledRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10),
+                          child: new ListTile(
+                            leading: new CircleAvatar(
+                              radius: 25.0,
+                              backgroundColor: Colors.blueGrey,
+                              child: new Text("A"),
+                              foregroundColor: kPurpleColor,
                             ),
-                            label: new Text(
-                              "25 Replies",
+                            title: new Text(
+                              "I was diagnosed with Galucoma. Who else was diagnosed?",
                               style: new TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white70
+                              ),
+                            ),
+                            subtitle: new Row(
+                              children: <Widget>[
+                                new Chip(
+                                  backgroundColor: kDeepGoldenColor,
+                                  label: new Text(
+                                    "Diseases",
+                                    style: new TextStyle(
+                                      //fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ),
+                                )
+                              ],
+                            ),
+                            trailing: new Chip(
+                              backgroundColor: kGoldenColor,
+                              shape: BeveledRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10),
+                              ),
+                              label: new Text(
+                                "25 Replies",
+                                style: new TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
+                              ),
                             ),
                           ),
                         ),
@@ -185,9 +192,8 @@ class _ForumState extends State<Forum> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () async {
-                        _questions = await _getQuestions();
-                        // Navigator.pushNamed(context, ForumUserQuestions.id);
+                      onTap: () {
+
                       },
                       child: Icon(
                         Icons.person,
@@ -258,16 +264,5 @@ class _ForumState extends State<Forum> {
     );
   }
 
-  Future<List<Question>> _getQuestions() async {
-    _fbuser = await _auth.getCurrentUser();
-    _uid = _fbuser.uid;
-    List<Question> questions = await _questionService.getUserQuestions(_uid);
-    return questions;
-  }
-
-  Future<List<Question>> _getAllQuestions() async {
-    List<Question> questions = await _questionService.getAllQuestions();
-    return questions;
-  }
 
 }

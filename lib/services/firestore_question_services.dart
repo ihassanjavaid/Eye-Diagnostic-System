@@ -22,28 +22,49 @@ class FirestoreQuestionService{
       'views':views,
       'uID':uID
     });
+  }
 
-    Future<List<Question>> getAllQuestions() async {
-      List<Question> questions = [];
+  Future<List<Question>> getAllQuestions() async {
+    List<Question> questions = [];
 
-      await checkInternConnection();
+    await checkInternConnection();
 
-      final currentUser = await _auth.getCurrentUser();
-      // Fetch all questions
-      final questionDocuments = await _firestore.collection('questions').get();
+    // Fetch all questions
+    final questionDocuments = await _firestore.collection('questions').get();
 
-      // Get each user
-      for (var ques in questionDocuments.docs) {
-          Question question = Question(
-              question: ques.data()['question'],
-              tag: ques.data()['tag'],
-              views: ques.data()['view'],
-              uID: ques.data()['uID']
-          );
-          questions.add(question);
-      }
-      return questions;
+    // Get each user
+    for (var ques in questionDocuments.docs) {
+      Question question = Question(
+          question: ques.data()['question'],
+          tag: ques.data()['tag'],
+          views: ques.data()['view'],
+          uID: ques.data()['uID']
+      );
+      questions.add(question);
     }
+    return questions;
+  }
+
+  Future <List<Question>> getUserQuestions (String uid) async {
+    List<Question> questions = [];
+
+    await checkInternConnection();
+
+    final currentUser = await _auth.getCurrentUser();
+    // Fetch all questions
+    final questionDocuments = await _firestore.collection('questions').where('uID', isEqualTo: uid).get();
+
+    // Get each user
+    for (var ques in questionDocuments.docs) {
+      Question question = Question(
+          question: ques.data()['question'],
+          tag: ques.data()['tag'],
+          views: ques.data()['view'],
+          uID: ques.data()['uID']
+      );
+      questions.add(question);
+    }
+    return questions;
   }
 
 

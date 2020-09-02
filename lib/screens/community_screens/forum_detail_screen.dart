@@ -110,21 +110,6 @@ class _ForumDetailsState extends State<ForumDetails> {
       ),
     );
 
-    /*return new Material(
-      appBar: new AppBar(
-        title: new Text("Forum 1"),
-      ),
-      body: new Column(
-        children: <Widget>[
-          questionSection,
-          new Expanded(
-              child: new Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: responses,
-              ))
-        ],
-      ),
-    );*/
   }
 
   Padding _buildQuestionSection() {
@@ -157,11 +142,6 @@ class _ForumDetailsState extends State<ForumDetails> {
                         fontWeight: FontWeight.w700, color: Colors.black),
                   ),
                 ),
-                /*new IconWithText(
-                  Icons.check_circle,
-                  "Answered",
-                  iconColor: kDeepGoldenColor,
-                ),*/
                 new IconWithText(
                   Icons.remove_red_eye,
                   "54",

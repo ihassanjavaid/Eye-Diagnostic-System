@@ -33,3 +33,5 @@
 [31/08/20 11:00 PM] [Mahnoor] Google Login
 [31/08/20 11:45 PM] [Mahnoor] Google Firestore Integration
 [31/08/20 11:59 PM] [Hassan] Sign Out Screen + some debugging
+
+[02/09/20 10:00 PM] [Mahnoor] Question registration with firebase
