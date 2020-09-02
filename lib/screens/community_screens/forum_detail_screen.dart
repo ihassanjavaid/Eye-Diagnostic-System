@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ForumDetails extends StatefulWidget {
   static const String id = 'forum_detail_screen';
@@ -44,91 +43,93 @@ class _ForumDetailsState extends State<ForumDetails> {
           itemCount: ForumPostArr.length,
         ));
 
-    return Scaffold(
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.1, 0.4, 0.7, 0.9],
-                  colors: kBgColorGradientArrayBlues,
-                ),
-              ),
-              child: Column(
-                children: [
-                  new Stack(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.05,
-                            ),
-                            Container(child: questionSection),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.25,
-                          ),
-                          SizedBox(
-                            height: 550,
-                            child: responses,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )));
-  }
-
-  Container _buildQuestionSection() {
-    return Container(
-      margin: const EdgeInsets.all(5.0),
-      decoration: new BoxDecoration(
-          color: kDeepGoldenColor,
-          borderRadius: const BorderRadius.all(const Radius.circular(10.0)),
-          border: Border.all(
-            color: kDeepGoldenColor,
-            width: 2.0,
-          )),
-      padding: const EdgeInsets.all(10.0),
+    return new Material(
       child: Column(
         children: [
-          Text(
-            "How do I become a expert in programming as well as design??",
-            textScaleFactor: 1.5,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-
-
-              ],
-            ),
+          new Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.25,
+                width: MediaQuery.of(context).size.width,
+                decoration: new BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      Color(0xFF3594DD),
+                      Color(0xFF4563DB),
+                      Color(0xff611cdf)
+                    ]),
+                    borderRadius: new BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30))),
+              ),
+              AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0.0,
+                centerTitle: true,
+                title: Row(
+                  children: [
+                    SizedBox(
+                      width: 30.0,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      /*child: Image(
+                        image: AssetImage('assets/images/eye.png'),
+                        height: 40,
+                        width: 40,
+                        ),*/
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.09,
+                    ),
+                    questionSection,
+                  ],
+                ),
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.25,
+                  ),
+                  SizedBox(
+                    height: 550,
+                    child: responses,
+                  ),
+                ],
+              )
+            ],
           ),
         ],
       ),
     );
+
+    /*return new Material(
+      appBar: new AppBar(
+        title: new Text("Forum 1"),
+      ),
+      body: new Column(
+        children: <Widget>[
+          questionSection,
+          new Expanded(
+              child: new Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: responses,
+              ))
+        ],
+      ),
+    );*/
   }
 
-  /*Padding _buildQuestionSection() {
+  Padding _buildQuestionSection() {
     return new Padding(
-      padding: const EdgeInsets.only(top: 15.0),
+      padding: const EdgeInsets.all(8.0),
       child: new Column(
         children: <Widget>[
           new Text(
@@ -141,7 +142,7 @@ class _ForumDetailsState extends State<ForumDetails> {
             ),
           ),
           new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.all(12.0),
             child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -156,11 +157,11 @@ class _ForumDetailsState extends State<ForumDetails> {
                         fontWeight: FontWeight.w700, color: Colors.black),
                   ),
                 ),
-                */ /*new IconWithText(
+                /*new IconWithText(
                   Icons.check_circle,
                   "Answered",
                   iconColor: kDeepGoldenColor,
-                ),*/ /*
+                ),*/
                 new IconWithText(
                   Icons.remove_red_eye,
                   "54",
@@ -173,8 +174,7 @@ class _ForumDetailsState extends State<ForumDetails> {
         ],
       ),
     );
-  }*/
-
+  }
 }
 
 class ForumPost extends StatelessWidget {
@@ -184,6 +184,10 @@ class ForumPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5.0),
+      decoration: new BoxDecoration(
+        color: Color(0xFF4563DB),
+        borderRadius: const BorderRadius.all(const Radius.circular(20.0)),
+      ),
       child: new Column(
         children: <Widget>[
           new Container(
@@ -222,9 +226,12 @@ class ForumPost extends StatelessWidget {
                     new Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: GestureDetector(
-                        onTap: () {},
-                        child:
-                            new Icon(Icons.thumb_up, color: kDeepGoldenColor),
+                        onTap: (){
+                        },
+                        child: new Icon(
+                            Icons.thumb_up,
+                            color: kDeepGoldenColor
+                        ),
                       ),
                     ),
                     new Padding(
@@ -239,8 +246,11 @@ class ForumPost extends StatelessWidget {
                     new Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: GestureDetector(
-                        onTap: () {},
-                        child: new Icon(Icons.thumb_down, color: Colors.grey),
+                        onTap: (){},
+                        child: new Icon(
+                            Icons.thumb_down,
+                            color: Colors.grey
+                        ),
                       ),
                     ),
                     new Padding(
