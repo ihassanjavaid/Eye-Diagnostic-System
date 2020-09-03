@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eye_diagnostic_system/components/forum_clipper_component.dart';
+import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
@@ -223,7 +223,7 @@ class _ForumState extends State<Forum> {
 
   Widget _buildTopPanel() {
     return ClipPath(
-      clipper: ForumClipper(),
+      clipper: HeaderCustomClipper(),
       child: Container(
         color: kPurpleColor,
         height: 120,

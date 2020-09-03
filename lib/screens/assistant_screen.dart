@@ -1,4 +1,5 @@
 import 'package:bubble/bubble.dart';
+import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
@@ -54,25 +55,37 @@ class _AssistantState extends State<Assistant> {
         ),
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 35.0, bottom: 10.0),
-              child: RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                    text: 'Eye\tSee\t',
-                    style: kDashboardTitleTextStyle.copyWith(color: kPurpleColor),
-                  ),
-                  TextSpan(
-                    text: 'Assistant',
-                    style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
-                  ),
-                ]),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(bottom: 10),
-              child: Text("Today, ${DateFormat('jm').format(DateTime.now())}",
-                  style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0)
+            ClipPath(
+              clipper: HeaderCustomClipper(),
+              child: Container(
+                width: double.infinity,
+                height: 160,
+                color: kPurpleColor,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 35.0, bottom: 10.0),
+                      child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text: 'EyeSee\t',
+                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                          ),
+                          TextSpan(
+                            text: 'Assistant',
+                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                          ),
+                        ]),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Text("${DateFormat('EEEE').format(DateTime.now())}, ${DateFormat('jm').format(DateTime.now())}",
+                          style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0)
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Flexible(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ForumClipper extends CustomClipper<Path> {
+class HeaderCustomClipper extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
