@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'duo_chrome_screen.dart';
 class RuleScreen extends StatefulWidget {
-  static const String id = 'RuleScreen';
+  static const String id = 'rules_screen';
 
   @override
   _RuleScreenState createState() => _RuleScreenState();

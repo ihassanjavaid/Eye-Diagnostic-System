@@ -2,7 +2,7 @@ import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
-import 'package:eye_diagnostic_system/screens/eye_sight_screens/rulesScreen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/rules_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
