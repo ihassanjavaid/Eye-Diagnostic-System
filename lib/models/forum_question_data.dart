@@ -1,7 +1,7 @@
 class Question{
-  Question({this.question,this.tag,this.views, this.uID});
+  Question({this.question,this.tag,this.views, this.email});
   final String question;
   final String tag;
   int views;
-  final String uID;
+  final String email;
 }

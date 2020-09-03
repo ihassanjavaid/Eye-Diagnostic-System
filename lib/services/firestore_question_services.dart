@@ -10,7 +10,7 @@ class FirestoreQuestionService{
   Auth _auth = Auth();
 
 
-  Future<void> askQuestion({String question, String tag, int views =0, String uID})async{
+  Future<void> askQuestion({String question, String tag, int views =0, String email})async{
     await checkInternConnection();
 
     DocumentReference documentReference =
@@ -20,7 +20,7 @@ class FirestoreQuestionService{
       'question': question,
       'tag': tag,
       'views':views,
-      'uID':uID
+      'email':email
     });
   }
 
@@ -38,21 +38,21 @@ class FirestoreQuestionService{
           question: ques.data()['question'],
           tag: ques.data()['tag'],
           views: ques.data()['view'],
-          uID: ques.data()['uID']
+          email: ques.data()['email']
       );
       questions.add(question);
     }
     return questions;
   }
 
-  Future <List<Question>> getUserQuestions (String uid) async {
+  Future <List<Question>> getUserQuestions (String email) async {
     List<Question> questions = [];
 
     await checkInternConnection();
 
     final currentUser = await _auth.getCurrentUser();
     // Fetch all questions
-    final questionDocuments = await _firestore.collection('questions').where('uID', isEqualTo: uid).get();
+    final questionDocuments = await _firestore.collection('questions').where('email', isEqualTo: email).get();
 
     // Get each user
     for (var ques in questionDocuments.docs) {
@@ -60,7 +60,7 @@ class FirestoreQuestionService{
           question: ques.data()['question'],
           tag: ques.data()['tag'],
           views: ques.data()['view'],
-          uID: ques.data()['uID']
+          email: ques.data()['uID']
       );
       questions.add(question);
     }

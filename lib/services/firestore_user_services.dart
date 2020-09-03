@@ -16,7 +16,7 @@ class FirestoreUserService {
   final _firestore = FirebaseFirestore.instance;
   Auth _auth = Auth();
 
-  Future<void> registerUserInFirebase({String displayName, String email,}) async {
+  Future<void> registerUserInFirebase({String displayName, String email}) async {
     await checkInternConnection();
 
     DocumentReference documentReference = _firestore.collection('users').doc();
@@ -44,6 +44,23 @@ class FirestoreUserService {
     }
 
     return userData;
+  }
+
+  Future<String> getUserInitial({String email}) async {
+    String initial;
+
+    await checkInternConnection();
+
+    final userDocuments = await _firestore
+        .collection('users')
+        .where('email', isEqualTo: email)
+        .get();
+
+    for (var userDocument in userDocuments.docs) {
+      initial =userDocument.data()['displayName'];
+    }
+
+    return initial[0];
   }
 
   /*Future<List<UserData>> getAllUsers() async {
