@@ -39,7 +39,7 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
                 Stack(
                   children: [
                     Container(
-                      height: 480,
+                      height: 500,
                       child: WebView(
                         javascriptMode: JavascriptMode.unrestricted,
                         gestureNavigationEnabled: true,
@@ -79,53 +79,19 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 15.0,
                 ),
-                Container(
-                  height: 64.0,
-                  //color: kPurpleColor,
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 24.0,
-                            ),
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                              size: 30.0,
-                            ),
-                            SizedBox(
-                              width: 8.0,
-                            ),
-                            Text(
-                                'Back',
-                                style: kBottomNavBarTextStyle
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          Navigator.pop(context);
-                          Navigator.pushNamed(context, Dashboard.id);
-                        },
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Text(
+                      'Powered by Google Maps ©',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontStyle: FontStyle.italic
                       ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Text(
-                            'Powered by Google Maps ©',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontStyle: FontStyle.italic
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ],

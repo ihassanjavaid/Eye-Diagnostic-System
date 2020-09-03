@@ -92,6 +92,12 @@ final TextStyle kAvatarTextStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
+final TextStyle kCustomInputLabelStyle = TextStyle(
+  color: kGoldenColor,
+  fontSize: 20.0,
+  fontFamily: 'CM Sans Serif',
+);
+
 
 
 

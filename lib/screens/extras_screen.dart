@@ -235,7 +235,7 @@ class _ExtrasState extends State<Extras> {
       bottomNavigationBar: Container(
         height: 52.0,
         color: kPurpleColor,
-        child: Align(
+        /*child: Align(
           alignment: Alignment.centerLeft,
           child: GestureDetector(
             onTap: () {
@@ -261,7 +261,7 @@ class _ExtrasState extends State<Extras> {
               ],
             ),
           )
-        ),
+        ),*/
       ),
     );
   }

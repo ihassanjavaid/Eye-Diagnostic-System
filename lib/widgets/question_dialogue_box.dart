@@ -51,96 +51,99 @@ class MessageDialog {
 
     return ModalProgressHUD(
       inAsyncCall: _showSpinner,
-      child: Container(
-        height: 500,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: kBgColorGradientArrayBlues,
-            stops: [0.1, 0.4, 0.7, 0.9],
+      child: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Container(
+          height: 460,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: kBgColorGradientArrayBlues,
+              stops: [0.1, 0.4, 0.7, 0.9],
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: AutoSizeText(
-                    'Ask a Question',
-                    style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: Colors.white70),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CustomTextField(
-                  placeholder: 'Your Post',
-                  minLines: 8,
-                  placeholderColor: kDeepGoldenColor,
-                  cursorColor: kGoldenColor,
-                  focusedOutlineBorder: kGoldenColor,
-                  maxLines: 8,
-                  controller: this.messageTextController,
-                  onChanged: (value) {
-                    questionText = value;
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Choice_Chip( ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ButtonTheme(
-                  minWidth: double.maxFinite,
-                  height: 50,
-                  child: RaisedButton(
-                    onPressed: ()async{
-                      try{
-                        SharedPreferences pref = await SharedPreferences.getInstance();
-                        _email = pref.getString('email');
-                        //_fbuser = await _auth.getCurrentUser();
-                        //_uid = _fbuser.uid;
-                        selected = globalSelectedItem;
-                        _questionService.askQuestion(question: questionText, tag:selected,views: 0,email: _email);
-                        _questionsent = true;
-                      }catch(e){
-                        print(e.toString());
-                        throw(e);
-                      }
-                      messageTextController.clear();
-                      Navigator.pop(context);
-                    },
-                    color: kPurpleColor,
-                    focusColor: kGoldenColor,
-                    autofocus: true,
-                    elevation: 10,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.comment,
-                          color: kGoldenColor,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            'Post',
-                            style: kDashboardButtonLabelStyle.copyWith(fontSize: 20,fontWeight: FontWeight.w100),
-                          ),
-                        ),
-                      ],
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: AutoSizeText(
+                      'Ask Something',
+                      style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: Colors.white70),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomTextField(
+                    placeholder: 'Your Post',
+                    minLines: 8,
+                    placeholderColor: kDeepGoldenColor,
+                    cursorColor: kGoldenColor,
+                    focusedOutlineBorder: kGoldenColor,
+                    maxLines: 8,
+                    controller: this.messageTextController,
+                    onChanged: (value) {
+                      questionText = value;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Choice_Chip( ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),
+                  child: ButtonTheme(
+                    minWidth: double.maxFinite,
+                    height: 50,
+                    child: RaisedButton(
+                      onPressed: ()async{
+                        try{
+                          SharedPreferences pref = await SharedPreferences.getInstance();
+                          _email = pref.getString('email');
+                          //_fbuser = await _auth.getCurrentUser();
+                          //_uid = _fbuser.uid;
+                          selected = globalSelectedItem;
+                          _questionService.askQuestion(question: questionText, tag:selected,views: 0,email: _email);
+                          _questionsent = true;
+                        }catch(e){
+                          print(e.toString());
+                          throw(e);
+                        }
+                        messageTextController.clear();
+                        Navigator.pop(context);
+                      },
+                      color: kPurpleColor,
+                      focusColor: kGoldenColor,
+                      autofocus: true,
+                      elevation: 10,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.comment,
+                            color: kGoldenColor,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              'Post',
+                              style: kDashboardButtonLabelStyle.copyWith(fontSize: 20,fontWeight: FontWeight.w100),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

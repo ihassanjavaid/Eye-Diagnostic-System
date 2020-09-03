@@ -37,7 +37,6 @@ class EyeSee extends StatelessWidget {
         AutoLoginService.id:(context) => AutoLoginService(),
         ForumDetails.id:(context) => ForumDetails(),
         Forum.id:(context) => Forum(),
-        UserQuestions.id:(context)  => UserQuestions(),
         LoginScreen.id: (context) => LoginScreen(),
         Dashboard.id: (context) => Dashboard(),
         NearbyMain.id: (context) => NearbyMain(),
