@@ -37,7 +37,7 @@ dependencies:
   flutter_dialogflow: ^0.1.3
   intl: ^0.16.1
   bubble: ^1.1.9+1
-  screen: ^0.0.5m
+  screen: ^0.0.5
 
 dev_dependencies:
   flutter_test:
