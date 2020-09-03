@@ -1,4 +1,4 @@
-# 👁️ Eye Diagnostic System - EyeSee
+# 👁️ Eye Diagnostic System - _EyeSee_
 
 A _one-stop_ eye disease solution!
 
