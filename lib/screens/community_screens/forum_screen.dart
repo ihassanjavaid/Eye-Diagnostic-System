@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eye_diagnostic_system/components/forum_clipper_component.dart';
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_user_user_questions.dart';
@@ -57,65 +58,45 @@ class _ForumState extends State<Forum> {
           ),
           child: new Column(
             children: <Widget>[
-              new Stack(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 40),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, Extras.id);
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios,
-                                color: kGoldenColor,
-                                size: 28,
-                              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: kPurpleColor,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                              text: 'EyeSee\t',
+                              style: kDashboardTitleTextStyle.copyWith(
+                                  color: kGoldenColor),
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.13,
+                            TextSpan(
+                              text: 'Forums',
+                              style: kDashboardTitleTextStyle.copyWith(
+                                  color: kGoldenColor),
                             ),
-                            RichText(
-                              text: TextSpan(children: [
-                                TextSpan(
-                                  text: 'EyeSee\t',
-                                  style: kDashboardTitleTextStyle.copyWith(
-                                      color: kPurpleColor),
-                                ),
-                                TextSpan(
-                                  text: 'Forums',
-                                  style: kDashboardTitleTextStyle.copyWith(
-                                      color: kGoldenColor),
-                                ),
-                              ]),
-                            ),
-                          ],
+                          ]),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.13,
-                      ),
-                      Container(
-                        child: _buildTopPanel(),
-                      ),
-                    ],
+                ),
+              ),
+              Column(
+                children: [
+                  Container(
+                    child: _buildTopPanel(),
                   ),
                 ],
               ),
-              Padding(
+             /* Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 0),
                 child: new Text(
                   "All Posts",
@@ -127,7 +108,7 @@ class _ForumState extends State<Forum> {
               ),
               new SizedBox(
                 height: 5.0,
-              ),
+              ),*/
               new Expanded(
                 child: FutureBuilder(
                     future: getPosts(),
@@ -231,21 +212,20 @@ class _ForumState extends State<Forum> {
   }
 
   Widget _buildTopPanel() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+    return ClipPath(
+      clipper: ForumClipper( ),
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          color: kPurpleColor,
-        ),
-        height: MediaQuery.of(context).size.height * 0.1,
+        color: kPurpleColor,
+        height: 120,
         width: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 14,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
                   children: [
