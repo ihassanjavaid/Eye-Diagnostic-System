@@ -2,6 +2,7 @@ import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/rulesScreen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
@@ -29,7 +30,7 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      initialRoute: AutoLoginService.id /*AutoLoginService.id*/,
+      initialRoute: AutoLoginService.id,
       routes: {
         AutoLoginService.id:(context) => AutoLoginService(),
         ForumDetails.id:(context) => ForumDetails(),
@@ -46,6 +47,7 @@ class EyeSee extends StatelessWidget {
         ContrastSensitivity.id: (context) => ContrastSensitivity(),
         ContrastSensitivity2.id: (context) => ContrastSensitivity2(),
         Assistant.id: (context) => Assistant(),
+        RuleScreen.id: (context) => RuleScreen()
       },
     );
   }

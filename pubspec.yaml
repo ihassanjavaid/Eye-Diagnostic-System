@@ -51,6 +51,7 @@ flutter:
     - assets/logos/
     - assets/images/svgs/
     - assets/images/colorblindness/
+    - assets/images/rules/
     - assets/json/service.json
 
   # fonts:

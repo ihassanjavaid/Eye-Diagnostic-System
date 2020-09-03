@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'duo_chrome_screen.dart';
@@ -9,11 +10,33 @@ class RuleScreen extends StatefulWidget {
 }
 
 class _RuleScreenState extends State<RuleScreen> {
+
+  final int _numPages = 3;
   final int totalPage = 4;
-  final controller = PageController(
-    initialPage: 0,
-  );
+  final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
+
+  List<Widget> _buildPageIndicator() {
+    List<Widget> list = [];
+    for ( int i = 0 ; i < _numPages ; i++ ){
+      list.add(i == _currentPage ? _indicator(true) : _indicator(false));
+    }
+    return list;
+  }
+
+  Widget _indicator(bool isActive) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 200),
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      height: 8.0,
+      width: isActive ? 24.0 : 8.0,
+      decoration: BoxDecoration(
+        color: isActive ? kGoldenColor : Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +54,7 @@ class _RuleScreenState extends State<RuleScreen> {
                   print(page);
                   _currentPage=page;
                 },
+                controller: _pageController,
                 scrollDirection: Axis.horizontal,
                     children: <Widget>[
                       ruleBlock('Mobile should be at eye level. Distance should be 2-feet from the mobile',
@@ -50,17 +74,14 @@ class _RuleScreenState extends State<RuleScreen> {
 
             FlatButton(
               color: Colors.blueAccent,
-              onPressed: (){
-
-              _currentPage != totalPage -1 ?
-              controller.nextPage(duration: Duration(milliseconds: 500),
-                  curve: Curves.ease):
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DuoChrome())
-              );
-
-
-            },
+              onPressed: () {
+                _currentPage != _numPages -1 ?
+                _pageController.nextPage(
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.ease
+                ) :
+                Navigator.popAndPushNamed(context, DuoChrome.id);
+              },
               child: Text(_currentPage!= totalPage-1?'Next':'Start'),
             )
           ],

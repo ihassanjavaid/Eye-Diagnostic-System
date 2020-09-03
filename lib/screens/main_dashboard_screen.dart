@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
 import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
@@ -152,7 +153,7 @@ class _DashboardState extends State<Dashboard> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () {},
-                        child: _buildMainDashboardContainer('Eye Sight\nTest',
+                        child: _buildMainDashboardContainer('Eye\nSight Test',
                             'assets/images/svgs/eye_sight.svg'),
                       ),
                       GestureDetector(
@@ -278,30 +279,51 @@ class _DashboardState extends State<Dashboard> {
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.1, 0.4, 0.7, 0.9],
-            colors: kBgColorGradientArrayGreys,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [0.1, 0.5, 0.7, 0.9],
+            colors: kBgColorGradientArrayBlues,
           ),
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
         ),
         child: Stack(
           children: [
+            ClipPath(
+              clipper: DashboardCardCustomClipper(),
+              child: Container(
+                width: double.infinity,
+                height: 300,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.1, 0.4, 0.7, 0.9],
+                    colors: kBgColorGradientArrayGreys,
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12.0),
+                    topRight: Radius.circular(12.0),
+                    bottomLeft: Radius.circular(12.0)
+                  ),
+                ),
+                child: SvgPicture.asset(
+                  image,
+                ),
+              ),
+            ),
             Positioned(
               bottom: 18.0,
               left: 20.0,
               child: Text(
                 title,
-                style: kDashboardTitleTextStyle,
+                style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
               ),
             ),
-            Positioned(
+            /*Positioned(
               bottom: 70.0,
               left: 50.0,
-              child: SvgPicture.asset(
-                image,
-              ),
-            ),
+              child:
+            ),*/
           ],
         ),
       ),
