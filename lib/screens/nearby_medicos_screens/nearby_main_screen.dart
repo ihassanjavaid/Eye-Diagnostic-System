@@ -53,6 +53,8 @@ class _NearbyMainState extends State<NearbyMain> {
                 height: 60,
                 width: double.infinity,
                 child: TabBar(
+                  indicatorWeight: 4.0,
+                  indicatorColor: kGoldenColor,
                   tabs: [
                     Tab(
                       child: Row(

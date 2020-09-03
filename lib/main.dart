@@ -1,11 +1,9 @@
 import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
-import 'package:eye_diagnostic_system/screens/community_screens/forum_user_user_questions.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
-import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_optometrists_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
@@ -17,7 +15,6 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/nearby_medicos_screens/nearby_main_screen.dart';
-import 'screens/nearby_medicos_screens/nearby_medicos_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

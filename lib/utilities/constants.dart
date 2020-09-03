@@ -89,12 +89,17 @@ final TextStyle kHintTextStyle = TextStyle(
 final TextStyle kAvatarTextStyle = TextStyle(
   color: kPurpleColor,
   fontSize: 30.0,
-  fontFamily: 'CM Sans Serif',
+  fontWeight: FontWeight.normal
 );
 
 final TextStyle kCustomInputLabelStyle = TextStyle(
   color: kGoldenColor,
   fontSize: 20.0,
+  fontFamily: 'CM Sans Serif',
+);
+
+final TextStyle kforumHeaderButtonLabelStyle = TextStyle(
+  color: kGoldenColor,
   fontFamily: 'CM Sans Serif',
 );
 
