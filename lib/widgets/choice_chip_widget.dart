@@ -1,34 +1,37 @@
 import 'package:flutter/material.dart';
 
-class UserQuestions extends StatefulWidget {
+
+String globalSelectedItem;
+
+class Choice_Chip extends StatefulWidget {
   static final String id = 'forum_user_user_questions';
   @override
-  _UserQuestionsState createState() => _UserQuestionsState();
+  _Choice_ChipState createState() => _Choice_ChipState();
 }
 
-class _UserQuestionsState extends State<UserQuestions> {
+class _Choice_ChipState extends State<Choice_Chip> {
   List<String> chipList = [
-    "Recycled",
-    "Vegetarian",
-    "Skilled",
-    "Energetic",
-    "Friendly",
-    "Luxurious"
+    "Question",
+    "Suggestion",
+    "Hospital",
+    "Disease",
+    "Doctor",
+    "Disorder"
   ];
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Material(
-               child: Container(
-                    child: Wrap(
-                      spacing: 5.0,
-                      runSpacing: 5.0,
-                      children: <Widget>[
-                        choiceChipWidget(chipList),
-                      ],
-                    )),
-        );
+    // TODO: implement build(
+      return Container(
+        color: Colors.transparent,
+          alignment: Alignment.center,
+          child: Wrap(
+            spacing: 5.0,
+            runSpacing: 5.0,
+            children: <Widget>[
+              choiceChipWidget(chipList),
+            ],
+          ));
   }
 }
 
@@ -48,6 +51,7 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
     List<Widget> choices = List();
     widget.reportList.forEach((item) {
       choices.add(Container(
+        color: Colors.transparent,
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(
           label: Text(item),
@@ -62,6 +66,7 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
           onSelected: (selected) {
             setState(() {
               selectedChoice = item;
+              globalSelectedItem = item;
             });
           },
         ),

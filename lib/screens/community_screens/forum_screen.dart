@@ -4,6 +4,7 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_scr
 import 'package:eye_diagnostic_system/screens/community_screens/forum_user_user_questions.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
+import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/question_dialogue_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +33,13 @@ class _ForumState extends State<Forum> {
   Auth _auth = Auth();
   List<Question> _questions = [];
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  FirestoreUserService _userService = FirestoreUserService();
 
+  Future getPosts() async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    QuerySnapshot qn = await _firestore.collection('questions').get();
+    return qn.docs;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,20 +66,39 @@ class _ForumState extends State<Forum> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 40),
                       child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         alignment: Alignment.center,
-                        child: RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                              text: 'EyeSee\t',
-                              style: kDashboardTitleTextStyle.copyWith(
-                                  color: kPurpleColor),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, Extras.id);
+                              },
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: kGoldenColor,
+                                size: 28,
+                              ),
                             ),
-                            TextSpan(
-                              text: 'Forums',
-                              style: kDashboardTitleTextStyle.copyWith(
-                                  color: kGoldenColor),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.13,
                             ),
-                          ]),
+                            RichText(
+                              text: TextSpan(children: [
+                                TextSpan(
+                                  text: 'EyeSee\t',
+                                  style: kDashboardTitleTextStyle.copyWith(
+                                      color: kPurpleColor),
+                                ),
+                                TextSpan(
+                                  text: 'Forums',
+                                  style: kDashboardTitleTextStyle.copyWith(
+                                      color: kGoldenColor),
+                                ),
+                              ]),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -103,60 +129,154 @@ class _ForumState extends State<Forum> {
                 height: 5.0,
               ),
               new Expanded(
-                child: new ListView.builder(
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, ForumDetails.id);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(),
-                        child: new ListTile(
-                          leading: new CircleAvatar(
-                            radius: 25.0,
-                            backgroundColor: kDeepGoldenColor,
-                            child: new Text(
-                              'A'
-                            ),
-                            foregroundColor: kPurpleColor,
+                child: FutureBuilder(
+                    future: getPosts(),
+                    builder: (_, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: kPurpleColor,
                           ),
-                          title: new Text(
-                            "I was diagnosed with Galucoma. Who else was diagnosed?",
-                            style: new TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white70),
-                          ),
-                          subtitle: new Row(
-                            children: <Widget>[
-                              new Chip(
-                                backgroundColor: Color(0xff611cdf),
-                                label: new Text(
-                                  "Diseases",
-                                  style: new TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                        );
+                      } else {
+                        return ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (_, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, ForumDetails.id);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                  color: kGoldenColor,
+                                  width: 2,
+                                ))),
+                                child: new ListTile(
+                                  leading: new CircleAvatar(
+                                    radius: 25.0,
+                                    backgroundColor: kDeepGoldenColor,
+                                    child: FutureBuilder(
+                                        future: _userService.getUserInitial(
+                                            email: snapshot.data[index]
+                                                .data()['email']),
+                                        builder: (_, snapshot2) {
+                                          if (snapshot2.hasData) {
+                                            return Padding(
+                                                padding:
+                                                    const EdgeInsets.only(top:4.0),
+                                                child: Text(
+                                                    snapshot2.data,
+                                                  style: kAvatarTextStyle,
+                                                ));
+                                          } else {
+                                            return Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                              backgroundColor: kPurpleColor,
+                                            ));
+                                          }
+                                        }),
+                                    foregroundColor: kPurpleColor,
+                                  ),
+                                  title: new Text(
+                                    snapshot.data[index].data()['question'],
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white70),
+                                  ),
+                                  subtitle: new Row(
+                                    children: <Widget>[
+                                      new Chip(
+                                        backgroundColor: kDarkPurpleColor,
+                                        label: new Text(
+                                          snapshot.data[index].data()['tag'],
+                                          style: new TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  trailing: new Chip(
+                                    backgroundColor: kGoldenColor,
+                                    shape: BeveledRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(10),
+                                    ),
+                                    label: new Text(
+                                      snapshot.data[index]
+                                          .data()['views']
+                                          .toString(),
+                                      style: new TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black),
+                                    ),
+                                  ),
                                 ),
-                              )
-                            ],
-                          ),
-                          trailing: new Chip(
-                            backgroundColor: kGoldenColor,
-                            shape: BeveledRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10),
+                              ),
+                            );
+                          },
+                        );
+                      }
+                    }
+
+                    /*child: new ListView.builder(
+                    itemCount: 15,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, ForumDetails.id);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(),
+                          child: new ListTile(
+                            leading: new CircleAvatar(
+                              radius: 25.0,
+                              backgroundColor: kDeepGoldenColor,
+                              child: new Text(
+                                'A',
+                              ),
+                              foregroundColor: kPurpleColor,
                             ),
-                            label: new Text(
-                              "25 Replies",
+                            title: new Text(
+                              "I was diagnosed with Galucoma. Who else was diagnosed?",
                               style: new TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white70),
+                            ),
+                            subtitle: new Row(
+                              children: <Widget>[
+                                new Chip(
+                                  backgroundColor: Color(0xff611cdf),
+                                  label: new Text(
+                                    "Diseases",
+                                    style: new TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                )
+                              ],
+                            ),
+                            trailing: new Chip(
+                              backgroundColor: kGoldenColor,
+                              shape: BeveledRectangleBorder(
+                                borderRadius: new BorderRadius.circular(10),
+                              ),
+                              label: new Text(
+                                "25 Replies",
+                                style: new TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
+                      );
+                    },
+                  ),*/
+                    ),
               )
             ],
           ),
@@ -266,8 +386,7 @@ class _ForumState extends State<Forum> {
   }
 
   Future<List<Question>> _getAllQuestions() async {
-    List<Question> questions = await _questionService.getAllQuestions();
-    return questions;
+    _questions = await _questionService.getAllQuestions();
+    return _questions;
   }
-
 }

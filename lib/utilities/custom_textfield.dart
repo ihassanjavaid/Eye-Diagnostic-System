@@ -36,6 +36,9 @@ class CustomTextField extends StatelessWidget {
       maxLines: this.maxLines,
       obscureText: this.isPassword,
       cursorColor: this.cursorColor,
+      style: TextStyle(
+        color: Colors.white,
+      ),
       decoration: InputDecoration(
         labelText: this.placeholder,
         hasFloatingPlaceholder: true,
@@ -55,6 +58,7 @@ class CustomTextField extends StatelessWidget {
       ),
       onChanged: this.onChanged,
       controller: this.controller,
+
     );
   }
 }

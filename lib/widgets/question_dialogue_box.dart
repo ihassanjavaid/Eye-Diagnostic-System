@@ -2,10 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/choice_chip_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utilities/custom_textfield.dart';
 
@@ -23,7 +25,7 @@ class MessageDialog {
   FirestoreQuestionService _questionService = FirestoreQuestionService();
   User _fbuser;
   Auth _auth = Auth();
-  String _uid;
+  String _email;
 
   announce(context) {
     showDialog(
@@ -45,11 +47,12 @@ class MessageDialog {
   _announcementCard(context) {
     String messageTitle;
     String questionText;
+    String selected;
 
     return ModalProgressHUD(
       inAsyncCall: _showSpinner,
       child: Container(
-        height: 350,
+        height: 500,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
           gradient: LinearGradient(
@@ -81,12 +84,16 @@ class MessageDialog {
                   placeholderColor: kDeepGoldenColor,
                   cursorColor: kGoldenColor,
                   focusedOutlineBorder: kGoldenColor,
-                  maxLines: null,
+                  maxLines: 8,
                   controller: this.messageTextController,
                   onChanged: (value) {
                     questionText = value;
                   },
                 ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Choice_Chip( ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -96,9 +103,12 @@ class MessageDialog {
                   child: RaisedButton(
                     onPressed: ()async{
                       try{
-                        _fbuser = await _auth.getCurrentUser();
-                        _uid = _fbuser.uid;
-                        _questionService.askQuestion(question: questionText, tag:'Disease',views: 0,uID: _uid);
+                        SharedPreferences pref = await SharedPreferences.getInstance();
+                        _email = pref.getString('email');
+                        //_fbuser = await _auth.getCurrentUser();
+                        //_uid = _fbuser.uid;
+                        selected = globalSelectedItem;
+                        _questionService.askQuestion(question: questionText, tag:selected,views: 0,email: _email);
                         _questionsent = true;
                       }catch(e){
                         print(e.toString());
@@ -127,22 +137,6 @@ class MessageDialog {
                         ),
                       ],
                     ),
-                    /*onPressed: () async {
-                      _showSpinner = true;
-                      // Push the message to the contact
-                      try {
-                        await _firestoreService.postMessage(
-                            messageTitle: messageTitle,
-                            messageText: messageText,
-                            receiverEmail: this.receiverEmail,
-                            messageType: MessageType.privateMessage);
-                        this.messageTitleController.clear();
-                        this.messageTextController.clear();
-                      } catch (e) {
-                        print(e);
-                      }
-                      _showSpinner = false;
-                    },*/
                   ),
                 ),
               ),

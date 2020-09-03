@@ -70,6 +70,7 @@ class Auth {
 
 
 
+
   /*Future<void> updateUserInfo({String displayName = '', String photoURL = '',}) async {
     final userUpdateInfo = UserUpdateInfo();
 

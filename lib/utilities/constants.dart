@@ -86,5 +86,13 @@ final TextStyle kHintTextStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
+final TextStyle kAvatarTextStyle = TextStyle(
+  color: kPurpleColor,
+  fontSize: 30.0,
+  fontFamily: 'CM Sans Serif',
+);
+
+
+
 
 
