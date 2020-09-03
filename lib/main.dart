@@ -5,7 +5,7 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_user_user_
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
-import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
+import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_optometrists_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
@@ -16,6 +16,8 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitiv
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'screens/nearby_medicos_screens/nearby_main_screen.dart';
+import 'screens/nearby_medicos_screens/nearby_medicos_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +40,7 @@ class EyeSee extends StatelessWidget {
         ForumUserQuestions.id:(context)  => ForumUserQuestions(),
         LoginScreen.id: (context) => LoginScreen(),
         Dashboard.id: (context) => Dashboard(),
-        NearbyMedicos.id: (context) => NearbyMedicos(),
+        NearbyMain.id: (context) => NearbyMain(),
         OnBoardingScreen.id: (context) => OnBoardingScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         Extras.id: (context) => Extras(),
@@ -47,7 +49,7 @@ class EyeSee extends StatelessWidget {
         NearVision.id: (context) => NearVision(),
         ContrastSensitivity.id: (context) => ContrastSensitivity(),
         ContrastSensitivity2.id: (context) => ContrastSensitivity2(),
-        Assistant.id: (context) => Assistant()
+        Assistant.id: (context) => Assistant(),
       },
     );
   }

@@ -1,18 +1,16 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
-import 'package:eye_diagnostic_system/screens/nearby_medicos_screen.dart';
+import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
-import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'assistant_screen.dart';
-import 'community_screens/forum_screen.dart';
 import 'extras_screen.dart';
 
 class Dashboard extends StatefulWidget {
@@ -170,7 +168,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, NearbyMedicos.id);
+                          Navigator.pushNamed(context, NearbyMain.id);
                         },
                         child: _buildMainDashboardContainer(
                             'Nearby\nOptometrists',

@@ -4,8 +4,9 @@ import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+WebViewController globalWebViewController;
+
 class NearbyMedicos extends StatefulWidget {
-  static const String id = 'nearby_medicos_screen';
 
   @override
   _NearbyMedicosState createState() => _NearbyMedicosState();
@@ -14,7 +15,7 @@ class NearbyMedicos extends StatefulWidget {
 class _NearbyMedicosState extends State<NearbyMedicos> {
   final Completer<WebViewController> _controller =
   Completer<WebViewController>();
-  WebViewController _webViewController;
+  WebViewController webViewController;
 
   @override
   Widget build(BuildContext context) {
@@ -35,41 +36,50 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Container(
-                    child: Image(
-                      image: AssetImage('assets/images/eye.png'),
-                      height: 140.0,
-                      width: 140.0,
+                Stack(
+                  children: [
+                    Container(
+                      height: 480,
+                      child: WebView(
+                        javascriptMode: JavascriptMode.unrestricted,
+                        gestureNavigationEnabled: true,
+                        debuggingEnabled: false,
+                        initialUrl: 'https://www.google.com/maps/search/hospitals/',
+                        onWebViewCreated: (WebViewController webViewController) {
+                          this.webViewController = webViewController;
+                          globalWebViewController = webViewController;
+                          _controller.complete(webViewController);
+                        },
+                      ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 14.0, right: 14.0, bottom: 12.0),
-                  child: Container(
-                    height: 450,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(18.0),
-                        child: WebView(
-                          javascriptMode: JavascriptMode.unrestricted,
-                          gestureNavigationEnabled: true,
-                          debuggingEnabled: false,
-                          initialUrl: 'https://www.google.com/maps/search/optometrist/',
-                          onWebViewCreated: (WebViewController webViewController) {
-                            this._webViewController = webViewController;
-                            _controller.complete(webViewController);
-                          },
+                    Positioned(
+                      top: 0,
+                      child: Container(
+                        height: 62.0,
+                        width: MediaQuery.of(context).size.width,
+                        color: kMapsGreyColor,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              'Nearby Medicos',
+                              style: kBottomNavBarTextStyle.copyWith(color: Colors.black45, fontSize: 30.0),
+                            ),
+                          ),
                         ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 Center(
                   child: Container(
-                    height: 80,
-                    color: kPurpleColor,
+                    height: 45.0,
+                    color: kMapsGreyColor,
                     child: NavigationControls(_controller.future),
                   ),
+                ),
+                SizedBox(
+                  height: 25.0,
                 ),
                 Container(
                   height: 64.0,
@@ -92,12 +102,8 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
                               width: 8.0,
                             ),
                             Text(
-                              'Back',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.bold
-                              ),
+                                'Back',
+                                style: kBottomNavBarTextStyle
                             ),
                           ],
                         ),
@@ -147,15 +153,15 @@ class NavigationControls extends StatelessWidget {
             snapshot.connectionState == ConnectionState.done;
         final WebViewController controller = snapshot.data;
         return Padding(
-          padding: const EdgeInsets.only(bottom: 22.0),
+          padding: const EdgeInsets.only(bottom: 24.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               IconButton(
                 icon: const Icon(
                   Icons.arrow_back_ios,
-                  color: Color(0xFFffbd00),
-                  size: 48.0,
+                  color: Colors.black45,
+                  size: 30.0,
                 ),
                 onPressed: !webViewReady
                     ? null
@@ -165,12 +171,38 @@ class NavigationControls extends StatelessWidget {
                 color: kGoldenColor,
                 icon: const Icon(
                     Icons.arrow_forward_ios,
-                    color: Color(0xFFffbd00),
-                    size: 48.0
+                    color: Colors.black45,
+                    size: 30.0
                 ),
                 onPressed: !webViewReady
                     ? null
                     : () => navigate(context, controller, goBack: false),
+              ),
+              IconButton(
+                color: kGoldenColor,
+                icon: const Icon(
+                    Icons.home,
+                    color: Colors.black45,
+                    size: 30.0
+                ),
+                onPressed: !webViewReady
+                    ? null
+                    : () {
+                  globalWebViewController.loadUrl('https://www.google.com/maps/search/hospitals/');
+                },
+              ),
+              IconButton(
+                color: kGoldenColor,
+                icon: const Icon(
+                    Icons.refresh,
+                    color: Colors.black45,
+                    size: 30.0
+                ),
+                onPressed: !webViewReady
+                    ? null
+                    : () {
+                  globalWebViewController.reload();
+                },
               ),
             ],
           ),
