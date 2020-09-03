@@ -221,61 +221,6 @@ class _ForumState extends State<Forum> {
                         );
                       }
                     }
-
-                    /*child: new ListView.builder(
-                    itemCount: 15,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, ForumDetails.id);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(),
-                          child: new ListTile(
-                            leading: new CircleAvatar(
-                              radius: 25.0,
-                              backgroundColor: kDeepGoldenColor,
-                              child: new Text(
-                                'A',
-                              ),
-                              foregroundColor: kPurpleColor,
-                            ),
-                            title: new Text(
-                              "I was diagnosed with Galucoma. Who else was diagnosed?",
-                              style: new TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white70),
-                            ),
-                            subtitle: new Row(
-                              children: <Widget>[
-                                new Chip(
-                                  backgroundColor: Color(0xff611cdf),
-                                  label: new Text(
-                                    "Diseases",
-                                    style: new TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                )
-                              ],
-                            ),
-                            trailing: new Chip(
-                              backgroundColor: kGoldenColor,
-                              shape: BeveledRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10),
-                              ),
-                              label: new Text(
-                                "25 Replies",
-                                style: new TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),*/
                     ),
               )
             ],
