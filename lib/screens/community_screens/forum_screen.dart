@@ -55,7 +55,7 @@ class _ForumState extends State<Forum> {
               colors: kBgColorGradientArrayBlues,
             ),
           ),
-          child: new Column(
+          child:  Column(
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
@@ -88,27 +88,23 @@ class _ForumState extends State<Forum> {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  Container(
-                    child: _buildTopPanel(),
-                  ),
-                ],
+              Container(
+                child: _buildTopPanel(),
               ),
              /* Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 0),
-                child: new Text(
+                child:  Text(
                   "All Posts",
-                  style: new TextStyle(
+                  style:  TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 24.0),
                 ),
               ),
-              new SizedBox(
+               SizedBox(
                 height: 5.0,
               ),*/
-              new Expanded(
+               Expanded(
                 child: FutureBuilder(
                     future: getPosts(),
                     builder: (_, snapshot) {
@@ -133,8 +129,8 @@ class _ForumState extends State<Forum> {
                                   color: kGoldenColor,
                                   width: 2,
                                 ))),
-                                child: new ListTile(
-                                  leading: new CircleAvatar(
+                                child:  ListTile(
+                                  leading:  CircleAvatar(
                                     radius: 25.0,
                                     backgroundColor: kDeepGoldenColor,
                                     child: FutureBuilder(
@@ -148,8 +144,9 @@ class _ForumState extends State<Forum> {
                                                     const EdgeInsets.only(top:4.0),
                                                 child: Text(
                                                     snapshot2.data,
-                                                  style: kAvatarTextStyle,
-                                                ));
+                                                    style: kAvatarTextStyle,
+                                                ),
+                                            );
                                           } else {
                                             return Center(
                                                 child:
@@ -160,36 +157,50 @@ class _ForumState extends State<Forum> {
                                         }),
                                     foregroundColor: kPurpleColor,
                                   ),
-                                  title: new Text(
-                                    snapshot.data[index].data()['question'],
-                                    style: new TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white70),
+                                  title:  Padding(
+                                    padding: const EdgeInsets.only(left: 2.0, bottom: 5.0),
+                                    child: Text(
+                                      snapshot.data[index].data()['question'],
+                                      style:  TextStyle(
+                                        fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white70
+                                      ),
+                                    ),
                                   ),
-                                  subtitle: new Row(
-                                    children: <Widget>[
-                                      new Chip(
-                                        backgroundColor: kDarkPurpleColor,
-                                        label: new Text(
+                                  subtitle: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Container(
+                                      height: 20.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20.0),
+                                            bottomRight: Radius.circular(20.0)
+                                        ),
+                                    color: kDarkPurpleColor
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 1.5),
+                                        child: Text(
                                           snapshot.data[index].data()['tag'],
-                                          style: new TextStyle(
-                                              //fontWeight: FontWeight.bold,
+                                          style:  TextStyle(
+                                            //fontWeight: FontWeight.bold,
                                               color: Colors.white),
                                         ),
-                                      )
-                                    ],
+                                      ),
+                                    ),
                                   ),
-                                  trailing: new Chip(
+                                  trailing:  Chip(
                                     backgroundColor: kGoldenColor,
                                     shape: BeveledRectangleBorder(
                                       borderRadius:
-                                          new BorderRadius.circular(10),
+                                           BorderRadius.circular(10),
                                     ),
-                                    label: new Text(
+                                    label:  Text(
                                       snapshot.data[index]
                                           .data()['views']
                                           .toString(),
-                                      style: new TextStyle(
+                                      style:  TextStyle(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black),
                                     ),
@@ -212,7 +223,7 @@ class _ForumState extends State<Forum> {
 
   Widget _buildTopPanel() {
     return ClipPath(
-      clipper: ForumClipper( ),
+      clipper: ForumClipper(),
       child: Container(
         color: kPurpleColor,
         height: 120,
@@ -244,9 +255,7 @@ class _ForumState extends State<Forum> {
                     ),
                     Text(
                       'Asked',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
+                      style: kforumHeaderButtonLabelStyle
                     ),
                   ],
                 ),
@@ -267,9 +276,7 @@ class _ForumState extends State<Forum> {
                     ),
                     Text(
                       'New',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
+                      style: kforumHeaderButtonLabelStyle
                     ),
                   ],
                 ),
@@ -288,9 +295,7 @@ class _ForumState extends State<Forum> {
                     ),
                     Text(
                       'Tags',
-                      style: TextStyle(
-                        color: kDeepGoldenColor,
-                      ),
+                      style: kforumHeaderButtonLabelStyle
                     ),
                   ],
                 ),
