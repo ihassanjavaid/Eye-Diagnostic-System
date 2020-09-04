@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 
@@ -55,8 +56,7 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(
           label: Text(item),
-          labelStyle: TextStyle(
-              color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),
+          labelStyle: kDashboardButtonLabelStyle.copyWith(color: kDarkPurpleColor, fontSize: 14.5),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
