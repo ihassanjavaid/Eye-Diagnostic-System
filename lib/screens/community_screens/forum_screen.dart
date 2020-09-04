@@ -24,7 +24,7 @@ class Forum extends StatefulWidget {
   @override
   _ForumState createState() => _ForumState();
 }
-String selectedTagItem;
+
 
 class _ForumState extends State<Forum> {
   String _uid;
@@ -37,6 +37,7 @@ class _ForumState extends State<Forum> {
   List<Question> _questions = [];
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   FirestoreUserService _userService = FirestoreUserService();
+  String selectedTagItem = '';
 
 
   Future getAllPosts() async {
@@ -45,21 +46,24 @@ class _ForumState extends State<Forum> {
     return qn.docs;
   }
 
-  Future getTagPosts() async{
+  Future getTagPosts() async {
     FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    QuerySnapshot qn = await _firestore.collection('questions').where('tag', isEqualTo: selectedTagItem).get();
+    QuerySnapshot qn = await _firestore
+        .collection('questions')
+        .where('tag', isEqualTo: selectedTagItem)
+        .get();
     return qn.docs;
   }
 
-  Widget choosePosts() {
-    if (selectedTagItem == ''){
+  Expanded choosePosts() {
+    if (selectedTagItem == '') {
       return buildExpandedQuestionSection(context);
-    }
-    else{
-
+    } else {
       return buildExpandedTagPostsSection(context);
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +79,7 @@ class _ForumState extends State<Forum> {
               colors: kBgColorGradientArrayBlues,
             ),
           ),
-          child:  Column(
+          child: Column(
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
@@ -111,22 +115,10 @@ class _ForumState extends State<Forum> {
               Container(
                 child: _buildTopPanel(),
               ),
-             /* Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 0),
-                child:  Text(
-                  "All Posts",
-                  style:  TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24.0),
-                ),
+              Container(
+                child: choosePosts(),
+                 //buildExpandedQuestionSection(context),
               ),
-               SizedBox(
-                height: 5.0,
-              ),*/
-                 Container (
-                     child: choosePosts(),
-                 ),
             ],
           ),
         ),
@@ -136,115 +128,107 @@ class _ForumState extends State<Forum> {
 
   Expanded buildExpandedQuestionSection(BuildContext context) {
     return Expanded(
-              child: FutureBuilder(
-                  future: getAllPosts(),
-                  builder: (_, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          backgroundColor: kPurpleColor,
+      child: FutureBuilder(
+          future: getAllPosts(),
+          builder: (_, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: kPurpleColor,
+                ),
+              );
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (_, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, ForumDetails.id);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                        color: kGoldenColor,
+                        width: 2,
+                      ))),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          radius: 25.0,
+                          backgroundColor: kDeepGoldenColor,
+                          child: FutureBuilder(
+                              future: _userService.getUserInitial(
+                                  email: snapshot.data[index].data()['email']),
+                              builder: (_, snapshot2) {
+                                if (snapshot2.hasData) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(top: 4.0),
+                                    child: Text(
+                                      snapshot2.data,
+                                      style: kAvatarTextStyle,
+                                    ),
+                                  );
+                                } else {
+                                  return Center(
+                                      child: CircularProgressIndicator(
+                                    backgroundColor: kPurpleColor,
+                                  ));
+                                }
+                              }),
+                          foregroundColor: kPurpleColor,
                         ),
-                      );
-                    } else {
-                      return ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (_, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, ForumDetails.id);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                      bottom: BorderSide(
-                                color: kGoldenColor,
-                                width: 2,
-                              ))),
-                              child:  ListTile(
-                                leading:  CircleAvatar(
-                                  radius: 25.0,
-                                  backgroundColor: kDeepGoldenColor,
-                                  child: FutureBuilder(
-                                      future: _userService.getUserInitial(
-                                          email: snapshot.data[index]
-                                              .data()['email']),
-                                      builder: (_, snapshot2) {
-                                        if (snapshot2.hasData) {
-                                          return Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top:4.0),
-                                              child: Text(
-                                                  snapshot2.data,
-                                                  style: kAvatarTextStyle,
-                                              ),
-                                          );
-                                        } else {
-                                          return Center(
-                                              child:
-                                                  CircularProgressIndicator(
-                                            backgroundColor: kPurpleColor,
-                                          ));
-                                        }
-                                      }),
-                                  foregroundColor: kPurpleColor,
-                                ),
-                                title:  Padding(
-                                  padding: const EdgeInsets.only(left: 2.0, bottom: 5.0),
-                                  child: Text(
-                                    snapshot.data[index].data()['question'],
-                                    style:  TextStyle(
-                                      fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white70
-                                    ),
-                                  ),
-                                ),
-                                subtitle: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Container(
-                                    height: 20.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20.0),
-                                          bottomRight: Radius.circular(20.0)
-                                      ),
-                                  color: kDarkPurpleColor
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 1.5),
-                                      child: Text(
-                                        snapshot.data[index].data()['tag'],
-                                        style:  TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                trailing:  Chip(
-                                  backgroundColor: kGoldenColor,
-                                  shape: BeveledRectangleBorder(
-                                    borderRadius:
-                                         BorderRadius.circular(10),
-                                  ),
-                                  label:  Text(
-                                    snapshot.data[index]
-                                        .data()['views']
-                                        .toString(),
-                                    style:  TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black),
-                                  ),
-                                ),
+                        title: Padding(
+                          padding:
+                              const EdgeInsets.only(left: 2.0, bottom: 5.0),
+                          child: Text(
+                            snapshot.data[index].data()['question'],
+                            style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white70),
+                          ),
+                        ),
+                        subtitle: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            height: 20.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0)),
+                                color: kDarkPurpleColor),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 8.0, right: 8.0, top: 1.5),
+                              child: Text(
+                                snapshot.data[index].data()['tag'],
+                                style: TextStyle(
+                                    //fontWeight: FontWeight.bold,
+                                    color: Colors.white),
                               ),
                             ),
-                          );
-                        },
-                      );
-                    }
-                  }
-                  ),
-            );
+                          ),
+                        ),
+                        trailing: Chip(
+                          backgroundColor: kGoldenColor,
+                          shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          label: Text(
+                            snapshot.data[index].data()['views'].toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          }),
+    );
   }
 
   Expanded buildExpandedTagPostsSection(BuildContext context) {
@@ -270,22 +254,20 @@ class _ForumState extends State<Forum> {
                       decoration: BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
-                                color: kGoldenColor,
-                                width: 2,
-                              ))),
-                      child:  ListTile(
-                        leading:  CircleAvatar(
+                        color: kGoldenColor,
+                        width: 2,
+                      ))),
+                      child: ListTile(
+                        leading: CircleAvatar(
                           radius: 25.0,
                           backgroundColor: kDeepGoldenColor,
                           child: FutureBuilder(
                               future: _userService.getUserInitial(
-                                  email: snapshot.data[index]
-                                      .data()['email']),
+                                  email: snapshot.data[index].data()['email']),
                               builder: (_, snapshot2) {
                                 if (snapshot2.hasData) {
                                   return Padding(
-                                    padding:
-                                    const EdgeInsets.only(top:4.0),
+                                    padding: const EdgeInsets.only(top: 4.0),
                                     child: Text(
                                       snapshot2.data,
                                       style: kAvatarTextStyle,
@@ -293,23 +275,22 @@ class _ForumState extends State<Forum> {
                                   );
                                 } else {
                                   return Center(
-                                      child:
-                                      CircularProgressIndicator(
-                                        backgroundColor: kPurpleColor,
-                                      ));
+                                      child: CircularProgressIndicator(
+                                    backgroundColor: kPurpleColor,
+                                  ));
                                 }
                               }),
                           foregroundColor: kPurpleColor,
                         ),
-                        title:  Padding(
-                          padding: const EdgeInsets.only(left: 2.0, bottom: 5.0),
+                        title: Padding(
+                          padding:
+                              const EdgeInsets.only(left: 2.0, bottom: 5.0),
                           child: Text(
                             snapshot.data[index].data()['question'],
-                            style:  TextStyle(
+                            style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white70
-                            ),
+                                color: Colors.white70),
                           ),
                         ),
                         subtitle: Align(
@@ -319,32 +300,28 @@ class _ForumState extends State<Forum> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0)
-                                ),
-                                color: kDarkPurpleColor
-                            ),
+                                    bottomRight: Radius.circular(20.0)),
+                                color: kDarkPurpleColor),
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 1.5),
+                              padding: const EdgeInsets.only(
+                                  left: 8.0, right: 8.0, top: 1.5),
                               child: Text(
                                 snapshot.data[index].data()['tag'],
-                                style:  TextStyle(
-                                  //fontWeight: FontWeight.bold,
+                                style: TextStyle(
+                                    //fontWeight: FontWeight.bold,
                                     color: Colors.white),
                               ),
                             ),
                           ),
                         ),
-                        trailing:  Chip(
+                        trailing: Chip(
                           backgroundColor: kGoldenColor,
                           shape: BeveledRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          label:  Text(
-                            snapshot.data[index]
-                                .data()['views']
-                                .toString(),
-                            style:  TextStyle(
+                          label: Text(
+                            snapshot.data[index].data()['views'].toString(),
+                            style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 color: Colors.black),
                           ),
@@ -355,8 +332,7 @@ class _ForumState extends State<Forum> {
                 },
               );
             }
-          }
-      ),
+          }),
     );
   }
 
@@ -392,10 +368,7 @@ class _ForumState extends State<Forum> {
                     SizedBox(
                       height: 5.0,
                     ),
-                    Text(
-                      'Asked',
-                      style: kforumHeaderButtonLabelStyle
-                    ),
+                    Text('Asked', style: kforumHeaderButtonLabelStyle),
                   ],
                 ),
                 Column(
@@ -403,6 +376,7 @@ class _ForumState extends State<Forum> {
                     GestureDetector(
                       onTap: () {
                         msgdlg.announce(context);
+                        selectedTagItem = selectedTag;
                       },
                       child: Icon(
                         Icons.add_comment_rounded,
@@ -413,21 +387,17 @@ class _ForumState extends State<Forum> {
                     SizedBox(
                       height: 5.0,
                     ),
-                    Text(
-                      'New',
-                      style: kforumHeaderButtonLabelStyle
-                    ),
+                    Text('New', style: kforumHeaderButtonLabelStyle),
                   ],
                 ),
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        tgsdlg.showCard(context);
-                        selectedTagItem = selectedTag;
-                        choosePosts();
-                        selectedTagItem = '';
-
+                      onTap: () async {
+                        await tgsdlg.showCard(context);
+                        setState(() {
+                          selectedTagItem = selectedTag;
+                        });
                       },
                       child: Icon(
                         Icons.tag,
@@ -438,10 +408,7 @@ class _ForumState extends State<Forum> {
                     SizedBox(
                       height: 5.0,
                     ),
-                    Text(
-                      'Tags',
-                      style: kforumHeaderButtonLabelStyle
-                    ),
+                    Text('Tags', style: kforumHeaderButtonLabelStyle),
                   ],
                 ),
               ],

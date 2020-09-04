@@ -14,6 +14,7 @@ import '../utilities/custom_textfield.dart';
 
 String selectedTag = '';
 
+
 class TagsDialog {
   TagsDialog({this.receiverEmail});
 
@@ -27,7 +28,7 @@ class TagsDialog {
   Forum _forum = Forum();
 
 
-  showCard(context) {
+  Future showCard(context) {
     showDialog(
         context: context,
         useSafeArea: false,
@@ -90,9 +91,8 @@ class TagsDialog {
                   child: Container(
                     child: GestureDetector(
                       onTap: (){
-                        selectedTag = globalSelectedItem;
-                        selectedTagItem = selectedTag;
-                        Navigator.pop(context);
+                          selectedTag = globalSelectedItem;
+                          Navigator.pop(context);
                       },
                       child: Icon(
                         Icons.check,
