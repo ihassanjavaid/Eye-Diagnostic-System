@@ -38,6 +38,9 @@ dependencies:
   intl: ^0.16.1
   bubble: ^1.1.9+1
   screen: ^0.0.5
+  speech_to_text: ^2.5.0
+  highlight_text: ^0.7.2
+  avatar_glow: ^1.2.0
 
 dev_dependencies:
   flutter_test:
