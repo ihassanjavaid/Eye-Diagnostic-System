@@ -1,4 +1,3 @@
-import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_medicos_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_optometrists_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';

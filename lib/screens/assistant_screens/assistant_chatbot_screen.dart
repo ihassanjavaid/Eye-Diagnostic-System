@@ -1,5 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_voice_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
@@ -109,7 +110,9 @@ class _AssistantState extends State<Assistant> {
                     Icons.mic,
                     color: kGoldenColor,
                     size: 36,
-                  ),
+                  ), onPressed: () {
+                    Navigator.pushNamed(context, AssistantVoice.id);
+                },
                 ),
                 title: Container(
                   height: 35,

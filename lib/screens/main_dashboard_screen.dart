@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
-import 'package:eye_diagnostic_system/screens/assistant_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
@@ -11,7 +10,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'assistant_screen.dart';
+import 'assistant_screens/assistant_chatbot_screen.dart';
 import 'extras_screen.dart';
 
 class Dashboard extends StatefulWidget {
