@@ -1,7 +1,9 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/components/pages.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:highlight_text/highlight_text.dart';
+import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class AssistantVoice extends StatefulWidget {
@@ -12,21 +14,11 @@ class AssistantVoice extends StatefulWidget {
 }
 
 class _AssistantVoiceState extends State<AssistantVoice> {
+
   stt.SpeechToText _speech;
   bool _isListening = false;
-  String _text = 'Welcome to Eye See!';
+  String _text = 'Tap the mic and speak!';
   double _confidence = 1.0;
-
-  final Map<String, HighlightedWord> _highlights = {
-    'eye' :HighlightedWord(
-      onTap: () {},
-      textStyle: kDashboardTitleTextStyle.copyWith(color: kGoldenColor)
-    ),
-    'see' : HighlightedWord(
-        onTap: () {},
-        textStyle: kDashboardTitleTextStyle.copyWith(color: kGoldenColor)
-    )
-  };
 
   @override
   void initState() {
@@ -37,14 +29,34 @@ class _AssistantVoiceState extends State<AssistantVoice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Accuracy: ${(_confidence*100.0).toStringAsFixed(1)}%',
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Container(
+        height: 200.0,
+        width: 200.0,
+        child: FittedBox(
+          child: AvatarGlow(
+            animate: _isListening,
+            // green color because purple background mixed with green gives golden color
+            glowColor: Colors.lightGreenAccent,
+            endRadius: 75.0,
+            duration: const Duration(milliseconds: 2000),
+            repeatPauseDuration: const Duration(milliseconds: 100),
+            repeat: true,
+            child: FloatingActionButton(
+              onPressed: _listen,
+              child: Icon(
+                  _isListening ?
+                  Icons.mic :
+                  Icons.mic_none,
+              ),
+              backgroundColor: kGoldenColor,
+            ),
+          ),
         ),
       ),
       body: Container(
-        width: double.infinity,
         height: double.infinity,
+        width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -53,35 +65,50 @@ class _AssistantVoiceState extends State<AssistantVoice> {
             colors: kBgColorGradientArrayBlues,
           ),
         ),
-        child: SingleChildScrollView(
-          reverse: true,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30.0, right: 30.0, bottom: 150.0),
-            child: TextHighlight(
-              text: _text,
-              words: _highlights,
-              textStyle: kDashboardTitleTextStyle
+        child: Column(
+          children: [
+            ClipPath(
+              clipper: HeaderCustomClipper(),
+              child: Container(
+                width: double.infinity,
+                height: 160,
+                color: kPurpleColor,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 35.0, bottom: 10.0),
+                      child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text: 'EyeSee\t',
+                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                          ),
+                          TextSpan(
+                            text: 'Assistant',
+                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                          ),
+                        ]),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'Accuracy: ${(_confidence * 100.0).toStringAsFixed(1)}%',
+                        style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: AvatarGlow(
-        endRadius: 75.0,
-        animate: _isListening,
-        // green color because purple background mixed with green gives golden color
-        glowColor: Colors.lightGreenAccent,
-        duration: const Duration(milliseconds: 2000),
-        repeatPauseDuration: const Duration(milliseconds: 100),
-        repeat: true,
-        child: FloatingActionButton(
-          backgroundColor: kGoldenColor,
-          onPressed: _listen,
-          child: Icon(
-            _isListening ?
-          Icons.mic :
-          Icons.mic_none,
-          ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+              child: Text(
+                _text,
+                style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -91,31 +118,57 @@ class _AssistantVoiceState extends State<AssistantVoice> {
     if (!_isListening) {
       bool available = await _speech.initialize(
         onStatus: (val) {
-          print('onStatus: $val');
+          if ( val == 'notListening'){
+            print('stopped listening...');
+            print('Text going to google: $_text');
+            // Dialogflow method here
+            response(_text);
+            val = '';
+          }
+          else {
+            print('onStatus: $val');
+          }
         },
-        onError: (val) {
-          print('onError: $val');
-        }
+        onError: (val) => print('onError: $val'),
       );
       if (available) {
-        setState(() {
-          return _isListening  =true;
-        });
+        setState(() => _isListening = true);
         _speech.listen(
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
-            if (val.hasConfidenceRating && val.confidence > 0){
+            if (val.hasConfidenceRating && val.confidence > 0) {
               _confidence = val.confidence;
             }
           }),
         );
       }
-    }
-    else {
+    } else {
       setState(() {
         return _isListening = false;
       });
       _speech.stop();
     }
+  }
+
+  void response(query) async {
+    String intentName = '';
+    AuthGoogle authGoogle =
+    await AuthGoogle(fileJson: "assets/json/service.json").build();
+    Dialogflow dialogflow =
+    Dialogflow(authGoogle: authGoogle, language: Language.english);
+
+    // Send query (voice message)
+    AIResponse aiResponse = await dialogflow.detectIntent(query);
+
+    // text response
+    print('Text response from google: ${aiResponse.getListMessage()[0]["text"]["text"][0].toString()}');
+    // intent name response
+    intentName = aiResponse.queryResult.intent.displayName;
+    print('Intent name from google: $intentName');
+
+    if (Pages.isAvailable(intentName)){
+      Navigator.pushNamed(context, intentName);
+    }
+
   }
 }

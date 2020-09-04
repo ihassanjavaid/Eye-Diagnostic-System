@@ -40,3 +40,11 @@
 [03/09/20 08:30 PM] [Hassan] Maps Tabbed - UI changed
 [03/09/20 10:00 PM] [Mahnoor] Question Insertion/Reading from Firestore
 [03/09/20 10:10 PM] [Mahnoor] Forum UI Update
+
+[04/09/20 10:00 PM] [Osama] pushed rules screen
+
+[05/09/20 12:10 AM] [Mahnoor] Forum UI update - business logic update - questions tagging
+[05/09/20 01:15 AM] [Hassan] Dialogflow training and Voice assistance implemented
+
+
+

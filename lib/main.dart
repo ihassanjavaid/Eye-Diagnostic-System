@@ -8,6 +8,7 @@ import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
+import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_screen.dart';
@@ -49,7 +50,8 @@ class EyeSee extends StatelessWidget {
         ContrastSensitivity2.id: (context) => ContrastSensitivity2(),
         Assistant.id: (context) => Assistant(),
         AssistantVoice.id: (context) => AssistantVoice(),
-        RuleScreen.id: (context) => RuleScreen()
+        RuleScreen.id: (context) => RuleScreen(),
+        SignOutScreen.id: (context) => SignOutScreen()
       },
     );
   }

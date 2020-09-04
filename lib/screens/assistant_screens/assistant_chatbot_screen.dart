@@ -1,5 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/components/pages.dart';
 import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_voice_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,8 @@ class Assistant extends StatefulWidget {
 }
 
 class _AssistantState extends State<Assistant> {
-  final messageInsert = TextEditingController();
-  List<Map> messsages = List();
+  final messageInsertController = TextEditingController();
+  List<Map> messsagesList = List();
 
   Future<String> getUserInitial() async {
     final SharedPreferences _pref = await SharedPreferences.getInstance();
@@ -27,19 +28,29 @@ class _AssistantState extends State<Assistant> {
   }
 
   void response(query) async {
+    String intentName = '';
     AuthGoogle authGoogle =
         await AuthGoogle(fileJson: "assets/json/service.json").build();
     Dialogflow dialogflow =
         Dialogflow(authGoogle: authGoogle, language: Language.english);
     AIResponse aiResponse = await dialogflow.detectIntent(query);
     setState(() {
-      messsages.insert(0, {
+      messsagesList.insert(0, {
         "data": 0,
         "message": aiResponse.getListMessage()[0]["text"]["text"][0].toString()
       });
     });
 
+    // text response
     print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
+    // intent name response
+    intentName = aiResponse.queryResult.intent.displayName;
+    print(intentName);
+
+    if (Pages.isAvailable(intentName)){
+      Navigator.pushNamed(context, intentName);
+    }
+
   }
 
   @override
@@ -92,10 +103,10 @@ class _AssistantState extends State<Assistant> {
             Flexible(
                 child: ListView.builder(
                     reverse: true,
-                    itemCount: messsages.length,
+                    itemCount: messsagesList.length,
                     itemBuilder: (context, index) => chat(
-                        messsages[index]["message"].toString(),
-                        messsages[index]["data"]))),
+                        messsagesList[index]["message"].toString(),
+                        messsagesList[index]["data"]))),
             SizedBox(
               height: 20,
             ),
@@ -110,7 +121,8 @@ class _AssistantState extends State<Assistant> {
                     Icons.mic,
                     color: kGoldenColor,
                     size: 36,
-                  ), onPressed: () {
+                  ),
+                  onPressed: () {
                     Navigator.pushNamed(context, AssistantVoice.id);
                 },
                 ),
@@ -122,7 +134,7 @@ class _AssistantState extends State<Assistant> {
                   ),
                   padding: EdgeInsets.only(left: 15),
                   child: TextFormField(
-                    controller: messageInsert,
+                    controller: messageInsertController,
                     decoration: InputDecoration(
                       hintText: 'Say Something!',
                       hintStyle: kHintTextStyle,
@@ -143,15 +155,15 @@ class _AssistantState extends State<Assistant> {
                       color: kGoldenColor,
                     ),
                     onPressed: () {
-                      if (messageInsert.text.isEmpty) {
+                      if (messageInsertController.text.isEmpty) {
                         print("empty message");
                       } else {
                         setState(() {
-                          messsages.insert(
-                              0, {"data": 1, "message": messageInsert.text});
+                          messsagesList.insert(
+                              0, {"data": 1, "message": messageInsertController.text});
                         });
-                        response(messageInsert.text);
-                        messageInsert.clear();
+                        response(messageInsertController.text);
+                        messageInsertController.clear();
                       }
                       FocusScopeNode currentFocus = FocusScope.of(context);
                       if (!currentFocus.hasPrimaryFocus) {
