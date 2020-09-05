@@ -117,15 +117,18 @@ class _AssistantVoiceState extends State<AssistantVoice> {
   }
 
   void _listen() async {
+    _text = '';
     if (!_isListening) {
       bool available = await _speech.initialize(
         onStatus: (val) {
-          if ( val == 'notListening'){
+          if ( val == 'notListening' && _text.isNotEmpty){
             print('stopped listening...');
             print('Text going to google: $_text');
             // Dialogflow method here
             response(_text);
-            _text = '';
+            setState(() {
+              _isListening = false;
+            });
             val = '';
           }
           else {
