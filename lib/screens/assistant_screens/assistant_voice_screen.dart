@@ -168,5 +168,6 @@ class _AssistantVoiceState extends State<AssistantVoice> {
       Navigator.pushNamed(context, intentName);
     }
 
+    intentName = '';
   }
 }
