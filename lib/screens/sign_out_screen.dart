@@ -156,7 +156,7 @@ class _SignOutScreenState extends State<SignOutScreen> {
                           style: kDashboardButtonLabelStyle.copyWith(fontSize: 30.0),
                         ),
                         onTap: () {
-                          Navigator.pushNamed(context, Extras.id);
+                          Navigator.pop(context);
                         },
                       ),
                       GestureDetector(

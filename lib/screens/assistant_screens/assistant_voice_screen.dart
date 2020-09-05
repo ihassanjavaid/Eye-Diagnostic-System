@@ -125,6 +125,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
             print('Text going to google: $_text');
             // Dialogflow method here
             response(_text);
+            _text = '';
             val = '';
           }
           else {
