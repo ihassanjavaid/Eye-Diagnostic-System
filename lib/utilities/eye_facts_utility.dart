@@ -11,7 +11,7 @@ class EyeFacts{
     return await rootBundle.loadString('assets/json/eye_facts.json');
   }
 
-  Future<List<String>> _parseJson() async {
+  Future<List> _parseJson() async {
     String jsonString = await _loadFromAsset();
     return  jsonDecode(jsonString)['eye'] as List;
   }

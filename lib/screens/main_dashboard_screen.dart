@@ -5,7 +5,7 @@ import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
-import 'package:eye_diagnostic_system/utilities/EyeFacts.dart';
+import 'package:eye_diagnostic_system/utilities/eye_facts_utility.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -30,6 +30,7 @@ class _DashboardState extends State<Dashboard> {
   Timer _timer;
   double _circleWidth = 3.5;
   EyeFacts _eyeFacts = EyeFacts();
+  // print(await _eyeFacts.getFact());
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -154,9 +155,7 @@ class _DashboardState extends State<Dashboard> {
                     },
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () async {
-                          //String fact = await eye
-                        },
+                        onTap: () async {},
                         child: _buildMainDashboardContainer('Eye\nSight Test',
                             'assets/images/svgs/eye_sight.svg'),
                       ),
