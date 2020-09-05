@@ -2,6 +2,7 @@ import 'package:bubble/bubble.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/components/pages.dart';
 import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_voice_screen.dart';
+import 'package:eye_diagnostic_system/services/dialogflow_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
@@ -20,6 +21,7 @@ class Assistant extends StatefulWidget {
 class _AssistantState extends State<Assistant> {
   final messageInsertController = TextEditingController();
   List<Map> messsagesList = List();
+  DialogFlowService _dialogFlowService = DialogFlowService();
 
   Future<String> getUserInitial() async {
     final SharedPreferences _pref = await SharedPreferences.getInstance();
@@ -28,12 +30,9 @@ class _AssistantState extends State<Assistant> {
   }
 
   void response(query) async {
-    String intentName = '';
-    AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/json/service.json").build();
-    Dialogflow dialogflow =
-        Dialogflow(authGoogle: authGoogle, language: Language.english);
-    AIResponse aiResponse = await dialogflow.detectIntent(query);
+
+    AIResponse aiResponse = await _dialogFlowService.getResponseFromDialogFlow(query);
+
     setState(() {
       messsagesList.insert(0, {
         "data": 0,
@@ -41,12 +40,14 @@ class _AssistantState extends State<Assistant> {
       });
     });
 
+    String intentName = '';
     // text response
     print(aiResponse.getListMessage()[0]["text"]["text"][0].toString());
     // intent name response
     intentName = aiResponse.queryResult.intent.displayName;
     print(intentName);
 
+    // navigate
     if (Pages.isAvailable(intentName)){
       Navigator.pushNamed(context, intentName);
     }

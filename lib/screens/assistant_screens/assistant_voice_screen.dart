@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/components/pages.dart';
+import 'package:eye_diagnostic_system/services/dialogflow_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
@@ -15,10 +16,11 @@ class AssistantVoice extends StatefulWidget {
 
 class _AssistantVoiceState extends State<AssistantVoice> {
 
+  DialogFlowService _dialogFlowService = DialogFlowService();
   stt.SpeechToText _speech;
   bool _isListening = false;
   String _text = 'Tap the mic and speak!';
-  double _confidence = 1.0;
+  double _accuracy = 1.0;
 
   @override
   void initState() {
@@ -93,7 +95,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
                     Container(
                       padding: EdgeInsets.only(bottom: 10),
                       child: Text(
-                        'Accuracy: ${(_confidence * 100.0).toStringAsFixed(1)}%',
+                        'Accuracy: ${(_accuracy * 100.0).toStringAsFixed(1)}%',
                         style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
                       ),
                     ),
@@ -137,7 +139,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
             if (val.hasConfidenceRating && val.confidence > 0) {
-              _confidence = val.confidence;
+              _accuracy = val.confidence;
             }
           }),
         );
@@ -151,21 +153,17 @@ class _AssistantVoiceState extends State<AssistantVoice> {
   }
 
   void response(query) async {
-    String intentName = '';
-    AuthGoogle authGoogle =
-    await AuthGoogle(fileJson: "assets/json/service.json").build();
-    Dialogflow dialogflow =
-    Dialogflow(authGoogle: authGoogle, language: Language.english);
-
     // Send query (voice message)
-    AIResponse aiResponse = await dialogflow.detectIntent(query);
+    AIResponse aiResponse = await _dialogFlowService.getResponseFromDialogFlow(query);
 
+    String intentName = '';
     // text response
     print('Text response from google: ${aiResponse.getListMessage()[0]["text"]["text"][0].toString()}');
     // intent name response
     intentName = aiResponse.queryResult.intent.displayName;
     print('Intent name from google: $intentName');
 
+    // navigate
     if (Pages.isAvailable(intentName)){
       Navigator.pushNamed(context, intentName);
     }
