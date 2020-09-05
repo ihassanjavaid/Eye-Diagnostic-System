@@ -161,12 +161,9 @@ class _ForumState extends State<Forum> {
                                   email: snapshot.data[index].data()['email']),
                               builder: (_, snapshot2) {
                                 if (snapshot2.hasData) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(top: 4.0),
-                                    child: Text(
-                                      snapshot2.data,
-                                      style: kAvatarTextStyle,
-                                    ),
+                                  return Text(
+                                    snapshot2.data,
+                                    style: kAvatarTextStyle,
                                   );
                                 } else {
                                   return Center(
