@@ -8,8 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../utilities/custom_textfield.dart';
+import 'custom_textfield.dart';
 
 class MessageDialog {
   MessageDialog({this.receiverEmail});

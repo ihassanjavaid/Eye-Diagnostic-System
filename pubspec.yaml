@@ -57,6 +57,7 @@ flutter:
     - assets/images/colorblindness/
     - assets/images/rules/
     - assets/json/service.json
+    - assets/json/eye_facts.json
 
   # fonts:
   #   - family: Schyler

@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
+import 'package:eye_diagnostic_system/utilities/EyeFacts.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -27,6 +29,7 @@ class _DashboardState extends State<Dashboard> {
   int _currentPage = 0;
   Timer _timer;
   double _circleWidth = 3.5;
+  EyeFacts _eyeFacts = EyeFacts();
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -151,7 +154,9 @@ class _DashboardState extends State<Dashboard> {
                     },
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          //String fact = await eye
+                        },
                         child: _buildMainDashboardContainer('Eye\nSight Test',
                             'assets/images/svgs/eye_sight.svg'),
                       ),
@@ -300,10 +305,9 @@ class _DashboardState extends State<Dashboard> {
                     colors: kBgColorGradientArrayGreys,
                   ),
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12.0),
-                    topRight: Radius.circular(12.0),
-                    bottomLeft: Radius.circular(12.0)
-                  ),
+                      topLeft: Radius.circular(12.0),
+                      topRight: Radius.circular(12.0),
+                      bottomLeft: Radius.circular(12.0)),
                 ),
                 child: SvgPicture.asset(
                   image,
