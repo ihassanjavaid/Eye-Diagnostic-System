@@ -391,10 +391,7 @@ class _ForumState extends State<Forum> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        await tgsdlg.showCard(context);
-                        setState(() {
-                          selectedTagItem = selectedTag;
-                        });
+                        await tgsdlg.showCard(context, this);
                       },
                       child: Icon(
                         Icons.tag,
@@ -426,5 +423,11 @@ class _ForumState extends State<Forum> {
   Future<List<Question>> _getAllQuestions() async {
     _questions = await _questionService.getAllQuestions();
     return _questions;
+  }
+
+  void refreshScreen(){
+    setState(() {
+      selectedTagItem = selectedTag;
+    });
   }
 }

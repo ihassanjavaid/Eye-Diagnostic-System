@@ -27,7 +27,7 @@ class TagsDialog {
   Forum _forum = Forum();
 
 
-  Future showCard(context) {
+  Future showCard(context, forum) {
     showDialog(
         context: context,
         useSafeArea: false,
@@ -38,13 +38,13 @@ class TagsDialog {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              child: _tagsCard(context),
+              child: _tagsCard(context, forum),
             ),
           );
         });
   }
 
-  _tagsCard(context) {
+  _tagsCard(context, forum) {
     String messageTitle;
     String questionText;
     String selected;
@@ -91,6 +91,7 @@ class TagsDialog {
                     child: GestureDetector(
                       onTap: (){
                           selectedTag = globalSelectedItem;
+                          forum.refreshScreen();
                           Navigator.pop(context);
                       },
                       child: Icon(
