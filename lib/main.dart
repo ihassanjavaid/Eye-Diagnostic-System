@@ -4,6 +4,7 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_scr
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/rules_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/test_1/category1_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
@@ -18,7 +19,6 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/nearby_medicos_screens/nearby_main_screen.dart';
-import 'package:eye_diagnostic_system/screens/eye_sight_screens/visiual_acuity/test1/category1.dart';
 
 void main() async {
   // Necessary for G-Sign in
@@ -34,7 +34,7 @@ class EyeSee extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eye See',
-      initialRoute: Category1.id,
+      initialRoute: AutoLoginService.id,
       routes: {
         AutoLoginService.id:(context) => AutoLoginService(),
         ForumDetails.id:(context) => ForumDetails(),

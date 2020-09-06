@@ -4,8 +4,6 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome_scree
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
-
 const List<String> images = [
   'assets/images/visiualAcuity/snellens/20/C.svg',
   'assets/images/visiualAcuity/snellens/20/E.svg',
