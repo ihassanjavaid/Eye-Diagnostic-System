@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'screens/nearby_medicos_screens/nearby_main_screen.dart';
 
 void main() async {
+  // Necessary for G-Sign in
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(EyeSee());

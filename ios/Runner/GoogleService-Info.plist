@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>901359929076-0ailo8n1vfc95rrn31p5v558kngauha4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.901359929076-0ailo8n1vfc95rrn31p5v558kngauha4</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>901359929076-7du5ht4dhj6tf2834sb9vf661ri7fju2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDlOfYxnbje3v16wEwkWQLh9wbYDfxjNYU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>901359929076</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cui.eyeDiagnosticSystem</string>
+	<key>PROJECT_ID</key>
+	<string>eye-diagnostic-system-e87e7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>eye-diagnostic-system-e87e7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:901359929076:ios:eb82fdf22e4079fc4c40a1</string>
+	<key>DATABASE_URL</key>
+	<string>https://eye-diagnostic-system-e87e7.firebaseio.com</string>
+</dict>
+</plist>
