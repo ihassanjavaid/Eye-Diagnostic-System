@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'duo_chrome_screen.dart';
+import 'rules_screen.dart';
 
 class Menu extends StatelessWidget {
   static const String id = 'menu_screen';
@@ -37,7 +37,7 @@ class Menu extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DuoChrome()),
+                    MaterialPageRoute(builder: (context) => RuleScreen()),
                   );
                 },
                 child: Container(
@@ -85,5 +85,8 @@ class Menu extends StatelessWidget {
         ),
       ),
     );
+
   }
+
+
 }

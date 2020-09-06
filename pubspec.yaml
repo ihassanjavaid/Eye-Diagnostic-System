@@ -58,6 +58,7 @@ flutter:
     - assets/images/rules/
     - assets/json/service.json
     - assets/json/eye_facts.json
+    - assets/images/visiualAcuity/snellens/20/
 
   # fonts:
   #   - family: Schyler

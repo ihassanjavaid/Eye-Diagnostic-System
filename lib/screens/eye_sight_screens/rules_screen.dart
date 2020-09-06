@@ -11,7 +11,7 @@ class RuleScreen extends StatefulWidget {
 
 class _RuleScreenState extends State<RuleScreen> {
 
-  final int _numPages = 3;
+  final int _numPages = 4;
   final int totalPage = 4;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
