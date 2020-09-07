@@ -1,5 +1,10 @@
 # 👁️ Eye Diagnostic System - _EyeSee_
+[![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/ihassanjavaid/ihassanjavaid.svg?branch=master)](https://travis-ci.org/ihassanjavaid/ihassanjavaid)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+
 
 A _one-stop_ eye disease solution!
 
@@ -28,4 +33,6 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 
 ###
 
-🎓 A project by COMSATS University Islamabad. ©
+### 🎓 A project by **COMSATS University Islamabad. ©**
+[![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)](https://GitHub.com/Naereen/)
+
