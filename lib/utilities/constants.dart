@@ -111,7 +111,7 @@ final TextStyle kforumHeaderButtonLabelStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
-
+enum LoadingType {SIGNIN, SIGNUP}
 
 
 

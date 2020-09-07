@@ -1,4 +1,5 @@
 import 'package:eye_diagnostic_system/models/user_data.dart';
+import 'package:eye_diagnostic_system/screens/loading_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
@@ -25,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
   UserData _userData;
   bool _rememberMe = false;
   Auth _auth = Auth();
-  bool _waiting = false;
   FirestoreUserService _firestore = FirestoreUserService();
   User _fbuser;
   String _uid;
@@ -130,43 +130,14 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
       child: GestureDetector(
-        onTap: () async {
-          setState(() {
-            _waiting = true;
-          });
-          try {
-            final SharedPreferences pref =
-                await SharedPreferences.getInstance();
-            await _auth.loginUserWithEmailAndPassword(
-                email: removeSpaces(this._email), password: this._password);
-            if (_rememberMe) {
-              await pref.setString('email', removeSpaces(this._email));
-            }
-            /*
-            * Set name always in shared prefs
-            * so that if remember is checked, it is saved in shared prefs
-            * if remember be is not checked, the name is saved, and overwritten by next time sign-in
-            */
-            _userData = await _firestore.getUserData(email: _email);
-            await pref.setString('displayName', _userData.displayName);
-            /* Set UID in shared prefs so that it can be accessed in community forums*/
-
-            _fbuser = await _auth.getCurrentUser();
-            await pref.setString('uid', _fbuser.uid);
-            //  Navigate
-            Navigator.pushReplacementNamed(context, Dashboard.id);
-          } catch (e) {
-            AlertWidget()
-                .generateAlert(
-                    context: context,
-                    title: 'Invalid Credentials!',
-                    description: e.toString())
-                .show();
-            print(e);
-          }
-          setState(() {
-            _waiting = false;
-          });
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>LoadingScreen(
+            email: this._email, password: this._password,
+            rememberMe: _rememberMe, fbUser: this._fbuser,
+            firestoreUserService: this._firestore, auth: this._auth,
+            userData: this._userData,
+            loadingType: LoadingType.SIGNIN,
+          )));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -305,96 +276,88 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  String removeSpaces(String email) {
-    if (email == null) return 'null';
-    return email.replaceAll(' ', '');
-  }
-
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(
-      inAsyncCall: _waiting,
-      child: Scaffold(
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  color: kScaffoldBackgroundColor,
-                  /*decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: kBgColorGradientArrayBlues,
-                      stops: [0.1, 0.4, 0.7, 0.9],
-                    ),
-                  ),*/
-                ),
-                Container(
-                  height: double.infinity,
-                  child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 22.0,
-                      vertical: 40.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          child: Image(
-                            image: AssetImage('assets/images/eye.png'),
-                            height: 180.0,
-                            width: 180.0,
-                          ),
-                        ),
-                        Center(
-                          child: Container(
-                            height: 2.0,
-                            width: 300.0,
-                            color: kGoldenColor,
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(top: 28.0, bottom: 10.0),
-                          child: Text('Sign In',
-                              style: kBottomNavBarTextStyle.copyWith(
-                                  fontSize: 30.0)),
-                        ),
-                        SizedBox(height: 18.0),
-                        _buildEmailTextField(),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildPasswordTextField(),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildRememberMeCheckbox(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        _buildLoginBtn(),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _buildORText(),
-                        _buildGSignIn(),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _buildSignupBtn(),
-                      ],
-                    ),
+    return Scaffold(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                color: kScaffoldBackgroundColor,
+                /*decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: kBgColorGradientArrayBlues,
+                    stops: [0.1, 0.4, 0.7, 0.9],
                   ),
-                )
-              ],
-            ),
+                ),*/
+              ),
+              Container(
+                height: double.infinity,
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 22.0,
+                    vertical: 40.0,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: Image(
+                          image: AssetImage('assets/images/eye.png'),
+                          height: 180.0,
+                          width: 180.0,
+                        ),
+                      ),
+                      Center(
+                        child: Container(
+                          height: 2.0,
+                          width: 300.0,
+                          color: kGoldenColor,
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 28.0, bottom: 10.0),
+                        child: Text('Sign In',
+                            style: kBottomNavBarTextStyle.copyWith(
+                                fontSize: 30.0)),
+                      ),
+                      SizedBox(height: 18.0),
+                      _buildEmailTextField(),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      _buildPasswordTextField(),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      _buildRememberMeCheckbox(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      _buildLoginBtn(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _buildORText(),
+                      _buildGSignIn(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _buildSignupBtn(),
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),
