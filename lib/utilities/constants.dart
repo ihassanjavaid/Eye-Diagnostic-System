@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 final kOnBoardingTitleStyle = TextStyle(
-  color: Colors.white,
+  color: kTealColor,
   fontFamily: 'CM Sans Serif',
   fontSize: 26.0,
   height: 1.5,
 );
 
 final kOnBoardingSubtitleStyle = TextStyle(
-  color: Colors.white,
+  color: kTealColor,
   fontSize: 18.0,
   height: 1.2,
 );
@@ -19,17 +19,17 @@ final kLoginHintTextStyle = TextStyle(
 );
 
 final kLoginLabelStyle = TextStyle(
-  color: Colors.white,
+  color: kTealColor,
   fontWeight: FontWeight.bold,
   fontFamily: 'CM Sans Serif',
 );
 
 final kLoginBoxDecorationStyle = BoxDecoration(
-  color: Color(0xFF6CA8F1),
+  color: kTealColor.withOpacity(0.8),
   borderRadius: BorderRadius.circular(10.0),
   boxShadow: [
     BoxShadow(
-      color: Colors.black12,
+      color: kLightTealColor,
       blurRadius: 6.0,
       offset: Offset(0, 2),
     ),
@@ -49,6 +49,14 @@ final kBgColorGradientArrayGreys = [
   Color(0xFFb5b5b5),
   Color(0xFF949494),
 ];
+
+// Colors
+final kScaffoldBackgroundColor = Color(0xFFedf5f4);
+final kLightTealColor = Color(0xffE9F2F1);
+final kTealColor = Color(0xff45736A);
+final kAmberColor = Color(0xffF2B035);
+final kLightAmberColor = Color(0xffF2CA7E);
+final kPeachColor = Color(0xffF2AA80);
 
 final kGradientStarterBlueColor = Color(0xFF3594DD);
 final kGoldenColor = Color(0xFFffbd00);
@@ -71,13 +79,13 @@ final TextStyle kDashboardSubtitleTextStyle = TextStyle(
 
 final kDashboardButtonLabelStyle = TextStyle(
   fontSize: 15.0,
-  color: kGoldenColor,
+  color: kTealColor,
   fontFamily: 'CM Sans Serif',
 );
 
 final kBottomNavBarTextStyle = TextStyle(
   fontSize: 22.0,
-  color: Colors.white,
+  color: kTealColor,
   fontFamily: 'CM Sans Serif',
 );
 
@@ -87,7 +95,7 @@ final TextStyle kHintTextStyle = TextStyle(
 );
 
 final TextStyle kAvatarTextStyle = TextStyle(
-  color: kPurpleColor,
+  color: kLightTealColor,
   fontSize: 30.0,
   fontWeight: FontWeight.normal
 );
@@ -99,7 +107,7 @@ final TextStyle kCustomInputLabelStyle = TextStyle(
 );
 
 final TextStyle kforumHeaderButtonLabelStyle = TextStyle(
-  color: kGoldenColor,
+  color: kAmberColor,
   fontFamily: 'CM Sans Serif',
 );
 

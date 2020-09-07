@@ -18,12 +18,13 @@ class _NearbyMainState extends State<NearbyMain> {
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            /*gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [0.1, 0.4, 0.7, 0.9],
               colors: kBgColorGradientArrayBlues,
-            ),
+            ),*/
+            color: kScaffoldBackgroundColor
           ),
           child: Column(
             children: [
@@ -36,12 +37,12 @@ class _NearbyMainState extends State<NearbyMain> {
                       TextSpan(
                         text: 'EyeSee\t',
                         style: kDashboardTitleTextStyle.copyWith(
-                            color: kPurpleColor),
+                            color: kTealColor),
                       ),
                       TextSpan(
                         text: 'Radar',
                         style: kDashboardTitleTextStyle.copyWith(
-                            color: kGoldenColor),
+                            color: kTealColor),
                       ),
                     ]),
                   ),
@@ -53,7 +54,7 @@ class _NearbyMainState extends State<NearbyMain> {
                 width: double.infinity,
                 child: TabBar(
                   indicatorWeight: 4.0,
-                  indicatorColor: kGoldenColor,
+                  indicatorColor: kTealColor.withOpacity(0.8),
                   tabs: [
                     Tab(
                       child: Row(
@@ -61,7 +62,7 @@ class _NearbyMainState extends State<NearbyMain> {
                         children: [
                           Icon(
                             Icons.remove_red_eye,
-                            color: Colors.white,
+                            color: kTealColor,
                           ),
                           SizedBox(
                             width: 12.0,
@@ -71,7 +72,8 @@ class _NearbyMainState extends State<NearbyMain> {
                             child: Text(
                               'Opticians',
                               style: kBottomNavBarTextStyle.copyWith(
-                                  color: Colors.white, fontSize: 19.5),
+                                  color: kTealColor,
+                                  fontSize: 19.5),
                             ),
                           ),
                         ],
@@ -82,7 +84,8 @@ class _NearbyMainState extends State<NearbyMain> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.medical_services_rounded,
-                              color: Colors.white),
+                              color: kTealColor
+                          ),
                           SizedBox(
                             width: 12.0,
                           ),
@@ -91,7 +94,8 @@ class _NearbyMainState extends State<NearbyMain> {
                             child: Text(
                               'Medicos',
                               style: kBottomNavBarTextStyle.copyWith(
-                                  color: Colors.white, fontSize: 19.5),
+                                  color: kTealColor,
+                                  fontSize: 19.5),
                             ),
                           ),
                         ],

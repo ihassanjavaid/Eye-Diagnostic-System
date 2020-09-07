@@ -58,12 +58,7 @@ class MessageDialog {
           height: 460,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: kBgColorGradientArrayBlues,
-              stops: [0.1, 0.4, 0.7, 0.9],
-            ),
+            color: kTealColor.withOpacity(0.8)
           ),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -73,9 +68,9 @@ class MessageDialog {
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Align(
                     alignment: Alignment.center,
-                    child: AutoSizeText(
+                    child: Text(
                       'Ask Something',
-                      style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: Colors.white70),
+                      style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: kScaffoldBackgroundColor),
                     ),
                   ),
                 ),
@@ -84,9 +79,9 @@ class MessageDialog {
                   child: CustomTextField(
                     placeholder: 'Your Post',
                     minLines: 8,
-                    placeholderColor: kDeepGoldenColor,
+                    placeholderColor: kLightAmberColor,
                     cursorColor: kGoldenColor,
-                    focusedOutlineBorder: kGoldenColor,
+                    focusedOutlineBorder: kLightAmberColor,
                     maxLines: 8,
                     controller: this.messageTextController,
                     onChanged: (value) {
@@ -110,7 +105,7 @@ class MessageDialog {
                           _email = pref.getString('email');
                           //_fbuser = await _auth.getCurrentUser();
                           //_uid = _fbuser.uid;
-                          selected = Provider.of<ProviderData>(context).tagData;
+                          selected = Provider.of<ProviderData>(context, listen: false).tagData;
                           _questionService.askQuestion(question: questionText, tag:selected,views: 0,email: _email);
                           _questionsent = true;
                         }catch(e){
@@ -120,7 +115,7 @@ class MessageDialog {
                         messageTextController.clear();
                         Navigator.pop(context);
                       },
-                      color: kPurpleColor,
+                      color: kTealColor,
                       focusColor: kGoldenColor,
                       autofocus: true,
                       elevation: 10,
@@ -129,13 +124,17 @@ class MessageDialog {
                         children: <Widget>[
                           Icon(
                             Icons.comment,
-                            color: kGoldenColor,
+                            color: kLightAmberColor,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(
                               'Post',
-                              style: kDashboardButtonLabelStyle.copyWith(fontSize: 20,fontWeight: FontWeight.w100),
+                              style: kDashboardButtonLabelStyle.copyWith(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w100,
+                                color: kLightAmberColor
+                              ),
                             ),
                           ),
                         ],

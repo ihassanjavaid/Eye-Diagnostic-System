@@ -47,7 +47,7 @@ class _DashboardState extends State<Dashboard> {
       height: 8.0,
       width: isActive ? 24.0 : 8.0,
       decoration: BoxDecoration(
-        color: isActive ? kGoldenColor : Colors.white,
+        color: isActive ? kTealColor : kTealColor.withOpacity(0.5),
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -79,14 +79,15 @@ class _DashboardState extends State<Dashboard> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(
-          decoration: BoxDecoration(
+          /*decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [0.1, 0.4, 0.7, 0.9],
               colors: kBgColorGradientArrayBlues,
             ),
-          ),
+          ),*/
+          color: kScaffoldBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.only(top: 40.0),
             child: Column(
@@ -111,12 +112,12 @@ class _DashboardState extends State<Dashboard> {
                       TextSpan(
                         text: 'Eye\t',
                         style: kDashboardTitleTextStyle.copyWith(
-                            color: kPurpleColor),
+                            color: kTealColor),
                       ),
                       TextSpan(
                         text: 'See',
                         style: kDashboardTitleTextStyle.copyWith(
-                            color: kGoldenColor),
+                            color: kTealColor),
                       ),
                     ]),
                   ),
@@ -132,12 +133,12 @@ class _DashboardState extends State<Dashboard> {
                         TextSpan(
                           text: '${Greetings.showGreetings()},\t',
                           style: kDashboardSubtitleTextStyle.copyWith(
-                              color: kPurpleColor),
+                              color: kTealColor),
                         ),
                         TextSpan(
                           text: '${snapshot.data}!',
                           style: kDashboardSubtitleTextStyle.copyWith(
-                              color: kGoldenColor),
+                              color: kAmberColor),
                         ),
                       ]));
                     },
@@ -208,7 +209,7 @@ class _DashboardState extends State<Dashboard> {
                               tag: 'extras',
                               child: Icon(
                                 Icons.person,
-                                color: kGoldenColor,
+                                color: kTealColor,
                                 size: 42.0,
                               ),
                             ),
@@ -233,7 +234,7 @@ class _DashboardState extends State<Dashboard> {
                             },
                             child: Icon(
                               Icons.mic,
-                              color: kGoldenColor,
+                              color: kTealColor,
                               size: 42.0,
                             ),
                           ),
@@ -281,12 +282,13 @@ class _DashboardState extends State<Dashboard> {
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          /*gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             stops: [0.1, 0.5, 0.7, 0.9],
             colors: kBgColorGradientArrayBlues,
-          ),
+          ),*/
+          color: kAmberColor.withOpacity(0.7),
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
         ),
         child: Stack(
@@ -297,20 +299,21 @@ class _DashboardState extends State<Dashboard> {
                 width: double.infinity,
                 height: 300,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                 /* gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     stops: [0.1, 0.4, 0.7, 0.9],
                     colors: kBgColorGradientArrayGreys,
-                  ),
+                  ),*/
+                 color: kTealColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12.0),
                       topRight: Radius.circular(12.0),
                       bottomLeft: Radius.circular(12.0)),
                 ),
-                child: SvgPicture.asset(
+                /*child: SvgPicture.asset(
                   image,
-                ),
+                ),*/
               ),
             ),
             Positioned(
@@ -318,7 +321,7 @@ class _DashboardState extends State<Dashboard> {
               left: 20.0,
               child: Text(
                 title,
-                style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                style: kDashboardTitleTextStyle.copyWith(color: kTealColor),
               ),
             ),
             /*Positioned(
@@ -336,11 +339,11 @@ class _DashboardState extends State<Dashboard> {
     return Container(
       height: 30.0,
       child: AnimatedContainer(
+        padding: EdgeInsets.all(2.0),
         duration: Duration(milliseconds: 2000),
-        padding: EdgeInsets.all(6),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: kPurpleColor.withOpacity(0.8),
+          color: kTealColor,
         ),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 2000),
@@ -348,7 +351,7 @@ class _DashboardState extends State<Dashboard> {
             shape: BoxShape.circle,
             color: Colors.transparent,
             border: Border.all(
-              color: kGoldenColor,
+              color: kAmberColor,
               width: _circleWidth,
             ),
           ),

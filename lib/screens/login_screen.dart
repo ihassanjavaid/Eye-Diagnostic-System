@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -101,11 +102,11 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Row(
         children: <Widget>[
           Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
+            data: ThemeData(unselectedWidgetColor: kTealColor),
             child: Checkbox(
               value: _rememberMe,
-              checkColor: kGoldenColor,
-              activeColor: Colors.black,
+              checkColor: kTealColor,
+              activeColor: kScaffoldBackgroundColor,
               onChanged: (value) {
                 setState(() {
                   _rememberMe = value;
@@ -117,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(top: 2.5),
             child: Text(
               'Keep me signed in',
-              style: kLoginLabelStyle.copyWith(color: kGoldenColor),
+              style: kLoginLabelStyle.copyWith(color: kTealColor),
             ),
           ),
         ],
@@ -180,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: Colors.white,
+              color: kTealColor,
               size: 30.0,
             )
           ],
@@ -195,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Text(
           '- OR -',
           style: TextStyle(
-            color: Colors.white,
+            color: kTealColor,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -257,11 +258,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     blurRadius: 6.0,
                   ),
                 ],
-                image: DecorationImage(
-                  image: AssetImage(
+               /* image: DecorationImage(
+                  image: AssetImage (
                     'assets/logos/google_icon.jpg',
                   ),
-                ),
+                ),*/
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: SvgPicture.asset('assets/logos/google_icon.svg'),
               ),
             ),
           ),
@@ -281,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
             TextSpan(
               text: 'Don\'t have an Account? ',
               style: TextStyle(
-                color: Colors.white,
+                color: kTealColor,
                 fontSize: 18.0,
                 fontWeight: FontWeight.w400,
               ),
@@ -289,7 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
             TextSpan(
               text: 'Sign Up',
               style: TextStyle(
-                color: Colors.white,
+                color: kAmberColor,
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -319,14 +324,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   height: double.infinity,
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  color: kScaffoldBackgroundColor,
+                  /*decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: kBgColorGradientArrayBlues,
                       stops: [0.1, 0.4, 0.7, 0.9],
                     ),
-                  ),
+                  ),*/
                 ),
                 Container(
                   height: double.infinity,

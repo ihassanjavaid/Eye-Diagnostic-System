@@ -58,14 +58,15 @@ class _AssistantState extends State<Assistant> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        /*decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: [0.1, 0.4, 0.7, 0.9],
             colors: kBgColorGradientArrayBlues,
           ),
-        ),
+        ),*/
+        color: kScaffoldBackgroundColor,
         child: Column(
           children: <Widget>[
             ClipPath(
@@ -73,7 +74,7 @@ class _AssistantState extends State<Assistant> {
               child: Container(
                 width: double.infinity,
                 height: 160,
-                color: kPurpleColor,
+                color: kTealColor,
                 child: Column(
                   children: [
                     Padding(
@@ -82,11 +83,11 @@ class _AssistantState extends State<Assistant> {
                         text: TextSpan(children: [
                           TextSpan(
                             text: 'EyeSee\t',
-                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                            style: kDashboardTitleTextStyle.copyWith(color: kAmberColor),
                           ),
                           TextSpan(
                             text: 'Assistant',
-                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                            style: kDashboardTitleTextStyle.copyWith(color: kAmberColor),
                           ),
                         ]),
                       ),
@@ -120,7 +121,7 @@ class _AssistantState extends State<Assistant> {
                 leading: IconButton(
                   icon: Icon(
                     Icons.mic,
-                    color: kGoldenColor,
+                    color: kTealColor,
                     size: 36,
                   ),
                   onPressed: () {
@@ -131,7 +132,7 @@ class _AssistantState extends State<Assistant> {
                   height: 35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: kPurpleColor,
+                    color: kTealColor.withOpacity(0.9),
                   ),
                   padding: EdgeInsets.only(left: 15),
                   child: TextFormField(
@@ -153,7 +154,7 @@ class _AssistantState extends State<Assistant> {
                     icon: Icon(
                       Icons.send,
                       size: 36.0,
-                      color: kGoldenColor,
+                      color: kTealColor,
                     ),
                     onPressed: () {
                       if (messageInsertController.text.isEmpty) {
@@ -196,6 +197,7 @@ class _AssistantState extends State<Assistant> {
                   height: 35.0,
                   width: 55.0,
                   child: CircleAvatar(
+                    backgroundColor: kScaffoldBackgroundColor,
                     backgroundImage: AssetImage('assets/images/eye.png'),
                   ),
                 )
@@ -205,8 +207,8 @@ class _AssistantState extends State<Assistant> {
             child: Bubble(
                 radius: Radius.circular(8.0),
                 color: data == 0
-                    ? kDarkPurpleColor
-                    : Colors.grey ,
+                    ? kTealColor
+                    : kTealColor.withOpacity(0.5) ,
                 elevation: 0.0,
                 child: Padding(
                   padding: EdgeInsets.all(2.0),
@@ -238,7 +240,7 @@ class _AssistantState extends State<Assistant> {
                   width: 45.0,
                   child: CircleAvatar(
                     maxRadius: 10.0,
-                    backgroundColor: kDeepGoldenColor,
+                    backgroundColor: kTealColor,
                     child: FutureBuilder(
                       future: getUserInitial(),
                       builder: (context, snapshot) {
@@ -247,7 +249,7 @@ class _AssistantState extends State<Assistant> {
                             padding: const EdgeInsets.only(top: 5.0, left: 1.0),
                             child: Text(
                               snapshot.data,
-                              style: kHintTextStyle.copyWith(fontSize: 30.0, color: Colors.white),
+                              style: kHintTextStyle.copyWith(fontSize: 30.0, color: kLightTealColor),
                             ),
                           );
                         }

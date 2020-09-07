@@ -51,12 +51,13 @@ class TagsDialog {
           height: 260,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
-            gradient: LinearGradient(
+            /*gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: kBgColorGradientArrayBlues,
               stops: [0.1, 0.4, 0.7, 0.9],
-            ),
+            ),*/
+            color: kTealColor.withOpacity(0.8)
           ),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -68,7 +69,7 @@ class TagsDialog {
                     alignment: Alignment.center,
                     child: Text(
                       'Search by Tag',
-                      style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: Colors.white70),
+                      style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: kScaffoldBackgroundColor),
                     ),
                   ),
                 ),
@@ -91,7 +92,7 @@ class TagsDialog {
                       child: Icon(
                         Icons.check,
                         size: 34.0,
-                        color: kGoldenColor,
+                        color: kAmberColor,
                       ),
                     ),
                   ),

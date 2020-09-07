@@ -39,7 +39,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
           child: AvatarGlow(
             animate: _isListening,
             // green color because purple background mixed with green gives golden color
-            glowColor: Colors.lightGreenAccent,
+            glowColor: kTealColor,
             endRadius: 75.0,
             duration: const Duration(milliseconds: 2000),
             repeatPauseDuration: const Duration(milliseconds: 100),
@@ -51,7 +51,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
                   Icons.mic :
                   Icons.mic_none,
               ),
-              backgroundColor: kGoldenColor,
+              backgroundColor: kTealColor,
             ),
           ),
         ),
@@ -59,14 +59,15 @@ class _AssistantVoiceState extends State<AssistantVoice> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
+        /*decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: [0.1, 0.4, 0.7, 0.9],
             colors: kBgColorGradientArrayBlues,
           ),
-        ),
+        ),*/
+        color: kScaffoldBackgroundColor,
         child: Column(
           children: [
             ClipPath(
@@ -74,7 +75,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
               child: Container(
                 width: double.infinity,
                 height: 160,
-                color: kPurpleColor,
+                color: kTealColor,
                 child: Column(
                   children: [
                     Padding(
@@ -83,11 +84,11 @@ class _AssistantVoiceState extends State<AssistantVoice> {
                         text: TextSpan(children: [
                           TextSpan(
                             text: 'EyeSee\t',
-                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                            style: kDashboardTitleTextStyle.copyWith(color: kAmberColor),
                           ),
                           TextSpan(
                             text: 'Assistant',
-                            style: kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                            style: kDashboardTitleTextStyle.copyWith(color: kAmberColor),
                           ),
                         ]),
                       ),
@@ -107,7 +108,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
               padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
               child: Text(
                 _text,
-                style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+                style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0, color: kTealColor.withOpacity(0.9)),
               ),
             ),
           ],

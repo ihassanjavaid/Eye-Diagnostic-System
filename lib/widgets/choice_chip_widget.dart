@@ -58,12 +58,12 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(
           label: Text(item),
-          labelStyle: kDashboardButtonLabelStyle.copyWith(color: kDarkPurpleColor, fontSize: 14.5),
+          labelStyle: kDashboardButtonLabelStyle.copyWith(color: kTealColor, fontSize: 14.5),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
-          backgroundColor: Color(0xffededed),
-          selectedColor: Color(0xffffc107),
+          backgroundColor: kScaffoldBackgroundColor,
+          selectedColor: kAmberColor,
           selected: selectedChoice == item,
           onSelected: (selected) {
             setState(() {

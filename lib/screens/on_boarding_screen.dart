@@ -36,7 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       height: 8.0,
       width: isActive ? 24.0 : 8.0,
       decoration: BoxDecoration(
-        color: isActive ? kGoldenColor : Colors.white,
+        color: isActive ? kTealColor : kTealColor.withOpacity(0.5),
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -68,14 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: kBgColorGradientArrayBlues,
-            ),
-          ),
+          color: kScaffoldBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.only(top: 40.0),
             child: Column(
@@ -112,7 +105,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     child: Container(
                       height: 2.0,
                       width: 300.0,
-                      color: kGoldenColor,
+                      color: kAmberColor,
                     ),
                 ),
                 Container(
@@ -176,7 +169,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                color: Colors.white,
+                                color: kTealColor,
                                 size: 30.0,
                               )
                             ],
@@ -197,11 +190,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Container(
                 height: 52,
                 child: AnimatedContainer(
+                  padding: EdgeInsets.all(2.0),
                   duration: Duration(milliseconds: 2000),
-                  padding: EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: kPurpleColor.withOpacity(0.8),
+                    color: kTealColor,
                   ),
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 2000),
@@ -209,7 +202,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       shape: BoxShape.circle,
                       color: Colors.transparent,
                       border: Border.all(
-                        color: kGoldenColor,
+                        color: kAmberColor,
                         width: _circleWidth,
                       ),
                     ),

@@ -21,14 +21,15 @@ class _NearbyOptometristsState extends State<NearbyOptometrists> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+       /* decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: kBgColorGradientArrayBlues,
             stops: [0.1, 0.4, 0.7, 0.9],
           ),
-        ),
+        ),*/
+       color: kScaffoldBackgroundColor,
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: Container(
@@ -63,7 +64,7 @@ class _NearbyOptometristsState extends State<NearbyOptometrists> {
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
                               'Nearby Optometrists',
-                              style: kBottomNavBarTextStyle.copyWith(color: Colors.black45, fontSize: 30.0),
+                              style: kBottomNavBarTextStyle.copyWith(color: kLightAmberColor, fontSize: 30.0),
                             ),
                           ),
                         ),
@@ -88,7 +89,7 @@ class _NearbyOptometristsState extends State<NearbyOptometrists> {
                     child: Text(
                       'Powered by Google Maps ©',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: kTealColor,
                           fontStyle: FontStyle.italic
                       ),
                     ),

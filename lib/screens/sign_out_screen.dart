@@ -24,11 +24,11 @@ class _SignOutScreenState extends State<SignOutScreen> {
     return Container(
       height: 30.0,
       child: AnimatedContainer(
+        padding: EdgeInsets.all(2.0),
         duration: Duration(milliseconds: 2000),
-        padding: EdgeInsets.all(6),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: kPurpleColor.withOpacity(0.8),
+          color: kTealColor,
         ),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 2000),
@@ -36,7 +36,7 @@ class _SignOutScreenState extends State<SignOutScreen> {
             shape: BoxShape.circle,
             color: Colors.transparent,
             border: Border.all(
-              color: kGoldenColor,
+              color: kAmberColor,
               width: _circleWidth,
             ),
           ),
@@ -71,14 +71,15 @@ class _SignOutScreenState extends State<SignOutScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
+       /* decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: kBgColorGradientArrayBlues,
             stops: [0.1, 0.4, 0.7, 0.9],
           ),
-        ),
+        ),*/
+       color: kScaffoldBackgroundColor,
         child: Column(
           children: [
             Padding(
@@ -103,12 +104,12 @@ class _SignOutScreenState extends State<SignOutScreen> {
                   TextSpan(
                     text: 'Eye\t',
                     style:
-                    kDashboardTitleTextStyle.copyWith(color: kPurpleColor),
+                    kDashboardTitleTextStyle.copyWith(color: kTealColor),
                   ),
                   TextSpan(
                     text: 'See',
                     style:
-                    kDashboardTitleTextStyle.copyWith(color: kGoldenColor),
+                    kDashboardTitleTextStyle.copyWith(color: kTealColor),
                   ),
                 ]),
               ),
@@ -122,7 +123,7 @@ class _SignOutScreenState extends State<SignOutScreen> {
                   tag: 'sign_out_icon',
                   child: Icon(
                     Icons.power_settings_new,
-                    color: kGoldenColor,
+                    color: kTealColor,
                     size: 100.0,
                   ),
                 ),
@@ -171,7 +172,7 @@ class _SignOutScreenState extends State<SignOutScreen> {
                         },
                         child: Text(
                           'Yes',
-                          style: kDashboardButtonLabelStyle.copyWith(fontSize: 30.0),
+                          style: kDashboardButtonLabelStyle.copyWith(fontSize: 30.0, color: kAmberColor),
                         ),
                       ),
                     ],

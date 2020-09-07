@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -175,7 +176,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: Colors.white,
+              color: kTealColor,
               size: 30.0,
             )
           ],
@@ -252,11 +253,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     blurRadius: 6.0,
                   ),
                 ],
-                image: DecorationImage(
-                  image: AssetImage(
-                    'assets/logos/google_icon.jpg',
-                  ),
-                ),
+                // image: DecorationImage(
+                //   image: AssetImage(
+                //     'assets/logos/google_icon.jpg',
+                //   ),
+                // ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: SvgPicture.asset('assets/logos/google_icon.svg'),
               ),
             ),
           ),
@@ -276,7 +281,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             TextSpan(
               text: 'Already have an Account? ',
               style: TextStyle(
-                color: Colors.white,
+                color: kTealColor,
                 fontSize: 18.0,
                 fontWeight: FontWeight.w400,
               ),
@@ -284,7 +289,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             TextSpan(
               text: 'Sign In',
               style: TextStyle(
-                color: Colors.white,
+                color: kAmberColor,
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -309,16 +314,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             child: Stack(
               children: <Widget>[
                 Container(
+                  color: kScaffoldBackgroundColor,
                   height: double.infinity,
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  /*decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: kBgColorGradientArrayBlues,
                       stops: [0.1, 0.4, 0.7, 0.9],
                     ),
-                  ),
+                  ),*/
                 ),
                 Container(
                   height: double.infinity,
