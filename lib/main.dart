@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_chatbot_screen.dart';
 import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_voice_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
@@ -18,6 +19,7 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitiv
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'screens/nearby_medicos_screens/nearby_main_screen.dart';
 
 void main() async {
@@ -31,31 +33,34 @@ class EyeSee extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Eye See',
-      initialRoute: AutoLoginService.id,
-      routes: {
-        AutoLoginService.id:(context) => AutoLoginService(),
-        ForumDetails.id:(context) => ForumDetails(),
-        Forum.id:(context) => Forum(),
-        LoginScreen.id: (context) => LoginScreen(),
-        Dashboard.id: (context) => Dashboard(),
-        NearbyMain.id: (context) => NearbyMain(),
-        OnBoardingScreen.id: (context) => OnBoardingScreen(),
-        RegistrationScreen.id: (context) => RegistrationScreen(),
-        Extras.id: (context) => Extras(),
-        Menu.id: (context) => Menu(),
-        DuoChrome.id: (context) => DuoChrome(),
-        NearVision.id: (context) => NearVision(),
-        ContrastSensitivity.id: (context) => ContrastSensitivity(),
-        ContrastSensitivity2.id: (context) => ContrastSensitivity2(),
-        Assistant.id: (context) => Assistant(),
-        AssistantVoice.id: (context) => AssistantVoice(),
-        RuleScreen.id: (context) => RuleScreen(),
-        SignOutScreen.id: (context) => SignOutScreen(),
-        Category1.id: (context) => Category1(),
-      },
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => ProviderData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Eye See',
+        initialRoute: AutoLoginService.id,
+        routes: {
+          AutoLoginService.id:(context) => AutoLoginService(),
+          ForumDetails.id:(context) => ForumDetails(),
+          Forum.id:(context) => Forum(),
+          LoginScreen.id: (context) => LoginScreen(),
+          Dashboard.id: (context) => Dashboard(),
+          NearbyMain.id: (context) => NearbyMain(),
+          OnBoardingScreen.id: (context) => OnBoardingScreen(),
+          RegistrationScreen.id: (context) => RegistrationScreen(),
+          Extras.id: (context) => Extras(),
+          Menu.id: (context) => Menu(),
+          DuoChrome.id: (context) => DuoChrome(),
+          NearVision.id: (context) => NearVision(),
+          ContrastSensitivity.id: (context) => ContrastSensitivity(),
+          ContrastSensitivity2.id: (context) => ContrastSensitivity2(),
+          Assistant.id: (context) => Assistant(),
+          AssistantVoice.id: (context) => AssistantVoice(),
+          RuleScreen.id: (context) => RuleScreen(),
+          SignOutScreen.id: (context) => SignOutScreen(),
+          Category1.id: (context) => Category1(),
+        },
+      ),
     );
   }
 }
