@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
 class ProviderData extends ChangeNotifier{
-  String tagData = '';
+  String _tagData ='';
 
   void updateTagData(String tag){
-    this.tagData = tag;
+    this._tagData = tag;
+    notifyListeners();
   }
 
-  String getTagData(){
-    return this.tagData;
-  }
+  String get tagData => _tagData;
 }
