@@ -1,4 +1,5 @@
 # 👁️ Eye Diagnostic System - _EyeSee_
+[![Build Status](https://travis-ci.org/ihassanjavaid/ihassanjavaid.svg?branch=master)](https://travis-ci.org/ihassanjavaid/ihassanjavaid)
 
 A _one-stop_ eye disease solution!
 
