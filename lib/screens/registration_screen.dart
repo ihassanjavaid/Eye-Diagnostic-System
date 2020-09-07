@@ -150,7 +150,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             await pref.setString('email', removeSpaces(this._email));
             await pref.setString('displayName', this._name);
             // Navigate
-            Navigator.popAndPushNamed(context, Dashboard.id);
+            Navigator.pushReplacementNamed(context, Dashboard.id);
           } catch (e) {
             AlertWidget()
                 .generateAlert(
@@ -228,7 +228,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 if (userforcheck == null) {
                   await _firestore.registerUserInFirebase(displayName: _fbuser.displayName, email: _fbuser.email);
                 }
-                Navigator.popAndPushNamed(context, Dashboard.id);
+                Navigator.pushReplacementNamed(context, Dashboard.id);
               } catch (e) {
                 AlertWidget()
                     .generateAlert(
@@ -268,7 +268,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget _buildSignInBtn() {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, LoginScreen.id);
+        Navigator.popAndPushNamed(context, LoginScreen.id);
       },
       child: RichText(
         text: TextSpan(

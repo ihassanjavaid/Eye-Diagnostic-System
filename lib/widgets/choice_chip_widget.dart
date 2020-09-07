@@ -1,8 +1,10 @@
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
-String globalSelectedItem;
+//String globalSelectedItem;
 
 class Choice_Chip extends StatefulWidget {
   static final String id = 'forum_user_user_questions';
@@ -66,7 +68,7 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
           onSelected: (selected) {
             setState(() {
               selectedChoice = item;
-              globalSelectedItem = item;
+              Provider.of<ProviderData>(context, listen: false).updateTagData(selectedChoice);
             });
           },
         ),

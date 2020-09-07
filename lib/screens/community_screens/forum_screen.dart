@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -37,7 +39,7 @@ class _ForumState extends State<Forum> {
   List<Question> _questions = [];
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   FirestoreUserService _userService = FirestoreUserService();
-  String selectedTagItem = '';
+  //String selectedTagItem = '';
 
 
   Future getAllPosts() async {
@@ -50,13 +52,13 @@ class _ForumState extends State<Forum> {
     FirebaseFirestore _firestore = FirebaseFirestore.instance;
     QuerySnapshot qn = await _firestore
         .collection('questions')
-        .where('tag', isEqualTo: selectedTagItem)
+        .where('tag', isEqualTo: Provider.of<ProviderData>(context).tagData)
         .get();
     return qn.docs;
   }
 
   Expanded choosePosts() {
-    if (selectedTagItem == '') {
+    if (Provider.of<ProviderData>(context).tagData == '') {
       return buildExpandedQuestionSection(context);
     } else {
       return buildExpandedTagPostsSection(context);
@@ -373,7 +375,7 @@ class _ForumState extends State<Forum> {
                     GestureDetector(
                       onTap: () {
                         msgdlg.announce(context);
-                        selectedTagItem = selectedTag;
+                        //selectedTagItem = selectedTag;
                       },
                       child: Icon(
                         Icons.add_comment_rounded,
@@ -391,7 +393,7 @@ class _ForumState extends State<Forum> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        await tgsdlg.showCard(context, this);
+                        await tgsdlg.showCard(context);
                       },
                       child: Icon(
                         Icons.tag,
@@ -425,9 +427,9 @@ class _ForumState extends State<Forum> {
     return _questions;
   }
 
-  void refreshScreen(){
+  /*void refreshScreen(){
     setState(() {
       selectedTagItem = selectedTag;
     });
-  }
+  }*/
 }

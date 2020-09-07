@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'custom_textfield.dart';
 
@@ -108,7 +110,7 @@ class MessageDialog {
                           _email = pref.getString('email');
                           //_fbuser = await _auth.getCurrentUser();
                           //_uid = _fbuser.uid;
-                          selected = globalSelectedItem;
+                          selected = Provider.of<ProviderData>(context).tagData;
                           _questionService.askQuestion(question: questionText, tag:selected,views: 0,email: _email);
                           _questionsent = true;
                         }catch(e){

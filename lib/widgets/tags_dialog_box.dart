@@ -11,9 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'custom_textfield.dart';
 
-String selectedTag = '';
-
-
 class TagsDialog {
   TagsDialog({this.receiverEmail});
 
@@ -24,10 +21,7 @@ class TagsDialog {
 
   bool _showSpinner = false;
 
-  Forum _forum = Forum();
-
-
-  Future showCard(context, forum) {
+  Future showCard(context) {
     showDialog(
         context: context,
         useSafeArea: false,
@@ -38,13 +32,13 @@ class TagsDialog {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              child: _tagsCard(context, forum),
+              child: _tagsCard(context),
             ),
           );
         });
   }
 
-  _tagsCard(context, forum) {
+  _tagsCard(context) {
     String messageTitle;
     String questionText;
     String selected;
@@ -54,7 +48,7 @@ class TagsDialog {
       child: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(
-          height: 250,
+          height: 260,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
             gradient: LinearGradient(
@@ -69,10 +63,10 @@ class TagsDialog {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  padding: const EdgeInsets.only(top: 15.0),
                   child: Align(
                     alignment: Alignment.center,
-                    child: AutoSizeText(
+                    child: Text(
                       'Search by Tag',
                       style: kDashboardButtonLabelStyle.copyWith(fontSize: 28,color: Colors.white70),
                     ),
@@ -90,8 +84,8 @@ class TagsDialog {
                   child: Container(
                     child: GestureDetector(
                       onTap: (){
-                          selectedTag = globalSelectedItem;
-                          forum.refreshScreen();
+                          //selectedTag = globalSelectedItem;
+                          //forum.refreshScreen();
                           Navigator.pop(context);
                       },
                       child: Icon(

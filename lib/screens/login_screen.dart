@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
             _fbuser = await _auth.getCurrentUser();
             await pref.setString('uid', _fbuser.uid);
             //  Navigate
-            Navigator.popAndPushNamed(context, Dashboard.id);
+            Navigator.pushReplacementNamed(context, Dashboard.id);
           } catch (e) {
             AlertWidget()
                 .generateAlert(
@@ -233,7 +233,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (userforcheck == null) {
                   await _firestore.registerUserInFirebase(displayName: _fbuser.displayName, email: _fbuser.email);
                 }
-                Navigator.popAndPushNamed(context, Dashboard.id);
+                Navigator.pushReplacementNamed(context, Dashboard.id);
               } catch (e) {
                 AlertWidget()
                     .generateAlert(
