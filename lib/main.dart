@@ -47,7 +47,9 @@ class EyeSee extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Eye See',
         theme: ThemeData(
-          backgroundColor: kScaffoldBackgroundColor
+          backgroundColor: kScaffoldBackgroundColor,
+          dialogBackgroundColor: kScaffoldBackgroundColor,
+          scaffoldBackgroundColor: kScaffoldBackgroundColor
         ),
         initialRoute: AutoLoginService.id,
         routes: {
