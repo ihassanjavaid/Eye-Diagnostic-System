@@ -49,7 +49,7 @@ class _AssistantState extends State<Assistant> {
 
     // navigate
     if (Pages.isAvailable(intentName)){
-      Navigator.pushNamed(context, intentName);
+      Navigator.popAndPushNamed(context, intentName);
     }
 
   }
