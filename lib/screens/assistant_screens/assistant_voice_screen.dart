@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/components/pages.dart';
@@ -5,6 +7,7 @@ import 'package:eye_diagnostic_system/services/dialogflow_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class AssistantVoice extends StatefulWidget {
@@ -15,17 +18,21 @@ class AssistantVoice extends StatefulWidget {
 }
 
 class _AssistantVoiceState extends State<AssistantVoice> {
-
   DialogFlowService _dialogFlowService = DialogFlowService();
   stt.SpeechToText _speech;
   bool _isListening = false;
   String _text = 'Tap the mic and speak!';
   double _accuracy = 1.0;
+  FlutterTts flutterTts;
+  String finalText = '';
+  String intentName;
+  //TtsState ttsState;
 
   @override
   void initState() {
     super.initState();
     _speech = stt.SpeechToText();
+    initTextToSpeech();
   }
 
   @override
@@ -45,11 +52,12 @@ class _AssistantVoiceState extends State<AssistantVoice> {
             repeatPauseDuration: const Duration(milliseconds: 100),
             repeat: true,
             child: FloatingActionButton(
-              onPressed: _listen,
+              onPressed: () async {
+                await _listen();
+                // _text = '';
+              },
               child: Icon(
-                  _isListening ?
-                  Icons.mic :
-                  Icons.mic_none,
+                _isListening ? Icons.mic : Icons.mic_none,
               ),
               backgroundColor: kTealColor,
             ),
@@ -84,11 +92,13 @@ class _AssistantVoiceState extends State<AssistantVoice> {
                         text: TextSpan(children: [
                           TextSpan(
                             text: 'EyeSee\t',
-                            style: kDashboardTitleTextStyle.copyWith(color: kAmberColor),
+                            style: kDashboardTitleTextStyle.copyWith(
+                                color: kAmberColor),
                           ),
                           TextSpan(
                             text: 'Assistant',
-                            style: kDashboardTitleTextStyle.copyWith(color: kAmberColor),
+                            style: kDashboardTitleTextStyle.copyWith(
+                                color: kAmberColor),
                           ),
                         ]),
                       ),
@@ -97,7 +107,8 @@ class _AssistantVoiceState extends State<AssistantVoice> {
                       padding: EdgeInsets.only(bottom: 10),
                       child: Text(
                         'Accuracy: ${(_accuracy * 100.0).toStringAsFixed(1)}%',
-                        style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+                        style:
+                            kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
                       ),
                     ),
                   ],
@@ -105,10 +116,12 @@ class _AssistantVoiceState extends State<AssistantVoice> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
               child: Text(
                 _text,
-                style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0, color: kTealColor.withOpacity(0.9)),
+                style: kDashboardTitleTextStyle.copyWith(
+                    fontSize: 20.0, color: kTealColor.withOpacity(0.9)),
               ),
             ),
           ],
@@ -117,29 +130,33 @@ class _AssistantVoiceState extends State<AssistantVoice> {
     );
   }
 
-  void _listen() async {
-    _text = '';
+  Future<void> _listen() async {
+    intentName = '';
+
     if (!_isListening) {
       bool available = await _speech.initialize(
         onStatus: (val) {
-          if ( val == 'notListening' && _text.isNotEmpty){
-            print('stopped listening...');
-            print('Text going to google: $_text');
-            // Dialogflow method here
-            response(_text);
+          print('onStatus: $val');
+          if (val == 'notListening') {
+            print('Last Sentence: ${_speech.lastRecognizedWords}');
             setState(() {
               _isListening = false;
             });
-            val = '';
-          }
-          else {
-            print('onStatus: $val');
+            // Business logic here for Assistant
+            print('BLoc Part!');
+            response(_speech.lastRecognizedWords);
+            // Business logic ends here
           }
         },
-        onError: (val) => print('onError: $val'),
+        onError: (val) {
+          print('onError: $val');
+        },
       );
+
       if (available) {
-        setState(() => _isListening = true);
+        setState(() {
+          _isListening = true;
+        });
         _speech.listen(
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
@@ -153,35 +170,64 @@ class _AssistantVoiceState extends State<AssistantVoice> {
       setState(() {
         return _isListening = false;
       });
-      _speech.stop();
+      //_speech.stop();
     }
   }
 
   void response(query) async {
+    _isListening = false;
     // Send query (voice message)
-    AIResponse aiResponse = await _dialogFlowService.getResponseFromDialogFlow(query);
+    AIResponse aiResponse =
+        await _dialogFlowService.getResponseFromDialogFlow(query);
 
-    String intentName = '';
+    intentName = '';
     // text response
-    print('Text response from google: ${aiResponse.getListMessage()[0]["text"]["text"][0].toString()}');
+    print(
+        'Text response from google: ${aiResponse.getListMessage()[0]["text"]["text"][0].toString()}');
     // intent name response
     intentName = aiResponse.queryResult.intent.displayName;
     print('Intent name from google: $intentName');
 
     // navigate if command is to navigate to other screen
-    if (Pages.isAvailable(intentName)){
-      Navigator.pushNamed(context, intentName);
+    if (intentName != null) {
+      if (Pages.isAvailable(intentName)) {
+        Navigator.pushNamed(context, intentName);
+      }
     }
-    else {
-      displayResponse(aiResponse);
-    }
-
-    intentName = '';
+    /* else {*/
+    await displayResponse(aiResponse);
+    /* }*/
   }
 
-  displayResponse(AIResponse aiResponse){
+  displayResponse(AIResponse aiResponse) async {
+    String _texttoDisplay =
+        aiResponse.getListMessage()[0]["text"]["text"][0].toString();
     setState(() {
-      _text = aiResponse.getListMessage()[0]["text"]["text"][0].toString();
+      _text = _texttoDisplay;
     });
+    await flutterTts.speak(_texttoDisplay);
+
+    // _stop();
+  }
+
+  initTextToSpeech() async {
+    if (Platform.isAndroid || Platform.isIOS) {
+      flutterTts = FlutterTts();
+      if (Platform.isIOS) {
+        await flutterTts.setSharedInstance(true);
+        await flutterTts
+            .setIosAudioCategory(IosTextToSpeechAudioCategory.playAndRecord, [
+          IosTextToSpeechAudioCategoryOptions.allowBluetooth,
+          IosTextToSpeechAudioCategoryOptions.allowBluetoothA2DP,
+          IosTextToSpeechAudioCategoryOptions.mixWithOthers
+        ]);
+      }
+
+      // no need for special initializations and permissions on android
+      await flutterTts.setLanguage("en-US");
+      await flutterTts.setSpeechRate(1.0);
+      await flutterTts.setVolume(1.0);
+      await flutterTts.setPitch(1.0);
+    }
   }
 }
