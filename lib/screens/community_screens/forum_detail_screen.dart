@@ -1,7 +1,12 @@
 import 'dart:ui';
+import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/answer_dialog_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class ForumDetails extends StatefulWidget {
   static const String id = 'forum_detail_screen';
@@ -33,8 +38,8 @@ class ForumPostEntry {
 
 class _ForumDetailsState extends State<ForumDetails> {
   @override
+  AnswerDialog _answerDialog = AnswerDialog();
   Widget build(BuildContext context) {
-    var questionSection = _buildQuestionSection();
     var responses = new Container(
         padding: const EdgeInsets.all(8.0),
         child: new ListView.builder(
@@ -43,114 +48,94 @@ class _ForumDetailsState extends State<ForumDetails> {
           itemCount: ForumPostArr.length,
         ));
 
-    return new Material(
-      child: Column(
-        children: [
-          new Stack(
-            children: [
+    return Scaffold(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Container(
+          color: kScaffoldBackgroundColor,
+          child: Column(
+            children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width,
-                decoration: new BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Color(0xFF3594DD),
-                      Color(0xFF4563DB),
-                      Color(0xff611cdf)
-                    ]),
-                    borderRadius: new BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
-              ),
-              AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0.0,
-                centerTitle: true,
-                title: Row(
-                  children: [
-                    SizedBox(
-                      width: 30.0,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      /*child: Image(
-                        image: AssetImage('assets/images/eye.png'),
-                        height: 40,
-                        width: 40,
-                        ),*/
-                    ),
-                  ],
+                decoration: BoxDecoration(
+                  color: kTealColor,
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(left: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.09,
-                    ),
-                    questionSection,
-                  ],
-                ),
+                child: _questionPanel(),
               ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                  ),
-                  SizedBox(
-                    height: 550,
-                    child: responses,
-                  ),
-                ],
-              )
+              SizedBox(
+                height: 550,
+                child: responses,
+                //child: choosePosts(),
+                //buildExpandedQuestionSection(context),
+              ),
             ],
           ),
-        ],
+        ),
       ),
     );
 
   }
-
-  Padding _buildQuestionSection() {
-    return new Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: new Column(
-        children: <Widget>[
-          new Text(
-            "How do I become a expert in programming as well as design??",
-            textScaleFactor: 1.5,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+  Widget _questionPanel() {
+    return ClipPath(
+      clipper: HeaderCustomClipper(),
+      child: Column(
+        children: [
+          Container(
+            color: kTealColor,
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 20.0, bottom: 10.0),
+            alignment: Alignment.center,
           ),
-          new Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Chip(
-                  backgroundColor: kDeepGoldenColor,
-                  shape: BeveledRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10),
-                  ),
-                  label: new Text(
-                    "Disease",
-                    style: new TextStyle(
-                        fontWeight: FontWeight.w700, color: Colors.black),
+          Container(
+            color: kTealColor,
+            height: 170,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 2, right: 2),
+                  child: Text(
+                    Provider.of<ProviderData>(context,listen: false).questionData,
+                    textScaleFactor: 1.5,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                new IconWithText(
-                  Icons.remove_red_eye,
-                  "54",
-                  iconColor: kDeepGoldenColor,
-                )
+                SizedBox(
+                  height: 14,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _answerDialog.showCard(context);
+                          },
+                          child: Icon(
+                            Icons.comment,
+                            color: kAmberColor,
+                            size: 30.0,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text('Answer', style: kLoginLabelStyle.copyWith(color: kAmberColor)),
+                      ],
+                    ),
+
+                  ],
+                ),
               ],
             ),
           ),
-          new Divider()
         ],
       ),
     );
@@ -165,14 +150,14 @@ class ForumPost extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(5.0),
       decoration: new BoxDecoration(
-        color: Color(0xFF4563DB),
+        color: kTealColor,
         borderRadius: const BorderRadius.all(const Radius.circular(20.0)),
       ),
       child: new Column(
         children: <Widget>[
           new Container(
             decoration: new BoxDecoration(
-              color: Color(0xFF4563DB),
+              color: kTealColor,
               borderRadius: const BorderRadius.only(
                   topLeft: const Radius.circular(20.0),
                   topRight: const Radius.circular(20.0)),
