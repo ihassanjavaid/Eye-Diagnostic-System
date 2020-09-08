@@ -168,11 +168,20 @@ class _AssistantVoiceState extends State<AssistantVoice> {
     intentName = aiResponse.queryResult.intent.displayName;
     print('Intent name from google: $intentName');
 
-    // navigate
+    // navigate if command is to navigate to other screen
     if (Pages.isAvailable(intentName)){
       Navigator.pushNamed(context, intentName);
     }
+    else {
+      displayResponse(aiResponse);
+    }
 
     intentName = '';
+  }
+
+  displayResponse(AIResponse aiResponse){
+    setState(() {
+      _text = aiResponse.getListMessage()[0]["text"]["text"][0].toString();
+    });
   }
 }
