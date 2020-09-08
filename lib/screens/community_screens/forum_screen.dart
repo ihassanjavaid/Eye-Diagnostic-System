@@ -73,14 +73,6 @@ class _ForumState extends State<Forum> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(
-         /* decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: kBgColorGradientArrayBlues,
-            ),
-          ),*/
          color: kScaffoldBackgroundColor,
           child: Column(
             children: <Widget>[
@@ -120,6 +112,8 @@ class _ForumState extends State<Forum> {
                 itemBuilder: (_, index) {
                   return GestureDetector(
                     onTap: () {
+                      Provider.of<ProviderData>(context, listen: false).updateQuestionData(snapshot.data[index].data()['question']);
+                      Provider.of<ProviderData>(context, listen: false).updateQuestionID(snapshot.data[index].id);
                       Navigator.pushNamed(context, ForumDetails.id);
                     },
                     child: Container(

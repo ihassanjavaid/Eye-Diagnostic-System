@@ -1,7 +1,15 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/models/forum_answer_data.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
+import 'package:eye_diagnostic_system/services/firestore_answer_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/answer_dialog_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class ForumDetails extends StatefulWidget {
   static const String id = 'forum_detail_screen';
@@ -33,124 +41,255 @@ class ForumPostEntry {
 
 class _ForumDetailsState extends State<ForumDetails> {
   @override
-  Widget build(BuildContext context) {
-    var questionSection = _buildQuestionSection();
-    var responses = new Container(
-        padding: const EdgeInsets.all(8.0),
-        child: new ListView.builder(
-          itemBuilder: (BuildContext context, int index) =>
-              new ForumPost(ForumPostArr[index]),
-          itemCount: ForumPostArr.length,
-        ));
+  AnswerDialog _answerDialog = AnswerDialog();
+  FirestoreAnswerService _answerService = FirestoreAnswerService();
 
-    return new Material(
-      child: Column(
-        children: [
-          new Stack(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width,
-                decoration: new BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Color(0xFF3594DD),
-                      Color(0xFF4563DB),
-                      Color(0xff611cdf)
-                    ]),
-                    borderRadius: new BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
-              ),
-              AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0.0,
-                centerTitle: true,
-                title: Row(
-                  children: [
-                    SizedBox(
-                      width: 30.0,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      /*child: Image(
-                        image: AssetImage('assets/images/eye.png'),
-                        height: 40,
-                        width: 40,
-                        ),*/
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.09,
-                    ),
-                    questionSection,
-                  ],
-                ),
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                  ),
-                  SizedBox(
-                    height: 550,
-                    child: responses,
-                  ),
-                ],
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-
+  Future getAnswers(String id) async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    QuerySnapshot qn = await _firestore
+        .collection('answers')
+        .where('questionID', isEqualTo: id)
+        .get();
+    return qn.docs;
   }
 
-  Padding _buildQuestionSection() {
-    return new Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: new Column(
-        children: <Widget>[
-          new Text(
-            "How do I become a expert in programming as well as design??",
-            textScaleFactor: 1.5,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+  Expanded buildExpandedAnswerSection(BuildContext context) {
+    return Expanded(
+      child: FutureBuilder(
+          future: getAnswers(
+            Provider.of<ProviderData>(context, listen: true).questionID,
           ),
-          new Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Chip(
-                  backgroundColor: kDeepGoldenColor,
-                  shape: BeveledRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10),
-                  ),
-                  label: new Text(
-                    "Disease",
-                    style: new TextStyle(
-                        fontWeight: FontWeight.w700, color: Colors.black),
+          builder: (_, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  backgroundColor: kTealColor,
+                ),
+              );
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (_, index) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.all(5.0),
+                      decoration: new BoxDecoration(
+                          color: kLightTealColor,
+                          border: Border.all(
+                            color: kTealColor,
+                            width: 2,
+                          ),
+                          borderRadius: const BorderRadius.all(
+                              const Radius.circular(20.0))),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            decoration: new BoxDecoration(
+                                color: kTealColor.withOpacity(0.8),
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: const Radius.circular(18.0),
+                                    topRight: const Radius.circular(18.0))
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10.0, top: 4.0, bottom: 4.0, right:8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Column(
+                                    children: <Widget>[
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                              Icons.person,
+                                            size: 30,
+                                            color: kTealColor.withOpacity(0.7),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              snapshot.data[index].data()['userName'],
+                                              style: TextStyle(
+                                                color: kScaffoldBackgroundColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          new Padding(
+                                            padding: const EdgeInsets.all(2.0),
+                                            child: GestureDetector(
+                                              onTap: (){
+                                              },
+                                              child: new Icon(
+                                                  Icons.thumb_up,
+                                                  color: kAmberColor
+                                              ),
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: const EdgeInsets.all(2.0),
+                                            child: new Text(
+                                              snapshot.data[index].data()['likes'].toString(),
+                                              style: TextStyle(
+                                                  color: kAmberColor,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: const EdgeInsets.all(2.0),
+                                            child: GestureDetector(
+                                              onTap: (){},
+                                              child: new Icon(
+                                                  Icons.thumb_down,
+                                                  color: Colors.grey
+                                              ),
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: const EdgeInsets.only(right: 8.0, left: 2.0),
+                                            child: new Text(
+                                              snapshot.data[index].data()['dislikes'].toString(),
+                                              style: TextStyle(
+                                                  color: Colors.grey, fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            title: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 2.0, bottom: 5.0),
+                              child: Text(
+                                snapshot.data[index].data()['answer'],
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: kTealColor),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          }),
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Container(
+          color: kScaffoldBackgroundColor,
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  color: kTealColor,
+                ),
+              ),
+              Container(
+                child: _questionPanel(),
+              ),
+              Container(
+                child: buildExpandedAnswerSection(context),
+              ),
+              /*SizedBox(
+                height: 550,
+                child: responses,
+                //child: choosePosts(),
+                //buildExpandedQuestionSection(context),
+              ),*/
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _questionPanel() {
+    return ClipPath(
+      clipper: HeaderCustomClipper(),
+      child: Column(
+        children: [
+          Container(
+            color: kTealColor,
+            padding: const EdgeInsets.only(
+                left: 15, right: 15, top: 20.0, bottom: 10.0),
+            alignment: Alignment.center,
+          ),
+          Container(
+            color: kTealColor,
+            height: 170,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 2, right: 2),
+                  child: Text(
+                    Provider.of<ProviderData>(context, listen: false)
+                        .questionData,
+                    textScaleFactor: 1.5,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                new IconWithText(
-                  Icons.remove_red_eye,
-                  "54",
-                  iconColor: kDeepGoldenColor,
-                )
+                SizedBox(
+                  height: 14,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _answerDialog.showCard(context);
+                          },
+                          child: Icon(
+                            Icons.comment,
+                            color: kAmberColor,
+                            size: 30.0,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text('Answer',
+                            style:
+                                kLoginLabelStyle.copyWith(color: kAmberColor)),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
-          new Divider()
         ],
       ),
     );
@@ -162,103 +301,7 @@ class ForumPost extends StatelessWidget {
   ForumPost(this.entry);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(5.0),
-      decoration: new BoxDecoration(
-        color: Color(0xFF4563DB),
-        borderRadius: const BorderRadius.all(const Radius.circular(20.0)),
-      ),
-      child: new Column(
-        children: <Widget>[
-          new Container(
-            decoration: new BoxDecoration(
-              color: Color(0xFF4563DB),
-              borderRadius: const BorderRadius.only(
-                  topLeft: const Radius.circular(20.0),
-                  topRight: const Radius.circular(20.0)),
-            ),
-            child: new Row(
-              children: <Widget>[
-                new Icon(Icons.person, size: 50.0, color: Colors.black38),
-                new Expanded(
-                  child: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      new Text(
-                        entry.username,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      new Text(
-                        entry.hours,
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                new Row(
-                  children: <Widget>[
-                    new Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: GestureDetector(
-                        onTap: (){
-                        },
-                        child: new Icon(
-                            Icons.thumb_up,
-                            color: kDeepGoldenColor
-                        ),
-                      ),
-                    ),
-                    new Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: new Text(
-                        entry.likes.toString(),
-                        style: TextStyle(
-                            color: kDeepGoldenColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    new Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: GestureDetector(
-                        onTap: (){},
-                        child: new Icon(
-                            Icons.thumb_down,
-                            color: Colors.grey
-                        ),
-                      ),
-                    ),
-                    new Padding(
-                      padding: const EdgeInsets.only(right: 8.0, left: 2.0),
-                      child: new Text(
-                        entry.dislikes.toString(),
-                        style: TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-          new Container(
-            margin: const EdgeInsets.only(left: 2.0, right: 2.0, bottom: 2.0),
-            padding: const EdgeInsets.all(8.0),
-            decoration: new BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: const Radius.circular(20.0),
-                    bottomRight: const Radius.circular(20.0))),
-            child: new Text(entry.text),
-          ),
-        ],
-      ),
-    );
+    //return buildAnswerSection();
   }
 }
 
@@ -282,7 +325,7 @@ class IconWithText extends StatelessWidget {
             child: new Text(
               this.text,
               style: TextStyle(
-                color: kGoldenColor,
+                color: kAmberColor,
               ),
             ),
           ),
