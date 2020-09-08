@@ -80,7 +80,7 @@ class MessageDialog {
                     placeholder: 'Your Post',
                     minLines: 8,
                     placeholderColor: kLightAmberColor,
-                    cursorColor: kGoldenColor,
+                    cursorColor: kAmberColor,
                     focusedOutlineBorder: kLightAmberColor,
                     maxLines: 8,
                     controller: this.messageTextController,
@@ -116,7 +116,7 @@ class MessageDialog {
                         Navigator.pop(context);
                       },
                       color: kTealColor,
-                      focusColor: kGoldenColor,
+                      focusColor: kAmberColor,
                       autofocus: true,
                       elevation: 10,
                       child: Row(

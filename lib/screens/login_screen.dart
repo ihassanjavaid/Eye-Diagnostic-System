@@ -320,7 +320,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Container(
                           height: 2.0,
                           width: 300.0,
-                          color: kGoldenColor,
+                          color: kAmberColor,
                         ),
                       ),
                       Padding(

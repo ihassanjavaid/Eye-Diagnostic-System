@@ -31,7 +31,7 @@ class _RuleScreenState extends State<RuleScreen> {
       height: 8.0,
       width: isActive ? 24.0 : 8.0,
       decoration: BoxDecoration(
-        color: isActive ? kGoldenColor : Colors.white,
+        color: isActive ? kTealColor : kTealColor.withOpacity(0.5),
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );

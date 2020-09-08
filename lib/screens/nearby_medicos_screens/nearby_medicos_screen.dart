@@ -135,7 +135,7 @@ class NavigationControls extends StatelessWidget {
                     : () => navigate(context, controller, goBack: true),
               ),
               IconButton(
-                color: kGoldenColor,
+                color: kAmberColor,
                 icon: const Icon(
                     Icons.arrow_forward_ios,
                     color: Colors.black45,
@@ -146,7 +146,7 @@ class NavigationControls extends StatelessWidget {
                     : () => navigate(context, controller, goBack: false),
               ),
               IconButton(
-                color: kGoldenColor,
+                color: kAmberColor,
                 icon: const Icon(
                     Icons.home,
                     color: Colors.black45,
@@ -159,7 +159,7 @@ class NavigationControls extends StatelessWidget {
                 },
               ),
               IconButton(
-                color: kGoldenColor,
+                color: kAmberColor,
                 icon: const Icon(
                     Icons.refresh,
                     color: Colors.black45,

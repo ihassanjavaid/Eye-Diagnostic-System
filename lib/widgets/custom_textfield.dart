@@ -15,11 +15,12 @@ class CustomTextField extends StatelessWidget {
   final int minLines;
   final int maxLines;
 
+  // directly passed colors because const field required in optional parameter
   CustomTextField({
     @required this.placeholder,
-    this.cursorColor = Colors.deepPurpleAccent,
-    this.placeholderColor = Colors.deepPurpleAccent,
-    this.focusedOutlineBorder = Colors.deepPurpleAccent,
+    this.cursorColor = const Color(0xFFedf5f4),
+    this.placeholderColor = const Color(0xFFedf5f4),
+    this.focusedOutlineBorder = const Color(0xFFedf5f4),
     this.onChanged,
     this.isPassword = false,
     this.keyboardType,
@@ -45,7 +46,7 @@ class CustomTextField extends StatelessWidget {
         labelStyle: kCustomInputLabelStyle,
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: kPurpleColor,
+            color: kTealColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(

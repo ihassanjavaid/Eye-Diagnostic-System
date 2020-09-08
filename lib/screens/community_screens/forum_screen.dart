@@ -311,7 +311,7 @@ class _ForumState extends State<Forum> {
         children: [
           Container(
             color: kTealColor,
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 30.0, bottom: 10.0),
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 32.0, bottom: 10.0),
             alignment: Alignment.center,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

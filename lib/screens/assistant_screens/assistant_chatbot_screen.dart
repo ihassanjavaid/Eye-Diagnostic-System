@@ -114,7 +114,7 @@ class _AssistantState extends State<Assistant> {
             ),
             Divider(
               height: 5.0,
-              color: kGoldenColor,
+              color: kAmberColor,
             ),
             Container(
               child: ListTile(
@@ -182,8 +182,6 @@ class _AssistantState extends State<Assistant> {
       ),
     );
   }
-
-  //for better one i have use the bubble package check out the pubspec.yaml
 
   Widget chat(String message, int data) {
     return Container(

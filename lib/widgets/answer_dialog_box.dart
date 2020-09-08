@@ -83,7 +83,7 @@ class AnswerDialog {
                     placeholder: 'Your Answer',
                     minLines: 8,
                     placeholderColor: kLightAmberColor,
-                    cursorColor: kGoldenColor,
+                    cursorColor: kAmberColor,
                     focusedOutlineBorder: kLightAmberColor,
                     maxLines: 8,
                     controller: this.messageTextController,
@@ -123,7 +123,7 @@ class AnswerDialog {
                         Navigator.pop(context);
                       },
                       color: kTealColor,
-                      focusColor: kGoldenColor,
+                      focusColor: kAmberColor,
                       autofocus: true,
                       elevation: 10,
                       child: Row(
