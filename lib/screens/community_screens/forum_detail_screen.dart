@@ -129,6 +129,9 @@ class _ForumDetailsState extends State<ForumDetails> {
                                             padding: const EdgeInsets.all(2.0),
                                             child: GestureDetector(
                                               onTap: (){
+                                                Provider.of<ProviderData>(context, listen: false).updateAnswerID(snapshot.data[index].id);
+                                                int klikes = snapshot.data[index].data()['likes'];
+                                                _answerService.like(Provider.of<ProviderData>(context, listen: false).answerID, klikes);
                                               },
                                               child: new Icon(
                                                   Icons.thumb_up,
@@ -148,7 +151,11 @@ class _ForumDetailsState extends State<ForumDetails> {
                                           new Padding(
                                             padding: const EdgeInsets.all(2.0),
                                             child: GestureDetector(
-                                              onTap: (){},
+                                              onTap: (){
+                                                Provider.of<ProviderData>(context, listen: false).updateAnswerID(snapshot.data[index].id);
+                                                int kdislikes = snapshot.data[index].data()['dislikes'];
+                                                _answerService.dislike(Provider.of<ProviderData>(context, listen: false).answerID, kdislikes);
+                                              },
                                               child: new Icon(
                                                   Icons.thumb_down,
                                                   color: Colors.grey
@@ -225,68 +232,66 @@ class _ForumDetailsState extends State<ForumDetails> {
   Widget _questionPanel() {
     return ClipPath(
       clipper: HeaderCustomClipper(),
-      child: Expanded(
-        child: Column(
-          children: [
-            Container(
-              color: kTealColor,
-              padding: const EdgeInsets.only(
-                  left: 15, right: 15, top: 20.0, bottom: 10.0),
-              alignment: Alignment.center,
-            ),
-            Container(
-              color: kTealColor,
-              height: 170,
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 2, right: 2),
-                    child: Text(
-                      Provider.of<ProviderData>(context, listen: false)
-                          .questionData,
-                      textScaleFactor: 1.5,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+      child: Column(
+        children: [
+          Container(
+            color: kTealColor,
+            padding: const EdgeInsets.only(
+                left: 15, right: 15, top: 20.0, bottom: 10.0),
+            alignment: Alignment.center,
+          ),
+          Container(
+            color: kTealColor,
+            height: 170,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 2, right: 2),
+                  child: Text(
+                    Provider.of<ProviderData>(context, listen: false)
+                        .questionData,
+                    textScaleFactor: 1.5,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
-                  SizedBox(
-                    height: 14,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              _answerDialog.showCard(context);
-                            },
-                            child: Icon(
-                              Icons.comment,
-                              color: kAmberColor,
-                              size: 30.0,
-                            ),
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _answerDialog.showCard(context);
+                          },
+                          child: Icon(
+                            Icons.comment,
+                            color: kAmberColor,
+                            size: 30.0,
                           ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text('Answer',
-                              style:
-                                  kLoginLabelStyle.copyWith(color: kAmberColor)),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text('Answer',
+                            style:
+                                kLoginLabelStyle.copyWith(color: kAmberColor)),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

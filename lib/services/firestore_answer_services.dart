@@ -47,6 +47,20 @@ class FirestoreAnswerService{
     }
     return answers;
   }
- 
+  Future<void> like(String id, int likes)async{
+    await checkInternConnection();
+
+    //final currentUser = await _auth.getCurrentUser();
+    // Fetch all questions
+    final document = await _firestore.doc('answers/$id').update({'likes': likes+=1});
+  }
+
+  Future<void> dislike(String id, int dislikes)async{
+    await checkInternConnection();
+
+    final document = await _firestore.doc('answers/$id').update({'dislikes': dislikes+=1});
+  }
+
+
 
 }
