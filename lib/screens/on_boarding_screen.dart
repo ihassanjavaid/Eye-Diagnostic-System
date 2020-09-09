@@ -14,7 +14,6 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
@@ -23,7 +22,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
-    for ( int i = 0 ; i < _numPages ; i++ ){
+    for (int i = 0; i < _numPages; i++) {
       list.add(i == _currentPage ? _indicator(true) : _indicator(false));
     }
     return list;
@@ -42,7 +41,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  _animateCircle(){
+  _animateCircle() {
     setState(() {
       _circleWidth = _circleWidth == 10.0 ? 0.1 : 10.0;
     });
@@ -80,36 +79,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     onPressed: () {
                       Navigator.popAndPushNamed(context, LoginScreen.id);
                     },
-                    child: Text(
-                      'Skip',
-                      style: kBottomNavBarTextStyle
-                    ),
+                    child: Text('Skip', style: kBottomNavBarTextStyle),
                   ),
                 ),
-                Container(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Image(
-                        image: AssetImage(
-                            'assets/images/eye_noball.png'
-                        ),
-                        height: 220,
-                        width: 220,
-                      ),
-                      _buildAnimatedContainer(),
-                    ],
-                  ),
-                ),
-                Center(
-                    child: Container(
-                      height: 2.0,
-                      width: 300.0,
-                      color: kAmberColor,
-                    ),
+                Expanded(
+                  child: Container(),
                 ),
                 Container(
-                  height: 310.0,
+                  height: 460.0,
                   child: PageView(
                     physics: ClampingScrollPhysics(),
                     controller: _pageController,
@@ -120,17 +97,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     children: <Widget>[
                       buildTextBlock(
-                          'World Class\ndiagnosis',
+                          'Your\tOne-Stop\nEye\tCare\tSolution',
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                      ),
+                          'assets/images/on_boarding/onBoarding1.png'),
                       buildTextBlock(
-                        'Military grade\ntesting standards',
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                      ),
+                          'Artificially\nIntelligent\tPrognostics',
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          'assets/images/on_boarding/onBoarding2.png'),
                       buildTextBlock(
-                        'All your solutions\nin one place',
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
-                      ),
+                          'Eye\tCare\nIn\tYour\tHands',
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          'assets/images/on_boarding/onBoarding3.png'),
                     ],
                   ),
                 ),
@@ -138,46 +115,47 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                ),
                 Expanded(
                     child: Align(
-                      alignment: FractionalOffset.bottomRight,
-                      child: FlatButton(
-                        onPressed: () {
-                          _currentPage != _numPages -1 ?
-                          _pageController.nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease
-                          ) :
-                          Navigator.popAndPushNamed(context, LoginScreen.id);
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Text(
-                                  _currentPage != _numPages -1 ?
-                                  'Next' : 'Get Started',
-                                  style: kBottomNavBarTextStyle
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10.0,
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: kTealColor,
-                                size: 30.0,
-                              )
-                            ],
+                  alignment: FractionalOffset.bottomRight,
+                  child: FlatButton(
+                    onPressed: () {
+                      _currentPage != _numPages - 1
+                          ? _pageController.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.ease)
+                          : Navigator.popAndPushNamed(context, LoginScreen.id);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: Text(
+                                _currentPage != _numPages - 1
+                                    ? 'Next'
+                                    : 'Get Started',
+                                style: kBottomNavBarTextStyle),
                           ),
-                        ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: kTealColor,
+                            size: 30.0,
+                          )
+                        ],
                       ),
-                    )
-                ),
+                    ),
+                  ),
+                )),
               ],
             ),
           ),
@@ -188,51 +166,71 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   Widget _buildAnimatedContainer() {
     return Container(
-                height: 52,
-                child: AnimatedContainer(
-                  padding: EdgeInsets.all(2.0),
-                  duration: Duration(milliseconds: 2000),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: kTealColor,
-                  ),
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 2000),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.transparent,
-                      border: Border.all(
-                        color: kAmberColor,
-                        width: _circleWidth,
-                      ),
-                    ),
-                  ),
-                ),
-              );
+      height: 52,
+      child: AnimatedContainer(
+        padding: EdgeInsets.all(2.0),
+        duration: Duration(milliseconds: 2000),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: kTealColor,
+        ),
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 2000),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.transparent,
+            border: Border.all(
+              color: kAmberColor,
+              width: _circleWidth,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget buildTextBlock(String mainText, String subText) {
+  Widget buildTextBlock(String mainText, String subText, String image) {
     return Padding(
-                      padding: EdgeInsets.all(40.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            mainText,
-                            style: kOnBoardingTitleStyle,
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Text(
-                            subText,
-                            style: kOnBoardingSubtitleStyle,
-                          ),
-                        ],
-                      ),
-                    );
+      padding: EdgeInsets.all(40.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Container(
+              height: 130,
+              width: 130,
+              child: FittedBox(
+                child: Image.asset(image),
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: Container(
+              height: 2.0,
+              width: 300.0,
+              color: kAmberColor,
+            ),
+          ),
+          SizedBox(
+            height: 30.0,
+          ),
+          Text(
+            mainText,
+            style: kOnBoardingTitleStyle,
+          ),
+          SizedBox(
+            height: 15.0,
+          ),
+          Text(
+            subText,
+            style: kOnBoardingSubtitleStyle,
+          ),
+        ],
+      ),
+    );
   }
 }

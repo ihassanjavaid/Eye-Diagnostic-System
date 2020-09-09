@@ -66,6 +66,7 @@ flutter:
     - assets/images/rules/
     - assets/images/vision_testing/
     - assets/images/visual_acuity/snellens/
+    - assets/images/on_boarding/
 
   # fonts:
   #   - family: Schyler

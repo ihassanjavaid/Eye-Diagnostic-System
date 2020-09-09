@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'community_screens/forum_screen.dart';
 import 'login_screen.dart';
+import 'on_boarding_screen.dart';
 
 class SignOutScreen extends StatefulWidget {
   static const String id = 'sign_out_screen';
@@ -168,7 +169,7 @@ class _SignOutScreenState extends State<SignOutScreen> {
                           await pref.setString('displayName', null);
                           await pref.setString('uid', null);
                           _auth.signOut();
-                          Navigator.pushNamed(context, LoginScreen.id);
+                          Navigator.pushNamed(context, OnBoardingScreen.id);
                         },
                         child: Text(
                           'Yes',
