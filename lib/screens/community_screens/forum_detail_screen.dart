@@ -215,12 +215,6 @@ class _ForumDetailsState extends State<ForumDetails> {
               Container(
                 child: buildExpandedAnswerSection(context),
               ),
-              /*SizedBox(
-                height: 550,
-                child: responses,
-                //child: choosePosts(),
-                //buildExpandedQuestionSection(context),
-              ),*/
             ],
           ),
         ),
@@ -231,66 +225,68 @@ class _ForumDetailsState extends State<ForumDetails> {
   Widget _questionPanel() {
     return ClipPath(
       clipper: HeaderCustomClipper(),
-      child: Column(
-        children: [
-          Container(
-            color: kTealColor,
-            padding: const EdgeInsets.only(
-                left: 15, right: 15, top: 20.0, bottom: 10.0),
-            alignment: Alignment.center,
-          ),
-          Container(
-            color: kTealColor,
-            height: 170,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 2, right: 2),
-                  child: Text(
-                    Provider.of<ProviderData>(context, listen: false)
-                        .questionData,
-                    textScaleFactor: 1.5,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+      child: Expanded(
+        child: Column(
+          children: [
+            Container(
+              color: kTealColor,
+              padding: const EdgeInsets.only(
+                  left: 15, right: 15, top: 20.0, bottom: 10.0),
+              alignment: Alignment.center,
+            ),
+            Container(
+              color: kTealColor,
+              height: 170,
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 2, right: 2),
+                    child: Text(
+                      Provider.of<ProviderData>(context, listen: false)
+                          .questionData,
+                      textScaleFactor: 1.5,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 14,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _answerDialog.showCard(context);
-                          },
-                          child: Icon(
-                            Icons.comment,
-                            color: kAmberColor,
-                            size: 30.0,
+                  SizedBox(
+                    height: 14,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              _answerDialog.showCard(context);
+                            },
+                            child: Icon(
+                              Icons.comment,
+                              color: kAmberColor,
+                              size: 30.0,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text('Answer',
-                            style:
-                                kLoginLabelStyle.copyWith(color: kAmberColor)),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Text('Answer',
+                              style:
+                                  kLoginLabelStyle.copyWith(color: kAmberColor)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
