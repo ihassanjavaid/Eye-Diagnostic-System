@@ -262,7 +262,7 @@ class _DashboardState extends State<Dashboard> {
                     ],
                   ),
                 ),
-                Expanded(
+                /*Expanded(
                   child: Align(
                     alignment: FractionalOffset.bottomRight,
                     child: FlatButton(
@@ -279,7 +279,7 @@ class _DashboardState extends State<Dashboard> {
                       },
                     ),
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

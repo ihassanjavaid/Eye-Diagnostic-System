@@ -104,7 +104,7 @@ class _ExtrasState extends State<Extras> {
               child: RichText(
                 text: TextSpan(children: [
                   TextSpan(
-                    text: 'Eye\t',
+                    text: 'My\tEye',
                     style:
                         kDashboardTitleTextStyle.copyWith(color: kTealColor),
                   ),
