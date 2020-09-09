@@ -6,13 +6,13 @@ import 'package:provider/provider.dart';
 
 //String globalSelectedItem;
 
-class Choice_Chip extends StatefulWidget {
+class ChoiceChipWidget extends StatefulWidget {
   static final String id = 'forum_user_user_questions';
   @override
-  _Choice_ChipState createState() => _Choice_ChipState();
+  _ChoiceChipWidgetState createState() => _ChoiceChipWidgetState();
 }
 
-class _Choice_ChipState extends State<Choice_Chip> {
+class _ChoiceChipWidgetState extends State<ChoiceChipWidget> {
   List<String> chipList = [
     "Question",
     "Suggestion",
@@ -24,7 +24,6 @@ class _Choice_ChipState extends State<Choice_Chip> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build(
       return Container(
         color: Colors.transparent,
           alignment: Alignment.center,

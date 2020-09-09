@@ -91,7 +91,7 @@ class MessageDialog {
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Choice_Chip(),
+                  child: ChoiceChipWidget(),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),

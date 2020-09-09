@@ -78,7 +78,7 @@ class TagsDialog {
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Choice_Chip(),
+                  child: ChoiceChipWidget(),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0),
