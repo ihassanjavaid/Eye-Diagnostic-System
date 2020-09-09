@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
+import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
@@ -23,8 +24,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  Auth _auth = Auth();
-  final int _numPages = 6;
+  //Auth _auth = Auth();
+  final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   Timer _timer;
@@ -156,11 +157,18 @@ class _DashboardState extends State<Dashboard> {
                     },
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () async {},
+                        onTap: () {},
                         child: _buildMainDashboardContainer('Eye\nSight Test',
                             'assets/images/svgs/eye_sight.svg'),
                       ),
                       GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, DiagnosisScreen.id);
+                        },
+                        child: _buildMainDashboardContainer(
+                            'EyeSee\nDiagnostics', ''),
+                      ),
+                      /*GestureDetector(
                         onTap: () {},
                         child: _buildMainDashboardContainer(
                             'Disease\nDiagnosis',
@@ -182,7 +190,7 @@ class _DashboardState extends State<Dashboard> {
                         onTap: () {},
                         child: _buildMainDashboardContainer(
                             'Fundus\nAnalysis', 'assets/images/svgs/fundo.svg'),
-                      ),
+                      ),*/
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, NearbyMain.id);

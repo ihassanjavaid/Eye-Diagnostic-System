@@ -3,6 +3,7 @@ import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_chatbo
 import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_voice_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
+import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/rules_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/test_1/category1_screen.dart';
@@ -62,6 +63,7 @@ class EyeSee extends StatelessWidget {
           OnBoardingScreen.id: (context) => OnBoardingScreen(),
           RegistrationScreen.id: (context) => RegistrationScreen(),
           Extras.id: (context) => Extras(),
+          DiagnosisScreen.id: (context) => DiagnosisScreen(),
           Menu.id: (context) => Menu(),
           DuoChrome.id: (context) => DuoChrome(),
           NearVision.id: (context) => NearVision(),
