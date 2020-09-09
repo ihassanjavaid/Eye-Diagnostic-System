@@ -6,11 +6,11 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dar
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/rules_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/test_1/category1_screen.dart';
-import 'package:eye_diagnostic_system/screens/loading_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
+import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome_screen.dart';
@@ -72,6 +72,7 @@ class EyeSee extends StatelessWidget {
           RuleScreen.id: (context) => RuleScreen(),
           SignOutScreen.id: (context) => SignOutScreen(),
           Category1.id: (context) => Category1(),
+          ReminderMain.id: (context) => ReminderMain()
         },
       ),
     );

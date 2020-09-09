@@ -134,16 +134,16 @@ class _AssistantVoiceState extends State<AssistantVoice> {
   Future<void> _listen() async {
     intentName = '';
 
-    if (!_isListening) {
+    if (!Provider.of<ProviderData>(context, listen: false).isListeningValue) {
       bool available = await _speech.initialize(
         onStatus: (val) {
           print('onStatus: $val');
           if (val == 'notListening') {
             print('Last Sentence: ${_speech.lastRecognizedWords}');
-            Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(false);
             setState(() {
               _isListening = false;
             });
+            Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(false);
             // Business logic here for Assistant
             response(_speech.lastRecognizedWords);
             // Business logic ends here
@@ -151,14 +151,15 @@ class _AssistantVoiceState extends State<AssistantVoice> {
         },
         onError: (val) {
           print('onError: $val');
+          Provider.of<ProviderData>(context, listen: false).updateTextValue('Tap the mic and speak!');
         },
       );
 
       if (available) {
-        Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(true);
         setState(() {
           _isListening = true;
         });
+        Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(true);
         _speech.listen(
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
@@ -170,15 +171,20 @@ class _AssistantVoiceState extends State<AssistantVoice> {
         );
       }
     } else {
-      Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(false);
       setState(() {
         return _isListening = false;
       });
+      Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(false);
       //_speech.stop();
     }
   }
 
   void response(query) async {
+
+    if ( query == null || query == ''){
+      query = 'ABC';
+    }
+
     // Send query (voice message)
     AIResponse aiResponse =
         await _dialogFlowService.getResponseFromDialogFlow(query);
@@ -205,10 +211,10 @@ class _AssistantVoiceState extends State<AssistantVoice> {
   displayResponse(AIResponse aiResponse) async {
     String _texttoDisplay =
         aiResponse.getListMessage()[0]["text"]["text"][0].toString();
-    Provider.of<ProviderData>(context, listen: false).updateTextValue(_texttoDisplay);
     setState(() {
       _text = _texttoDisplay;
     });
+    Provider.of<ProviderData>(context, listen: false).updateTextValue(_texttoDisplay);
     //Provider.of<ProviderData>(context).textValue;
     await flutterTts.speak(_texttoDisplay);
 

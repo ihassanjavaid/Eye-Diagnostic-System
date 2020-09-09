@@ -24,7 +24,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   Auth _auth = Auth();
-  final int _numPages = 4;
+  final int _numPages = 6;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   Timer _timer;
@@ -165,6 +165,18 @@ class _DashboardState extends State<Dashboard> {
                         child: _buildMainDashboardContainer(
                             'Disease\nDiagnosis',
                             'assets/images/svgs/disease.svg'),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: _buildMainDashboardContainer(
+                            'Disorder\nIdentification',
+                            '___'),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: _buildMainDashboardContainer(
+                            'Infection\nPrognosis',
+                            '___'),
                       ),
                       GestureDetector(
                         onTap: () {},

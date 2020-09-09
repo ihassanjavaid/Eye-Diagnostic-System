@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
+import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -180,7 +181,9 @@ class _ExtrasState extends State<Extras> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, ReminderMain.id);
+                      },
                       child: Icon(
                         Icons.alarm,
                         color: kTealColor,
