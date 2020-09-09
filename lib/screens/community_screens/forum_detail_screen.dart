@@ -152,7 +152,9 @@ class _ForumDetailsState extends State<ForumDetails> {
                                             padding: const EdgeInsets.all(2.0),
                                             child: GestureDetector(
                                               onTap: (){
-                                               
+                                                Provider.of<ProviderData>(context, listen: false).updateAnswerID(snapshot.data[index].id);
+                                                int kdislikes = snapshot.data[index].data()['dislikes'];
+                                                _answerService.dislike(Provider.of<ProviderData>(context, listen: false).answerID, kdislikes);
                                               },
                                               child: new Icon(
                                                   Icons.thumb_down,
