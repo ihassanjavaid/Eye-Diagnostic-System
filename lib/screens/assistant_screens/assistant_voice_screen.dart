@@ -172,7 +172,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
       }
     } else {
       setState(() {
-        return _isListening = false;
+        _isListening = false;
       });
       Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(false);
       //_speech.stop();
