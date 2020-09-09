@@ -1,13 +1,14 @@
 import 'dart:io';
-
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/components/pages.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/services/dialogflow_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class AssistantVoice extends StatefulWidget {
@@ -44,7 +45,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
         width: 200.0,
         child: FittedBox(
           child: AvatarGlow(
-            animate: _isListening,
+            animate: Provider.of<ProviderData>(context).isListeningValue,
             // green color because purple background mixed with green gives golden color
             glowColor: kTealColor,
             endRadius: 75.0,
@@ -54,10 +55,10 @@ class _AssistantVoiceState extends State<AssistantVoice> {
             child: FloatingActionButton(
               onPressed: () async {
                 await _listen();
-                // _text = '';
               },
               child: Icon(
-                _isListening ? Icons.mic : Icons.mic_none,
+                Provider.of<ProviderData>(context).isListeningValue
+                    ? Icons.mic : Icons.mic_none,
               ),
               backgroundColor: kTealColor,
             ),
@@ -119,7 +120,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
               child: Text(
-                _text,
+                Provider.of<ProviderData>(context).textValue,
                 style: kDashboardTitleTextStyle.copyWith(
                     fontSize: 20.0, color: kTealColor.withOpacity(0.9)),
               ),
@@ -139,11 +140,11 @@ class _AssistantVoiceState extends State<AssistantVoice> {
           print('onStatus: $val');
           if (val == 'notListening') {
             print('Last Sentence: ${_speech.lastRecognizedWords}');
+            Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(false);
             setState(() {
               _isListening = false;
             });
             // Business logic here for Assistant
-            print('BLoc Part!');
             response(_speech.lastRecognizedWords);
             // Business logic ends here
           }
@@ -154,12 +155,14 @@ class _AssistantVoiceState extends State<AssistantVoice> {
       );
 
       if (available) {
+        Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(true);
         setState(() {
           _isListening = true;
         });
         _speech.listen(
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
+            Provider.of<ProviderData>(context, listen: false).updateTextValue(_text);
             if (val.hasConfidenceRating && val.confidence > 0) {
               _accuracy = val.confidence;
             }
@@ -167,6 +170,7 @@ class _AssistantVoiceState extends State<AssistantVoice> {
         );
       }
     } else {
+      Provider.of<ProviderData>(context, listen: false).updateIsListeningValue(false);
       setState(() {
         return _isListening = false;
       });
@@ -175,7 +179,6 @@ class _AssistantVoiceState extends State<AssistantVoice> {
   }
 
   void response(query) async {
-    _isListening = false;
     // Send query (voice message)
     AIResponse aiResponse =
         await _dialogFlowService.getResponseFromDialogFlow(query);
@@ -202,9 +205,11 @@ class _AssistantVoiceState extends State<AssistantVoice> {
   displayResponse(AIResponse aiResponse) async {
     String _texttoDisplay =
         aiResponse.getListMessage()[0]["text"]["text"][0].toString();
+    Provider.of<ProviderData>(context, listen: false).updateTextValue(_texttoDisplay);
     setState(() {
       _text = _texttoDisplay;
     });
+    //Provider.of<ProviderData>(context).textValue;
     await flutterTts.speak(_texttoDisplay);
 
     // _stop();

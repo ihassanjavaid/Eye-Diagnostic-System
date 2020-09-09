@@ -26,4 +26,20 @@ class ProviderData extends ChangeNotifier{
   }
 
   //=== for assistant ===
+  bool _isListeningValue = false;
+  String _textValue = '';
+
+  bool get isListeningValue => _isListeningValue;
+  String get textValue => _textValue;
+
+  void updateIsListeningValue(bool listen){
+    this._isListeningValue = listen;
+    notifyListeners();
+  }
+
+  void updateTextValue(String text){
+    this._textValue = text;
+    notifyListeners();
+  }
+
 }
