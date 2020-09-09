@@ -1,3 +1,6 @@
+import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ReminderMain extends StatefulWidget {
@@ -12,43 +15,17 @@ class _ReminderMainState extends State<ReminderMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    /*  floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        height: 200.0,
-        width: 200.0,
-        child: FittedBox(
-          child: AvatarGlow(
-            animate: Provider.of<ProviderData>(context).isListeningValue,
-            // green color because purple background mixed with green gives golden color
-            glowColor: kTealColor,
-            endRadius: 75.0,
-            duration: const Duration(milliseconds: 2000),
-            repeatPauseDuration: const Duration(milliseconds: 100),
-            repeat: true,
-            child: FloatingActionButton(
-              onPressed: () async {
-                await _listen();
-              },
-              child: Icon(
-                Provider.of<ProviderData>(context).isListeningValue
-                    ? Icons.mic : Icons.mic_none,
-              ),
-              backgroundColor: kTealColor,
-            ),
-          ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: Icon(
+         Icons.add
         ),
+        backgroundColor: kTealColor,
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        *//*decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.1, 0.4, 0.7, 0.9],
-            colors: kBgColorGradientArrayBlues,
-          ),
-        ),*//*
         color: kScaffoldBackgroundColor,
         child: Column(
           children: [
@@ -70,7 +47,7 @@ class _ReminderMainState extends State<ReminderMain> {
                                 color: kAmberColor),
                           ),
                           TextSpan(
-                            text: 'Assistant',
+                            text: 'Souvenir',
                             style: kDashboardTitleTextStyle.copyWith(
                                 color: kAmberColor),
                           ),
@@ -79,28 +56,37 @@ class _ReminderMainState extends State<ReminderMain> {
                     ),
                     Container(
                       padding: EdgeInsets.only(bottom: 10),
-                      child: Text(
-                        'Accuracy: ${(_accuracy * 100.0).toStringAsFixed(1)}%',
-                        style:
-                        kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
-                      ),
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '2 due\t\t',
+                              style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+                            ),
+                            TextSpan(
+                              text: '|',
+                              style:  kDashboardTitleTextStyle.copyWith(fontSize: 20.0, color: kAmberColor, fontFamily: '', fontWeight: FontWeight.w900),
+                            ),
+                            TextSpan(
+                              text: '\t\t1 in total',
+                              style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+                            ),
+                          ]
+                        ),
+                      )
                     ),
                   ],
                 ),
               ),
             ),
-            Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 40.0, vertical: 30.0),
-              child: Text(
-                Provider.of<ProviderData>(context).textValue,
-                style: kDashboardTitleTextStyle.copyWith(
-                    fontSize: 20.0, color: kTealColor.withOpacity(0.9)),
+            Expanded(
+              child: Container(
+
               ),
             ),
           ],
         ),
-      ),*/
+      ),
     );
   }
 
