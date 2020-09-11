@@ -1,7 +1,8 @@
-/*
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/reminder_dialog_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ButtonWidget{
 
@@ -9,35 +10,39 @@ class ButtonWidget{
     return SpeedDial(
       marginRight: 12.0,
       marginBottom: 12.0,
-      animatedIcon: AnimatedIcons.menu_close,
-      //animatedIconTheme: IconThemeData(size: 29.0),
+      animatedIcon: AnimatedIcons.add_event,
+      animatedIconTheme: IconThemeData(size: 30.0),
       visible: true,
       closeManually: true,
       curve: Curves.bounceIn,
-      overlayColor: Colors.white,
+      overlayColor: kTealColor,
       overlayOpacity: 1,
-      tooltip: 'Press to Refresh or Sign out',
-      backgroundColor: kGoldenColor,
-      foregroundColor: kPurpleColor,
+      tooltip: 'Tap to Add a Reminder',
+      backgroundColor: kTealColor,
+      foregroundColor: Colors.white,
       elevation: 0.0,
       shape: CircleBorder(),
       children: [
         SpeedDialChild(
-          child: Icon(Icons.list),
-          backgroundColor: Colors.red,
-          label: 'Sign out',
-          labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () async {},
+          child: Icon(FontAwesomeIcons.tablets),
+          labelBackgroundColor: kTealColor,
+          backgroundColor: kAmberColor,
+          label: 'Recurring Medicine Schedule',
+          labelStyle: kSpeedDialTextStyle,
+          onTap: () {},
         ),
         SpeedDialChild(
-          child: Icon(Icons.sync),
-          backgroundColor: Colors.green,
-          label: 'Refresh',
-          labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () {},
+          child: Icon(FontAwesomeIcons.calendarPlus),
+          labelBackgroundColor: kTealColor,
+          backgroundColor: kAmberColor,
+          label: 'One-time Reminder',
+          labelStyle: kSpeedDialTextStyle,
+          onTap: () {
+            ReminderDialog(reminderType: ReminderType.ONETIME).announce(context);
+          },
         ),
       ],
     );
   }
 
-}*/
+}

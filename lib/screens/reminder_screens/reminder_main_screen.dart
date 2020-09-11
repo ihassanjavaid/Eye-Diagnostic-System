@@ -1,5 +1,6 @@
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,14 +16,7 @@ class _ReminderMainState extends State<ReminderMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-        },
-        child: Icon(
-         Icons.add
-        ),
-        backgroundColor: kTealColor,
-      ),
+      floatingActionButton: ButtonWidget().speedDial(context),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -47,7 +41,7 @@ class _ReminderMainState extends State<ReminderMain> {
                                 color: kAmberColor),
                           ),
                           TextSpan(
-                            text: 'Souvenir',
+                            text: 'Aide Memorie',
                             style: kDashboardTitleTextStyle.copyWith(
                                 color: kAmberColor),
                           ),

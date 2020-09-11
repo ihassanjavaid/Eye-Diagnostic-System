@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ProviderData extends ChangeNotifier{
   //=== for forums ===
@@ -48,4 +49,20 @@ class ProviderData extends ChangeNotifier{
     notifyListeners();
   }
 
+  //=== for reminder ===
+  DateTime _pickedDate = DateTime.now();
+  TimeOfDay _pickedTime = TimeOfDay.fromDateTime(DateTime.now());
+
+  DateTime get pickedDate => _pickedDate;
+  TimeOfDay get pickedTime => _pickedTime;
+
+  void updatePickedTime(TimeOfDay time){
+    this._pickedTime = time;
+    notifyListeners();
+  }
+
+  void updatePickedDate(DateTime date){
+    this._pickedDate = date;
+    notifyListeners();
+  }
 }

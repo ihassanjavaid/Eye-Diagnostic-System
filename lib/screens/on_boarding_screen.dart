@@ -96,15 +96,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       });
                     },
                     children: <Widget>[
-                      buildTextBlock(
+                      buildPageViewBlock(
                           'Your\tOne-Stop\nEye\tCare\tSolution',
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
                           'assets/images/on_boarding/onBoarding1.png'),
-                      buildTextBlock(
+                      buildPageViewBlock(
                           'Artificially\nIntelligent\tPrognostics',
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
                           'assets/images/on_boarding/onBoarding2.png'),
-                      buildTextBlock(
+                      buildPageViewBlock(
                           'Eye\tCare\nIn\tYour\tHands',
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
                           'assets/images/on_boarding/onBoarding3.png'),
@@ -164,32 +164,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  Widget _buildAnimatedContainer() {
-    return Container(
-      height: 52,
-      child: AnimatedContainer(
-        padding: EdgeInsets.all(2.0),
-        duration: Duration(milliseconds: 2000),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: kTealColor,
-        ),
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 2000),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.transparent,
-            border: Border.all(
-              color: kAmberColor,
-              width: _circleWidth,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextBlock(String mainText, String subText, String image) {
+  Widget buildPageViewBlock(String mainText, String subText, String image) {
     return Padding(
       padding: EdgeInsets.all(40.0),
       child: Column(

@@ -26,6 +26,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'screens/nearby_medicos_screens/nearby_main_screen.dart';
+import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_add_screen.dart';
 
 void main() async {
   LicenseRegistry.addLicense(() async* {
@@ -50,7 +51,7 @@ class EyeSee extends StatelessWidget {
         theme: ThemeData(
           backgroundColor: kScaffoldBackgroundColor,
           dialogBackgroundColor: kScaffoldBackgroundColor,
-          scaffoldBackgroundColor: kScaffoldBackgroundColor
+          scaffoldBackgroundColor: kScaffoldBackgroundColor,
         ),
         initialRoute: AutoLoginService.id,
         routes: {
@@ -74,7 +75,8 @@ class EyeSee extends StatelessWidget {
           RuleScreen.id: (context) => RuleScreen(),
           SignOutScreen.id: (context) => SignOutScreen(),
           Category1.id: (context) => Category1(),
-          ReminderMain.id: (context) => ReminderMain()
+          ReminderMain.id: (context) => ReminderMain(),
+          AddReminder.id: (context) => AddReminder()
         },
       ),
     );

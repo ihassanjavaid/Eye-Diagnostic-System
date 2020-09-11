@@ -97,9 +97,23 @@ final TextStyle kforumHeaderButtonLabelStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
+final TextStyle kSpeedDialTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 18.0,
+  fontFamily: 'CM Sans Serif',
+);
+
+final TextStyle kReminderContainerTextStyle = TextStyle(
+  color: kAmberColor,
+  fontSize: 20.0,
+  fontFamily: 'CM Sans Serif',
+);
+
 // Enumerations
 
 enum LoadingType {SIGNIN, SIGNUP}
+
+enum ReminderType {RECURRING, ONETIME}
 
 // Decorations
 
@@ -115,5 +129,56 @@ final kLoginBoxDecorationStyle = BoxDecoration(
   ],
 );
 
+// Methods
+
+String getMonth(month){
+  switch(month){
+    case 1:
+      return 'January';
+      break;
+    case 2:
+      return 'February';
+      break;
+    case 3:
+      return 'March';
+      break;
+    case 4:
+      return 'April';
+      break;
+    case 5:
+      return 'May';
+      break;
+    case 6:
+      return 'June';
+      break;
+    case 7:
+      return 'July';
+      break;
+    case 8:
+      return 'August';
+      break;
+    case 9:
+      return 'September';
+      break;
+    case 10:
+      return 'October';
+      break;
+    case 11:
+      return 'November';
+      break;
+    case 12:
+      return 'December';
+      break;
+    default:
+      return 'January';
+      break;
+  }
+}
+
+String getPeriod(period){
+  if (period == DayPeriod.am)
+    return 'AM';
+  return 'PM';
+}
 
 
