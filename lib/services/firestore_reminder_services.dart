@@ -9,7 +9,7 @@ class FirestoreReminderService{
   final _firestore = FirebaseFirestore.instance;
 
   Future<void> postOneTimeReminder(Reminder reminder) async {
-    
+
     await checkInternConnection();
 
     DocumentReference documentReference =

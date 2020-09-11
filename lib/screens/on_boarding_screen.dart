@@ -17,8 +17,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
-  Timer _timer;
-  double _circleWidth = 3.5;
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
@@ -39,26 +37,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
-  }
-
-  _animateCircle() {
-    setState(() {
-      _circleWidth = _circleWidth == 10.0 ? 0.1 : 10.0;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _timer = Timer.periodic(Duration(milliseconds: 2000), (Timer ticker) {
-      _animateCircle();
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _timer?.cancel();
   }
 
   @override
