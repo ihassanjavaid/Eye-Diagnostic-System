@@ -29,7 +29,9 @@ class ButtonWidget{
           backgroundColor: kAmberColor,
           label: 'Recurring Medicine Schedule',
           labelStyle: kSpeedDialTextStyle,
-          onTap: () {},
+          onTap: () {
+            ReminderDialog(reminderType: ReminderType.RECURRING).announce(context);
+          },
         ),
         SpeedDialChild(
           child: Icon(FontAwesomeIcons.calendarPlus),

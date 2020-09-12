@@ -1,11 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:eye_diagnostic_system/models/date_time_data.dart';
 
 class Reminder{
-  String email;
   String title;
   bool isRecurring;
   int recurrence;
-  DateTime uptilDate;
-  DateTime actualDate;
-  TimeOfDay actualTime;
+
+  CustomTime actualTime;
+  CustomDate actualDate;
+
+  Reminder(){
+    title = '';
+    isRecurring = false;
+    recurrence = 0;
+
+    this.actualTime = CustomTime();
+    this.actualDate = CustomDate();
+  }
+
+
 }
