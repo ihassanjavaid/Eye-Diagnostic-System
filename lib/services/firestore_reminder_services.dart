@@ -98,7 +98,7 @@ class FirestoreReminderService{
         .where('email', isEqualTo: _email)
         .get();
 
-    return '${querySnapshot.docs.length}\t total reminders';
+    return '${querySnapshot.docs.length}\ttotal reminders';
   }
   
 }
