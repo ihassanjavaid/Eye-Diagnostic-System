@@ -92,7 +92,7 @@ class _ReminderMainState extends State<ReminderMain> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.33,
                   width: double.infinity,
                   child: FutureBuilder(
                     future: _firestoreReminderService.getOneTimeReminders(),
@@ -167,7 +167,7 @@ class _ReminderMainState extends State<ReminderMain> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.33,
                   width: double.infinity,
                   child: FutureBuilder(
                     future: _firestoreReminderService.getRecurringReminders(),

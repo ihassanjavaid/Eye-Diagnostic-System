@@ -29,6 +29,8 @@ class FirestoreReminderService{
         'actualDate': reminder.actualDate.toString(),
         'isRecurring': reminder.isRecurring,
         'recurrence': 0,
+        // for showing the reminders in app in order 'last posted first'
+        'timestamp': DateTime.now().millisecondsSinceEpoch
       });
     }
     catch (e) {
@@ -50,6 +52,8 @@ class FirestoreReminderService{
         'actualDate': reminder.actualDate.toString(),
         'isRecurring': reminder.isRecurring,
         'recurrence': reminder.recurrence,
+        // for showing the reminders in app in order 'last posted first'
+        'timestamp': DateTime.now().millisecondsSinceEpoch
       });
     }
     catch (e) {
@@ -65,6 +69,7 @@ class FirestoreReminderService{
         .collection('reminders')
         .where('email', isEqualTo: _email)
         .where('isRecurring', isEqualTo: false)
+        //.orderBy('timestamp', descending: true)
         .get();
     
     return querySnapshot.docs;
@@ -78,6 +83,7 @@ class FirestoreReminderService{
         .collection('reminders')
         .where('email', isEqualTo: _email)
         .where('isRecurring', isEqualTo: true)
+        //.orderBy('timestamp', descending: true)
         .get();
 
     return querySnapshot.docs;
