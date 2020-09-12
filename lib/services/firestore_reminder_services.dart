@@ -69,7 +69,7 @@ class FirestoreReminderService{
         .collection('reminders')
         .where('email', isEqualTo: _email)
         .where('isRecurring', isEqualTo: false)
-        //.orderBy('timestamp', descending: true)
+        .orderBy('timestamp', descending: true)
         .get();
     
     return querySnapshot.docs;
@@ -83,7 +83,7 @@ class FirestoreReminderService{
         .collection('reminders')
         .where('email', isEqualTo: _email)
         .where('isRecurring', isEqualTo: true)
-        //.orderBy('timestamp', descending: true)
+        .orderBy('timestamp', descending: true)
         .get();
 
     return querySnapshot.docs;
@@ -99,6 +99,19 @@ class FirestoreReminderService{
         .get();
 
     return '${querySnapshot.docs.length}\ttotal reminders';
+  }
+
+  Future<void> deleteReminder(String title) async {
+    QuerySnapshot _querySnapshot = await _firestore.collection('reminders')
+        .where('title', isEqualTo: title)
+        .get();
+    DocumentReference _docRef = _querySnapshot.docs[0].reference;
+
+    try{
+      await _docRef.delete();
+    } catch (e) {
+      throw Exception(e);
+    }
   }
   
 }

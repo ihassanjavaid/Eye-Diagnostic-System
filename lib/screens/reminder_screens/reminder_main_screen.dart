@@ -2,9 +2,13 @@ import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ReminderMain extends StatefulWidget {
@@ -136,7 +140,20 @@ class _ReminderMainState extends State<ReminderMain> {
                                       subtitle: Text(
                                           '${snapshot.data[index].data()['actualTime']}\t-\t'
                                           '${snapshot.data[index].data()['actualDate']}',
-                                          style: kReminderSubtitleTextStyle),
+                                          style: kReminderSubtitleTextStyle
+                                      ),
+                                      trailing: IconButton(
+                                        icon: Icon(
+                                          FontAwesomeIcons.ellipsisV,
+                                          size: 20.0,
+                                          color: kTealColor,
+                                        ),
+                                        onPressed: () {
+                                          AlertWidget().generateReminderDelete(
+                                              context: context,
+                                              title: '${snapshot.data[index].data()['title']}').show();
+                                        },
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -211,7 +228,20 @@ class _ReminderMainState extends State<ReminderMain> {
                                       subtitle: Text(
                                           '${snapshot.data[index].data()['recurrence']}\ttimes a day\t-\t'
                                           'Till\t${snapshot.data[index].data()['actualDate']}',
-                                          style: kReminderSubtitleTextStyle),
+                                          style: kReminderSubtitleTextStyle
+                                      ),
+                                      trailing: IconButton(
+                                        icon: Icon(
+                                          FontAwesomeIcons.ellipsisV,
+                                          size: 20.0,
+                                          color: kTealColor,
+                                        ),
+                                        onPressed: () {
+                                          AlertWidget().generateReminderDelete(
+                                              context: context,
+                                              title: '${snapshot.data[index].data()['title']}').show();
+                                        },
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
