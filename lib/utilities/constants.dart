@@ -81,10 +81,7 @@ final TextStyle kHintTextStyle = TextStyle(
 );
 
 final TextStyle kAvatarTextStyle = TextStyle(
-  color: kLightTealColor,
-  fontSize: 30.0,
-  fontWeight: FontWeight.normal
-);
+    color: kLightTealColor, fontSize: 30.0, fontWeight: FontWeight.normal);
 
 final TextStyle kCustomInputLabelStyle = TextStyle(
   color: kAmberColor,
@@ -109,11 +106,24 @@ final TextStyle kReminderContainerTextStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
+final TextStyle kReminderBulletsTextStyle = TextStyle(
+    color: kScaffoldBackgroundColor, fontFamily: 'CM Sans Serif', fontSize: 16);
+
+final TextStyle kReminderMainTextStyle =
+    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: kTealColor);
+
+final TextStyle kReminderSubtitleTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  color: kTealColor.withOpacity(0.7),
+  fontSize: 15,
+  fontStyle: FontStyle.italic,
+);
+
 // Enumerations
 
-enum LoadingType {SIGNIN, SIGNUP}
+enum LoadingType { SIGNIN, SIGNUP }
 
-enum ReminderType {RECURRING, ONETIME}
+enum ReminderType { RECURRING, ONETIME }
 
 // Decorations
 
@@ -131,8 +141,8 @@ final kLoginBoxDecorationStyle = BoxDecoration(
 
 // Methods
 
-String getMonth(month){
-  switch(month){
+String getMonth(month) {
+  switch (month) {
     case 1:
       return 'January';
       break;
@@ -175,10 +185,7 @@ String getMonth(month){
   }
 }
 
-String getPeriod(period){
-  if (period == DayPeriod.am)
-    return 'AM';
+String getPeriod(period) {
+  if (period == DayPeriod.am) return 'AM';
   return 'PM';
 }
-
-

@@ -81,8 +81,6 @@ class _ForumState extends State<Forum> {
       return buildExpandedQuestionSection(context);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -565,7 +563,7 @@ class _ForumState extends State<Forum> {
     );
   }
 
-  Future<List<Question>> _getQuestions() async {
+ /* Future<List<Question>> _getQuestions() async {
     _fbuser = await _auth.getCurrentUser();
     _uid = _fbuser.uid;
     List<Question> questions = await _questionService.getUserQuestions(_uid);
@@ -575,7 +573,7 @@ class _ForumState extends State<Forum> {
   Future<List<Question>> _getAllQuestions() async {
     _questions = await _questionService.getAllQuestions();
     return _questions;
-  }
+  }*/
 
   /*void refreshScreen(){
     setState(() {

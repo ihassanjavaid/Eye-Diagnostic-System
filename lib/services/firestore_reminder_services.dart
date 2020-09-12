@@ -56,4 +56,43 @@ class FirestoreReminderService{
       throw Exception(e);
     }
   }
+
+  Future getOneTimeReminders() async {
+    checkInternConnection();
+    String _email = await getCurrentUserEmail();
+
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('reminders')
+        .where('email', isEqualTo: _email)
+        .where('isRecurring', isEqualTo: false)
+        .get();
+    
+    return querySnapshot.docs;
+  }
+
+  Future getRecurringReminders() async {
+    checkInternConnection();
+    String _email = await getCurrentUserEmail();
+
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('reminders')
+        .where('email', isEqualTo: _email)
+        .where('isRecurring', isEqualTo: true)
+        .get();
+
+    return querySnapshot.docs;
+  }
+
+  Future<String> getTotalRemindersCount() async {
+    checkInternConnection();
+    String _email = await getCurrentUserEmail();
+
+    QuerySnapshot querySnapshot = await _firestore
+        .collection('reminders')
+        .where('email', isEqualTo: _email)
+        .get();
+
+    return '${querySnapshot.docs.length}\t total reminders';
+  }
+  
 }

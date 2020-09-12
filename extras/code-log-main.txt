@@ -56,3 +56,8 @@
 [09/09/20 01:30 PM] [Hassan] Voice Asssitant and Chatbot Complete
 [09/09/20 02:00 PM] [Mahnoor] Forum Module Completed
 
+[11/09/20 02:00 PM] [Mahnoor] Answers UI updated. Reminders debugging
+
+[12/09/20 07:00 PM] [Hassan] Reminder UI completed
+[12/09/20 08:10 PM] [Hassan] Reminder Firestore connections - dynamic passing and retrieving data
+
