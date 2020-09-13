@@ -1,4 +1,5 @@
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -51,6 +53,12 @@ class _ReminderMainState extends State<ReminderMain> {
                           ),
                           TextSpan(
                             text: 'Aide Memorie',
+                            style: kDashboardTitleTextStyle.copyWith(
+                                color: kAmberColor),
+                          ),
+                          // This Text-Span in only for Provider in order to setState() when required.
+                          TextSpan(
+                            text: '${Provider.of<ProviderData>(context).modelString}',
                             style: kDashboardTitleTextStyle.copyWith(
                                 color: kAmberColor),
                           ),

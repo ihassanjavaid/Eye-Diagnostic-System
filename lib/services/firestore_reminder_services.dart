@@ -113,5 +113,9 @@ class FirestoreReminderService{
       throw Exception(e);
     }
   }
+
+  static Future<void> deletePastReminders() async {
+    /// TODO implement functionality
+  }
   
 }

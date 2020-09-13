@@ -49,6 +49,16 @@ class ProviderData extends ChangeNotifier{
     notifyListeners();
   }
 
+  //=== for updating - setState((){}); ===
+  String _modelString = '';
+
+  String get modelString => _modelString;
+
+  void updateModelString(String model){
+    this._modelString = model;
+    notifyListeners();
+  }
+
   //=== for reminder ===
   DateTime _pickedDate = DateTime.now();
   TimeOfDay _pickedTime = TimeOfDay.fromDateTime(DateTime.now());

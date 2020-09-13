@@ -70,8 +70,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
       widget.fbUser = await widget.auth.getCurrentUser();
       await pref.setString('uid', widget.fbUser.uid);
-      //  Navigate
-      Navigator.pushReplacementNamed(context, Dashboard.id);
+      // Pop all the previous screens
+      Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+      // Navigate to the main screen
+      Navigator.pushNamed(context, Dashboard.id);
     } catch (e) {
       AlertWidget()
           .generateAlert(
@@ -96,8 +98,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
       await SharedPreferences.getInstance();
       await pref.setString('email', removeSpaces(widget.email));
       await pref.setString('displayName', widget.name);
-      // Navigate
-      Navigator.pushReplacementNamed(context, Dashboard.id);
+      // Pop all the previous screens
+      Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+      // Navigate to the main screen
+      Navigator.pushNamed(context, Dashboard.id);
     } catch (e) {
       AlertWidget()
           .generateAlert(

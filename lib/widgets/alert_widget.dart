@@ -1,9 +1,13 @@
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class AlertWidget{
+
+  // Alert for sign-in/registration fail
   generateAlert({ @required context, @required title, @required description}){
     return Alert(
       context: context,
@@ -32,6 +36,7 @@ class AlertWidget{
     );
   }
 
+  // confirmation for deleting a reminder
   generateReminderDelete({@required BuildContext context ,@required String title}){
     FirestoreReminderService _firestoreReminderService = FirestoreReminderService();
 
@@ -65,6 +70,7 @@ class AlertWidget{
               print(e);
             }
             Navigator.pop(context);
+            Provider.of<ProviderData>(context, listen: false).updateModelString('');
           },
           width: 80,
         )

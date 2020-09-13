@@ -9,6 +9,7 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/rules_screen.dar
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/test_1/category1_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
+import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
@@ -19,22 +20,27 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_scre
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSesitivity1_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitivity2_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart';
+import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'screens/nearby_medicos_screens/nearby_main_screen.dart';
 
 void main() async {
+  // Necessary if using fonts by google
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
   // Necessary for G-Sign in
   WidgetsFlutterBinding.ensureInitialized();
+  // Necessary for firebase and firestore functionality
   await Firebase.initializeApp();
+  // To delete past reminders
+  await FirestoreReminderService.deletePastReminders();
+  // Launch EyeSee
   runApp(EyeSee());
 }
 
