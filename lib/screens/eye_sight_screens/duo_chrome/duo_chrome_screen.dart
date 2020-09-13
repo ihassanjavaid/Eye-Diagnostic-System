@@ -16,7 +16,7 @@ class DuoChrome extends StatelessWidget {
           children: [
             Card(
                 child: Image(
-              image: AssetImage('assets/images/duochrome_test.png'),
+              image: AssetImage('assets/images/vision_testing/duochrome_test.png'),
               width: 400,
             )),
             SizedBox(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tcard/tcard.dart';
-import 'duo_chrome_screen.dart';
+import 'duo_chrome/duo_chrome_screen.dart';
 
 List<String> images = [
   'images/nearvision15.png',

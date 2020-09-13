@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'rules_screen.dart';
+import 'visual_acuity/test_1/rules_screen.dart';
 
 class Menu extends StatelessWidget {
   static const String id = 'menu_screen';
@@ -45,7 +45,7 @@ class Menu extends StatelessWidget {
                   child: Card(
                     elevation: 20,
                     child: Image(
-                      image: AssetImage('assets/images/menu1.png'),
+                      image: AssetImage('assets/images/vision_testing/menu1.png'),
                     ),
                   ),
                 ),
@@ -60,7 +60,7 @@ class Menu extends StatelessWidget {
                   child: Card(
                     elevation: 20,
                     child: Image(
-                      image: AssetImage('assets/images/menu2.png'),
+                      image: AssetImage('assets/images/vision_testing/menu2.png'),
                     ),
                   ),
                 ),
@@ -75,7 +75,7 @@ class Menu extends StatelessWidget {
                   child: Card(
                     elevation: 20,
                     child: Image(
-                      image: AssetImage('assets/images/menu3.png'),
+                      image: AssetImage('assets/images/vision_testing/menu3.png'),
                     ),
                   ),
                 ),
