@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:group_radio_button/group_radio_button.dart';
-import 'duo_chrome_screen.dart';
+import 'duo_chrome/duo_chrome_screen.dart';
 
 class ContrastSensitivity extends StatefulWidget {
   static const String id = 'ContrastSensitivity1_screen';

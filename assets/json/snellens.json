@@ -1,0 +1,141 @@
+[
+  {
+    "id" : 1,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/200/C.svg",
+      "assets/images/visual_acuity/snellens/200/E.svg",
+      "assets/images/visual_acuity/snellens/200/F.svg",
+      "assets/images/visual_acuity/snellens/200/Z.svg"
+
+
+    ]
+
+  },
+  {
+    "id" : 2 ,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/160/C.svg",
+      "assets/images/visual_acuity/snellens/160/E.svg",
+      "assets/images/visual_acuity/snellens/160/L.svg",
+      "assets/images/visual_acuity/snellens/160/0.svg"
+
+    ]
+
+  },
+  {
+    "id" : 3,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/125/C.svg",
+      "assets/images/visual_acuity/snellens/125/D.svg",
+      "assets/images/visual_acuity/snellens/125/T.svg",
+      "assets/images/visual_acuity/snellens/125/Z.svg"
+
+    ]
+
+  },
+  {
+    "id" : 4,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/100/E.svg",
+      "assets/images/visual_acuity/snellens/100/L.svg",
+      "assets/images/visual_acuity/snellens/100/P.svg",
+      "assets/images/visual_acuity/snellens/100/T.svg"
+
+    ]
+
+  },
+
+  {
+    "id" : 5,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/80/C.svg",
+      "assets/images/visual_acuity/snellens/80/L.svg",
+      "assets/images/visual_acuity/snellens/80/O.svg",
+      "assets/images/visual_acuity/snellens/80/T.svg"
+
+    ]
+
+  },
+
+
+  {
+    "id" : 6,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/63/C.svg",
+      "assets/images/visual_acuity/snellens/63/E.svg",
+      "assets/images/visual_acuity/snellens/63/F.svg",
+      "assets/images/visual_acuity/snellens/63/P.svg"
+
+    ]
+
+  },
+  {
+    "id" : 7,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/50/C.svg",
+      "assets/images/visual_acuity/snellens/50/P.svg",
+      "assets/images/visual_acuity/snellens/50/T.svg",
+      "assets/images/visual_acuity/snellens/50/Z.svg"
+
+    ]
+
+  },
+
+
+  {
+    "id" : 8,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/40/C.svg",
+      "assets/images/visual_acuity/snellens/40/D.svg",
+      "assets/images/visual_acuity/snellens/40/E.svg",
+      "assets/images/visual_acuity/snellens/40/L.svg"
+
+    ]
+
+  },
+
+  {
+    "id" : 9,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/32/C.svg",
+      "assets/images/visual_acuity/snellens/32/D.svg",
+      "assets/images/visual_acuity/snellens/32/L.svg",
+      "assets/images/visual_acuity/snellens/32/P.svg"
+
+    ]
+
+  },
+
+  {
+    "id" : 10,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/25/C.svg",
+      "assets/images/visual_acuity/snellens/25/E.svg",
+      "assets/images/visual_acuity/snellens/25/O.svg",
+      "assets/images/visual_acuity/snellens/25/T.svg"
+    ]
+
+  },
+
+  {
+    "id" : 11,
+    "level" : "20/20",
+    "pictures" :[
+      "assets/images/visual_acuity/snellens/20/C.svg",
+      "assets/images/visual_acuity/snellens/20/E.svg",
+      "assets/images/visual_acuity/snellens/20/F.svg",
+      "assets/images/visual_acuity/snellens/20/Z.svg"
+    ]
+
+  }
+]

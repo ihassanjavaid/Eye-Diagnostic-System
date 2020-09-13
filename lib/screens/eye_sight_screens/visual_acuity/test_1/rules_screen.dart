@@ -1,7 +1,7 @@
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'duo_chrome_screen.dart';
+import 'righteye.dart';
 class RuleScreen extends StatefulWidget {
   static const String id = 'rules_screen';
 
@@ -11,8 +11,8 @@ class RuleScreen extends StatefulWidget {
 
 class _RuleScreenState extends State<RuleScreen> {
 
-  final int _numPages = 4;
-  final int totalPage = 4;
+  final int _numPages = 3;
+  final int totalPage = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
@@ -63,8 +63,7 @@ class _RuleScreenState extends State<RuleScreen> {
                           'assets/images/rules/rule2.png'),
                       ruleBlock('Mobile should be at eye level. Distance should be 2-feet from the mobile',
                           'assets/images/rules/rule3.png'),
-                      ruleBlock('Mobile should be at eye level. Distance should be 2-feet from the mobile',
-                          'assets/images/rules/rule1.png'),
+
 
 
 
@@ -80,7 +79,7 @@ class _RuleScreenState extends State<RuleScreen> {
                     duration: Duration(milliseconds: 500),
                     curve: Curves.ease
                 ) :
-                Navigator.popAndPushNamed(context, DuoChrome.id);
+                Navigator.popAndPushNamed(context, RightEye.id);
               },
               child: Text(_currentPage!= totalPage-1?'Next':'Start'),
             )
