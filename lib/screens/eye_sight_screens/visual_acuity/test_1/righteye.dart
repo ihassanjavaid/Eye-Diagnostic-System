@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tcard/tcard.dart';
-import 'file:///C:/Users/osale/AndroidStudioProjects/Eye-Diagnostic-System/lib/screens/eye_sight_screens/duo_chrome/duo_chrome_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'data_file.dart';
