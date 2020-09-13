@@ -312,13 +312,13 @@ class ReminderDialog {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Prior to:',
+                      'Up Till:',
                       style: kDashboardButtonLabelStyle.copyWith(
                           fontSize: 18, color: kLightAmberColor),
                     ),
                     Container(
                       height: 2.0,
-                      width: 190,
+                      width: 195,
                       color: kAmberColor,
                     ),
                   ],

@@ -52,7 +52,7 @@ class _ReminderMainState extends State<ReminderMain> {
                                 color: kAmberColor),
                           ),
                           TextSpan(
-                            text: 'Aide Memorie',
+                            text: 'Journal',
                             style: kDashboardTitleTextStyle.copyWith(
                                 color: kAmberColor),
                           ),
