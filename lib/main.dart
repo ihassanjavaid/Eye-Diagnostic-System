@@ -30,12 +30,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'database/database_helper.dart';
+
 void main() async {
   // Necessary if using fonts by google
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
+
   // Necessary for G-Sign in
   WidgetsFlutterBinding.ensureInitialized();
   // Necessary for firebase and firestore functionality
@@ -43,6 +46,8 @@ void main() async {
   // To delete past reminders
   await FirestoreReminderService.deletePastReminders();
   // Launch EyeSee
+  //Database
+  DatabaseHelper.instance.database;
   runApp(EyeSee());
 }
 
