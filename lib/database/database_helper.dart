@@ -8,7 +8,10 @@ class DatabaseHelper{
   static final _dbVersion = 1;
   static final _userProfileTable = 'userProfileTable';
   static final idColumn = '_id';
-  static final nameColumn = 'name';
+  static final emailColumn = 'email';
+  static final ageColumn = 'age';
+
+
 
   //creating a singleton constructor
   DatabaseHelper._privateConstructor();
@@ -39,10 +42,10 @@ class DatabaseHelper{
     db.execute(
       '''
       CREATE TABLE $_userProfileTable(
-      $idColumn INTEGER PRIMARY KEY,
-      $nameColumn TEXT NOT NULL
+      $idColumn INTEGER PRIMARY KEY, 
+      $emailColumn TEXT NOT NULL, 
+      $ageColumn INTEGER NOT NULL      
       ) 
-         
       '''
     );
   }
