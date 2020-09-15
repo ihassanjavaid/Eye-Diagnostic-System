@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:eye_diagnostic_system/models/forum_answer_data.dart';
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:provider/provider.dart';
@@ -93,6 +94,17 @@ class FirestoreQuestionService{
     return qn.docs;
   }
 
+  Future<int> getTotalAnswers (String id) async{
+    int count = 0;
+    final answerDocuments = await _firestore.collection('answers').where('questionID', isEqualTo: id).get();
+    List<DocumentSnapshot> total = answerDocuments.docs;
+    count = total.length;
+    return count;
+
+
+
+
+  }
 
 
 
