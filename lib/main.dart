@@ -1,8 +1,8 @@
 import 'package:eye_diagnostic_system/default_route.dart';
+import 'package:eye_diagnostic_system/init.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
-import 'package:eye_diagnostic_system/utilities/init.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
