@@ -1,10 +1,11 @@
+import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
-import 'package:eye_diagnostic_system/widgets/reminder_dialog_box.dart';
+import 'package:eye_diagnostic_system/widgets/answer_dialog_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ButtonWidget{
+class FloatingButton{
 
   Widget speedDial(context) {
     return SpeedDial(
@@ -24,23 +25,24 @@ class ButtonWidget{
       shape: CircleBorder(),
       children: [
         SpeedDialChild(
-          child: Icon(FontAwesomeIcons.tablets),
+          child: Icon(FontAwesomeIcons.comment),
           labelBackgroundColor: kTealColor,
           backgroundColor: kAmberColor,
-          label: 'Recurring Medicine Schedule',
+          label: 'Answer',
           labelStyle: kSpeedDialTextStyle,
           onTap: () {
-            ReminderDialog(reminderType: ReminderType.RECURRING).announce(context);
+            AnswerDialog _answerDialog = AnswerDialog();
+            _answerDialog.showCard(context);
           },
         ),
         SpeedDialChild(
-          child: Icon(FontAwesomeIcons.calendarPlus),
+          child: Icon(FontAwesomeIcons.home),
           labelBackgroundColor: kTealColor,
           backgroundColor: kAmberColor,
-          label: 'One-time Reminder',
+          label: 'Community Home',
           labelStyle: kSpeedDialTextStyle,
           onTap: () {
-            ReminderDialog(reminderType: ReminderType.ONETIME).announce(context);
+            Navigator.pushNamed(context, Forum.id);
           },
         ),
       ],

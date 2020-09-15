@@ -7,8 +7,10 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dar
 import 'package:eye_diagnostic_system/services/firestore_answer_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/answer_dialog_box.dart';
+import 'package:eye_diagnostic_system/widgets/speed_dial_forum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 
 class ForumDetails extends StatefulWidget {
@@ -17,27 +19,6 @@ class ForumDetails extends StatefulWidget {
   _ForumDetailsState createState() => _ForumDetailsState();
 }
 
-var ForumPostArr = [
-  new ForumPostEntry("User1", "2 Days ago", 0, 0,
-      "Hello,\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-  new ForumPostEntry("User2", "23 Hours ago", 1, 0,
-      "Pellentesque justo metus, finibus porttitor consequat vitae, tincidunt vitae quam. Vestibulum molestie sem diam. Nullam pretium semper tempus. Maecenas lobortis lacus nunc, id lacinia nunc imperdiet tempor. Mauris mi ipsum, finibus consectetur eleifend a, maximus eget lorem. Praesent a magna nibh. In congue sapien sed velit mattis sodales. Nam tempus pulvinar metus, in gravida elit tincidunt in. Curabitur sed sapien commodo, fringilla tortor eu, accumsan est. Proin tincidunt convallis dolor, a faucibus sapien auctor sodales. Duis vitae dapibus metus. Nulla sit amet porta ipsum, posuere tempor tortor.\n\nCurabitur mauris dolor, cursus et mi id, mattis sagittis velit. Duis eleifend mi et ante aliquam elementum. Ut feugiat diam enim, at placerat elit semper vitae. Phasellus vulputate quis ex eu dictum. Cras sapien magna, faucibus at lacus vel, faucibus viverra lorem. Phasellus quis dui tristique, ultricies velit non, cursus lectus. Suspendisse neque nisl, vestibulum non dui in, vulputate placerat elit. Sed at convallis mauris, eu blandit dolor. Vivamus suscipit iaculis erat eu condimentum. Aliquam erat volutpat. Curabitur posuere commodo arcu vel consectetur."),
-  new ForumPostEntry("User3", "2 Days ago", 5, 0,
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-  new ForumPostEntry("User4", "2 Days ago", 0, 0,
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-];
-
-class ForumPostEntry {
-  final String username;
-  final String hours;
-  int likes;
-  int dislikes;
-  final String text;
-
-  ForumPostEntry(
-      this.username, this.hours, this.likes, this.dislikes, this.text);
-}
 
 class _ForumDetailsState extends State<ForumDetails> {
   @override
@@ -226,6 +207,19 @@ class _ForumDetailsState extends State<ForumDetails> {
           ),
         ),
       ),
+      /*floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.comment,
+        ),
+        backgroundColor: kAmberColor,
+        foregroundColor: kLightTealColor,
+        tooltip: 'Answer',
+        onPressed: (){
+          _answerDialog.showCard(context);
+        },
+      ),*/
+      floatingActionButton: FloatingButton().speedDial(context),
+
     );
   }
 
@@ -260,10 +254,10 @@ class _ForumDetailsState extends State<ForumDetails> {
                     ),
                   ),
                 ),
-                SizedBox(
+                /*SizedBox(
                   height: 14,
-                ),
-                Row(
+                ),*/
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
@@ -287,7 +281,7 @@ class _ForumDetailsState extends State<ForumDetails> {
                       ],
                     ),
                   ],
-                ),
+                )*/
               ],
             ),
           ),
@@ -297,14 +291,6 @@ class _ForumDetailsState extends State<ForumDetails> {
   }
 }
 
-class ForumPost extends StatelessWidget {
-  final ForumPostEntry entry;
-  ForumPost(this.entry);
-  @override
-  Widget build(BuildContext context) {
-    //return buildAnswerSection();
-  }
-}
 
 class IconWithText extends StatelessWidget {
   final IconData iconData;
