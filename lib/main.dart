@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   // perform the necessary initializations
-  init();
+  await init();
   // Launch EyeSee
   runApp(EyeSee());
 }
