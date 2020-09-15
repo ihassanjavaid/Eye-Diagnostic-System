@@ -7,7 +7,7 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dar
 import 'package:eye_diagnostic_system/services/firestore_answer_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/answer_dialog_box.dart';
-import 'package:eye_diagnostic_system/widgets/speed_dial_forum.dart';
+import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -25,19 +25,12 @@ class _ForumDetailsState extends State<ForumDetails> {
   AnswerDialog _answerDialog = AnswerDialog();
   FirestoreAnswerService _answerService = FirestoreAnswerService();
 
-  Future getAnswers(String id) async {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    QuerySnapshot qn = await _firestore
-        .collection('answers')
-        .where('questionID', isEqualTo: id)
-        .get();
-    return qn.docs;
-  }
+
 
   Expanded buildExpandedAnswerSection(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
-          future: getAnswers(
+          future: _answerService.getAnswers(
             Provider.of<ProviderData>(context, listen: true).questionID,
           ),
           builder: (_, snapshot) {
@@ -218,7 +211,7 @@ class _ForumDetailsState extends State<ForumDetails> {
           _answerDialog.showCard(context);
         },
       ),*/
-      floatingActionButton: FloatingButton().speedDial(context),
+      floatingActionButton: ButtonWidget().speedDialForum(context),
 
     );
   }
@@ -231,7 +224,7 @@ class _ForumDetailsState extends State<ForumDetails> {
           Container(
             color: kTealColor,
             padding: const EdgeInsets.only(
-                left: 15, right: 15, top: 20.0, bottom: 10.0),
+                left: 15, right: 15, top: 10.0, bottom: 10.0),
             alignment: Alignment.center,
           ),
           Container(
@@ -240,6 +233,7 @@ class _ForumDetailsState extends State<ForumDetails> {
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 2, right: 2),
@@ -254,34 +248,6 @@ class _ForumDetailsState extends State<ForumDetails> {
                     ),
                   ),
                 ),
-                /*SizedBox(
-                  height: 14,
-                ),*/
-                /*Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _answerDialog.showCard(context);
-                          },
-                          child: Icon(
-                            Icons.comment,
-                            color: kAmberColor,
-                            size: 30.0,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text('Answer',
-                            style:
-                                kLoginLabelStyle.copyWith(color: kAmberColor)),
-                      ],
-                    ),
-                  ],
-                )*/
               ],
             ),
           ),

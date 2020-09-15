@@ -24,6 +24,7 @@ class FirestoreAnswerService{
       'userName': name
     });
   }
+
   Future <List<Answer>> getQuestionAnswers (String questionid) async {
     List<Answer> answers = [];
 
@@ -47,11 +48,10 @@ class FirestoreAnswerService{
     }
     return answers;
   }
+
   Future<void> like(String id, int likes)async{
     await checkInternConnection();
 
-    //final currentUser = await _auth.getCurrentUser();
-    // Fetch all questions
     final document = await _firestore.doc('answers/$id').update({'likes': likes+=1});
   }
 
@@ -59,6 +59,27 @@ class FirestoreAnswerService{
     await checkInternConnection();
 
     final document = await _firestore.doc('answers/$id').update({'dislikes': dislikes+=1});
+  }
+
+  Future getAnswers(String id) async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    QuerySnapshot qn = await _firestore
+        .collection('answers')
+        .where('questionID', isEqualTo: id)
+        .get();
+    return qn.docs;
+  }
+
+  Future<void> incrementAnswer(String qid)async{
+    int qviews;
+
+    final questiondocs = await _firestore.collection('questions').doc(qid).get();
+    qviews = questiondocs.data()['views'];
+
+    await checkInternConnection();
+
+    await _firestore.doc('questions/$qid').update({'views':qviews+=1});
+
   }
 
 

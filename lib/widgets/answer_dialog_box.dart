@@ -114,6 +114,7 @@ class AnswerDialog {
                             likes: 0,
                             dislikes: 0,
                           );
+                          _answerService.incrementAnswer(Provider.of<ProviderData>(context, listen: false).questionID);
 
                         }catch(e){
                           print(e.toString());

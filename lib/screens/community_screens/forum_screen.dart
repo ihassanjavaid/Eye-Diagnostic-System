@@ -153,35 +153,46 @@ class _ForumState extends State<Forum> {
                         ),
                         subtitle: Align(
                           alignment: Alignment.centerLeft,
-                          child: Container(
-                            height: 20.0,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0)),
-                                color: kTealColor),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8.0, right: 8.0, top: 1.5),
-                              child: Text(
-                                snapshot.data[index].data()['tag'],
-                                style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: kLightTealColor),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 20.0,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20.0),
+                                        bottomRight: Radius.circular(20.0)),
+                                    color: kTealColor),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, right: 8.0, top: 1.5),
+                                  child: Text(
+                                    snapshot.data[index].data()['tag'],
+                                    style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: kLightTealColor),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                        trailing: Chip(
-                          backgroundColor: kAmberColor.withOpacity(0.7),
-                          shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          label: Text(
-                            snapshot.data[index].data()['views'].toString(),
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: kLightTealColor),
+                              Container(
+                                height: 20.0,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: kTealColor.withOpacity(0.8)),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, right: 8.0, top: 1.5),
+                                  child: Text(
+                                    snapshot.data[index].data()['views'].toString() + '  Answers ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                        color: kLightTealColor
+                                    ),
+                                  ),
+                                ),
+
+                              ),
+                            ],
                           ),
                         ),
                       ),
