@@ -21,14 +21,6 @@ class _NearbyMedicosState extends State<NearbyMedicos> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-       /* decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: kBgColorGradientArrayBlues,
-            stops: [0.1, 0.4, 0.7, 0.9],
-          ),
-        ),*/
        color: kScaffoldBackgroundColor,
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),

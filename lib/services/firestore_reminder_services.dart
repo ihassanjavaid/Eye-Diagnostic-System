@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eye_diagnostic_system/models/reminder_data.dart';
-import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
+import 'package:eye_diagnostic_system/utilities/global_methods.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_service.dart';
 

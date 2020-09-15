@@ -42,7 +42,6 @@ class CustomTextField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         labelText: this.placeholder,
-        hasFloatingPlaceholder: true,
         labelStyle: kCustomInputLabelStyle,
         border: OutlineInputBorder(
           borderSide: BorderSide(

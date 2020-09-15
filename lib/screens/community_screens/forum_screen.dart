@@ -8,26 +8,19 @@ import 'package:eye_diagnostic_system/services/firestore_question_services.dart'
 import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/question_dialogue_box.dart';
-import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:eye_diagnostic_system/widgets/tags_dialog_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-
-import '../extras_screen.dart';
 
 class Forum extends StatefulWidget {
   static const String id = 'forum_screen';
   @override
   _ForumState createState() => _ForumState();
 }
-
 
 class _ForumState extends State<Forum> {
   String _uid;
@@ -42,11 +35,6 @@ class _ForumState extends State<Forum> {
   FirestoreUserService _userService = FirestoreUserService();
   bool _userPressed = false;
   bool _tagPressed = false;
-
-  //String selectedTagItem = '';
-
-
-
 
   Expanded choosePosts() {
     if(_userPressed){

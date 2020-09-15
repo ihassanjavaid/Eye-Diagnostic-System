@@ -1,7 +1,5 @@
-import 'package:connectivity/connectivity.dart';
-import 'package:eye_diagnostic_system/models/user_data.dart';
+import 'package:eye_diagnostic_system/utilities/global_methods.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth {
@@ -68,9 +66,7 @@ class Auth {
     }
   }
 
-
-
-
+  /// TODO update user info
   /*Future<void> updateUserInfo({String displayName = '', String photoURL = '',}) async {
     final userUpdateInfo = UserUpdateInfo();
 
@@ -90,11 +86,4 @@ class Auth {
     }
   }*/
 
-  Future<void> checkInternConnection() async {
-    final ConnectivityResult connectivityStatus =
-        await (Connectivity().checkConnectivity());
-
-    if (connectivityStatus == ConnectivityResult.none)
-      throw 'No internet connection';
-  }
 }

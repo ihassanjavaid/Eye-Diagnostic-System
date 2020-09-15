@@ -1,14 +1,10 @@
 import 'dart:async';
-import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'community_screens/forum_screen.dart';
-import 'login_screen.dart';
 
 class Extras extends StatefulWidget {
   static const String id = 'extras_screen';
@@ -239,33 +235,6 @@ class _ExtrasState extends State<Extras> {
       bottomNavigationBar: Container(
         height: 52.0,
         color: kScaffoldBackgroundColor,
-        /*child: Align(
-          alignment: Alignment.centerLeft,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.popAndPushNamed(context, Dashboard.id);
-            },
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 20.0,
-                ),
-                Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Text(
-                  'Back',
-                  style: kBottomNavBarTextStyle
-                ),
-              ],
-            ),
-          )
-        ),*/
       ),
     );
   }

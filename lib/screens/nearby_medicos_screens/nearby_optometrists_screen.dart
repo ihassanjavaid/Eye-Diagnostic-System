@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,14 +20,6 @@ class _NearbyOptometristsState extends State<NearbyOptometrists> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-       /* decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: kBgColorGradientArrayBlues,
-            stops: [0.1, 0.4, 0.7, 0.9],
-          ),
-        ),*/
        color: kScaffoldBackgroundColor,
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),

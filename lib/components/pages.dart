@@ -17,7 +17,5 @@ class Pages{
     ReminderMain.id /// TODO make intent
   ];
 
-  static bool isAvailable(String givenPage){
-    return _pagesList.contains(givenPage);
-  }
+  static bool isAvailable(String givenPage) => _pagesList.contains(givenPage);
 }

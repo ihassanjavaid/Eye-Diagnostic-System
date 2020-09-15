@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Gradient Colors
-
-/*final kBgColorGradientArrayBlues = [
-  Color(0xFF3594DD),
-  Color(0xFF4563DB),
-  Color(0xFF5036D5),
-  Color(0xFF5b16D0),
-];*/
-
-/*final kBgColorGradientArrayGreys = [
-  Color(0xFF949494),
-  Color(0xFFd1d1d1),
-  Color(0xFFb5b5b5),
-  Color(0xFF949494),
-];*/
-
 // Colors
 
 final kScaffoldBackgroundColor = Color(0xFFedf5f4);
@@ -25,6 +9,14 @@ final kAmberColor = Color(0xffF2B035);
 final kLightAmberColor = Color(0xffF2CA7E);
 final kPeachColor = Color(0xffF2AA80);
 final kMapsGreyColor = Color(0xFFf5f5f5);
+
+// Theme Data
+
+final kEyeSeeThemeData = ThemeData(
+  backgroundColor: kScaffoldBackgroundColor,
+  dialogBackgroundColor: kScaffoldBackgroundColor,
+  scaffoldBackgroundColor: kScaffoldBackgroundColor,
+);
 
 // Text Styles
 
@@ -138,54 +130,3 @@ final kLoginBoxDecorationStyle = BoxDecoration(
     ),
   ],
 );
-
-// Methods
-
-String getMonth(month) {
-  switch (month) {
-    case 1:
-      return 'January';
-      break;
-    case 2:
-      return 'February';
-      break;
-    case 3:
-      return 'March';
-      break;
-    case 4:
-      return 'April';
-      break;
-    case 5:
-      return 'May';
-      break;
-    case 6:
-      return 'June';
-      break;
-    case 7:
-      return 'July';
-      break;
-    case 8:
-      return 'August';
-      break;
-    case 9:
-      return 'September';
-      break;
-    case 10:
-      return 'October';
-      break;
-    case 11:
-      return 'November';
-      break;
-    case 12:
-      return 'December';
-      break;
-    default:
-      return 'January';
-      break;
-  }
-}
-
-String getPeriod(period) {
-  if (period == DayPeriod.am) return 'AM';
-  return 'PM';
-}

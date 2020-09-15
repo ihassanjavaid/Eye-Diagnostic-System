@@ -1,12 +1,8 @@
 import 'dart:async';
-import 'package:eye_diagnostic_system/screens/extras_screen.dart';
-import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'community_screens/forum_screen.dart';
-import 'login_screen.dart';
 import 'on_boarding_screen.dart';
 
 class SignOutScreen extends StatefulWidget {
@@ -72,14 +68,6 @@ class _SignOutScreenState extends State<SignOutScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-       /* decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: kBgColorGradientArrayBlues,
-            stops: [0.1, 0.4, 0.7, 0.9],
-          ),
-        ),*/
        color: kScaffoldBackgroundColor,
         child: Column(
           children: [

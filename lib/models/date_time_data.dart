@@ -3,12 +3,6 @@ class CustomDate {
   int month = 1;
   int day = 1;
 
-  /*CustomDate() {
-    this.year = 2019;
-    this.month = 1;
-    this.day = 1;
-  }*/
-
   @override
   String toString() {
     String dayStr;
@@ -31,11 +25,6 @@ class CustomDate {
 class CustomTime {
   int hours = 0;
   int minutes = 0;
-
-  /*CustomTime() {
-    this.hours = 0;
-    this.minutes = 0;
-  }*/
 
   @override
   String toString() {

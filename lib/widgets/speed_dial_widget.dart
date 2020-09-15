@@ -7,9 +7,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'answer_dialog_box.dart';
 
-class ButtonWidget {
+class SpeedDialWidget {
 
-  Widget speedDial(context) {
+  Widget speedDialReminder(context) {
     return SpeedDial(
       marginRight: 12.0,
       marginBottom: 12.0,

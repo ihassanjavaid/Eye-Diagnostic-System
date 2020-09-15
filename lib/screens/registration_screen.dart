@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'loading_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -295,14 +293,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 color: kScaffoldBackgroundColor,
                 height: double.infinity,
                 width: double.infinity,
-                /*decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: kBgColorGradientArrayBlues,
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),*/
               ),
               Container(
                 height: double.infinity,

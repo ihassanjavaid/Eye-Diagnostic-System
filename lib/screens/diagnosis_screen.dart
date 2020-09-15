@@ -65,14 +65,6 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        /*decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: kBgColorGradientArrayBlues,
-            stops: [0.1, 0.4, 0.7, 0.9],
-          ),
-        ),*/
         color: kScaffoldBackgroundColor,
         child: Column(
           children: [

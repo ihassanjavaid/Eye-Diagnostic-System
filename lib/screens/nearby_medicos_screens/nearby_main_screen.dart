@@ -18,12 +18,6 @@ class _NearbyMainState extends State<NearbyMain> {
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            /*gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: kBgColorGradientArrayBlues,
-            ),*/
             color: kScaffoldBackgroundColor
           ),
           child: Column(
