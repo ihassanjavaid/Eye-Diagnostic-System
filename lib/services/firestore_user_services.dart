@@ -1,16 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connectivity/connectivity.dart';
 import 'package:eye_diagnostic_system/models/user_data.dart';
-
+import 'package:eye_diagnostic_system/utilities/global_methods.dart';
 import 'auth_service.dart';
-
-Future<void> checkInternConnection() async {
-  final ConnectivityResult connectivityStatus =
-  await (Connectivity().checkConnectivity());
-
-  if (connectivityStatus == ConnectivityResult.none)
-    throw 'No internet connection';
-}
 
 class FirestoreUserService {
   final _firestore = FirebaseFirestore.instance;
@@ -63,6 +54,7 @@ class FirestoreUserService {
     return initial[0];
   }
 
+  /// TODO get all users (if required)
   /*Future<List<UserData>> getAllUsers() async {
     List<UserData> users = [];
 

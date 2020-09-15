@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_question_services.dart';
@@ -16,7 +15,6 @@ class MessageDialog {
   MessageDialog({this.receiverEmail});
 
   final String receiverEmail;
- //final FirestoreService _firestoreService = FirestoreService();
   final messageTitleController = TextEditingController();
   final messageTextController = TextEditingController();
 

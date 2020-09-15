@@ -3,9 +3,6 @@ import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-//String globalSelectedItem;
-
 class ReminderChoiceChip extends StatefulWidget {
   static final String id = 'forum_user_user_questions';
   @override
@@ -28,22 +25,22 @@ class _ReminderChoiceChipState extends State<ReminderChoiceChip> {
           spacing: 5.0,
           runSpacing: 5.0,
           children: <Widget>[
-            choiceChipWidget(chipList),
+            RemChoiceChipWidget(chipList),
           ],
         ));
   }
 }
 
-class choiceChipWidget extends StatefulWidget {
+class RemChoiceChipWidget extends StatefulWidget {
   final List<String> reportList;
 
-  choiceChipWidget(this.reportList);
+  RemChoiceChipWidget(this.reportList);
 
   @override
-  _choiceChipWidgetState createState() => new _choiceChipWidgetState();
+  _RemChoiceChipWidgetState createState() => new _RemChoiceChipWidgetState();
 }
 
-class _choiceChipWidgetState extends State<choiceChipWidget> {
+class _RemChoiceChipWidgetState extends State<RemChoiceChipWidget> {
   String selectedChoice = "";
 
   _buildChoiceList() {

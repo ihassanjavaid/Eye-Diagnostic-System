@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -289,14 +288,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: double.infinity,
                 width: double.infinity,
                 color: kScaffoldBackgroundColor,
-                /*decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: kBgColorGradientArrayBlues,
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),*/
               ),
               Container(
                 height: double.infinity,

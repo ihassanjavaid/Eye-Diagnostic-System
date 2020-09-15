@@ -2,6 +2,7 @@ import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/models/reminder_data.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/utilities/global_methods.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:eye_diagnostic_system/widgets/reminder_choice_chip.dart';
 import 'package:flutter/cupertino.dart';

@@ -10,7 +10,6 @@ import 'package:eye_diagnostic_system/widgets/answer_dialog_box.dart';
 import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 
 class ForumDetails extends StatefulWidget {
@@ -211,7 +210,7 @@ class _ForumDetailsState extends State<ForumDetails> {
           _answerDialog.showCard(context);
         },
       ),*/
-      floatingActionButton: ButtonWidget().speedDialForum(context),
+      floatingActionButton: SpeedDialWidget().speedDialForum(context),
 
     );
   }

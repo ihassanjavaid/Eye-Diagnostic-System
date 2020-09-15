@@ -1,17 +1,13 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
-import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
-import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/eye_facts_utility.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'assistant_screens/assistant_chatbot_screen.dart';
 import 'extras_screen.dart';
@@ -24,12 +20,12 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  //Auth _auth = Auth();
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   Timer _timer;
   double _circleWidth = 3.5;
+  /// TODO eye facts
   EyeFacts _eyeFacts = EyeFacts();
   // print(await _eyeFacts.getFact());
 
@@ -80,14 +76,6 @@ class _DashboardState extends State<Dashboard> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(
-          /*decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: kBgColorGradientArrayBlues,
-            ),
-          ),*/
           color: kScaffoldBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.only(top: 40.0),
@@ -168,29 +156,6 @@ class _DashboardState extends State<Dashboard> {
                         child: _buildMainDashboardContainer(
                             'EyeSee\nDiagnostics', ''),
                       ),
-                      /*GestureDetector(
-                        onTap: () {},
-                        child: _buildMainDashboardContainer(
-                            'Disease\nDiagnosis',
-                            'assets/images/svgs/disease.svg'),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: _buildMainDashboardContainer(
-                            'Disorder\nIdentification',
-                            '___'),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: _buildMainDashboardContainer(
-                            'Infection\nPrognosis',
-                            '___'),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: _buildMainDashboardContainer(
-                            'Fundus\nAnalysis', 'assets/images/svgs/fundo.svg'),
-                      ),*/
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, NearbyMain.id);
@@ -270,30 +235,11 @@ class _DashboardState extends State<Dashboard> {
                     ],
                   ),
                 ),
-                /*Expanded(
-                  child: Align(
-                    alignment: FractionalOffset.bottomRight,
-                    child: FlatButton(
-                      onPressed: () {
-                        _currentPage != _numPages - 1
-                            ? _pageController.nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.ease)
-                            : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginScreen()),
-                              );
-                      },
-                    ),
-                  ),
-                ),*/
               ],
             ),
           ),
         ),
       ),
-      /*floatingActionButton: ButtonWidget().speedDial(context),*/
     );
   }
 
@@ -302,12 +248,6 @@ class _DashboardState extends State<Dashboard> {
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
       child: Container(
         decoration: BoxDecoration(
-          /*gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: [0.1, 0.5, 0.7, 0.9],
-            colors: kBgColorGradientArrayBlues,
-          ),*/
           color: kAmberColor.withOpacity(0.7),
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
         ),
@@ -319,18 +259,13 @@ class _DashboardState extends State<Dashboard> {
                 width: double.infinity,
                 height: 300,
                 decoration: BoxDecoration(
-                 /* gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                    colors: kBgColorGradientArrayGreys,
-                  ),*/
                  color: kTealColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12.0),
                       topRight: Radius.circular(12.0),
                       bottomLeft: Radius.circular(12.0)),
                 ),
+                /// TODO put image here
                 /*child: SvgPicture.asset(
                   image,
                 ),*/
@@ -344,11 +279,6 @@ class _DashboardState extends State<Dashboard> {
                 style: kDashboardTitleTextStyle.copyWith(color: kTealColor),
               ),
             ),
-            /*Positioned(
-              bottom: 70.0,
-              left: 50.0,
-              child:
-            ),*/
           ],
         ),
       ),

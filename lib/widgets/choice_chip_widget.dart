@@ -3,9 +3,6 @@ import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-//String globalSelectedItem;
-
 class ChoiceChipWidget extends StatefulWidget {
   static final String id = 'forum_user_user_questions';
   @override
