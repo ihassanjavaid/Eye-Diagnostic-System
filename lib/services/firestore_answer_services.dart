@@ -29,11 +29,11 @@ class FirestoreAnswerService{
 
     await checkInternConnection();
 
-    //final currentUser = await _auth.getCurrentUser();
+
     // Fetch all questions
     final questionDocuments = await _firestore.collection('answers').where('questionID', isEqualTo: questionid).get();
 
-    // Get each user
+
     for (var ans in questionDocuments.docs) {
       Answer answer = Answer(
           answer: ans.data()['answer'],
@@ -51,13 +51,13 @@ class FirestoreAnswerService{
   Future<void> like(String id, int likes)async{
     await checkInternConnection();
 
-    final document = await _firestore.doc('answers/$id').update({'likes': likes+=1});
+    await _firestore.doc('answers/$id').update({'likes': likes+=1});
   }
 
   Future<void> dislike(String id, int dislikes)async{
     await checkInternConnection();
 
-    final document = await _firestore.doc('answers/$id').update({'dislikes': dislikes+=1});
+   await _firestore.doc('answers/$id').update({'dislikes': dislikes+=1});
   }
 
   Future getAnswers(String id) async {
