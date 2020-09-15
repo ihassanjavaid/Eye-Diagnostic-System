@@ -86,7 +86,7 @@ class ButtonWidget {
           label: 'Community Home',
           labelStyle: kSpeedDialTextStyle,
           onTap: () {
-            Navigator.pushNamed(context, Forum.id);
+            Navigator.popAndPushNamed(context, Forum.id);
           },
         ),
       ],
