@@ -28,7 +28,7 @@ class EyeSee extends StatelessWidget {
           scaffoldBackgroundColor: kScaffoldBackgroundColor,
         ),
         initialRoute: AutoLoginService.id,
-        routes: DefaultEyeSeeRoutes.EYESEE_DEFAULT_ROUTE,
+        routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );
   }

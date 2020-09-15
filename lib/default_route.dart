@@ -24,8 +24,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
-class DefaultEyeSeeRoutes{
-  static Map<String, WidgetBuilder> _eyeseeDefaultRoute = {
+class DefaultEyeSeeRoute{
+  static Map<String, WidgetBuilder> _defaultRoute = {
     AutoLoginService.id:(context) => AutoLoginService(),
     ForumDetails.id:(context) => ForumDetails(),
     Forum.id:(context) => Forum(),
@@ -50,5 +50,5 @@ class DefaultEyeSeeRoutes{
     ReminderMain.id: (context) => ReminderMain(),
   };
 
-  static Map<String, WidgetBuilder> get EYESEE_DEFAULT_ROUTE => _eyeseeDefaultRoute;
+  static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
 }
