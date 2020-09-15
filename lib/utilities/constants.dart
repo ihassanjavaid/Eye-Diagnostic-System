@@ -10,6 +10,14 @@ final kLightAmberColor = Color(0xffF2CA7E);
 final kPeachColor = Color(0xffF2AA80);
 final kMapsGreyColor = Color(0xFFf5f5f5);
 
+// Theme Data
+
+final kEyeSeeThemeData = ThemeData(
+  backgroundColor: kScaffoldBackgroundColor,
+  dialogBackgroundColor: kScaffoldBackgroundColor,
+  scaffoldBackgroundColor: kScaffoldBackgroundColor,
+);
+
 // Text Styles
 
 final kOnBoardingTitleStyle = TextStyle(
@@ -122,4 +130,3 @@ final kLoginBoxDecorationStyle = BoxDecoration(
     ),
   ],
 );
-

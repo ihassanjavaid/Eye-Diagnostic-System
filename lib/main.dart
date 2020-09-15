@@ -22,15 +22,10 @@ class EyeSee extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Eye See',
-        theme: ThemeData(
-          backgroundColor: kScaffoldBackgroundColor,
-          dialogBackgroundColor: kScaffoldBackgroundColor,
-          scaffoldBackgroundColor: kScaffoldBackgroundColor,
-        ),
+        theme: kEyeSeeThemeData,
         initialRoute: AutoLoginService.id,
         routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );
   }
-
 }
