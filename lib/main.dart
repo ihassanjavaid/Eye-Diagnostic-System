@@ -47,7 +47,7 @@ void main() async {
   await FirestoreReminderService.deletePastReminders();
   // Launch EyeSee
   //Database
-  DatabaseHelper.instance.database;
+  //DatabaseHelper.instance.database;
   runApp(EyeSee());
 }
 

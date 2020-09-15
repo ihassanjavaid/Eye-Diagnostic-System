@@ -8,6 +8,7 @@ import 'package:eye_diagnostic_system/services/firestore_question_services.dart'
 import 'package:eye_diagnostic_system/services/firestore_user_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/question_dialogue_box.dart';
+import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:eye_diagnostic_system/widgets/tags_dialog_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,27 +46,7 @@ class _ForumState extends State<Forum> {
   //String selectedTagItem = '';
 
 
-  Future getAllPosts() async {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    QuerySnapshot qn = await _firestore.collection('questions').get();
-    return qn.docs;
-  }
 
-  Future getTagPosts() async {
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    QuerySnapshot qn = await _firestore
-        .collection('questions')
-        .where('tag', isEqualTo: Provider.of<ProviderData>(context).tagData)
-        .get();
-    return qn.docs;
-  }
-
-  Future getUserPosts() async{
-    FirebaseFirestore _firestore = FirebaseFirestore.instance;
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    QuerySnapshot qn = await _firestore.collection('questions').where('email', isEqualTo: _pref.getString('email')).get();
-    return qn.docs;
-  }
 
   Expanded choosePosts() {
     if(_userPressed){
@@ -112,7 +93,7 @@ class _ForumState extends State<Forum> {
   Expanded buildExpandedQuestionSection(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
-          future: getAllPosts(),
+          future: _questionService.getAllPosts(),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -216,7 +197,7 @@ class _ForumState extends State<Forum> {
   Expanded buildExpandedTagPostsSection(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
-          future: getTagPosts(),
+          future: _questionService.getTagPosts(context),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -323,7 +304,7 @@ class _ForumState extends State<Forum> {
   Expanded buildExpandedUserPostsSection(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
-          future: getUserPosts(),
+          future: _questionService.getUserPosts(),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -426,6 +407,7 @@ class _ForumState extends State<Forum> {
           }),
     );
   }
+
 
   Widget _buildTopPanel() {
     return ClipPath(

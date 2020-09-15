@@ -1,6 +1,10 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:eye_diagnostic_system/models/forum_question_data.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'auth_service.dart';
 import 'firestore_user_services.dart';
 
@@ -65,6 +69,28 @@ class FirestoreQuestionService{
       questions.add(question);
     }
     return questions;
+  }
+
+  Future getAllPosts() async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    QuerySnapshot qn = await _firestore.collection('questions').get();
+    return qn.docs;
+  }
+
+  Future getTagPosts(context) async {
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    QuerySnapshot qn = await _firestore
+        .collection('questions')
+        .where('tag', isEqualTo: Provider.of<ProviderData>(context).tagData)
+        .get();
+    return qn.docs;
+  }
+
+  Future getUserPosts() async{
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    QuerySnapshot qn = await _firestore.collection('questions').where('email', isEqualTo: _pref.getString('email')).get();
+    return qn.docs;
   }
 
 
