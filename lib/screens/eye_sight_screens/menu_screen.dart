@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'visual_acuity/test_1/rules_screen.dart';
+import 'visual_acuity/rules_screen.dart';
 
 class Menu extends StatelessWidget {
   static const String id = 'menu_screen';

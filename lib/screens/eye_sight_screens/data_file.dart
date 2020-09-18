@@ -13,6 +13,23 @@ set rightVAT (String val){
 String get leftVAT {
   return leftEyeVAT;
 }
+
+set rightDCT (String val){
+  this.rightEyeDCT = val;
+}
+String get rightDCT {
+  return this.rightEyeDCT;
+}
+set leftDCT (String val){
+  this.leftEyeDCT = val;
+}
+String get leftDCT {
+  return this.leftEyeDCT;
+}
+
+
+
+
 }
 
 

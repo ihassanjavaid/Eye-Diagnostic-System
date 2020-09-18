@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome/coverleftduo.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/data_file.dart';
 
-
-class DuoChrome extends StatelessWidget {
-  static const String id = 'duo_chrome_screen';
+class LeftDuochrome extends StatelessWidget {
+  static const String id = 'LeftDuochrome';
+  Data1 data = new Data1();
+  String rightDCTstatus;
+  LeftDuochrome({this.rightDCTstatus});
   String status;
   @override
   Widget build(BuildContext context) {
@@ -54,14 +55,8 @@ class DuoChrome extends StatelessWidget {
                         color: Colors.redAccent,
                         onPressed: () {
                           status = 'short-sightedness';
+                          print(this.rightDCTstatus);
                           print(status);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CoverLeft(
-                                      rightDCTstatus: status,
-                                    )),
-                          );
                         },
                         child: Text(
                           'Red',
@@ -74,14 +69,6 @@ class DuoChrome extends StatelessWidget {
                         color: Colors.green,
                         onPressed: () {
                           status = 'long-sightedness';
-                          print(status);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CoverLeft(
-                                      rightDCTstatus: status,
-                                    )),
-                          );
                         },
                         child: Text(
                           'Green',
@@ -95,13 +82,6 @@ class DuoChrome extends StatelessWidget {
                         onPressed: () {
                           status = 'perfect';
                           print(status);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CoverLeft(
-                                      rightDCTstatus: status,
-                                    )),
-                          );
                         },
                         child: Text(
                           'Same',

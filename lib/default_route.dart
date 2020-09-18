@@ -4,9 +4,9 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_scr
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
-import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/test_1/rules_screen.dart';
-import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/test_1/righteye.dart';
-import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/test_1/left_eye.dart';
+import 'file:///C:/Users/osale/AndroidStudioProjects/Eye-Diagnostic-System/lib/screens/eye_sight_screens/visual_acuity/rules_screen.dart';
+import 'file:///C:/Users/osale/AndroidStudioProjects/Eye-Diagnostic-System/lib/screens/eye_sight_screens/visual_acuity/righteye.dart';
+import 'file:///C:/Users/osale/AndroidStudioProjects/Eye-Diagnostic-System/lib/screens/eye_sight_screens/visual_acuity/left_eye.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
@@ -16,6 +16,8 @@ import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_scr
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome/duo_chrome_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome/coverleftduo.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome/left_duochrome.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSesitivity1_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitivity2_screen.dart';
@@ -48,6 +50,9 @@ class DefaultEyeSeeRoute{
     LeftEye.id: (context) => LeftEye(),
     RightEye.id: (context) => RightEye(),
     ReminderMain.id: (context) => ReminderMain(),
+    CoverLeft.id: (context) => CoverLeft(),
+    LeftDuochrome.id: (context) => LeftDuochrome(),
+
   };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;

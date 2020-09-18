@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcard/tcard.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'data_file.dart';
+import '../data_file.dart';
 import 'dart:io';
 import 'coverleft.dart';
 
