@@ -3,6 +3,7 @@ import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_scr
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/ios_back_widget.dart';
 import 'package:flutter/material.dart';
 import 'community_screens/forum_screen.dart';
 
@@ -86,6 +87,7 @@ class _ExtrasState extends State<Extras> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
+                    BackWidgetiOS(),
                     Image(
                       image: AssetImage('assets/images/eye_noball.png'),
                       height: 100,
@@ -239,3 +241,4 @@ class _ExtrasState extends State<Extras> {
     );
   }
 }
+
