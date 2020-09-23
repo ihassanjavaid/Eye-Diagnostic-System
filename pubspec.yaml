@@ -59,6 +59,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/contrast/
     - assets/logos/
     - assets/images/svgs/
     - assets/images/colorblindness/
