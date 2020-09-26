@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
-import 'contrast_screen2.dart';
-class ContrastScreen1 extends StatelessWidget {
-  static const String id = 'ContrastScreen1';
+import 'contrast_screen3.dart';
+class ContrastScreen2 extends StatelessWidget {
+  static const String id = 'ContrastScreen2';
   String contQ1;
+  ContrastScreen2({this.contQ1});
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         children: [
@@ -38,7 +38,8 @@ class ContrastScreen1 extends StatelessWidget {
                   child: Container(
                     child: Column(
                       children: [
-                        Text("Problems while driving in the rain or at night",
+                        Text(
+                          "Problems while driving in the rain or at night",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -53,24 +54,23 @@ class ContrastScreen1 extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                onPressed: (){
-                                  contQ1="often";
+                                onPressed: () {
+                                  contQ1 = "often";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ContrastScreen2(
-                                          contQ1: contQ1,
-                                        )),
+                                        builder: (context) => ContrastScreen3(
+                                              contQ1: contQ1,
+                                            )),
                                   );
                                 },
                                 color: Colors.redAccent,
-                                child: Text("Often",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold
-                                  ),
+                                child: Text(
+                                  "Often",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
                                 ),
-
                               ),
                               SizedBox(
                                 width: 10,
@@ -79,25 +79,23 @@ class ContrastScreen1 extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                onPressed: (){
-                                  contQ1="sometimes";
+                                onPressed: () {
+                                  contQ1 = "sometimes";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ContrastScreen2(
-                                          contQ1: contQ1,
-                                        )),
+                                              contQ1: contQ1,
+                                            )),
                                   );
-
                                 },
                                 color: Colors.blue,
-                                child: Text("Sometime",
+                                child: Text(
+                                  "Sometime",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.bold
-                                  ),
+                                      fontWeight: FontWeight.bold),
                                 ),
-
                               ),
                               SizedBox(
                                 width: 10,
@@ -106,31 +104,27 @@ class ContrastScreen1 extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                onPressed: (){
-                                  contQ1="never";
+                                onPressed: () {
+                                  contQ1 = "never";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ContrastScreen2(
-                                          contQ1: contQ1,
-                                        )),
+                                              contQ1: contQ1,
+                                            )),
                                   );
-
                                 },
                                 color: Colors.green,
-                                child: Text("Never",
+                                child: Text(
+                                  "Never",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.bold
-                                  ),
+                                      fontWeight: FontWeight.bold),
                                 ),
-
                               ),
-
                             ],
                           ),
                         )
-
                       ],
                     ),
                   ),
