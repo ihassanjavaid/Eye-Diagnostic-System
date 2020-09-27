@@ -7,8 +7,7 @@ import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen1.dart';
-
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/righteye.dart';
 void main() async {
   // perform the necessary initializations
   await init();
@@ -26,7 +25,7 @@ class EyeSee extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Eye See',
         theme: kEyeSeeThemeData,
-        initialRoute: ContrastScreen1.id,
+        initialRoute: RightEye.id,
         routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );

@@ -4,12 +4,14 @@ import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'contrast_screen3.dart';
 class ContrastScreen2 extends StatelessWidget {
   static const String id = 'ContrastScreen2';
-  String contQ1;
+  String contQ1,contQ2;
+
   ContrastScreen2({this.contQ1});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Column(
         children: [
           Container(
@@ -24,9 +26,11 @@ class ContrastScreen2 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
+                  height: 400,
                   child: Card(
+
                     child: Image(
-                      image: AssetImage('assets/images/contrast/night.gif'),
+                      image: AssetImage('assets/images/contrast/coffee.gif'),
                     ),
                   ),
                 ),
@@ -39,7 +43,7 @@ class ContrastScreen2 extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          "Problems while driving in the rain or at night",
+                          "Difficulty pouring coffee into a dark mug",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -55,12 +59,12 @@ class ContrastScreen2 extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 onPressed: () {
-                                  contQ1 = "often";
+                                  contQ2 = "often";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ContrastScreen3(
-                                              contQ1: contQ1,
+                                              contQ1: contQ1,contQ2: contQ2,
                                             )),
                                   );
                                 },
@@ -80,12 +84,12 @@ class ContrastScreen2 extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 onPressed: () {
-                                  contQ1 = "sometimes";
+                                  contQ2 = "sometimes";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ContrastScreen2(
-                                              contQ1: contQ1,
+                                        builder: (context) => ContrastScreen3(
+                                              contQ1: contQ1,contQ2: contQ2,
                                             )),
                                   );
                                 },
@@ -105,12 +109,12 @@ class ContrastScreen2 extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 onPressed: () {
-                                  contQ1 = "never";
+                                  contQ2 = "never";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ContrastScreen2(
-                                              contQ1: contQ1,
+                                        builder: (context) => ContrastScreen3(
+                                              contQ1: contQ1,contQ2: contQ2,
                                             )),
                                   );
                                 },
