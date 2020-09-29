@@ -1,9 +1,9 @@
 # 👁️ Eye Diagnostic System - _EyeSee_
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 [![Build Status](https://travis-ci.org/ihassanjavaid/ihassanjavaid.svg?branch=master)](https://travis-ci.org/ihassanjavaid/ihassanjavaid)
 [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest)
+[![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
 
 A _one-stop_ eye disease solution!
@@ -14,12 +14,12 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 
 ## 🌐 Technologies
 
-- [Flutter](https://flutter.dev/)
-- [Firebase](https://firebase.google.com/)
+- [Flutter](https://flutter.dev/) <img src="https://img.shields.io/badge/Flutter%20-%2302569B.svg?&style=for-the-badge&logo=Flutter&logoColor=white" />
+- [Firebase](https://firebase.google.com/) <img src="https://img.shields.io/badge/firebase%20-%23039BE5.svg?&style=for-the-badge&logo=firebase"/>
 - [Google Cloud Patform](https://cloud.google.com/)
 - [DialogFlow](https://dialogflow.cloud.google.com/)
-- [Python](https://www.python.org/)
-- [TensorFlow 2.0](https://www.tensorflow.org/federated)
+- [Python](https://www.python.org/) <img src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/>
+- [TensorFlow 2.0](https://www.tensorflow.org/federated) <img src="https://img.shields.io/badge/TensorFlow%20-%23FF6F00.svg?&style=for-the-badge&logo=TensorFlow&logoColor=white" />
 
 ### 👨🏻‍💻 Development Team
 
@@ -37,4 +37,6 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 ##
 
 ![ForTheBadge built-by-developers](http://ForTheBadge.com/images/badges/built-by-developers.svg)
+
+<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
 
