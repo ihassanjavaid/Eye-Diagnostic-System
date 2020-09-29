@@ -14,12 +14,12 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 
 ## 🌐 Technologies
 
-- [Flutter](https://flutter.dev/) <img src="https://img.shields.io/badge/Flutter%20-%2302569B.svg?&style=for-the-badge&logo=Flutter&logoColor=white" />
-- [Firebase](https://firebase.google.com/) <img src="https://img.shields.io/badge/firebase%20-%23039BE5.svg?&style=for-the-badge&logo=firebase"/>
+- [](https://flutter.dev/) <img src="https://img.shields.io/badge/Flutter%20-%2302569B.svg?&style=for-the-badge&logo=Flutter&logoColor=white" />
+- [](https://firebase.google.com/) <img src="https://img.shields.io/badge/firebase%20-%23039BE5.svg?&style=for-the-badge&logo=firebase"/>
 - [Google Cloud Patform](https://cloud.google.com/)
 - [DialogFlow](https://dialogflow.cloud.google.com/)
-- [Python](https://www.python.org/) <img src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/>
-- [TensorFlow 2.0](https://www.tensorflow.org/federated) <img src="https://img.shields.io/badge/TensorFlow%20-%23FF6F00.svg?&style=for-the-badge&logo=TensorFlow&logoColor=white" />
+- [](https://www.python.org/) <img src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/>
+- [](https://www.tensorflow.org/federated) <img src="https://img.shields.io/badge/TensorFlow%20-%23FF6F00.svg?&style=for-the-badge&logo=TensorFlow&logoColor=white" />
 
 ### 👨🏻‍💻 Development Team
 
