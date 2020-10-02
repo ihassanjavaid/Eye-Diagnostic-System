@@ -1,12 +1,13 @@
 import 'package:eye_diagnostic_system/default_route.dart';
 import 'package:eye_diagnostic_system/init.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSesitivity1_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome/duo_chrome_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/righteye.dart';
 void main() async {
   // perform the necessary initializations
   await init();
@@ -24,7 +25,7 @@ class EyeSee extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Eye See',
         theme: kEyeSeeThemeData,
-        initialRoute: DuoChrome.id,
+        initialRoute: RightEye.id,
         routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );

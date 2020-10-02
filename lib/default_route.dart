@@ -4,9 +4,9 @@ import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_scr
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
-import 'file:///C:/Users/osale/AndroidStudioProjects/Eye-Diagnostic-System/lib/screens/eye_sight_screens/visual_acuity/rules_screen.dart';
-import 'file:///C:/Users/osale/AndroidStudioProjects/Eye-Diagnostic-System/lib/screens/eye_sight_screens/visual_acuity/righteye.dart';
-import 'file:///C:/Users/osale/AndroidStudioProjects/Eye-Diagnostic-System/lib/screens/eye_sight_screens/visual_acuity/left_eye.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/rules_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/righteye.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/left_eye.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
@@ -22,13 +22,17 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/near_vision_scre
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSesitivity1_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitivity2_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen1.dart';
 import 'package:flutter/material.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen4.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class DefaultEyeSeeRoute{
   static Map<String, WidgetBuilder> _defaultRoute = {
     AutoLoginService.id:(context) => AutoLoginService(),
+    ContrastScreen1.id:(context) => ContrastScreen1(),
     ForumDetails.id:(context) => ForumDetails(),
     Forum.id:(context) => Forum(),
     LoginScreen.id: (context) => LoginScreen(),
@@ -52,6 +56,9 @@ class DefaultEyeSeeRoute{
     ReminderMain.id: (context) => ReminderMain(),
     CoverLeft.id: (context) => CoverLeft(),
     LeftDuochrome.id: (context) => LeftDuochrome(),
+    ContrastScreen4.id: (context) => ContrastScreen4(),
+
+
 
   };
 
