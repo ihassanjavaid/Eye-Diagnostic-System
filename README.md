@@ -43,7 +43,6 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 
 >- [Mahnoor Fatima Saad](https://twitter.com/agirlismahnoor)
 >- [Muhammad Hasan Malik](https://www.fiverr.com/users/hassanjavaid98/)
->- ~[Muhammad Osama Saleem](https://twitter.com/iosamasaleem)~
 
 ### 👩🏻‍🏫 Supervised By
 
