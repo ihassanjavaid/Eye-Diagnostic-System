@@ -2,3 +2,4 @@
 /// TODO make patient record json
 /// TODO Make Heroku server for python (or use the next solution)
 /// TODO Install ngrok and expose localhost on the web
+/// TODO Sort community threads on basis of date (make firebase index)

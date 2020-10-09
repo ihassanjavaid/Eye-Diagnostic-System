@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/eye_facts_utility.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -145,7 +146,9 @@ class _DashboardState extends State<Dashboard> {
                     },
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, VisionTestingMain.id);
+                        },
                         child: _buildMainDashboardContainer('Eye\nSight Test',
                             'assets/images/svgs/eye_sight.svg'),
                       ),

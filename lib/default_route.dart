@@ -14,6 +14,7 @@ import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome/duo_chrome_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/duo_chrome/coverleftduo.dart';
@@ -43,6 +44,7 @@ class DefaultEyeSeeRoute{
     Extras.id: (context) => Extras(),
     DiagnosisScreen.id: (context) => DiagnosisScreen(),
     Menu.id: (context) => Menu(),
+    VisionTestingMain.id: (context) => VisionTestingMain(),
     DuoChrome.id: (context) => DuoChrome(),
     NearVision.id: (context) => NearVision(),
     ContrastSensitivity.id: (context) => ContrastSensitivity(),
@@ -57,8 +59,6 @@ class DefaultEyeSeeRoute{
     CoverLeft.id: (context) => CoverLeft(),
     LeftDuochrome.id: (context) => LeftDuochrome(),
     ContrastScreen4.id: (context) => ContrastScreen4(),
-
-
 
   };
 

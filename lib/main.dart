@@ -25,7 +25,7 @@ class EyeSee extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Eye See',
         theme: kEyeSeeThemeData,
-        initialRoute: RightEye.id,
+        initialRoute: AutoLoginService.id,
         routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );
