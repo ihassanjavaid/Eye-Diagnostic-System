@@ -29,5 +29,4 @@ class EyeSee extends StatelessWidget {
         routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );
-  }
 }
