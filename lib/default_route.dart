@@ -24,6 +24,8 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitiv
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen1.dart';
 import 'package:flutter/material.dart';
+import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen4.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
@@ -54,6 +56,9 @@ class DefaultEyeSeeRoute{
     ReminderMain.id: (context) => ReminderMain(),
     CoverLeft.id: (context) => CoverLeft(),
     LeftDuochrome.id: (context) => LeftDuochrome(),
+    ContrastScreen4.id: (context) => ContrastScreen4(),
+
+
 
   };
 

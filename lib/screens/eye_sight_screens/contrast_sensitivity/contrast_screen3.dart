@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
-import 'contrast_screen2.dart';
-class ContrastScreen1 extends StatelessWidget {
-  static const String id = 'ContrastScreen1';
-  String contQ1;
+class ContrastScreen3 extends StatelessWidget {
+  static const String id = 'ContrastScreen2';
+  String contQ1,contQ2,contQ3;
+  ContrastScreen3({this.contQ1,this.contQ2});
+
+
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         children: [
@@ -20,13 +21,12 @@ class ContrastScreen1 extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
                 Container(
                   child: Card(
                     child: Image(
-                      image: AssetImage('assets/images/contrast/night.gif'),
+                      image: AssetImage('assets/images/contrast/reading.gif'),
                     ),
                   ),
                 ),
@@ -36,12 +36,19 @@ class ContrastScreen1 extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Container(
+                    height: 200,
                     child: Column(
+
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Problems while driving in the rain or at night",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        Center(
+                          child: Text(
+                            "Eyes easily tired while reading",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         Padding(
@@ -53,51 +60,23 @@ class ContrastScreen1 extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                onPressed: (){
-                                  contQ1="often";
+                                onPressed: () {
+                                  contQ3 = "often";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ContrastScreen2(
-                                          contQ1: contQ1,
+                                        builder: (context) => ContrastScreen3(
+                                          contQ1: contQ1,contQ2: contQ2,
                                         )),
                                   );
                                 },
                                 color: Colors.redAccent,
-                                child: Text("Often",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold
-                                  ),
-                                ),
-
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                onPressed: (){
-                                  contQ1="sometimes";
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ContrastScreen2(
-                                          contQ1: contQ1,
-                                        )),
-                                  );
-
-                                },
-                                color: Colors.blue,
-                                child: Text("Sometime",
+                                child: Text(
+                                  "Often",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.bold
-                                  ),
+                                      fontWeight: FontWeight.bold),
                                 ),
-
                               ),
                               SizedBox(
                                 width: 10,
@@ -106,31 +85,47 @@ class ContrastScreen1 extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                onPressed: (){
-                                  contQ1="never";
+                                onPressed: () {
+                                  contQ3 = "sometimes";
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ContrastScreen2(
-                                          contQ1: contQ1,
+                                        builder: (context) => ContrastScreen3(
+                                          contQ1: contQ1,contQ2: contQ2,
                                         )),
                                   );
+                                },
+                                color: Colors.blue,
+                                child: Text(
+                                  "Sometime",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                onPressed: () {
+                                  contQ3 = "never";
+                                  print(contQ3);
 
                                 },
                                 color: Colors.green,
-                                child: Text("Never",
+                                child: Text(
+                                  "Never",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.bold
-                                  ),
+                                      fontWeight: FontWeight.bold),
                                 ),
-
                               ),
-
                             ],
                           ),
                         )
-
                       ],
                     ),
                   ),
@@ -142,4 +137,10 @@ class ContrastScreen1 extends StatelessWidget {
       ),
     );
   }
+
 }
+
+
+
+
+

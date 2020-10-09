@@ -6,63 +6,63 @@ import '../data_file.dart';
 import 'dart:io';
 import 'coverleft.dart';
 
-
+// List of svgs
 const List<String> images = [
-  "assets/images/visual_acuity/snellens/200/20C.svg",
-  "assets/images/visual_acuity/snellens/200/32D.svg",
-  "assets/images/visual_acuity/snellens/200/20F.svg",
-  "assets/images/visual_acuity/snellens/200/32L.svg",
+  "assets/images/visual_acuity/snellens/200C.svg",
+  "assets/images/visual_acuity/snellens/200D.svg",
+  "assets/images/visual_acuity/snellens/200F.svg",
+  "assets/images/visual_acuity/snellens/200L.svg",
 
-  "assets/images/visual_acuity/snellens/160/20C.svg",
-  "assets/images/visual_acuity/snellens/160/20E.svg",
-  "assets/images/visual_acuity/snellens/160/32L.svg",
-  "assets/images/visual_acuity/snellens/160/25O.svg",
+  "assets/images/visual_acuity/snellens/160C.svg",
+  "assets/images/visual_acuity/snellens/160E.svg",
+  "assets/images/visual_acuity/snellens/160L.svg",
+  "assets/images/visual_acuity/snellens/160O.svg",
 
-  "assets/images/visual_acuity/snellens/125/20C.svg",
-  "assets/images/visual_acuity/snellens/125/32D.svg",
-  "assets/images/visual_acuity/snellens/125/25T.svg",
-  "assets/images/visual_acuity/snellens/125/20Z.svg",
+  "assets/images/visual_acuity/snellens/125C.svg",
+  "assets/images/visual_acuity/snellens/125D.svg",
+  "assets/images/visual_acuity/snellens/125T.svg",
+  "assets/images/visual_acuity/snellens/125Z.svg",
 
-  "assets/images/visual_acuity/snellens/100/20E.svg",
-  "assets/images/visual_acuity/snellens/100/32L.svg",
-  "assets/images/visual_acuity/snellens/100/32P.svg",
-  "assets/images/visual_acuity/snellens/100/25T.svg",
+  "assets/images/visual_acuity/snellens/100E.svg",
+  "assets/images/visual_acuity/snellens/100L.svg",
+  "assets/images/visual_acuity/snellens/100P.svg",
+  "assets/images/visual_acuity/snellens/100T.svg",
 
 
-  "assets/images/visual_acuity/snellens/80/20C.svg",
-  "assets/images/visual_acuity/snellens/80/32L.svg",
-  "assets/images/visual_acuity/snellens/80/25O.svg",
-  "assets/images/visual_acuity/snellens/80/25T.svg",
+  "assets/images/visual_acuity/snellens/80C.svg",
+  "assets/images/visual_acuity/snellens/80L.svg",
+  "assets/images/visual_acuity/snellens/80O.svg",
+  "assets/images/visual_acuity/snellens/80T.svg",
 
-  "assets/images/visual_acuity/snellens/63/20C.svg",
-  "assets/images/visual_acuity/snellens/63/20E.svg",
-  "assets/images/visual_acuity/snellens/63/20F.svg",
-  "assets/images/visual_acuity/snellens/63/32P.svg",
+  "assets/images/visual_acuity/snellens/63C.svg",
+  "assets/images/visual_acuity/snellens/63E.svg",
+  "assets/images/visual_acuity/snellens/63F.svg",
+  "assets/images/visual_acuity/snellens/63P.svg",
 
-  "assets/images/visual_acuity/snellens/50/20C.svg",
-  "assets/images/visual_acuity/snellens/50/32P.svg",
-  "assets/images/visual_acuity/snellens/50/25T.svg",
-  "assets/images/visual_acuity/snellens/50/20Z.svg",
+  "assets/images/visual_acuity/snellens/50C.svg",
+  "assets/images/visual_acuity/snellens/50P.svg",
+  "assets/images/visual_acuity/snellens/50T.svg",
+  "assets/images/visual_acuity/snellens/50Z.svg",
 
-  "assets/images/visual_acuity/snellens/40/20C.svg",
-  "assets/images/visual_acuity/snellens/40/32D.svg",
-  "assets/images/visual_acuity/snellens/40/20E.svg",
-  "assets/images/visual_acuity/snellens/40/32L.svg",
+  "assets/images/visual_acuity/snellens/40C.svg",
+  "assets/images/visual_acuity/snellens/40D.svg",
+  "assets/images/visual_acuity/snellens/40E.svg",
+  "assets/images/visual_acuity/snellens/40L.svg",
 
-  "assets/images/visual_acuity/snellens/32/20C.svg",
-  "assets/images/visual_acuity/snellens/32/32D.svg",
-  "assets/images/visual_acuity/snellens/32/32L.svg",
-  "assets/images/visual_acuity/snellens/32/32P.svg",
+  "assets/images/visual_acuity/snellens/32C.svg",
+  "assets/images/visual_acuity/snellens/32D.svg",
+  "assets/images/visual_acuity/snellens/32L.svg",
+  "assets/images/visual_acuity/snellens/32P.svg",
 
-  "assets/images/visual_acuity/snellens/25/20C.svg",
-  "assets/images/visual_acuity/snellens/25/20E.svg",
-  "assets/images/visual_acuity/snellens/25/25O.svg",
-  "assets/images/visual_acuity/snellens/25/25T.svg",
+  "assets/images/visual_acuity/snellens/25C.svg",
+  "assets/images/visual_acuity/snellens/25E.svg",
+  "assets/images/visual_acuity/snellens/25O.svg",
+  "assets/images/visual_acuity/snellens/25T.svg",
 
-  "assets/images/visual_acuity/snellens/20/20C.svg",
-  "assets/images/visual_acuity/snellens/20/20E.svg",
-  "assets/images/visual_acuity/snellens/20/20F.svg",
-  "assets/images/visual_acuity/snellens/20/20Z.svg",
+  "assets/images/visual_acuity/snellens/20C.svg",
+  "assets/images/visual_acuity/snellens/20E.svg",
+  "assets/images/visual_acuity/snellens/20F.svg",
+  "assets/images/visual_acuity/snellens/20Z.svg",
 
 ];
 
@@ -70,11 +70,13 @@ const List<String> images = [
 
 
 
-int count=0;
-int score = 0;
-int picNum=1;
-bool status=false;
+int count=0; //count the number of pics in a set of 4
+int score = 0; // count the score in a set of 4
+int picNum=1; // number of pic shown
+bool status=false; //status of each test(set of four)
 
+
+// list that generate cards according to the number of pic in a image list
 List<Widget> cards = List.generate(
   images.length,
       (int index) {
@@ -93,7 +95,7 @@ List<Widget> cards = List.generate(
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16.0),
-        child: SvgPicture.asset(
+        child: SvgPicture.asset( // use svg builder here
           images[index],
           fit: BoxFit.cover,
         ),
@@ -117,6 +119,7 @@ class _Category1State extends State<RightEye> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('Visual Acuity'),
@@ -134,6 +137,7 @@ class _Category1State extends State<RightEye> {
                     cards: cards,
                     controller: _controller,
                     onForward: (index, info) {
+                      //testing start
                       print("==============================");
                       print(index);
                       print(info.direction);
@@ -145,22 +149,30 @@ class _Category1State extends State<RightEye> {
                       count++;
                       print(count);
                       print("==============================");
+                      //testing end
 
+
+                      // if a user swipe a card right
                       if (info.direction == SwipDirection.Right) {
 
-                            score++;
-                            picNum++;
+                            score++; //increment score because the picture is visible to user
+                            picNum++; // increase the pic number that will shown to user
 
                         if(count %4 !=0 && score< 3 ){
+                          //testing start
                           print("score after");
                           print(score);
+                          //testing end
 
                         }
-
+                        // if score is greater then or equal to 3, then the test set is passed
                         else if(count %4 ==0 && score>=3){
+                          //testing start
                           print("Test Passed");
-                          count=1;
+                          count=0;
+                          score=0;
                         }
+                        // if the score is less than 3 system navigate the user to the cover left screen
                         else if(count%4==0 && score<3){
 
                           print('test failed');
@@ -172,32 +184,27 @@ class _Category1State extends State<RightEye> {
                         }
 
 
-                        /*
-
-                        // if score is less than half+1 images length then the test goes on
-                        if(score < 3){
-                          print(score);
-                        }
-                        else if(score >= 3){
-                          print('Test Passed');
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => DuoChrome()),
-                          );
-                        }
-
-                         */
+                        // if direction of swipe is left means the image is not visible to user
 
                       } else if (info.direction == SwipDirection.Left) {
-                        print('Not recognized');
 
-                          if(count==2 && score<2){
+                        //testing start
+                        print("=======================");
+                        print('Not recognized');
+                        print(count);
+                        print(score);
+                        //testing end
+
+
+                        // if third image shown to user and the score is less than 3,means test set failed
+                          if(count==3 && score<2){
                             print("Test failed");
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => CoverLeft()),
                             );
                           }
+                          // if the 4 pic of a set is shown to a user and score is less than 3, test set failed
                           else if(count%4==0 && score<3){
                             print('test failed');
                             Navigator.push(
@@ -207,20 +214,12 @@ class _Category1State extends State<RightEye> {
 
                           }
 
-
-                        /*
-                        if(index >=(images.length/2)  && score<images.length/2){
-                          if(score<1){
-                            data.rightEyeVAT = level;
-                            print("test failed");
-                            print(data.rightEyeVAT);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => NearVision()),
-                            );
+                          // if score is greater then or equal to 3, then the test set is passed
+                          else if(count%4==0 && score>3){
+                            print("Test Passed");
+                            count=0;
+                            score=0;
                           }
-
-                        }*/
 
                       }
                     },
@@ -229,6 +228,8 @@ class _Category1State extends State<RightEye> {
                       print('Not recognized');
                       print(score);
                     },
+
+                    // the last card
                     onEnd: () {
                       picNum++;
                       if(count %4 ==0 && score>=3){
@@ -248,24 +249,6 @@ class _Category1State extends State<RightEye> {
                           MaterialPageRoute(builder: (context) => CoverLeft()),
                         );
                       }
-                      /*
-
-                      if(score<images.length-1){
-                        data.rightEyeVAT =level;
-                        print("test failed");
-                        print(data.rightEyeVAT);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => NearVision()),
-                        );
-                      }
-                      else{
-                        print("test passed");
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => DuoChrome()),
-                        );
-                      }*/
                     },
                   ),
                 ),
