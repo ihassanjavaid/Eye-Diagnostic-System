@@ -74,15 +74,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     children: <Widget>[
                       buildPageViewBlock(
                           'Your\tOne-Stop\nEye\tCare\tSolution',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          'Disease, Infection & Disorder Diagnosis coupled with fundus analysis, alongside services like medicine reminders and community.',
                           'assets/images/on_boarding/onBoarding1.png'),
                       buildPageViewBlock(
                           'Artificially\nIntelligent\tPrognostics',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          'Employing the finest Machine Learning and Artifical Intelligence techniques for accurate and reliable diagnosis.',
                           'assets/images/on_boarding/onBoarding2.png'),
                       buildPageViewBlock(
                           'Eye\tCare\nIn\tYour\tHands',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus auctor sem pretium pellentesque.',
+                          'A doctor in your hands, and at your home, costing nothing but a few taps on the screen.',
                           'assets/images/on_boarding/onBoarding3.png'),
                     ],
                   ),
