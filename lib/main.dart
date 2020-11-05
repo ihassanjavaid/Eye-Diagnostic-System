@@ -1,7 +1,7 @@
 import 'package:eye_diagnostic_system/default_route.dart';
 import 'package:eye_diagnostic_system/init.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
-import 'package:eye_diagnostic_system/services/auto_login_service.dart';
+import 'package:eye_diagnostic_system/splash.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +23,7 @@ class EyeSee extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Eye See',
         theme: kEyeSeeThemeData,
-        initialRoute: AutoLoginService.id,
+        initialRoute: Splash.id,
         routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );

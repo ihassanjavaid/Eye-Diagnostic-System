@@ -24,6 +24,7 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSesitivi
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrastSensitivity2_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/menu_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen1.dart';
+import 'package:eye_diagnostic_system/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen4.dart';
 
@@ -59,7 +60,7 @@ class DefaultEyeSeeRoute{
     CoverLeft.id: (context) => CoverLeft(),
     LeftDuochrome.id: (context) => LeftDuochrome(),
     ContrastScreen4.id: (context) => ContrastScreen4(),
-
+    Splash.id: (context) => Splash()
   };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
