@@ -1,7 +1,6 @@
 # 👁️ Eye Diagnostic System - _EyeSee_
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Build Status](https://travis-ci.org/ihassanjavaid/ihassanjavaid.svg?branch=master)](https://travis-ci.org/ihassanjavaid/ihassanjavaid)
 [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest)
 [![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=ihassanjavaid.Eye-Diagnostic-System)
