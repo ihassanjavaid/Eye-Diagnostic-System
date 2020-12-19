@@ -3,6 +3,7 @@ import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_voice_
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_screen.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
+import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen.dart';
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/rules_screen.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/visual_acuity/righteye.dart';
@@ -27,9 +28,9 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensiti
 import 'package:eye_diagnostic_system/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensitivity/contrast_screen4.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'screens/diagnosis_screens/camera_screen.dart';
 
 class DefaultEyeSeeRoute{
   static Map<String, WidgetBuilder> _defaultRoute = {
@@ -60,7 +61,9 @@ class DefaultEyeSeeRoute{
     CoverLeft.id: (context) => CoverLeft(),
     LeftDuochrome.id: (context) => LeftDuochrome(),
     ContrastScreen4.id: (context) => ContrastScreen4(),
-    Splash.id: (context) => Splash()
+    Splash.id: (context) => Splash(),
+    ReportingScreen.id: (context) => ReportingScreen(),
+    CameraScreen.id: (context) => CameraScreen()
   };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;

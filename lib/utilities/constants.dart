@@ -9,6 +9,10 @@ final kAmberColor = Color(0xffF2B035);
 final kLightAmberColor = Color(0xffF2CA7E);
 final kPeachColor = Color(0xffF2AA80);
 final kMapsGreyColor = Color(0xFFf5f5f5);
+final kDiseaseIndicationColor = Color(0xFF99111e);
+final kMildDiseaseIndicatorColor =  kAmberColor;
+final kMildestDiseaseIndicatorColor = kLightAmberColor;
+final kNoDiseaseIndicatorColor = kTealColor;
 
 // Theme Data
 
@@ -53,6 +57,12 @@ final TextStyle kDashboardTitleTextStyle = TextStyle(
 final TextStyle kDashboardSubtitleTextStyle = TextStyle(
   fontSize: 26.0,
   fontFamily: 'CM Sans Serif',
+);
+
+final TextStyle kChartStatsTextStyle = TextStyle(
+  fontSize: 16.0,
+  fontFamily: 'CM Sans Serif',
+  color: kTealColor
 );
 
 final kDashboardButtonLabelStyle = TextStyle(

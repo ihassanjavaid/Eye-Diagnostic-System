@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:eye_diagnostic_system/screens/diagnosis_screens/camera_screen.dart';
+import 'package:camera/camera.dart';
 
 class DiagnosisScreen extends StatefulWidget {
   static const String id = 'diagnosis_screen';
@@ -107,7 +110,10 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        /// TODO : Testing only, remove from here
+                        Navigator.pushNamed(context, ReportingScreen.id);
+                      },
                       child: Icon(
                         FontAwesomeIcons.lowVision,
                         color: kTealColor,
@@ -133,7 +139,19 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        /// TODO : Testing only, remove from here
+
+                        // Initialize Camera
+                        final cameras = await availableCameras();
+                        final firstCamera = cameras.first;
+
+                        Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) => CameraScreen(
+                          camera: firstCamera,
+                        ))
+                        );
+                      },
                       child: Icon(
                         FontAwesomeIcons.eye,
                         color: kTealColor,
