@@ -23,6 +23,7 @@ class _ReminderMainState extends State<ReminderMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: SpeedDialWidget().speedDialReminder(context),
       body: Container(
         height: double.infinity,
@@ -54,7 +55,8 @@ class _ReminderMainState extends State<ReminderMain> {
                           ),
                           // This Text-Span in only for Provider in order to setState() when required.
                           TextSpan(
-                            text: '${Provider.of<ProviderData>(context).modelString}',
+                            text:
+                                '${Provider.of<ProviderData>(context).modelString}',
                             style: kDashboardTitleTextStyle.copyWith(
                                 color: kAmberColor),
                           ),
@@ -63,19 +65,22 @@ class _ReminderMainState extends State<ReminderMain> {
                     ),
                     Container(
                       child: FutureBuilder(
-                        future: _firestoreReminderService.getTotalRemindersCount(),
+                        future:
+                            _firestoreReminderService.getTotalRemindersCount(),
                         builder: (BuildContext context,
                             AsyncSnapshot<dynamic> snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return Text(
                               'Loading...',
-                              style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+                              style: kDashboardTitleTextStyle.copyWith(
+                                  fontSize: 20.0),
                             );
                           } else {
                             return Text(
                               snapshot.data.toString(),
-                              style: kDashboardTitleTextStyle.copyWith(fontSize: 20.0),
+                              style: kDashboardTitleTextStyle.copyWith(
+                                  fontSize: 20.0),
                             );
                           }
                         },
@@ -144,8 +149,7 @@ class _ReminderMainState extends State<ReminderMain> {
                                       subtitle: Text(
                                           '${snapshot.data[index].data()['actualTime']}\t-\t'
                                           '${snapshot.data[index].data()['actualDate']}',
-                                          style: kReminderSubtitleTextStyle
-                                      ),
+                                          style: kReminderSubtitleTextStyle),
                                       trailing: IconButton(
                                         icon: Icon(
                                           FontAwesomeIcons.ellipsisV,
@@ -153,9 +157,12 @@ class _ReminderMainState extends State<ReminderMain> {
                                           color: kTealColor,
                                         ),
                                         onPressed: () {
-                                          AlertWidget().generateReminderDelete(
-                                              context: context,
-                                              title: '${snapshot.data[index].data()['title']}').show();
+                                          AlertWidget()
+                                              .generateReminderDelete(
+                                                  context: context,
+                                                  title:
+                                                      '${snapshot.data[index].data()['title']}')
+                                              .show();
                                         },
                                       ),
                                     ),
@@ -232,8 +239,7 @@ class _ReminderMainState extends State<ReminderMain> {
                                       subtitle: Text(
                                           '${snapshot.data[index].data()['recurrence']}\ttimes a day\t-\t'
                                           'Till\t${snapshot.data[index].data()['actualDate']}',
-                                          style: kReminderSubtitleTextStyle
-                                      ),
+                                          style: kReminderSubtitleTextStyle),
                                       trailing: IconButton(
                                         icon: Icon(
                                           FontAwesomeIcons.ellipsisV,
@@ -241,9 +247,12 @@ class _ReminderMainState extends State<ReminderMain> {
                                           color: kTealColor,
                                         ),
                                         onPressed: () {
-                                          AlertWidget().generateReminderDelete(
-                                              context: context,
-                                              title: '${snapshot.data[index].data()['title']}').show();
+                                          AlertWidget()
+                                              .generateReminderDelete(
+                                                  context: context,
+                                                  title:
+                                                      '${snapshot.data[index].data()['title']}')
+                                              .show();
                                         },
                                       ),
                                     ),
