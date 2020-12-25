@@ -6,10 +6,32 @@ import 'package:path/path.dart';
 class DatabaseHelper{
   static final _dbName = 'eyeseeDatabase.db';
   static final _dbVersion = 1;
+
+  //columns for user profile table
   static final _userProfileTable = 'userProfileTable';
   static final idColumn = '_id';
   static final emailColumn = 'email';
   static final ageColumn = 'age';
+  static final displayName = 'displayName';
+  static final photoRef = 'photoRef';
+
+  //columns for reminders table
+  static final _remindersTable = 'remindersTable';
+  static final actualDate = 'actualDate';
+  static final isRecurring = 'isRecurring';
+  static final timestamp = 'timestamp';
+  static final recurrence = 'recurrence';
+
+  //columns for reports table
+  static final _reportsTable = 'reportsTable';
+  static final onMedicine = 'onMedicine';
+  static final report = 'report';
+
+  //columns for ailments table
+  static final _ailmentsTable = 'ailmentsTable';
+  static final reportid = 'reportid';
+  static final name = 'name';
+
 
 
 
@@ -44,7 +66,43 @@ class DatabaseHelper{
       CREATE TABLE $_userProfileTable(
       $idColumn INTEGER PRIMARY KEY, 
       $emailColumn TEXT NOT NULL, 
-      $ageColumn INTEGER NOT NULL      
+      $ageColumn INTEGER NOT NULL   
+      $displayName TEXT NOT NULL, 
+      $photoRef TEXT NOT NULL   
+      ) 
+      '''
+    );
+
+    db.execute(
+        '''
+      CREATE TABLE $_remindersTable(
+      $idColumn INTEGER PRIMARY KEY, 
+      $emailColumn TEXT NOT NULL,
+      $actualDate TEXT NOT NULL,
+      $isRecurring INTEGER NOT NULL, 
+      $timestamp TEXT NOT NULL, 
+      $recurrence INTEGER NOT NULL, 
+      ) 
+      '''
+    );
+
+    db.execute(
+        '''
+      CREATE TABLE $_reportsTable(
+      $idColumn INTEGER PRIMARY KEY, 
+      $report TEXT NOT NULL,
+      $emailColumn TEXT NOT NULL, 
+      $onMedicine INTEGER NOT NULL, 
+      ) 
+      '''
+    );
+
+    db.execute(
+        '''
+      CREATE TABLE $_ailmentsTable(
+      $idColumn INTEGER PRIMARY KEY, 
+      $name TEXT NOT NULL,
+      $reportid INTEGER NOT NULL, 
       ) 
       '''
     );
