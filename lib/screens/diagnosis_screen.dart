@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen.dart';
+import 'package:eye_diagnostic_system/services/server_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +17,8 @@ class DiagnosisScreen extends StatefulWidget {
 class _DiagnosisScreenState extends State<DiagnosisScreen> {
   Timer _timer;
   double _circleWidth = 3.5;
+
+  Server _server = Server();
 
   Widget _buildAnimatedEyeBall() {
     return Container(
@@ -182,7 +185,9 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        await _server.checkServerConnection();
+                      },
                       child: Icon(
                         FontAwesomeIcons.disease,
                         color: kTealColor,
