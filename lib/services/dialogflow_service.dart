@@ -12,4 +12,14 @@ class DialogFlowService{
     return aiResponse;
   }
 
+  Future<bool> getDialogFlowStatus() async {
+    AuthGoogle authGoogle =
+    await AuthGoogle(fileJson: "assets/json/service.json").build();
+    Dialogflow dialogflow =
+    Dialogflow(authGoogle: authGoogle, language: Language.english);
+    AIResponse aiResponse = await dialogflow.detectIntent('hi');
+
+    return aiResponse.queryResult.intent != null ;
+  }
+
 }
