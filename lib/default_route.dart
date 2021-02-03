@@ -31,6 +31,7 @@ import 'package:eye_diagnostic_system/screens/eye_sight_screens/contrast_sensiti
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'screens/diagnosis_screens/camera_screen.dart';
+import 'package:eye_diagnostic_system/screens/fetching_results_screen.dart';
 
 class DefaultEyeSeeRoute{
   static Map<String, WidgetBuilder> _defaultRoute = {
@@ -63,7 +64,9 @@ class DefaultEyeSeeRoute{
     ContrastScreen4.id: (context) => ContrastScreen4(),
     Splash.id: (context) => Splash(),
     ReportingScreen.id: (context) => ReportingScreen(),
-    CameraScreen.id: (context) => CameraScreen()
+    CameraScreen.id: (context) => CameraScreen(),
+    //ErrorScreen.id: (context) => ErrorScreen(),
+    FetchingResultsScreen.id: (context) => FetchingResultsScreen()
   };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;

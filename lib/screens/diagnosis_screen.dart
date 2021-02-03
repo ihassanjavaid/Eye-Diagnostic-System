@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screens/camera_screen.dart';
 import 'package:camera/camera.dart';
+import 'package:eye_diagnostic_system/screens/fetching_results_screen.dart';
 
 class DiagnosisScreen extends StatefulWidget {
   static const String id = 'diagnosis_screen';
@@ -186,7 +187,13 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        await _server.checkServerConnection();
+                        try{
+                          await _server.checkServerConnection();
+                        }
+                        catch (err){
+                          print('here');
+                          ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
+                        }
                       },
                       child: Icon(
                         FontAwesomeIcons.disease,
@@ -213,7 +220,9 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, FetchingResultsScreen.id);
+                      },
                       child: Icon(
                         FontAwesomeIcons.starOfLife,
                         color: kTealColor,

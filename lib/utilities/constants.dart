@@ -10,7 +10,7 @@ final kLightAmberColor = Color(0xffF2CA7E);
 final kPeachColor = Color(0xffF2AA80);
 final kMapsGreyColor = Color(0xFFf5f5f5);
 final kDiseaseIndicationColor = Color(0xFF99111e);
-final kMildDiseaseIndicatorColor =  kAmberColor;
+final kMildDiseaseIndicatorColor = kAmberColor;
 final kMildestDiseaseIndicatorColor = kLightAmberColor;
 final kNoDiseaseIndicatorColor = kTealColor;
 
@@ -59,11 +59,8 @@ final TextStyle kDashboardSubtitleTextStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
-final TextStyle kChartStatsTextStyle = TextStyle(
-  fontSize: 16.0,
-  fontFamily: 'CM Sans Serif',
-  color: kTealColor
-);
+final TextStyle kChartStatsTextStyle =
+    TextStyle(fontSize: 16.0, fontFamily: 'CM Sans Serif', color: kTealColor);
 
 final kDashboardButtonLabelStyle = TextStyle(
   fontSize: 15.0,
@@ -139,4 +136,11 @@ final kLoginBoxDecorationStyle = BoxDecoration(
       offset: Offset(0, 2),
     ),
   ],
+);
+
+// Misc
+
+final errorSnackBar = SnackBar(
+  content: Text('Error Communicating with Server!',
+      style: kBottomNavBarTextStyle.copyWith(color: kScaffoldBackgroundColor, fontSize: 20)),
 );
