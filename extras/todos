@@ -1,8 +1,8 @@
 /// TODO Generate release SHA-1 fingerprint before release
 /// TODO make patient record json
 /// TODO Make Heroku server for python (or use the next solution)
-/// TODO Install ngrok and expose localhost on the web
+
 /// TODO Sort community threads on basis of date (make firebase index)
 /// TODO change Maps/Places Webview with a compatible and free API
 
-/// TODO take all cloud firestore thing to mongoDB
+/// TODO add image picker to ios - https://medium.com/fabcoding/adding-an-image-picker-in-a-flutter-app-pick-images-using-camera-and-gallery-photos-7f016365d856

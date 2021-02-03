@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/screens/diagnosis_screens/image_picker_screen.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen.dart';
 import 'package:eye_diagnostic_system/services/server_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -221,7 +222,8 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, FetchingResultsScreen.id);
+                        //Navigator.pushNamed(context, FetchingResultsScreen.id);
+                        Navigator.pushNamed(context, ImagePickerScreen.id);
                       },
                       child: Icon(
                         FontAwesomeIcons.starOfLife,
