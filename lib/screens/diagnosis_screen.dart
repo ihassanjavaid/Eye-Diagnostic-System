@@ -198,7 +198,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     GestureDetector(
                       onTap: () async {
                         try{
-                          await _server.checkServerConnection();
+                          //await _server.checkServerConnection();
                         }
                         catch (err){
                           print('here');
