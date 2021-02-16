@@ -81,7 +81,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                     ? ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: Image.file(
-                    _image.,
+                    _image,
                     width: 100,
                     height: 100,
                     fit: BoxFit.fitHeight,
