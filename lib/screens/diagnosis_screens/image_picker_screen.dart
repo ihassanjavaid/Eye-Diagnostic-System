@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/models/diagnosis_models/disease_result.dart';
+import 'package:eye_diagnostic_system/services/server_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart';
 
 class ImagePickerScreen extends StatefulWidget {
   static const String id = 'image_picker_screen';
@@ -16,15 +19,18 @@ class ImagePickerScreen extends StatefulWidget {
 class _ImagePickerScreenState extends State<ImagePickerScreen> {
   File _image;
   ImagePicker _imagePicker;
+  var pickedImage;
+
 
   _imgFromGallery() async {
-    final image = await _imagePicker.getImage(source: ImageSource.gallery,
+    pickedImage = await _imagePicker.getImage(source: ImageSource.gallery,
         imageQuality: 100);
 
     setState(() {
-      _image = File(image.path);
+      _image = File(pickedImage.path);
     });
   }
+
 
   void _showPicker(context) {
     showModalBottomSheet(
@@ -118,8 +124,8 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                   borderRadius: BorderRadius.circular(50),
                   child: Image.file(
                     _image,
-                    width: 100,
-                    height: 100,
+                    width: 200,
+                    height: 400,
                     fit: BoxFit.fitHeight,
                   ),
                 )
@@ -136,6 +142,18 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                 ),
               ),
             ),
+          ),
+          TextButton(
+              onPressed: () async{
+                Server server = Server();
+                await server.diagnoseDisease(_image);
+                // DiseaseResult diseaseResult = await server.diagnoseDisease(_image);
+                // print(diseaseResult.isEye);
+                // print(diseaseResult.result);
+              },
+              child: Text(
+                'Upload'
+              )
           )
         ],
       ),
