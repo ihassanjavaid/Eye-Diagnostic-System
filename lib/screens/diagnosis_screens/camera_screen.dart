@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:camera/camera.dart';
 
+import 'image_picker_screen.dart';
+
 
 class CameraScreen extends StatefulWidget {
   static const String id = 'camera_screen';
@@ -271,7 +273,10 @@ class _CameraScreenState extends State<CameraScreen> {
                     // there should be different hero tags
                     heroTag: 'photos',
                     backgroundColor: kScaffoldBackgroundColor,
-                    onPressed: () {  },
+                    onPressed: () {
+                      print("opening gallery");
+                      Navigator.pushNamed(context, ImagePickerScreen.id);
+                    },
                     child: Icon(
                       Icons.photo,
                       color: kTealColor,

@@ -68,7 +68,7 @@ class DefaultEyeSeeRoute{
     //CameraScreen.id: (context) => CameraScreen(),
     //ErrorScreen.id: (context) => ErrorScreen(),
     FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
-    //ImagePickerScreen.id: (context) => ImagePickerScreen()
+    ImagePickerScreen.id: (context) => ImagePickerScreen()
   };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;

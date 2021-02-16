@@ -115,9 +115,17 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 Column(
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        /// TODO : Testing only, remove from here
-                        Navigator.pushNamed(context, ReportingScreen.id);
+                      onTap: () async {
+                        final cameras = await availableCameras();
+                        final firstCamera = cameras.first;
+
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) => CameraScreen(
+                              camera: firstCamera,
+                            ))
+                        );
+                        //Navigator.pushNamed(context, ReportingScreen.id);
+
                       },
                       child: Icon(
                         FontAwesomeIcons.lowVision,
@@ -146,16 +154,17 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     GestureDetector(
                       onTap: () async {
                         /// TODO : Testing only, remove from here
+                        Navigator.pushNamed(context, ReportingScreen.id);
 
                         // Initialize Camera
-                        final cameras = await availableCameras();
-                        final firstCamera = cameras.first;
-
-                        Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) => CameraScreen(
-                          camera: firstCamera,
-                        ))
-                        );
+                        // final cameras = await availableCameras();
+                        // final firstCamera = cameras.first;
+                        //
+                        // Navigator.push(context,
+                        // MaterialPageRoute(builder: (BuildContext context) => CameraScreen(
+                        //   camera: firstCamera,
+                        // ))
+                        // );
                       },
                       child: Icon(
                         FontAwesomeIcons.eye,
