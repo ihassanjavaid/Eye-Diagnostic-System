@@ -223,7 +223,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     GestureDetector(
                       onTap: () {
                         //Navigator.pushNamed(context, FetchingResultsScreen.id);
-                        Navigator.pushNamed(context, ImagePickerScreen.id);
+                        //Navigator.pushNamed(context, ImagePickerScreen.id);
                       },
                       child: Icon(
                         FontAwesomeIcons.starOfLife,

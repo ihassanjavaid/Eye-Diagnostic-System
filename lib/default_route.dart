@@ -65,10 +65,10 @@ class DefaultEyeSeeRoute{
     ContrastScreen4.id: (context) => ContrastScreen4(),
     Splash.id: (context) => Splash(),
     ReportingScreen.id: (context) => ReportingScreen(),
-    CameraScreen.id: (context) => CameraScreen(),
+    //CameraScreen.id: (context) => CameraScreen(),
     //ErrorScreen.id: (context) => ErrorScreen(),
     FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
-    ImagePickerScreen.id: (context) => ImagePickerScreen()
+    //ImagePickerScreen.id: (context) => ImagePickerScreen()
   };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
