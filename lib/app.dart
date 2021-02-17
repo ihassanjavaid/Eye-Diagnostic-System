@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:eye_diagnostic_system/default_route.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/observers/forums_observer.dart';
@@ -10,6 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class EyeSee extends StatelessWidget {
+  DefaultEyeSeeRoute _defaultEyeSeeRoute = DefaultEyeSeeRoute();
+
+  getCamera() async {
+    final cameras = await availableCameras();
+    return cameras.first;
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
