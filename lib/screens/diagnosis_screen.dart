@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screens/camera_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:eye_diagnostic_system/screens/fetching_results_screen.dart';
+import 'package:eye_diagnostic_system/services/screen_arguments.dart';
 
 class DiagnosisScreen extends StatefulWidget {
   static const String id = 'diagnosis_screen';
@@ -122,9 +123,14 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) => CameraScreen(
                               camera: firstCamera,
+                              diagnosisType: DiagnosisType.DISEASE,
                             ))
                         );
                         //Navigator.pushNamed(context, ReportingScreen.id);
+                        // Navigator.pushNamed(context,
+                        //     CameraScreen.id,
+                        //     arguments: CameraScreenArguments(firstCamera, DiagnosisType.DISEASE)
+                        // );
 
                       },
                       child: Icon(
@@ -153,8 +159,9 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                   children: [
                     GestureDetector(
                       onTap: () async {
+
                         /// TODO : Testing only, remove from here
-                        Navigator.pushNamed(context, ReportingScreen.id);
+                        //Navigator.pushNamed(context, ReportingScreen.id);
 
                         // Initialize Camera
                         // final cameras = await availableCameras();
@@ -232,7 +239,11 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     GestureDetector(
                       onTap: () {
                         //Navigator.pushNamed(context, FetchingResultsScreen.id);
-                        //Navigator.pushNamed(context, ImagePickerScreen.id);
+                        Navigator.pushNamed(context,
+                            ImagePickerScreen.id,
+                            arguments: ImagePickerScreenArguments(DiagnosisType.FUNDUS)
+                        );
+
                       },
                       child: Icon(
                         FontAwesomeIcons.starOfLife,

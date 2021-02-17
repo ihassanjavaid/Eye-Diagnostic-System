@@ -5,6 +5,7 @@ import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:camera/camera.dart';
+import 'package:eye_diagnostic_system/services/screen_arguments.dart';
 
 import 'image_picker_screen.dart';
 
@@ -13,6 +14,7 @@ class CameraScreen extends StatefulWidget {
   static const String id = 'camera_screen';
 
   final CameraDescription camera;
+
 
   const CameraScreen({
     Key key,
@@ -54,6 +56,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ScreenArguments screenArgs = ModalRoute.of(context).settings.arguments;
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kScaffoldBackgroundColor,
@@ -275,7 +278,10 @@ class _CameraScreenState extends State<CameraScreen> {
                     backgroundColor: kScaffoldBackgroundColor,
                     onPressed: () {
                       print("opening gallery");
-                      Navigator.pushNamed(context, ImagePickerScreen.id);
+                      Navigator.pushNamed(context,
+                          ImagePickerScreen.id,
+                          arguments: ScreenArguments(screenArgs.diagnosisType)
+                      );
                     },
                     child: Icon(
                       Icons.photo,

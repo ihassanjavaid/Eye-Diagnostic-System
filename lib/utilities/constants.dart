@@ -125,6 +125,8 @@ enum LoadingType { SIGNIN, SIGNUP }
 
 enum ReminderType { RECURRING, ONETIME }
 
+enum DiagnosisType { DISEASE, DISORDER, INFECTION, FUNDUS }
+
 // Decorations
 
 final kLoginBoxDecorationStyle = BoxDecoration(

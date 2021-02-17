@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart';
+import 'package:eye_diagnostic_system/services/screen_arguments.dart';
 
 class ImagePickerScreen extends StatefulWidget {
   static const String id = 'image_picker_screen';
@@ -59,11 +60,15 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
   void initState() {
     super.initState();
     _imagePicker = ImagePicker();
+
   }
+
+  @override
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final ScreenArguments screenArgs = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       backgroundColor: kScaffoldBackgroundColor,
       body: Column(

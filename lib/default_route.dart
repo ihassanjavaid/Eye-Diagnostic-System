@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_chatbot_screen.dart';
 import 'package:eye_diagnostic_system/screens/assistant_screens/assistant_voice_screen.dart';
 import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
@@ -65,11 +66,22 @@ class DefaultEyeSeeRoute{
     ContrastScreen4.id: (context) => ContrastScreen4(),
     Splash.id: (context) => Splash(),
     ReportingScreen.id: (context) => ReportingScreen(),
-    //CameraScreen.id: (context) => CameraScreen(),
+    //CameraScreen.id: (context) => await CameraScreen(camera: getCamera()),
+    CameraScreen.id: (context) async{
+      final cameras = await availableCameras();
+      final firstCamera = cameras.first;
+      return CameraScreen(camera: firstCamera);
+    },
     //ErrorScreen.id: (context) => ErrorScreen(),
     FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
     ImagePickerScreen.id: (context) => ImagePickerScreen()
   };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
+
+  static Future<CameraDescription> getCamera()async{
+    final cameras = await availableCameras();
+    final firstCamera = cameras.first;
+    return firstCamera;
+  }
 }
