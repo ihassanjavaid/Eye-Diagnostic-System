@@ -56,3 +56,12 @@ Eyes are a window to one’s soul – and one’s medical health. This study tar
 
 <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
 
+# 
+### 🖥️ Server
+
+<img src="https://twilio-cms-prod.s3.amazonaws.com/original_images/flask-oauth.png" width="80"/>
+
+Server powered by *flask*
+
+Server *[Github Repository here](https://github.com/mfc2496/EyeSee-Server)*
+
