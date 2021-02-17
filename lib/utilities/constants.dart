@@ -9,6 +9,7 @@ final kAmberColor = Color(0xffF2B035);
 final kLightAmberColor = Color(0xffF2CA7E);
 final kPeachColor = Color(0xffF2AA80);
 final kMapsGreyColor = Color(0xFFf5f5f5);
+final kGreyButtonColor = Color(0xffb0b0b0);
 final kDiseaseIndicationColor = Color(0xFF99111e);
 final kMildDiseaseIndicatorColor = kAmberColor;
 final kMildestDiseaseIndicatorColor = kLightAmberColor;

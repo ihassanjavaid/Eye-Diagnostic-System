@@ -40,21 +40,13 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
             child: Container(
               child: new Wrap(
                 children: <Widget>[
-                  new ListTile(
+                  ListTile(
                       leading: new Icon(Icons.photo_library),
                       title: new Text('Photo Library'),
                       onTap: () {
                         _imgFromGallery();
                         Navigator.of(context).pop();
                       }),
-                  new ListTile(
-                    leading: new Icon(Icons.photo_camera),
-                    title: new Text('Camera'),
-                    onTap: () {
-                      //_imgFromCamera();
-                      Navigator.of(context).pop();
-                    },
-                  ),
                 ],
               ),
             ),
@@ -71,9 +63,11 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kScaffoldBackgroundColor,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           ClipPath(
             clipper: HeaderCustomClipper(),
@@ -108,53 +102,103 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 32,
-          ),
           Center(
             child: GestureDetector(
               onTap: () {
                 _showPicker(context);
               },
-              child: CircleAvatar(
-                radius: 55,
-                backgroundColor: Color(0xffFDCF09),
-                child: _image != null
-                    ? ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.file(
-                    _image,
-                    width: 200,
-                    height: 400,
-                    fit: BoxFit.fitHeight,
-                  ),
-                )
-                    : Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(50)),
-                  width: 100,
-                  height: 100,
-                  child: Icon(
-                    Icons.camera_alt,
-                    color: Colors.grey[800],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 50),
+                child: Container(
+                  width: size.width,
+                  height: size.height / 2 - 60,
+                  color: Color(0xffFDCF09),
+                  child: _image != null
+                      ? Image.file(
+                        _image,
+                        width: 200,
+                        height: 400,
+                        fit: BoxFit.fitHeight,
+                      )
+                      : Container(
+                    decoration: BoxDecoration(
+                        color: kGreyButtonColor,
+                        ),
+                    width: 100,
+                    height: 100,
+                    child: Center(
+                      child: Text(
+                        'No Image Selected',
+                        style: kLoginLabelStyle.copyWith(color: Colors.white, fontSize: 20),
+                      ),
+                    )
                   ),
                 ),
               ),
             ),
           ),
-          TextButton(
-              onPressed: () async{
-                Server server = Server();
-                await server.diagnoseDisease(_image);
-                // DiseaseResult diseaseResult = await server.diagnoseDisease(_image);
-                // print(diseaseResult.isEye);
-                // print(diseaseResult.result);
-              },
-              child: Text(
-                'Upload'
-              )
-          )
+          SizedBox(height: 20.0),
+          Padding(
+            padding: const EdgeInsets.only(left: 28.0, right: 28.0, bottom: 30.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        //_showPicker(context);
+                        _imgFromGallery();
+                      },
+                      child: Icon(
+                        _image == null ?
+                        Icons.add_a_photo : Icons.done_all,
+                        color: _image == null ? kGreyButtonColor: kTealColor,
+                        size: 42.0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      _image == null ?
+                      'Select Image' : 'Image Selected',
+                      style: _image == null ?
+                      kDashboardButtonLabelStyle.copyWith(color: kGreyButtonColor) :
+                      kDashboardButtonLabelStyle,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 4,
+                ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                        Server server = Server();
+                        await server.diagnoseDisease(_image);
+                      },
+                      child: Icon(
+                        Icons.send_rounded,
+                        color: _image == null ? kGreyButtonColor: kTealColor,
+                        size: 42.0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      'Upload',
+                      style: _image == null ?
+                      kDashboardButtonLabelStyle.copyWith(color: kGreyButtonColor) :
+                      kDashboardButtonLabelStyle,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

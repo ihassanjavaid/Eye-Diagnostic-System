@@ -33,33 +33,6 @@ class Server {
 
   Future diagnoseDisease(File image) async {
     var diseasesURL = '${url}diseases';
-    var bytes = image.readAsBytesSync();
-    // var bytes = image.readAsStringSync();
-    // var decodedbytes = base64.decode(bytes);
-
-    // var stream = ByteStream(DelegatingStream.typed(image.openRead()));
-    // var length = await image.length();
-    // var uri = Uri.parse(diseasesURL);
-    //
-    // var request = MultipartRequest('POST', uri);
-    // var multipartFile = MultipartFile('file', stream, length, filename: basename(image.path));
-    // request.files.add(multipartFile);
-    //
-    // var response = await request.send();
-    // print(response.toString());
-    // response.stream.transform(utf8.decoder).listen((event) {
-    //   print(event);}
-    //   );
-
-
-    // var response = await post(
-    //     diseasesURL,
-    //     //headers:{ "Content-Type":"form-data" } ,
-    //     body: {"image":decodedbytes},
-    //     encoding: Encoding.getByName("utf-8")
-    // );
-    // DiseaseResult diseaseResult =  DiseaseResult.fromJson(jsonDecode(response.stream.));
-    // return diseaseResult;
 
     String fileName = image.path.split('/').last;
 
