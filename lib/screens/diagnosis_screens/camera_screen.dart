@@ -12,13 +12,13 @@ import 'image_picker_screen.dart';
 
 class CameraScreen extends StatefulWidget {
   static const String id = 'camera_screen';
-
   final CameraDescription camera;
+  final DiagnosisType diagnosisType;
 
 
   const CameraScreen({
     Key key,
-    @required this.camera,
+    @required this.camera, this.diagnosisType
   }) : super(key: key);
 
   @override
@@ -29,6 +29,8 @@ class _CameraScreenState extends State<CameraScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
   double _containerHeight;
+  //DiagnosisType diagnosisType2;
+
 
   @override
   void initState() {
@@ -278,9 +280,10 @@ class _CameraScreenState extends State<CameraScreen> {
                     backgroundColor: kScaffoldBackgroundColor,
                     onPressed: () {
                       print("opening gallery");
+                      print(widget.diagnosisType);
                       Navigator.pushNamed(context,
                           ImagePickerScreen.id,
-                          arguments: ScreenArguments(screenArgs.diagnosisType)
+                          arguments: ScreenArguments(widget.diagnosisType)
                       );
                     },
                     child: Icon(

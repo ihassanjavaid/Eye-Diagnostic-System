@@ -120,16 +120,17 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                         final cameras = await availableCameras();
                         final firstCamera = cameras.first;
 
+
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) => CameraScreen(
                               camera: firstCamera,
                               diagnosisType: DiagnosisType.DISEASE,
-                            ))
-                        );
-                        //Navigator.pushNamed(context, ReportingScreen.id);
+                            )
+                        ));
+                        // Navigator.pushNamed(context, ReportingScreen.id);
                         // Navigator.pushNamed(context,
                         //     CameraScreen.id,
-                        //     arguments: CameraScreenArguments(firstCamera, DiagnosisType.DISEASE)
+                        //     arguments: CamScreenArguments(DiagnosisType.DISEASE, firstCamera)
                         // );
 
                       },
@@ -241,7 +242,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                         //Navigator.pushNamed(context, FetchingResultsScreen.id);
                         Navigator.pushNamed(context,
                             ImagePickerScreen.id,
-                            arguments: ImagePickerScreenArguments(DiagnosisType.FUNDUS)
+                            arguments: ScreenArguments(DiagnosisType.FUNDUS)
                         );
 
                       },

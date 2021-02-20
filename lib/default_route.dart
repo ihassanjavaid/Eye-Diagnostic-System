@@ -37,13 +37,13 @@ import 'package:eye_diagnostic_system/screens/fetching_results_screen.dart';
 
 class DefaultEyeSeeRoute{
 
-  CameraDescription camera;
+  // CameraDescription camera;
+  //
+  // DefaultEyeSeeRoute(CameraDescription cam){
+  //   this.camera = cam;
+  // }
 
-  DefaultEyeSeeRoute(CameraDescription cam){
-    this.camera = cam;
-  }
-
-  Map<String, WidgetBuilder> _defaultRoute = {
+  static Map<String, WidgetBuilder> _defaultRoute = {
     AutoLoginService.id:(context) => AutoLoginService(),
     ContrastScreen1.id:(context) => ContrastScreen1(),
     ForumDetails.id:(context) => ForumDetails(),
@@ -73,16 +73,16 @@ class DefaultEyeSeeRoute{
     ContrastScreen4.id: (context) => ContrastScreen4(),
     Splash.id: (context) => Splash(),
     ReportingScreen.id: (context) => ReportingScreen(),
-    //CameraScreen.id: (context) => await CameraScreen(camera: getCamera()),
-    CameraScreen.id: (context) {
-      return CameraScreen(camera: this.camera);
-    },
-    //ErrorScreen.id: (context) => ErrorScreen(),
-    FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
+    CameraScreen.id: (context) => CameraScreen(),
+    //   CameraScreen.id: (context) {
+    //     return CameraScreen(camera: this.camera);
+    //   },
+    //   //ErrorScreen.id: (context) => ErrorScreen(),
+    //   FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
     ImagePickerScreen.id: (context) => ImagePickerScreen()
-  };
+    };
 
-  Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
+  static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
 
   static Future<CameraDescription> getCamera()async{
     final cameras = await availableCameras();
