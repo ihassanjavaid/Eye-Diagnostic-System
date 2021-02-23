@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/models/diagnosis_models/disease_result.dart';
+import 'package:eye_diagnostic_system/screens/fetching_results_screen.dart';
 import 'package:eye_diagnostic_system/services/server_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart';
 import 'package:eye_diagnostic_system/services/screen_arguments.dart';
+import 'package:eye_diagnostic_system/screens/diagnosis_screens/diagnosis_loading_screen.dart';
 
 class ImagePickerScreen extends StatefulWidget {
   static const String id = 'image_picker_screen';
@@ -117,7 +119,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                 child: Container(
                   width: size.width,
                   height: size.height / 2 - 60,
-                  color: Color(0xffFDCF09),
+                  color: Colors.grey,
                   child: _image != null
                       ? Image.file(
                         _image,
@@ -181,8 +183,13 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        Server server = Server();
-                        await server.diagnoseDisease(_image);
+                        // Server server = Server();
+                        // await server.diagnoseDisease(_image);
+                        //print(screenArgs.diagnosisType);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => DiagnosisLoadingScreen(
+                          diagnosisType: screenArgs.diagnosisType,
+                          image: _image,
+                        )));
                       },
                       child: Icon(
                         Icons.send_rounded,

@@ -37,12 +37,6 @@ import 'package:eye_diagnostic_system/screens/fetching_results_screen.dart';
 
 class DefaultEyeSeeRoute{
 
-  // CameraDescription camera;
-  //
-  // DefaultEyeSeeRoute(CameraDescription cam){
-  //   this.camera = cam;
-  // }
-
   static Map<String, WidgetBuilder> _defaultRoute = {
     AutoLoginService.id:(context) => AutoLoginService(),
     ContrastScreen1.id:(context) => ContrastScreen1(),
@@ -78,15 +72,9 @@ class DefaultEyeSeeRoute{
     //     return CameraScreen(camera: this.camera);
     //   },
     //   //ErrorScreen.id: (context) => ErrorScreen(),
-    //   FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
+    //FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
     ImagePickerScreen.id: (context) => ImagePickerScreen()
     };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
-
-  static Future<CameraDescription> getCamera()async{
-    final cameras = await availableCameras();
-    final firstCamera = cameras.first;
-    return firstCamera;
-  }
 }

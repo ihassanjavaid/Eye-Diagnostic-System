@@ -10,7 +10,7 @@ class DiseaseResult {
     isEye = json['is_eye'];
     isClosed = json['is_closed'];
     result = json['result'];
-    percentage = json['percentage'];
+    percentage = json['percentage'].toString();
   }
 
   Map<String, dynamic> toJson() {

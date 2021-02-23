@@ -6,28 +6,39 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:eye_diagnostic_system/models/chart_data.dart';
+import 'dart:math' as Math;
 
 class ReportingScreen extends StatefulWidget {
   static const String id = 'reporting_screen';
+
+  final text;
+  final percentage;
+
+  const ReportingScreen({Key key, this.text, this.percentage}) : super(key: key);
 
   @override
   _ReportingScreenState createState() => _ReportingScreenState();
 }
 
 class _ReportingScreenState extends State<ReportingScreen> {
-  List<ChartData> chartData = [
-    ChartData('D', 12),
-    ChartData('C', 14),
-    ChartData('B', 31),
-    ChartData('A', 180),
-  ];
+  /*List<ChartData> chartData = [
+    getDiseaseValue(widget.percentage),
+  ];*/
 
-  List<Color> chartPalette = [
+  List<ChartData> getChartData() {
+    List<ChartData> chartData = [
+      getDiseaseValue(widget.percentage),
+      getExtraValue(widget.percentage)
+    ];
+    return chartData;
+  }
+
+  /*List<Color> chartPalette = [
     kNoDiseaseIndicatorColor,
-    kMildestDiseaseIndicatorColor,
+    *//*kMildestDiseaseIndicatorColor,
     kMildDiseaseIndicatorColor,
-    kDiseaseIndicationColor
-  ];
+    kDiseaseIndicationColor*//*
+  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +126,7 @@ class _ReportingScreenState extends State<ReportingScreen> {
                           color: kTealColor),
                     ),
                     TextSpan(
-                      text: 'CATARACT',
+                      text: '${widget.text}',
                       style: kDashboardSubtitleTextStyle.copyWith(
                           color: kDiseaseIndicationColor),
                     ),
@@ -136,7 +147,7 @@ class _ReportingScreenState extends State<ReportingScreen> {
                 //crossAxisAlignment: CrossAxisAlignment,
                 children: [
                   Container(
-                    child: SfCircularChart(
+                    /*child: SfCircularChart(
                       palette: chartPalette,
                         series: <CircularSeries>[
                           RadialBarSeries<ChartData, String>(
@@ -147,9 +158,29 @@ class _ReportingScreenState extends State<ReportingScreen> {
                               cornerStyle: CornerStyle.bothCurve
                           )
                         ]
-                    ),
+                    ),*/
                     height: MediaQuery.of(context).size.height/3 - 10,
                     width: MediaQuery.of(context).size.height/3 - 10,
+                    child: SfCircularChart(
+                      annotations: <CircularChartAnnotation>[
+                        CircularChartAnnotation(
+                            widget: Container(
+                                child: Text(
+    '${roundOff(widget.percentage)}%',
+                                    style: kDashboardSubtitleTextStyle.copyWith(
+                                        color: kDiseaseIndicationColor,
+                                    fontSize: 36))))
+                      ],
+                      series: <CircularSeries>[
+                        DoughnutSeries<ChartData, String>(
+                            innerRadius: '78%',
+                            dataSource: getChartData(),
+                            pointColorMapper:(ChartData data,  _) => data.color,
+                            xValueMapper: (ChartData data, _) => data.x,
+                            yValueMapper: (ChartData data, _) => data.y,
+                        )
+                      ],
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,13 +196,13 @@ class _ReportingScreenState extends State<ReportingScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 4.0, left: 5.0),
                             child: Text(
-                              'Cataract',
-                              style: kChartStatsTextStyle,
+                              '${widget.text}',
+                              style: kChartStatsTextStyle.copyWith(color: kDiseaseIndicationColor),
                             ),
                           )
                         ],
                       ),
-                      Row(
+                      /*Row(
                         children: [
                           Icon(
                             Icons.circle,
@@ -218,7 +249,7 @@ class _ReportingScreenState extends State<ReportingScreen> {
                             ),
                           )
                         ],
-                      )
+                      )*/
                     ],
                   )
                 ],
@@ -304,5 +335,19 @@ class _ReportingScreenState extends State<ReportingScreen> {
       _name = _name.substring(0, _name.indexOf(' '));
     }
     return _name;
+  }
+
+  roundOff(String perc) {
+    return perc.substring(0, perc.indexOf('.'));
+  }
+
+  getDiseaseValue(String perc){
+    double percentage = double.parse(perc.substring(0, perc.indexOf('.')));
+    return ChartData('1', percentage, kDiseaseIndicationColor);
+  }
+
+  getExtraValue(String perc){
+    double percentage = double.parse(perc.substring(0, perc.indexOf('.')));
+    return ChartData('1', (100 - percentage), kGreyButtonColor);
   }
 }

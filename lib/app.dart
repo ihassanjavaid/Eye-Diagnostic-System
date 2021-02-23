@@ -4,6 +4,8 @@ import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/observers/forums_observer.dart';
 import 'package:eye_diagnostic_system/observers/assistant_observer.dart';
 import 'package:eye_diagnostic_system/observers/reminder_observer.dart';
+import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen.dart';
+import 'package:eye_diagnostic_system/screens/fetching_results_screen.dart';
 import 'package:eye_diagnostic_system/splash.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class EyeSee extends StatelessWidget {
-  DefaultEyeSeeRoute _defaultEyeSeeRoute = DefaultEyeSeeRoute();
-
-  getCamera() async {
-    final cameras = await availableCameras();
-    return cameras.first;
-  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -34,6 +30,7 @@ class EyeSee extends StatelessWidget {
         title: 'Eye See',
         theme: kEyeSeeThemeData,
         initialRoute: Splash.id,
+        //initialRoute: ReportingScreen.id,
         routes: DefaultEyeSeeRoute.DEFAULT_ROUTE,
       ),
     );

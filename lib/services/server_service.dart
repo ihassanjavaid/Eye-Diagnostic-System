@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 //import 'dart:async';
 
 import 'package:eye_diagnostic_system/models/diagnosis_models/disease_result.dart';
+import 'package:eye_diagnostic_system/models/diagnosis_models/fundus_result.dart';
 //import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 
@@ -43,10 +44,23 @@ class Server {
       ),
     });
 
-    Dio().post(diseasesURL, data: data)
-        .then((value) => print(value))
-        .catchError((onError) => print(onError));
+    Response<String> response = await Dio().post(diseasesURL, data: data);
+    return DiseaseResult.fromJson(jsonDecode(response.data.toString()));
+  }
+
+  Future diagnoseFundus(File image) async {
+    var fundusURL = '${url}fundus';
+
+    String fileName = image.path.split('/').last;
+
+    FormData data = FormData.fromMap({
+      "image": await MultipartFile.fromFile(
+        image.path,
+        filename: fileName,
+      ),
+    });
+
+    Response<String> response = await Dio().post(fundusURL, data: data);
+    return FundusResult.fromJson(jsonDecode(response.data.toString()));
   }
 }
-
-
