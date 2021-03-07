@@ -78,6 +78,7 @@ flutter:
     - assets/images/vision_testing/
     - assets/images/visual_acuity/snellens/
     - assets/images/on_boarding/
+    - assets/images/dashboard/
     - assets/animations/eyeseesplash.flr
 
   # fonts:

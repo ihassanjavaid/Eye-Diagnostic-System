@@ -6,6 +6,7 @@ import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_test
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/eye_facts_utility.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -102,12 +103,26 @@ class _DashboardState extends State<Dashboard> {
                       TextSpan(
                         text: 'Eye\t',
                         style: kDashboardTitleTextStyle.copyWith(
-                            color: kTealColor),
+                            color: kTealColor,
+                        shadows: [
+                            Shadow( // bottomLeft
+                            offset: Offset(-0.5, -0.5),
+                          color: kDarkTealColor
+                      ),
+                    ],
+                            fontSize: 38),
                       ),
                       TextSpan(
                         text: 'See',
                         style: kDashboardTitleTextStyle.copyWith(
-                            color: kTealColor),
+                            color: kTealColor,
+                            shadows: [
+                              Shadow( // bottomLeft
+                                  offset: Offset(-0.5, -0.5),
+                                  color: kDarkTealColor
+                              ),
+                            ],
+                        fontSize: 38),
                       ),
                     ]),
                   ),
@@ -150,14 +165,15 @@ class _DashboardState extends State<Dashboard> {
                           Navigator.pushNamed(context, VisionTestingMain.id);
                         },
                         child: _buildMainDashboardContainer('Eye\nSight Test',
-                            'assets/images/svgs/eye_sight.svg'),
+                            'assets/images/dashboard/eyesight.png'),
                       ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, DiagnosisScreen.id);
                         },
                         child: _buildMainDashboardContainer(
-                            'EyeSee\nDiagnostics', ''),
+                            'EyeSee\nDiagnostics',
+                            'assets/images/dashboard/diagnostics.png'),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -165,7 +181,7 @@ class _DashboardState extends State<Dashboard> {
                         },
                         child: _buildMainDashboardContainer(
                             'Nearby\nOptometrists',
-                            'assets/images/svgs/google_maps.svg'),
+                            'assets/images/dashboard/maps.png'),
                       ),
                     ],
                   ),
@@ -262,16 +278,25 @@ class _DashboardState extends State<Dashboard> {
                 width: double.infinity,
                 height: 300,
                 decoration: BoxDecoration(
-                 color: kTealColor,
+                 //color: kTealColor,
+                  gradient: LinearGradient(
+                      colors: [
+                        kMedTealColor,
+                        kTealColor,
+                        kDarkTealColor
+                      ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight
+                  ),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12.0),
                       topRight: Radius.circular(12.0),
                       bottomLeft: Radius.circular(12.0)),
                 ),
-                /// TODO put image here
-                /*child: SvgPicture.asset(
+                child: Image.asset(
                   image,
-                ),*/
+                  scale: 2.5,
+                ),
               ),
             ),
             Positioned(
