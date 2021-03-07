@@ -1,5 +1,7 @@
 import 'package:eye_diagnostic_system/models/provider_data.dart';
+import 'package:eye_diagnostic_system/screens/diagnosis_screens/image_picker_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
+import 'package:eye_diagnostic_system/services/screen_arguments.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -73,6 +75,34 @@ class AlertWidget{
             Provider.of<ProviderData>(context, listen: false).updateModelString('');
           },
           width: 80,
+        )
+      ],
+    );
+  }
+
+  generateAlertInvalidDiagnosis({@required context, @required title, @required description, @required diagnosisType}){
+    return Alert(
+      context: context,
+      type: AlertType.warning,
+      title: title,
+      desc: description,
+      buttons: [
+        DialogButton(
+          color: kTealColor,
+          child: Text(
+            "Try Again",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pushNamed(context,
+                ImagePickerScreen.id,
+                arguments: ScreenArguments(diagnosisType)
+            );
+          },
+          width: 130,
         )
       ],
     );
