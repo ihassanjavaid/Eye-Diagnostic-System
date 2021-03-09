@@ -1,4 +1,5 @@
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -267,7 +268,12 @@ class _ReportingScreenState extends State<ReportingScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          /// TODO : implement
+                          /// TODO : refine
+
+                          while (Navigator.canPop(context)){
+                            Navigator.pop(context);
+                          }
+                          //Navigator.pushNamed(context, Dashboard.id);
                         },
                         child: Icon(
                           Icons.delete,

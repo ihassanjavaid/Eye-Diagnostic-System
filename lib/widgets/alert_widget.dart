@@ -1,5 +1,6 @@
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screens/image_picker_screen.dart';
+import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/services/screen_arguments.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -72,6 +73,11 @@ class AlertWidget{
               print(e);
             }
             Navigator.pop(context);
+
+            // Pop context once and re-build the reminder screen to refresh reminders
+            Navigator.pop(context);
+            Navigator.pushNamed(context, ReminderMain.id);
+
             Provider.of<ProviderData>(context, listen: false).updateModelString('');
           },
           width: 80,

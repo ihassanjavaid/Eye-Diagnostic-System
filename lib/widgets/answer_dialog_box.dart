@@ -1,4 +1,5 @@
 import 'package:eye_diagnostic_system/models/provider_data.dart';
+import 'package:eye_diagnostic_system/screens/community_screens/forum_detail_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_answer_services.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -119,6 +120,10 @@ class AnswerDialog {
                         }
                         messageTextController.clear();
                         Navigator.pop(context);
+
+                        // Pop context once and re-build the screen to refresh
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, ForumDetails.id);
                       },
                       color: kTealColor,
                       focusColor: kAmberColor,

@@ -115,10 +115,10 @@ class _VisionTestingMainState extends State<VisionTestingMain> {
                     Row(
                       children: [
                         Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            color: kLightAmberColor
-                          ),
+                          // decoration: BoxDecoration(
+                          //   borderRadius: BorderRadius.all(Radius.circular(20)),
+                          //   color: kLightAmberColor
+                          // ),
                           child: Column(
                             children: [
                               GestureDetector(
