@@ -9,6 +9,7 @@ import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen
 import 'package:eye_diagnostic_system/screens/extras_screen.dart';
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
+import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/mapbox_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
@@ -60,7 +61,8 @@ class DefaultEyeSeeRoute{
     //   },
     //   //ErrorScreen.id: (context) => ErrorScreen(),
     //FetchingResultsScreen.id: (context) => FetchingResultsScreen(),
-    ImagePickerScreen.id: (context) => ImagePickerScreen()
+    ImagePickerScreen.id: (context) => ImagePickerScreen(),
+    MapBoxMainScreen.id: (context) => MapBoxMainScreen()
     };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;

@@ -1,0 +1,214 @@
+﻿{
+    "Hospitals": [
+        {
+            "Name": "Capital International Hospital",
+            "Location": "33.6523163614925, 72.97665894758669",
+            "Address": "Street 3, G-12/1 Service Rd W, G-12, Islamabad, Pakistan",
+            "Phone": "92518467276",
+            "Rating": "4.8"
+        },
+        {
+            "Name": "Noor General Hospital",
+            "Location": "33.67289058058173, 72.99948990998257",
+            "Address": "Ground floor, Al-Rehman Plaza, G 11 Markaz, Islamabad, Pakistan",
+            "Phone": "92512362315",
+            "Rating": "5.0"
+        },
+        {
+            "Name": "Shifa Medical Centre",
+            "Location": "33.68731817317899, 72.98592866164216",
+            "Address": "Savoy Arcade, 25 Hillal Rd, F-11, Islamabad, Pakistan",
+            "Phone": "92512228231",
+            "Rating": "4.0"
+        },
+        {
+            "Name": "Life Care International Hospital",
+            "Location": "33.679319014942216, 73.01476777203693",
+            "Address": "G-10 Markaz, Islamabad, Pakistan",
+            "Phone": "92512355501",
+            "Rating": "3.2"
+        },
+        {
+            "Name": "Islamabad Medical Complex (IMC)",
+            "Location": "33.65160189050408, 73.01717103123651",
+            "Address": "Faqir Aipee Road, H-11/4, Islamabad, Pakistan",
+            "Phone": "92519067251",
+            "Rating": "3.9"
+        },
+        {
+            "Name": "Margalla General Hospital",
+            "Location": "33.63845456581822, 73.03468049111905",
+            "Address": "Main Pirwadhai Road, Pirwadhai, Rawalpindi, Punjab, Pakistan",
+            "Phone": "92515163344",
+            "Rating": "3.8"
+        },
+        {
+            "Name": "Beewell Hospital",
+            "Location": "33.712881918351584, 73.05716813077213",
+            "Address": "East Wing, 2nd Floor, Asif Plaza، A.K.M. Fazl-ul-Haq Rd, G 7/3 Blue Area, Islamabad, Pakistan",
+            "Phone": "92518466109",
+            "Rating": "2.9"
+        },
+        {
+            "Name": "Cantt General Hospital",
+            "Location": "33.60084529438838, 73.05127451366654",
+            "Address": "Hospital Rd, Saddar, Rawalpindi, Punjab 46000, Pakistan",
+            "Phone": "92519270907",
+            "Rating": "3.9"
+        },
+        {
+            "Name": "Bilal Hospital",
+            "Location": "33.636439715722084, 73.07959863994712",
+            "Address": "38-A Sadiqabad Rd, A Block Block A Satellite Town, Rawalpindi, Punjab, Pakistan",
+            "Phone": "92518094534",
+            "Rating": "3.4"
+        },
+        {
+            "Name": "KRL Hospital",
+            "Location": "33.67870731390868, 73.03133104959055",
+            "Address": "G- Kashmir Hwy 1, Service Road South, G 9/1, Islamabad, Pakistan",
+            "Phone": "92519106270",
+            "Rating": "4.1"
+        },
+        {
+            "Name": "IHS Children & Family Hospital",
+            "Location": "33.68724216419965, 73.00575350525231",
+            "Address": "Plot No. 2, Street 30, Khursheed Market, F 10/1, Islamabad, Pakistan",
+            "Phone": "92512298217",
+            "Rating": "4.5"
+        },
+        {
+            "Name": "Railway General Hospital",
+            "Location": "33.623082627152094, 73.03537249778074",
+            "Address": "Railway Carriage Factory Rd, Railway Scheme 7, Rawalpindi, Punjab, Pakistan",
+            "Phone": "92515481826",
+            "Rating": "3.9"
+        },
+        {
+            "Name": "Maroof International Hospital",
+            "Location": "33.701062589713864, 73.01178836818097",
+            "Address": "10th Ave, F-10 Markaz F 10/3, Islamabad, Pakistan",
+            "Phone": "92511116449",
+            "Rating": "3.4"
+        },
+        {
+            "Name": "Hanif Hospital",
+            "Location": "33.63393851724928, 73.06261447503795",
+            "Address": "Near Asghar Mall Chowk, Saidpur Rd, Block E Asghar Mall Scheme, Rawalpindi, Punjab, Pakistan",
+            "Phone": "92518487999",
+            "Rating": "4.3"
+        },
+        {
+            "Name": "Max Health Hospital",
+            "Location": "33.69957536930577, 73.04985169092376",
+            "Address": "12-K Markaz Rd, G-8 Markaz, Islamabad, Pakistan",
+            "Phone": "92518094762",
+            "Rating": "3.9"
+        },
+        {
+            "Name": "Nusrat Hospital",
+            "Location": "33.606965498220816, 73.02583079778074",
+            "Address": "Main Peshawar Rd, Rawalpindi, Punjab, Pakistan",
+            "Phone": "92515490880",
+            "Rating": "3.0"
+        },
+        {
+            "Name": "Ali Medical Centre",
+            "Location": "33.68258500828716, 73.03355451366654",
+            "Address": "Street 17,Mauve Area, G-9/1, Islamabad, Pakistan",
+            "Phone": "92512255073",
+            "Rating": "3.9"
+        },
+        {
+            "Name": "Islamabad Medicure Hospital",
+            "Location": "33.7010986516977, 72.97124235229514",
+            "Address": "116 Street 88, FECHS, E-11, Islamabad, Pakistan",
+            "Phone": "92512304952",
+            "Rating": "3.2"
+        },
+        {
+            "Name": "Quaid-e-Azam International Hospital",
+            "Location": "33.62793774626203, 72.97177343858118",
+            "Address": "Peshawar Rd, Near Golra Morr, H-13, Islamabad, Rawalpindi, Pakistan",
+            "Phone": "92518449100",
+            "Rating": "3.3"
+        },
+        {
+            "Name": "PAF Hospital Islamabad",
+            "Location": "33.713292675464885, 73.01672722052352",
+            "Address": "Main Margalla Rd, E-9, Islamabad, Pakistan",
+            "Phone": "92519563333",
+            "Rating": "4.2"
+        },
+        {
+            "Name": "MEDICSi",
+            "Location": "33.71714798064822, 73.06462074314342",
+            "Address": "Low Rise, Saudi Pak Towers, 61-A Jinnah Avenue, F-7/4 Blue Area, Islamabad, Pakistan",
+            "Phone": "92511111111",
+            "Rating": "4.0"
+        },
+        {
+            "Name": "Polyclinic Hospital",
+            "Location": "33.72400142908485, 73.08333183262576",
+            "Address": "44 Luqman Hakeem Rd, G-6/2, Islamabad, Pakistan",
+            "Phone": "92519218300",
+            "Rating": "3.9"
+        },
+        {
+            "Name": "Aziz Medical Center",
+            "Location": "33.73570813764867, 73.0807569120548",
+            "Address": "1, Street 16, F-6/3, Islamabad, Pakistan",
+            "Phone": "92512873191",
+            "Rating": "4.4"
+        },
+        {
+            "Name": "Maternity Care Hospital (MCH)",
+            "Location": "33.71243591711648, 73.08264518793456",
+            "Address": "16, Street 48, G-6/1, Islamabad, Pakistan",
+            "Phone": "92519214512",
+            "Rating": "4.4"
+        },
+        {
+            "Name": "CMH - Combined Military Hospital",
+            "Location": "33.58496951791389, 73.04711128627198",
+            "Address": "CMH Road, Rawalpindi, Punjab, Pakistan",
+            "Phone": "92519273426",
+            "Rating": "4.1"
+        },
+        {
+            "Name": "Rawalpindi Institute of Cardiology",
+            "Location": "33.61992108812504, 73.08410711832308",
+            "Address": "Rawal Road, Chaklala Cantt., Rawalpindi, Punjab, Pakistan",
+            "Phone": "92519281111",
+            "Rating": "4.1"
+        },
+        {
+            "Name": "Holy Family Hospital",
+            "Location": "33.64572871880935, 73.05878954410034",
+            "Address": "Holy Family Rd, Block F Block E Satellite Town, Rawalpindi, Punjab, Pakistan",
+            "Phone": "92519290321",
+            "Rating": "3.8"
+        },
+        {
+            "Name": "NORI Hospital (AECH)",
+            "Location": "33.706558670577124, 73.05433006703248",
+            "Address": "Hanna Rd, G-8/3, Islamabad, Pakistan",
+            "Phone": "92519260611",
+            "Rating": "4.0"
+        },
+        {
+            "Name": "National Institute of Rehabilitation Medicine",
+            "Location": "33.700318249619905, 73.04585042735039",
+            "Address": "Street 09, G-8/2, Islamabad, Pakistan",
+            "Phone": "92519262213",
+            "Rating": "4.2"
+        },
+        {
+            "Name": "National Institute of Health",
+            "Location": "33.690323677262676, 73.1387133338633",
+            "Address": "Park Road, Near Chak Shehzad , lamabad, Pakistan",
+            "Phone": "92519255881",
+            "Rating": "4.3"
+        }
+    ]
+}

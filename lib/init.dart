@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/services/firestore_hospitals_service.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -25,4 +26,10 @@ Future<void> init() async {
   /// TODO database
   //DatabaseHelper.instance.database;
 
+  /***
+  DO NOT UN-COMMENT THIS
+  OTHERWISE, DUPLICATE DATA WILL BE ADDED
+  ***/
+  // Trigger/Uncomment this function when new hospitals are to be added to firestore
+  //await FirestoreHospitalsService.push();
 }

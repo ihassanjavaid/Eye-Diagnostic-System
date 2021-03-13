@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
+import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/mapbox_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/nearby_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'assistant_screens/assistant_chatbot_screen.dart';
 import 'extras_screen.dart';
@@ -177,7 +179,8 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, NearbyMain.id);
+                          //Navigator.pushNamed(context, NearbyMain.id);
+                          fetchLocAndPushToMaps();
                         },
                         child: _buildMainDashboardContainer(
                             'Nearby\nOptometrists',
@@ -260,6 +263,21 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
     );
+  }
+
+  fetchLocAndPushToMaps() async {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+    /*var position = await GeolocatorPlatform.instance
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);*/
+    var pos = await geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+
+    //var pos = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    print("Current Loc: ${pos.latitude}, ${pos.longitude}");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MapBoxMainScreen(
+      latitude: pos.latitude,
+      longitude: pos.longitude,
+    )));
   }
 
   Widget _buildMainDashboardContainer(String title, String image) {

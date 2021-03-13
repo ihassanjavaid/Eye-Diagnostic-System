@@ -55,6 +55,7 @@ dependencies:
   path: ^1.7.0
   image_picker: ^0.6.7+22
   dio: ^3.0.10
+  flutter_map: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/places/
     - assets/images/contrast/
     - assets/logos/
     - assets/images/svgs/
@@ -80,6 +82,7 @@ flutter:
     - assets/images/on_boarding/
     - assets/images/dashboard/
     - assets/animations/eyeseesplash.flr
+    - assets/json/hospitals/hospitals-v1-json.json
 
   # fonts:
   #   - family: Schyler
