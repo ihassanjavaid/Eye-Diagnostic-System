@@ -44,8 +44,16 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
         foregroundColor: kScaffoldBackgroundColor,
         backgroundColor: kScaffoldBackgroundColor,
         onPressed: () async {
-          initialMarks = await getMarkersFromFirestoreMarkersList();
-          setState(() {});
+          if (initialMarks.isEmpty){
+            setState(() {
+              initialMarks = staticMarksList;
+            });
+          }
+          else {
+            setState(() {
+              initialMarks = [];
+            });
+          }
         },
         child: Icon(
           Icons.my_location_rounded,
