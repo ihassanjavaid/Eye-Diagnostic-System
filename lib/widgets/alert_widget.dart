@@ -113,4 +113,44 @@ class AlertWidget{
       ],
     );
   }
+
+  generatePlaceDetailDialog({@required context, @required title, @required description, @required onCallTap, @required onDirectionsTap}){
+    return Alert(
+      context: context,
+      image: Container(
+        height: 120,
+        width: 120,
+        child: Image.asset(
+          'assets/images/places/hosp_icon.png',
+        ),
+      ),
+      //type: AlertType.info,
+      title: title,
+      desc: description,
+      style: AlertStyle(
+        titleStyle: kReminderMainTextStyle.copyWith(fontSize: 24.0),
+        descStyle: kReminderSubtitleTextStyle
+      ),
+      buttons: [
+        DialogButton(
+          color: kDiseaseIndicationColor,
+          child: Text(
+            "Call",
+            style: kAlertButtonTextStyle,
+          ),
+          onPressed: onCallTap,
+          width: 130,
+        ),
+        DialogButton(
+          color: kTealColor,
+          child: Text(
+            "Directions",
+            style: kAlertButtonTextStyle,
+          ),
+          onPressed: onDirectionsTap,
+          width: 130,
+        )
+      ],
+    );
+  }
 }

@@ -108,11 +108,19 @@ final TextStyle kReminderContainerTextStyle = TextStyle(
   fontFamily: 'CM Sans Serif',
 );
 
+final TextStyle kAlertButtonTextStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontFamily: 'CM Sans Serif');
+
 final TextStyle kReminderBulletsTextStyle = TextStyle(
     color: kScaffoldBackgroundColor, fontFamily: 'CM Sans Serif', fontSize: 16);
 
 final TextStyle kReminderMainTextStyle =
     TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: kTealColor);
+
+final TextStyle kMapsMainTextStyle =
+TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: kLightAmberColor);
 
 final TextStyle kReminderSubtitleTextStyle = TextStyle(
   fontWeight: FontWeight.bold,

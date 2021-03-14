@@ -15,6 +15,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'assistant_screens/assistant_chatbot_screen.dart';
 import 'extras_screen.dart';
+import 'package:eye_diagnostic_system/services/my_address_service.dart';
 
 class Dashboard extends StatefulWidget {
   static const String id = 'main_dashboard_screen';
@@ -267,16 +268,16 @@ class _DashboardState extends State<Dashboard> {
 
   fetchLocAndPushToMaps() async {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-    /*var position = await GeolocatorPlatform.instance
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);*/
     var pos = await geolocator
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-
-    //var pos = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
     print("Current Loc: ${pos.latitude}, ${pos.longitude}");
+
+    String currLoc = await MyAddressService(l1: pos.latitude, l2: pos.longitude).getPlaceName();
+
     Navigator.push(context, MaterialPageRoute(builder: (context) => MapBoxMainScreen(
       latitude: pos.latitude,
       longitude: pos.longitude,
+      currentLoc: currLoc,
     )));
   }
 
