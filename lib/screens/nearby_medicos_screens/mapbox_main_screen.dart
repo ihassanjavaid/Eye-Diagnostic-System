@@ -11,6 +11,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:eye_diagnostic_system/models/hospital_marker_data.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:eye_diagnostic_system/services/external_map_service.dart';
 
 class MapBoxMainScreen extends StatefulWidget {
   static const String id = 'map_box_main_screen';
@@ -30,23 +31,28 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
   List<Marker> initialMarks = [];
   List<Marker> staticMarksList = [];
   List<HospitalMarker> firestoreMarkers = [];
+  IconData showMarkersIcon;
 
   final double _initFabHeight = 120.0;
   double _fabHeight;
   double _panelHeightOpen;
   double _panelHeightClosed = 75.0;
-  int hospsNum = 30;
+  int hospsNum = 1;
 
   @override
   void initState() {
     super.initState();
     _fabHeight = _initFabHeight;
+    showMarkersIcon = Icons.my_location_rounded;
   }
 
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
     staticMarksList = await getMarkersFromFirestoreMarkersList();
+    setState(() {
+      hospsNum = staticMarksList.length - 1;
+    });
   }
 
   @override
@@ -104,7 +110,7 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
                 //crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FloatingActionButton(
-                    heroTag: 'plus',
+                    heroTag: 'call',
                     backgroundColor: kDiseaseIndicationColor,
                     onPressed: () {
                       // should be replaces with 1122 - for Pakistan
@@ -126,16 +132,18 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
                       if (initialMarks.isEmpty){
                         setState(() {
                           initialMarks = staticMarksList;
+                          showMarkersIcon = Icons.clear;
                         });
                       }
                       else {
                         setState(() {
                           initialMarks = [];
+                          showMarkersIcon = Icons.my_location_rounded;
                         });
                       }
                     },
                     child: Icon(
-                      Icons.my_location_rounded,
+                      showMarkersIcon,
                       color: kTealColor,
                       size: 30.0,
                     ),
@@ -251,6 +259,7 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
                   return Column(
                     children: [
                       ListTile(
+                        isThreeLine: true,
                         leading: Padding(
                           padding:
                           const EdgeInsets.only(top: 6.0),
@@ -300,16 +309,37 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                           ),
                         ),
-                        trailing: IconButton(
-                          icon: Icon(
-                            Icons.call,
-                            color: kDiseaseIndicationColor,
-                            size: 30.0,
-                          ),
-                          onPressed: () {
-                            String phone = '+${firestoreMarkers[index].phone}';
-                            launch("tel://$phone");
-                          },
+                        trailing: Column(
+                          children: [
+                            FloatingActionButton(
+                              child: Icon(
+                                Icons.call,
+                                color: kScaffoldBackgroundColor,
+                                size: 24.0,
+                              ),
+                              onPressed: () {
+                                String phone = '+${firestoreMarkers[index].phone}';
+                                launch("tel://$phone");
+                              },
+                                backgroundColor: kDiseaseIndicationColor,
+                              mini: true,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            FloatingActionButton(
+                              child: Icon(
+                                Icons.directions,
+                                color: kScaffoldBackgroundColor,
+                                size: 24.0,
+                              ),
+                              onPressed: () {
+                                ExternalMapService.openMap(firestoreMarkers[index].name);
+                              },
+                              backgroundColor: kTealColor,
+                              mini: true,
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
