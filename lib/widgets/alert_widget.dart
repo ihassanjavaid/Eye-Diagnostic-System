@@ -4,6 +4,7 @@ import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_scr
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/services/screen_arguments.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -153,4 +154,40 @@ class AlertWidget{
       ],
     );
   }
+
+  generateDisclaimer({@required context}){
+    return Alert(
+      context: context,
+      image: Container(
+          height: 50,
+          width: 50,
+          child: Icon(
+            CupertinoIcons.info,
+            size: 50,
+            color: kAmberColor,
+          )
+      ),
+      title: 'Disclaimer',
+      desc: 'EyeSee does not serve as a complete replacement for licensed professionals. Please seek professional advice from your local optometrist for an accurate diagnosis',
+      style: AlertStyle(
+          titleStyle: kReminderMainTextStyle.copyWith(fontSize: 24.0),
+          descStyle: kReminderSubtitleTextStyle
+      ),
+      buttons: [
+        DialogButton(
+          color: kTealColor,
+          child: Text(
+            "I Understand",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          width: 130,
+        )
+      ],
+    );
+
+  }
+
 }

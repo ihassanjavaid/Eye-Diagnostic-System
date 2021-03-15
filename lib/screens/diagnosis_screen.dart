@@ -244,7 +244,6 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                             ImagePickerScreen.id,
                             arguments: ScreenArguments(DiagnosisType.FUNDUS)
                         );
-
                       },
                       child: Icon(
                         FontAwesomeIcons.starOfLife,
