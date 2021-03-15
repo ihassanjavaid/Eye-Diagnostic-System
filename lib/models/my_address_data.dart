@@ -1,58 +1,111 @@
 class MyAddressData {
-  String type;
-  List<double> query;
-  List<Features> features;
-  String attribution;
+  List<AddressInfo> data;
 
-  MyAddressData({this.type, this.query, this.features, this.attribution});
+  MyAddressData({this.data});
 
   MyAddressData.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    query = json['query'].cast<double>();
-    if (json['features'] != null) {
-      features = new List<Features>();
-      json['features'].forEach((v) { features.add(new Features.fromJson(v)); });
+    if (json['data'] != null) {
+      data = [];
+      json['data'].forEach((v) {
+        data.add(new AddressInfo.fromJson(v));
+      });
     }
-    attribution = json['attribution'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['query'] = this.query;
-    if (this.features != null) {
-      data['features'] = this.features.map((v) => v.toJson()).toList();
+    if (this.data != null) {
+      data['data'] = this.data.map((v) => v.toJson()).toList();
     }
-    data['attribution'] = this.attribution;
     return data;
   }
 }
 
-class Features {
-  String id;
+class AddressInfo {
+  double latitude;
+  double longitude;
   String type;
-  int relevance;
-  String text;
-  String placeName;
+  double distance;
+  String name;
+  Null number;
+  Null postalCode;
+  String street;
+  double confidence;
+  String region;
+  String regionCode;
+  Null county;
+  String locality;
+  Null administrativeArea;
+  Null neighbourhood;
+  String country;
+  String countryCode;
+  String continent;
+  String label;
 
+  AddressInfo(
+      {this.latitude,
+        this.longitude,
+        this.type,
+        this.distance,
+        this.name,
+        this.number,
+        this.postalCode,
+        this.street,
+        this.confidence,
+        this.region,
+        this.regionCode,
+        this.county,
+        this.locality,
+        this.administrativeArea,
+        this.neighbourhood,
+        this.country,
+        this.countryCode,
+        this.continent,
+        this.label});
 
-  Features({this.id, this.type, this.relevance, this.text, this.placeName});
-
-  Features.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  AddressInfo.fromJson(Map<String, dynamic> json) {
+    latitude = json['latitude'];
+    longitude = json['longitude'];
     type = json['type'];
-    relevance = json['relevance'];
-    text = json['text'];
-    placeName = json['place_name'];
+    distance = json['distance'];
+    name = json['name'];
+    number = json['number'];
+    postalCode = json['postal_code'];
+    street = json['street'];
+    confidence = json['confidence'];
+    region = json['region'];
+    regionCode = json['region_code'];
+    county = json['county'];
+    locality = json['locality'];
+    administrativeArea = json['administrative_area'];
+    neighbourhood = json['neighbourhood'];
+    country = json['country'];
+    countryCode = json['country_code'];
+    continent = json['continent'];
+    label = json['label'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
     data['type'] = this.type;
-    data['relevance'] = this.relevance;
-    data['text'] = this.text;
-    data['place_name'] = this.placeName;
+    data['distance'] = this.distance;
+    data['name'] = this.name;
+    data['number'] = this.number;
+    data['postal_code'] = this.postalCode;
+    data['street'] = this.street;
+    data['confidence'] = this.confidence;
+    data['region'] = this.region;
+    data['region_code'] = this.regionCode;
+    data['county'] = this.county;
+    data['locality'] = this.locality;
+    data['administrative_area'] = this.administrativeArea;
+    data['neighbourhood'] = this.neighbourhood;
+    data['country'] = this.country;
+    data['country_code'] = this.countryCode;
+    data['continent'] = this.continent;
+    data['label'] = this.label;
     return data;
   }
 }

@@ -19,24 +19,22 @@ class MyAddressService{
   }
 
   Future<String> getPlaceName() async {
-    String accessToken = 'pk.eyJ1IjoiZXllc2VlZGlhZ25vc3RpY3MiLCJhIjoiY2ttNmZkN3pvMG5wczJvcHIzNXM0dXMydiJ9.OHEYuFFxLxK0fzFlqPU7WQ';
-    String api = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
-    String type = 'locality';
-    String countryCode = 'PK';
-    String url = '${api}${l2},${l1}.json?access_token=$accessToken&types=$type&reverseMode=distance&limit=1&country=$countryCode';
+    String accessToken = 'eecd2a1ac3336682bade121f181bd713';
+    String api = 'http://api.positionstack.com/v1/reverse';
+    String url = '$api?access_key=$accessToken&query=$l1,$l2';
     String response;
 
       try {
         response = await _getData(url);
       }
       catch (err){
-        debugPrint(err);
+        debugPrint(err.toString());
       }
       //var decodedData = jsonDecode(response);
       MyAddressData myAddressData = MyAddressData.fromJson(jsonDecode(response));
 
-      if (myAddressData.features.isNotEmpty){
-        return myAddressData.features.first.text;
+      if (myAddressData.data.isNotEmpty){
+        return myAddressData.data.first.name;
       }
       return 'Unknown Place';
   }
