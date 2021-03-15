@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'package:eye_diagnostic_system/init.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
+import 'package:eye_diagnostic_system/services/notification_manager_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/ios_back_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:timezone/timezone.dart';
 import 'community_screens/forum_screen.dart';
 
 class Extras extends StatefulWidget {
@@ -124,7 +127,9 @@ class _ExtrasState extends State<Extras> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Forum.id);
+                        // Navigator.pushNamed(context, Forum.id);
+                        NotificationManager().scheduleNotification(notifsPlugin: notifsPlugin, title: 'Test',
+                        body: 'this is a test notification!', scheduledTime: DateTime.now());
                       },
                       child: Hero(
                         tag: 'extras',
@@ -241,4 +246,5 @@ class _ExtrasState extends State<Extras> {
     );
   }
 }
+
 
