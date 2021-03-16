@@ -61,6 +61,7 @@ dependencies:
   flutter_local_notifications: ^4.0.1+2
   rxdart: ^0.23.1
   timezone: ^0.6.1
+  flutter_slidable: ^0.5.7
 
 dev_dependencies:
   flutter_test:

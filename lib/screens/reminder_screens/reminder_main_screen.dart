@@ -1,11 +1,14 @@
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/init.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
+import 'package:eye_diagnostic_system/services/notification_manager_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:eye_diagnostic_system/widgets/speed_dial_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -126,45 +129,126 @@ class _ReminderMainState extends State<ReminderMain> {
                               itemBuilder: (context, index) {
                                 return Column(
                                   children: [
-                                    ListTile(
-                                      leading: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 6.0),
-                                        child: CircleAvatar(
-                                          maxRadius: 15,
-                                          backgroundColor: kTealColor,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 4.0, left: 1.0),
-                                            child: Text((index + 1).toString(),
-                                                style:
-                                                    kReminderBulletsTextStyle),
+                                    Slidable(
+                                      actionPane: SlidableDrawerActionPane(),
+                                      child: ListTile(
+                                        leading: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 6.0),
+                                          child: CircleAvatar(
+                                            maxRadius: 15,
+                                            backgroundColor: kTealColor,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 4.0, left: 1.0),
+                                              child: Text((index + 1).toString(),
+                                                  style:
+                                                      kReminderBulletsTextStyle),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      title: Text(
-                                        snapshot.data[index].data()['title'],
-                                        style: kReminderMainTextStyle,
-                                      ),
-                                      subtitle: Text(
-                                          '${snapshot.data[index].data()['actualTime']}\t-\t'
-                                          '${snapshot.data[index].data()['actualDate']}',
-                                          style: kReminderSubtitleTextStyle),
-                                      trailing: IconButton(
-                                        icon: Icon(
-                                          FontAwesomeIcons.ellipsisV,
-                                          size: 20.0,
-                                          color: kTealColor,
+                                        title: Text(
+                                          snapshot.data[index].data()['title'],
+                                          style: kReminderMainTextStyle,
                                         ),
-                                        onPressed: () {
-                                          AlertWidget()
-                                              .generateReminderDelete(
-                                                  context: context,
-                                                  title:
-                                                      '${snapshot.data[index].data()['title']}')
-                                              .show();
-                                        },
+                                        subtitle: Text(
+                                            '${snapshot.data[index].data()['actualTime']}\t-\t'
+                                            '${snapshot.data[index].data()['actualDate']}',
+                                            style: kReminderSubtitleTextStyle),
+                                        trailing: IconButton(
+                                          icon: Icon(
+                                            FontAwesomeIcons.ellipsisV,
+                                            size: 20.0,
+                                            color: kTealColor,
+                                          ),
+                                          onPressed: () {
+                                            AlertWidget()
+                                                .generateReminderDelete(
+                                                    context: context,
+                                                    title:
+                                                        '${snapshot.data[index].data()['title']}')
+                                                .show();
+                                          },
+                                        ),
                                       ),
+                                      secondaryActions: [
+                                        IconSlideAction(
+                                          iconWidget: Column(
+                                            children: [
+                                              Icon(
+                                                  Icons.notifications_active,
+                                                color: kScaffoldBackgroundColor,
+                                              ),
+                                              Text(
+                                                'Show',
+                                                style: kReminderContainerTextStyle
+                                                    .copyWith(color: kScaffoldBackgroundColor, fontSize: 12),
+                                              )
+                                            ],
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          ),
+                                          //caption: 'More',
+                                          color: kTealColor,
+                                          //icon: Icons.more_horiz,
+                                          onTap: () {
+                                            // Show
+                                            _showTestNotification('${snapshot.data[index].data()['title']}');
+                                          },
+                                          closeOnTap: false,
+                                        ),
+                                        IconSlideAction(
+                                          iconWidget: Column(
+                                            children: [
+                                              Icon(
+                                                Icons.delete_sweep,
+                                                color: kScaffoldBackgroundColor,
+                                              ),
+                                              Text(
+                                                'Delete',
+                                                style: kReminderContainerTextStyle
+                                                    .copyWith(color: kScaffoldBackgroundColor, fontSize: 12),
+                                              )
+                                            ],
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          ),
+                                          //caption: 'More',
+                                          color: kDiseaseIndicationColor,
+                                          //icon: Icons.more_horiz,
+                                          onTap: () {
+                                            // Delete
+                                            AlertWidget()
+                                                .generateReminderDelete(
+                                                context: context,
+                                                title:
+                                                '${snapshot.data[index].data()['title']}')
+                                                .show();
+                                          },
+                                          closeOnTap: false,
+                                        ),
+                                        IconSlideAction(
+                                          iconWidget: Column(
+                                            children: [
+                                              Icon(
+                                                Icons.close,
+                                                color: kScaffoldBackgroundColor,
+                                              ),
+                                              Text(
+                                                'Close',
+                                                style: kReminderContainerTextStyle
+                                                    .copyWith(color: kScaffoldBackgroundColor, fontSize: 12),
+                                              )
+                                            ],
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          ),
+                                          //caption: 'More',
+                                          color: kGreyButtonColor,
+                                          //icon: Icons.more_horiz,
+                                          onTap: () {},
+                                          closeOnTap: true,
+                                        ),
+                                      ],
+                                      direction: Axis.horizontal,
+                                      actionExtentRatio: 1/3,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -216,45 +300,126 @@ class _ReminderMainState extends State<ReminderMain> {
                               itemBuilder: (context, index) {
                                 return Column(
                                   children: [
-                                    ListTile(
-                                      leading: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 6.0),
-                                        child: CircleAvatar(
-                                          maxRadius: 15,
-                                          backgroundColor: kTealColor,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 4.0, left: 1.0),
-                                            child: Text((index + 1).toString(),
-                                                style:
-                                                    kReminderBulletsTextStyle),
+                                    Slidable(
+                                      actionPane: SlidableDrawerActionPane(),
+                                      child: ListTile(
+                                        leading: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 6.0),
+                                          child: CircleAvatar(
+                                            maxRadius: 15,
+                                            backgroundColor: kTealColor,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 4.0, left: 1.0),
+                                              child: Text((index + 1).toString(),
+                                                  style:
+                                                      kReminderBulletsTextStyle),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      title: Text(
-                                        snapshot.data[index].data()['title'],
-                                        style: kReminderMainTextStyle,
-                                      ),
-                                      subtitle: Text(
-                                          '${snapshot.data[index].data()['recurrence']}\ttimes a day\t-\t'
-                                          'Till\t${snapshot.data[index].data()['actualDate']}',
-                                          style: kReminderSubtitleTextStyle),
-                                      trailing: IconButton(
-                                        icon: Icon(
-                                          FontAwesomeIcons.ellipsisV,
-                                          size: 20.0,
-                                          color: kTealColor,
+                                        title: Text(
+                                          snapshot.data[index].data()['title'],
+                                          style: kReminderMainTextStyle,
                                         ),
-                                        onPressed: () {
-                                          AlertWidget()
-                                              .generateReminderDelete(
-                                                  context: context,
-                                                  title:
-                                                      '${snapshot.data[index].data()['title']}')
-                                              .show();
-                                        },
+                                        subtitle: Text(
+                                            '${snapshot.data[index].data()['recurrence']}\ttimes a day\t-\t'
+                                            'Till\t${snapshot.data[index].data()['actualDate']}',
+                                            style: kReminderSubtitleTextStyle),
+                                        trailing: IconButton(
+                                          icon: Icon(
+                                            FontAwesomeIcons.ellipsisV,
+                                            size: 20.0,
+                                            color: kTealColor,
+                                          ),
+                                          onPressed: () {
+                                            AlertWidget()
+                                                .generateReminderDelete(
+                                                    context: context,
+                                                    title:
+                                                        '${snapshot.data[index].data()['title']}')
+                                                .show();
+                                          },
+                                        ),
                                       ),
+                                      secondaryActions: [
+                                        IconSlideAction(
+                                          iconWidget: Column(
+                                            children: [
+                                              Icon(
+                                                Icons.notifications_active,
+                                                color: kScaffoldBackgroundColor,
+                                              ),
+                                              Text(
+                                                'Show',
+                                                style: kReminderContainerTextStyle
+                                                    .copyWith(color: kScaffoldBackgroundColor, fontSize: 12),
+                                              )
+                                            ],
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          ),
+                                          //caption: 'More',
+                                          color: kTealColor,
+                                          //icon: Icons.more_horiz,
+                                          onTap: () {
+                                            // Show
+                                            _showTestNotification('${snapshot.data[index].data()['title']}');
+                                          },
+                                          closeOnTap: false,
+                                        ),
+                                        IconSlideAction(
+                                          iconWidget: Column(
+                                            children: [
+                                              Icon(
+                                                Icons.delete_sweep,
+                                                color: kScaffoldBackgroundColor,
+                                              ),
+                                              Text(
+                                                'Delete',
+                                                style: kReminderContainerTextStyle
+                                                    .copyWith(color: kScaffoldBackgroundColor, fontSize: 12),
+                                              )
+                                            ],
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          ),
+                                          //caption: 'More',
+                                          color: kDiseaseIndicationColor,
+                                          //icon: Icons.more_horiz,
+                                          onTap: () {
+                                            // Delete
+                                            AlertWidget()
+                                                .generateReminderDelete(
+                                                context: context,
+                                                title:
+                                                '${snapshot.data[index].data()['title']}')
+                                                .show();
+                                          },
+                                          closeOnTap: false,
+                                        ),
+                                        IconSlideAction(
+                                          iconWidget: Column(
+                                            children: [
+                                              Icon(
+                                                Icons.close,
+                                                color: kScaffoldBackgroundColor,
+                                              ),
+                                              Text(
+                                                'Close',
+                                                style: kReminderContainerTextStyle
+                                                    .copyWith(color: kScaffoldBackgroundColor, fontSize: 12),
+                                              )
+                                            ],
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          ),
+                                          //caption: 'More',
+                                          color: kGreyButtonColor,
+                                          //icon: Icons.more_horiz,
+                                          onTap: () {},
+                                          closeOnTap: true,
+                                        ),
+                                      ],
+                                      direction: Axis.horizontal,
+                                      actionExtentRatio: 1/3,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -279,5 +444,10 @@ class _ReminderMainState extends State<ReminderMain> {
         ),
       ),
     );
+  }
+
+  void _showTestNotification(String remBody){
+    NotificationManager().scheduleNotification(notifsPlugin: notifsPlugin, title: 'EyeSee Reminder Scheduled',
+        body: remBody, scheduledTime: DateTime.now());
   }
 }
