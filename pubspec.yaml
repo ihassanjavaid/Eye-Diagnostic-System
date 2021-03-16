@@ -89,6 +89,7 @@ flutter:
     - assets/images/dashboard/
     - assets/animations/eyeseesplash.flr
     - assets/json/hospitals/hospitals-v1-json.json
+    - assets/images/vision_testing/main_icons/
 
   # fonts:
   #   - family: Schyler
