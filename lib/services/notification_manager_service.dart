@@ -66,6 +66,7 @@ class NotificationManager {
 import 'package:eye_diagnostic_system/models/notification_data.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as notifs;
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/subjects.dart' as rxSub;
 
 class NotificationManager{
@@ -106,20 +107,34 @@ class NotificationManager{
 
   Future<void> scheduleNotification(
       {notifs.FlutterLocalNotificationsPlugin notifsPlugin,
-        String id,
+        int id = 0,
         String title,
         String body,
         DateTime scheduledTime}) async {
     var androidSpecifics = notifs.AndroidNotificationDetails(
-      id, // This specifies the ID of the Notification
+      id.toString(), // This specifies the ID of the Notification
       'Scheduled notification', // This specifies the name of the notification channel
       'A scheduled notification', //This specifies the description of the channel
       icon: 'icon',
     );
-    var iOSSpecifics = notifs.IOSNotificationDetails();
+    var iOSSpecifics = notifs.IOSNotificationDetails(
+    );
     var platformChannelSpecifics = notifs.NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
-    await notifsPlugin.schedule(0, title, body,
+    await notifsPlugin.schedule(id, title, body,
         scheduledTime, platformChannelSpecifics, androidAllowWhileIdle: true); // This literally schedules the notification
   }
 
+   NotificationDetails getPlatformChannelSpecifics() {
+     var androidSpecifics = notifs.AndroidNotificationDetails(
+       '0', // This specifies the ID of the Notification
+       'Scheduled notification', // This specifies the name of the notification channel
+       'A scheduled notification', //This specifies the description of the channel
+       icon: 'icon',
+     );
+     var iOSSpecifics = notifs.IOSNotificationDetails(
+     );
+     var platformChannelSpecifics = notifs.NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
+
+     return platformChannelSpecifics;
+  }
 }
