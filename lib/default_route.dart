@@ -16,6 +16,7 @@ import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_instructions_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/splash.dart';
@@ -65,6 +66,8 @@ class DefaultEyeSeeRoute{
     ImagePickerScreen.id: (context) => ImagePickerScreen(),
     MapBoxMainScreen.id: (context) => MapBoxMainScreen(),
     DuoChromeInstructionsScreen.id: (context) => DuoChromeInstructionsScreen(),
+    DuochromeTestScreen.id: (context) => DuochromeTestScreen(),
+
     };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;

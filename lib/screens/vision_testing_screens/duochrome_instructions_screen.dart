@@ -1,5 +1,6 @@
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _DuoChromeInstructionsScreen extends State<DuoChromeInstructionsScreen> {
                       Container(
                         child: FlatButton(
                           onPressed: () {
-                            //TODO: push to duochrometest
+                            Navigator.popAndPushNamed(context, DuochromeTestScreen.id);
                           },
                           child: Text(
                             'SKIP',
@@ -173,7 +174,7 @@ class _DuoChromeInstructionsScreen extends State<DuoChromeInstructionsScreen> {
                                       duration: Duration(milliseconds: 500),
                                       curve: Curves.ease)
                                   : Navigator.popAndPushNamed(
-                                      context, LoginScreen.id);
+                                      context, DuochromeTestScreen.id);
                             },
                             child: Icon(
                               _currentPage != _numPages-1
