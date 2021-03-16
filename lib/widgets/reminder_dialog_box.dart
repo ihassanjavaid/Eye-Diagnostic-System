@@ -1,15 +1,19 @@
+import 'package:eye_diagnostic_system/init.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/models/reminder_data.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
+import 'package:eye_diagnostic_system/services/notification_manager_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/utilities/global_methods.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:eye_diagnostic_system/widgets/reminder_choice_chip.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'custom_textfield.dart';
 
 class ReminderDialog {
@@ -218,9 +222,36 @@ class ReminderDialog {
                     _oneTimeReminder.actualDate.month = Provider.of<ProviderData>(context, listen: false).pickedDate.month;
                     _oneTimeReminder.actualDate.day = Provider.of<ProviderData>(context, listen: false).pickedDate.day;
 
-                    // store data in firestore
                     try{
-                      await _firestoreReminderService.postOneTimeReminder(_oneTimeReminder);
+                      // Schedule Notification
+                      var dt = Provider.of<ProviderData>(context, listen: false).pickedDate;
+                      var tm = Provider.of<ProviderData>(context, listen: false).pickedTime;
+                      var titl = Provider.of<ProviderData>(context, listen: false).reminderTitle;
+
+                      DateTime notifDateTime = DateTime(dt.year, dt.month, dt.day, tm.hour, tm.minute);
+
+                      int id = await getNotificationID();
+
+                      // check if time before
+                      if (notifDateTime.isBefore(DateTime.now())){
+                        AlertWidget()
+                            .generatePastTimeAlert(context: context)
+                            .show();
+                        return;
+                      }
+
+                      // store data in firestore
+                      await _firestoreReminderService.postOneTimeReminder(_oneTimeReminder, notifID: id);
+
+
+
+                      NotificationManager().scheduleNotification(
+                          id: id,
+                          notifsPlugin: notifsPlugin,
+                          title: 'EyeSee One-time Reminder',
+                          body: titl,
+                          scheduledTime: notifDateTime
+                      );
                     }
                     catch(e){
                       AlertWidget()
@@ -440,9 +471,26 @@ class ReminderDialog {
                     _recurringReminder.actualDate.month = Provider.of<ProviderData>(context, listen: false).pickedDate.month;
                     _recurringReminder.actualDate.day = Provider.of<ProviderData>(context, listen: false).pickedDate.day;
 
+                    DateTime selectedDate = Provider.of<ProviderData>(context, listen: false).pickedDate;
+
+                    if (selectedDate.isBefore(DateTime.now())){
+                      AlertWidget()
+                          .generatePastTimeAlert(context: context)
+                          .show();
+                      return;
+                    }
+
                     // store data in firestore
                     try{
-                      await _firestoreReminderService.postRecurringReminder(_recurringReminder);
+                      int id = await getNotificationID();
+                      await _firestoreReminderService.postRecurringReminder(_recurringReminder, notifID: id);
+
+                      int repetition = Provider.of<ProviderData>(context, listen: false).recurrence;
+                      String titl = Provider.of<ProviderData>(context, listen: false).reminderTitle;
+
+                      // DO NOT UN-COMMENT
+                      // WOULD LEAD TO INFINITELY SCHEDULED NOTIFS.
+                      // setRecurringNotification(repetition, id: id, body: titl);
                     }
                     catch(e){
                       AlertWidget()
@@ -491,4 +539,54 @@ class ReminderDialog {
       ),
     );
   }
+
+  Future<int> getNotificationID() async {
+
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    int id = _prefs.getInt('notification_id');
+
+    if ( id == null ){
+      _prefs.setInt('notification_id', 1);
+      return 1;
+    }
+    else {
+      _prefs.setInt('notification_id', (id + 1) );
+      return id;
+    }
+
+  }
+
+  void setRecurringNotification(int recurrence, {
+    int id,
+    String body,
+      }) {
+
+    NotificationManager notificationManager = NotificationManager();
+    var platSpecs = notificationManager.getPlatformChannelSpecifics();
+    final FlutterLocalNotificationsPlugin notifsPlugin = FlutterLocalNotificationsPlugin();
+
+    if (recurrence == 1){
+      notifsPlugin.showDailyAtTime(id, 'Eye-See Scheduled Reminder',
+          body, Time(9,0,0), platSpecs);
+    }
+    else if (recurrence == 2){
+      notifsPlugin.showDailyAtTime(id, 'Eye-See Scheduled Reminder',
+          body, Time(9,0,0), platSpecs);
+      notifsPlugin.showDailyAtTime(id, 'Eye-See Scheduled Reminder',
+          body, Time(2,0,0), platSpecs);
+    }
+    else if (recurrence == 3){
+      notifsPlugin.showDailyAtTime(id, 'Eye-See Scheduled Reminder',
+          body, Time(9,0,0), platSpecs);
+      notifsPlugin.showDailyAtTime(id, 'Eye-See Scheduled Reminder',
+          body, Time(2,0,0), platSpecs);
+      notifsPlugin.showDailyAtTime(id, 'Eye-See Scheduled Reminder',
+          body, Time(7,0,0), platSpecs);
+    }
+    else {
+      print('recurrence levels supported: 1-3');
+    }
+
+  }
+
 }

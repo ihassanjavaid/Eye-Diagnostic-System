@@ -190,4 +190,26 @@ class AlertWidget{
 
   }
 
+  generatePastTimeAlert({@required context}){
+    return Alert(
+      context: context,
+      type: AlertType.warning,
+      title: 'Invalid Time',
+      desc: 'Sorry, the date/time you have selected has passed!\nPlease try again.',
+      buttons: [
+        DialogButton(
+          color: kTealColor,
+          child: Text(
+            "Try Again",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          width: 130,
+        )
+      ],
+    );
+  }
+
 }

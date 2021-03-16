@@ -14,7 +14,7 @@ class FirestoreReminderService{
     return _user.email;
   }
 
-  Future<void> postOneTimeReminder(Reminder reminder) async {
+  Future<void> postOneTimeReminder(Reminder reminder, {int notifID = 0}) async {
     await checkInternConnection();
     String _email = await getCurrentUserEmail();
 
@@ -29,6 +29,7 @@ class FirestoreReminderService{
         'actualDate': reminder.actualDate.toString(),
         'isRecurring': reminder.isRecurring,
         'recurrence': 0,
+        'id': notifID.toString(),
         // for showing the reminders in app in order 'last posted first'
         'timestamp': DateTime.now().millisecondsSinceEpoch
       });
@@ -38,7 +39,7 @@ class FirestoreReminderService{
     }
   }
 
-  Future<void> postRecurringReminder(Reminder reminder) async {
+  Future<void> postRecurringReminder(Reminder reminder, {int notifID = 0}) async {
     await checkInternConnection();
     String _email = await getCurrentUserEmail();
 
@@ -52,6 +53,7 @@ class FirestoreReminderService{
         'actualDate': reminder.actualDate.toString(),
         'isRecurring': reminder.isRecurring,
         'recurrence': reminder.recurrence,
+        'id': notifID.toString(),
         // for showing the reminders in app in order 'last posted first'
         'timestamp': DateTime.now().millisecondsSinceEpoch
       });
