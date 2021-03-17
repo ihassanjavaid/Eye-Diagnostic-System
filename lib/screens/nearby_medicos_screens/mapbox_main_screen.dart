@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eye_diagnostic_system/models/hospital_data.dart';
 import 'package:eye_diagnostic_system/services/firestore_hospitals_service.dart';
@@ -110,23 +111,28 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
           ),
           Positioned(
             bottom: size.height / 12 + 26,
-            left: size.width / 12 - 12,
+            left: size.width / 12 - 30,
             right: size.width / 12 - 12,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                FloatingActionButton(
-                  heroTag: 'call',
-                  backgroundColor: kDiseaseIndicationColor,
-                  onPressed: () {
-                    // should be replaces with 1122 - for Pakistan
-                    launch("tel://911");
-                  },
-                  child: Icon(
-                    Icons.call,
-                    color: kScaffoldBackgroundColor,
-                    size: 30.0,
+                AvatarGlow(
+                  endRadius: 48.0,
+                  glowColor: kAmberColor,
+                  showTwoGlows: true,
+                  child: FloatingActionButton(
+                    heroTag: 'call',
+                    backgroundColor: kDiseaseIndicationColor,
+                    onPressed: () {
+                      // should be replaces with 1122 - for Pakistan
+                      launch("tel://911");
+                    },
+                    child: Icon(
+                      Icons.call,
+                      color: kScaffoldBackgroundColor,
+                      size: 30.0,
+                    ),
                   ),
                 ),
                 SizedBox(

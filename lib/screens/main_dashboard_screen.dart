@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:eye_diagnostic_system/components/dashboard_card_clipper.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screen.dart';
 import 'package:eye_diagnostic_system/screens/nearby_medicos_screens/mapbox_main_screen.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 import 'assistant_screens/assistant_chatbot_screen.dart';
 import 'extras_screen.dart';
 import 'package:eye_diagnostic_system/services/my_address_service.dart';
@@ -30,6 +32,8 @@ class _DashboardState extends State<Dashboard> {
   int _currentPage = 0;
   Timer _timer;
   double _circleWidth = 3.5;
+  static const List<String> EYESEE_LIST = ["Diagnostics", "Optometrists",
+    "Reminders", "Assistant", "Community"];
   /// TODO eye facts
   EyeFacts _eyeFacts = EyeFacts();
   // print(await _eyeFacts.getFact());
@@ -77,6 +81,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -100,7 +105,7 @@ class _DashboardState extends State<Dashboard> {
                     ],
                   ),
                 ),
-                Center(
+                /*Center(
                   child: RichText(
                     text: TextSpan(children: [
                       TextSpan(
@@ -128,6 +133,30 @@ class _DashboardState extends State<Dashboard> {
                         fontSize: 38),
                       ),
                     ]),
+                  ),
+                ),*/
+                Center(
+                  child: SizedBox(
+                    height: size.height / 12,
+                    width: size.width,
+                    child: Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        SizedBox(width: 20.0, height: 20.0),
+                        Text(
+                          '\t\t\tEyeSee',
+                          style: kDashboardTitleTextStyle.copyWith(color: kTealColor),
+                        ),
+                        SizedBox(width: 20.0, height: 20.0),
+                        RotateAnimatedTextKit(
+                          repeatForever: true,
+                            text: EYESEE_LIST,
+                            textStyle: kDashboardTitleTextStyle.copyWith(color: kTealColor),
+                            textAlign: TextAlign.start
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -312,9 +341,14 @@ class _DashboardState extends State<Dashboard> {
                       topRight: Radius.circular(12.0),
                       bottomLeft: Radius.circular(12.0)),
                 ),
-                child: Image.asset(
-                  image,
-                  scale: 2.5,
+                child: Shimmer.fromColors(
+                  baseColor: kDarkTealColor,
+                  highlightColor: kScaffoldBackgroundColor,
+                  period: Duration(milliseconds: 2500),
+                  child: Image.asset(
+                    image,
+                    scale: 2.5,
+                  ),
                 ),
               ),
             ),
