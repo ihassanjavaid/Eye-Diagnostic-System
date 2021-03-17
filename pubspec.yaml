@@ -92,6 +92,8 @@ flutter:
     - assets/animations/eyeseesplash.flr
     - assets/json/hospitals/hospitals-v1-json.json
     - assets/images/vision_testing/main_icons/
+    - assets/images/vision_testing/duo-chrome tests/
+    - assets/images/vision_testing/instructions_icons/
 
   # fonts:
   #   - family: Schyler
