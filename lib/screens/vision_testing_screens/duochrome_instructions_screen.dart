@@ -189,6 +189,8 @@ class _DuoChromeInstructionsScreen extends State<DuoChromeInstructionsScreen> {
                 ],
               ),
             ),
+
+
             // child: Container(
             //   height: MediaQuery.of(context).size.height/2,
             //   color: Colors.deepOrange,
@@ -296,15 +298,18 @@ class _DuoChromeInstructionsScreen extends State<DuoChromeInstructionsScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            alignment: Alignment.center,
-            height: 100,
-            child: FittedBox(
-              child: Image(
-                image: AssetImage(image),
-                color: kDarkTealColor,
+          Center(
+            child: Container(
+              alignment: Alignment.center,
+              height: 100,
+              width: 300,
+              child: FittedBox(
+                child: Image(
+                  image: AssetImage(image),
+                  color: kDarkTealColor,
+                ),
+                fit: BoxFit.contain,
               ),
-              fit: BoxFit.contain,
             ),
           ),
           SizedBox(
