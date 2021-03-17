@@ -16,6 +16,7 @@ import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_instructions_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/visual_acuity_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
@@ -67,6 +68,8 @@ class DefaultEyeSeeRoute{
     MapBoxMainScreen.id: (context) => MapBoxMainScreen(),
     DuoChromeInstructionsScreen.id: (context) => DuoChromeInstructionsScreen(),
     DuochromeTestScreen.id: (context) => DuochromeTestScreen(),
+    VisualAcuityInstructionsScreen.id: (context) => VisualAcuityInstructionsScreen(),
+
 
     };
 
