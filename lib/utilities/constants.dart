@@ -137,6 +137,10 @@ enum ReminderType { RECURRING, ONETIME }
 
 enum DiagnosisType { DISEASE, DISORDER, INFECTION, FUNDUS }
 
+enum EyeType { LEFT, RIGHT }
+
+enum VisionTestType { DUO, ASTIG, MYOPIA, ACUITY }
+
 // Decorations
 
 final kLoginBoxDecorationStyle = BoxDecoration(

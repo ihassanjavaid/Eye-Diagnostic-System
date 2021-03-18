@@ -1,15 +1,23 @@
 import 'dart:async';
 
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
+import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_result_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:eye_diagnostic_system/models/vision_testing_models/duochrome_data.dart';
+import 'package:provider/provider.dart';
 
 class DuochromeTestScreen extends StatefulWidget {
   static const String id = 'duochrome_test_screen';
+  final EyeType eyeType;
+
+  const DuochromeTestScreen({Key key, this.eyeType}) : super(key: key);
+
   @override
   _DuochromeTestScreen createState() => _DuochromeTestScreen();
 }
@@ -38,6 +46,8 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
 
   int hyperopiaPressed = 0;
   int myopiaPressed = 0;
+
+  DuochromeData _data = DuochromeData(0,0,0,0);
 
   String imageProgressionHyper(int pressed) {
     if (pressed == 0) {
@@ -170,12 +180,12 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
                             TextSpan(
                               text: 'Duo-Chrome\t',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kAmberColor),
+                                  color: kScaffoldBackgroundColor),
                             ),
                             TextSpan(
                               text: 'Test',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kAmberColor),
+                                  color: kScaffoldBackgroundColor),
                             ),
                           ]),
                         ),
@@ -210,12 +220,25 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
                       child:
                           _buildTopBox(imageProgressionHyper(hyperopiaPressed)),
                       onTap: () {
+                        if(widget.eyeType == EyeType.LEFT && hyperopiaImage==hyperopiaYellow02){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
+                            testType: VisionTestType.DUO,
+                          )));
+                        }
+                        else if(hyperopiaImage==hyperopiaYellow02){
+                          AlertWidget().generateEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                        }
+                        if(widget.eyeType == EyeType.RIGHT){
+                          Provider.of<ProviderData>(context, listen: false).updateRightHyperopia();
+                          print(Provider.of<ProviderData>(context,listen:false).rightHyperopia);
+                        }
+                        else if(widget.eyeType == EyeType.LEFT){
+                          Provider.of<ProviderData>(context, listen: false).updateLeftHyperopia();
+                          print(Provider.of<ProviderData>(context,listen:false).leftHyperopia);
+                        }
                         hyperopiaPressed = hyperopiaPressed + 1;
                         setState(() {
-                          print(hyperopiaImage);
-                          hyperopiaImage =
-                              imageProgressionHyper(hyperopiaPressed);
-                          print(hyperopiaImage);
+                          hyperopiaImage = imageProgressionHyper(hyperopiaPressed);
                         });
                       },
                     ),
@@ -223,6 +246,22 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
                       child: _buildBottomBox(
                           imageProgressionMyopia(myopiaPressed)),
                       onTap: () {
+                        if(widget.eyeType == EyeType.LEFT && myopiaImage==myopiaOrange02){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
+                            testType: VisionTestType.DUO,
+                          )));
+                        }
+                        else if(myopiaImage==myopiaOrange02){
+                          AlertWidget().generateEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                        }
+                        if(widget.eyeType == EyeType.RIGHT){
+                          Provider.of<ProviderData>(context, listen: false).updateRightMyopia();
+                          print(Provider.of<ProviderData>(context,listen:false).rightMyopia);
+                        }
+                        else if(widget.eyeType == EyeType.LEFT){
+                          Provider.of<ProviderData>(context, listen: false).updateLeftMyopia();
+                          print(Provider.of<ProviderData>(context,listen:false).leftMyopia);
+                        }
                         myopiaPressed = myopiaPressed + 1;
                         setState(() {
                           myopiaImage = imageProgressionMyopia(myopiaPressed);
@@ -239,6 +278,14 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
             GestureDetector(
               child: _buildMiddlePanel(),
               onTap: () {
+                if(widget.eyeType == EyeType.LEFT && hyperopiaPressed >=3 && hyperopiaPressed >= 3){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
+                    testType: VisionTestType.DUO,
+                  )));
+                }
+                else if(widget.eyeType == EyeType.RIGHT && hyperopiaPressed >=3 && hyperopiaPressed >= 3){
+                  AlertWidget().generateEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                }
                 hyperopiaPressed += 1;
                 myopiaPressed += 1;
                 setState(() {

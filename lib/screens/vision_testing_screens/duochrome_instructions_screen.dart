@@ -62,7 +62,8 @@ class _DuoChromeInstructionsScreen extends State<DuoChromeInstructionsScreen> {
                       Container(
                         child: FlatButton(
                           onPressed: () {
-                            Navigator.popAndPushNamed(context, DuochromeTestScreen.id);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DuochromeTestScreen(
+                                eyeType: EyeType.RIGHT)));
                           },
                           child: Text(
                             'SKIP',
@@ -173,8 +174,9 @@ class _DuoChromeInstructionsScreen extends State<DuoChromeInstructionsScreen> {
                                   ? _pageController.nextPage(
                                       duration: Duration(milliseconds: 500),
                                       curve: Curves.ease)
-                                  : Navigator.popAndPushNamed(
-                                      context, DuochromeTestScreen.id);
+                                  : Navigator.push(context, MaterialPageRoute(builder: (context) => DuochromeTestScreen(
+                                eyeType: EyeType.RIGHT,
+                              )));
                             },
                             child: Icon(
                               _currentPage != _numPages-1

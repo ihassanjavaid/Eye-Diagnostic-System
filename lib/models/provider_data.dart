@@ -89,4 +89,34 @@ class ProviderData extends ChangeNotifier{
     this._recurrence = recur;
     notifyListeners();
   }
+
+ //=== for duochrome ===
+  int _rightMyopia = 0;
+  int _leftMyopia = 0;
+  int _rightHyperopia = 0;
+  int _leftHyperopia = 0;
+
+  int get rightMyopia => _rightMyopia;
+  int get rightHyperopia => _rightHyperopia;
+  int get leftMyopia => _leftMyopia;
+  int get leftHyperopia => _leftHyperopia;
+
+  void updateRightMyopia(){
+    this._rightMyopia+=1;
+    notifyListeners();
+  }
+  void updateLeftMyopia(){
+    this._leftMyopia+=1;
+    notifyListeners();
+  }
+  void updateRightHyperopia(){
+    this._rightHyperopia+=1;
+    notifyListeners();
+  }
+  void updateLeftHyperopia(){
+    this._leftHyperopia+=1;
+    notifyListeners();
+  }
+
+
 }

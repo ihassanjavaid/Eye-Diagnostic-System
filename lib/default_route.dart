@@ -19,6 +19,7 @@ import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_i
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/visual_acuity_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_result_screen.dart';
 import 'package:eye_diagnostic_system/services/auto_login_service.dart';
 import 'package:eye_diagnostic_system/splash.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class DefaultEyeSeeRoute{
     DuoChromeInstructionsScreen.id: (context) => DuoChromeInstructionsScreen(),
     DuochromeTestScreen.id: (context) => DuochromeTestScreen(),
     VisualAcuityInstructionsScreen.id: (context) => VisualAcuityInstructionsScreen(),
-
+    VisionResultScreen.id : (context) => VisionResultScreen(),
 
     };
 
