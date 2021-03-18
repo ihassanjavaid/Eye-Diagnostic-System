@@ -1,3 +1,4 @@
+import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,14 +74,13 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
 
   Widget _buildMiddlePanel() {
     return Container(
-      color: Colors.black87,
+      color: kScaffoldBackgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.arrow_forward,
-            size: 50,
-            color: Colors.white,
+          Text(
+            'Both Appear the Same',
+            style: kOnBoardingSubtitleStyle. copyWith(color: Colors.black87, fontSize: 30),
           ),
         ],
       ),
