@@ -238,15 +238,15 @@ class _VisionTestingMainState extends State<VisionTestingMain> {
                     //     )
                     //   ],
                     // ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: kTealColor.withOpacity(0.8)
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, DuoChromeInstructionsScreen.id);
-                        },
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, DuoChromeInstructionsScreen.id);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: kTealColor.withOpacity(0.8)
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
