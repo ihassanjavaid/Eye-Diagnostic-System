@@ -221,12 +221,16 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
                           _buildTopBox(imageProgressionHyper(hyperopiaPressed)),
                       onTap: () {
                         if(widget.eyeType == EyeType.LEFT && hyperopiaImage==hyperopiaYellow02){
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+
                           Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
                             testType: VisionTestType.DUO,
                           )));
                         }
                         else if(hyperopiaImage==hyperopiaYellow02){
-                          AlertWidget().generateEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                          AlertWidget().generateDuoEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
                         }
                         if(widget.eyeType == EyeType.RIGHT){
                           Provider.of<ProviderData>(context, listen: false).updateRightHyperopia();
@@ -247,12 +251,15 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
                           imageProgressionMyopia(myopiaPressed)),
                       onTap: () {
                         if(widget.eyeType == EyeType.LEFT && myopiaImage==myopiaOrange02){
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
                           Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
                             testType: VisionTestType.DUO,
                           )));
                         }
                         else if(myopiaImage==myopiaOrange02){
-                          AlertWidget().generateEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                          AlertWidget().generateDuoEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
                         }
                         if(widget.eyeType == EyeType.RIGHT){
                           Provider.of<ProviderData>(context, listen: false).updateRightMyopia();
@@ -279,12 +286,15 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
               child: _buildMiddlePanel(),
               onTap: () {
                 if(widget.eyeType == EyeType.LEFT && hyperopiaPressed >=3 && hyperopiaPressed >= 3){
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
                   Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
                     testType: VisionTestType.DUO,
                   )));
                 }
                 else if(widget.eyeType == EyeType.RIGHT && hyperopiaPressed >=3 && hyperopiaPressed >= 3){
-                  AlertWidget().generateEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                  AlertWidget().generateDuoEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
                 }
                 hyperopiaPressed += 1;
                 myopiaPressed += 1;

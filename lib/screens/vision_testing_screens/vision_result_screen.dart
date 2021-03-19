@@ -28,6 +28,28 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
     if(widget.testType == VisionTestType.DUO){
       _calculateDuoResults(context);
     }
+    else if(widget.testType == VisionTestType.ASTIG){
+      _calculateAstigResults(context);
+    }
+  }
+
+  String _calculateAstigResults(BuildContext context){
+    int right = Provider.of<ProviderData>(context,listen:false).right;
+    int left = Provider.of<ProviderData>(context,listen:false).left;
+
+    if(right>=2){
+      rightResult = 'Astigmatism';
+    }
+    else if (right <2){
+      rightResult = 'no Ocular Error';
+    }
+
+    if(left >= 2){
+      leftResult = 'Astigmatism';
+    }
+    else if (left <2){
+      leftResult = 'no Ocular Error';
+    }
   }
 
   String _calculateDuoResults(BuildContext context){

@@ -97,6 +97,7 @@ flutter:
     - assets/images/vision_testing/main_icons/
     - assets/images/vision_testing/duo-chrome tests/
     - assets/images/vision_testing/instructions_icons/
+    - assets/images/vision_testing/astigmatism_tests/
 
   # fonts:
   #   - family: Schyler

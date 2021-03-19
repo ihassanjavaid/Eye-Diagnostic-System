@@ -15,6 +15,8 @@ import 'package:eye_diagnostic_system/screens/on_boarding_screen.dart';
 import 'package:eye_diagnostic_system/screens/registration_screen.dart';
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/astigmatism_instructions_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/astigmatism_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/visual_acuity_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
@@ -71,6 +73,8 @@ class DefaultEyeSeeRoute{
     DuoChromeInstructionsScreen.id: (context) => DuoChromeInstructionsScreen(),
     DuochromeTestScreen.id: (context) => DuochromeTestScreen(),
     VisualAcuityInstructionsScreen.id: (context) => VisualAcuityInstructionsScreen(),
+    AstigmatismInstructionsScreen.id: (context) => AstigmatismInstructionsScreen(),
+    AstigmatismTestScreen.id: (context) => AstigmatismTestScreen(),
     VisionResultScreen.id : (context) => VisionResultScreen(),
     ProfileScreen.id: (context) => ProfileScreen(),
     };

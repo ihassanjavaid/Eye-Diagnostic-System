@@ -118,5 +118,22 @@ class ProviderData extends ChangeNotifier{
     notifyListeners();
   }
 
+  //=== for astigmatism ===
+  int _right = 0;
+  int _left = 0;
+
+
+  int get right => _right;
+  int get left => _left;
+
+  void updateRight(){
+    this._right+=1;
+    notifyListeners();
+  }
+  void updateLeft(){
+    this._left+=1;
+    notifyListeners();
+  }
+
 
 }
