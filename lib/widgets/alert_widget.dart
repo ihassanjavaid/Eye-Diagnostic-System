@@ -278,7 +278,7 @@ class AlertWidget{
         DialogButton(
           color: kTealColor,
           child: Text(
-            "Try Again",
+            "Dismiss",
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           onPressed: () {

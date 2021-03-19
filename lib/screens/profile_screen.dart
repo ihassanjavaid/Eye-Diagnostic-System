@@ -31,6 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.didChangeDependencies();
     _biometricsEnabled = await _biometricService.isBiometricAuthEnabled();
     _isDeviceSupported = await _biometricService.isDeviceSupported();
+    setState(() {});
   }
 
   @override
@@ -144,7 +145,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           _isDeviceSupported ?
                           FlutterSwitch(
-                              duration: Duration(milliseconds: 750),
+                              //duration: Duration(milliseconds: 750),
                               height: 30,
                               width: 55,
                               value: _biometricsEnabled,
@@ -162,14 +163,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     val = await _biometricService.authenticateWithBiometrics();
                                   }
                                   catch (err) {
+                                    val = false;
                                     print(err.toString());
                                     AlertWidget()
                                     .generateBiometricErrorAlert(
                                         context: context, title: err.toString()
                                     ).show();
+                                    setState(() {
+                                      _biometricsEnabled = val;
+                                    });
                                   }
 
                                   if (!val){
+                                    setState(() {
+                                      _biometricsEnabled = val;
+                                    });
                                     return;
                                   }
 
@@ -178,6 +186,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 // Turn biometrics Off
                                 else if (!val) {
                                   await _biometricService.turnOffBiometrics();
+                                  setState(() {
+                                    _biometricsEnabled = val;
+                                  });
                                 }
 
                                 ScaffoldMessenger.of(context).showSnackBar(

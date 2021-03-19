@@ -67,6 +67,6 @@ class BiometricService {
 
   Future turnOffBiometrics() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    await _prefs.setBool('biometrics', true);
+    await _prefs.setBool('biometrics', false);
   }
 }
