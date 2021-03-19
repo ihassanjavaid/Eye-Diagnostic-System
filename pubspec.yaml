@@ -64,6 +64,9 @@ dependencies:
   flutter_slidable: ^0.5.7
   animated_text_kit: ^4.0.0
   shimmer: ^1.1.2
+  flutter_switch: ^0.3.0
+  local_auth: 0.6.3+4
+  get_it: ^6.0.0
 
 dev_dependencies:
   flutter_test:

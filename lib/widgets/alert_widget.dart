@@ -212,6 +212,7 @@ class AlertWidget{
       ],
     );
   }
+
   generateInstructions({ @required context, @required title, @required description}){
     return Alert(
       context: context,
@@ -267,4 +268,25 @@ class AlertWidget{
     );
   }
 
+  generateBiometricErrorAlert({@required context, @required title}){
+    return Alert(
+      context: context,
+      type: AlertType.warning,
+      title: 'Can\'t Authenticate',
+      desc: title,
+      buttons: [
+        DialogButton(
+          color: kTealColor,
+          child: Text(
+            "Try Again",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          width: 130,
+        )
+      ],
+    );
+  }
 }

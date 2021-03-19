@@ -141,6 +141,8 @@ enum EyeType { LEFT, RIGHT }
 
 enum VisionTestType { DUO, ASTIG, MYOPIA, ACUITY }
 
+enum BiometricSupportState { UNKNOWN, SUPPORTED, UNSUPPORTED }
+
 // Decorations
 
 final kLoginBoxDecorationStyle = BoxDecoration(

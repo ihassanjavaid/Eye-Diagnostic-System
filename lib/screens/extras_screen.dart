@@ -9,6 +9,7 @@ import 'package:eye_diagnostic_system/widgets/ios_back_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:timezone/timezone.dart';
 import 'community_screens/forum_screen.dart';
+import 'package:eye_diagnostic_system/screens/profile_screen.dart';
 
 class Extras extends StatefulWidget {
   static const String id = 'extras_screen';
@@ -128,8 +129,7 @@ class _ExtrasState extends State<Extras> {
                     GestureDetector(
                       onTap: () {
                         // Navigator.pushNamed(context, Forum.id);
-                        NotificationManager().scheduleNotification(notifsPlugin: notifsPlugin, title: 'Test',
-                        body: 'this is a test notification!', scheduledTime: DateTime.now());
+                        Navigator.pushNamed(context, ProfileScreen.id);
                       },
                       child: Hero(
                         tag: 'extras',

@@ -26,6 +26,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'screens/diagnosis_screens/camera_screen.dart';
+import 'screens/profile_screen.dart';
 
 class DefaultEyeSeeRoute{
 
@@ -71,7 +72,7 @@ class DefaultEyeSeeRoute{
     DuochromeTestScreen.id: (context) => DuochromeTestScreen(),
     VisualAcuityInstructionsScreen.id: (context) => VisualAcuityInstructionsScreen(),
     VisionResultScreen.id : (context) => VisionResultScreen(),
-
+    ProfileScreen.id: (context) => ProfileScreen(),
     };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
