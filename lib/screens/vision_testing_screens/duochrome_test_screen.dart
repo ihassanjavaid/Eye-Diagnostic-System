@@ -78,22 +78,19 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
   }
 
   Widget _buildTopBox(image) {
-    return Padding(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Container(
-        height: MediaQuery.of(context).size.height / 2.75,
-        width: MediaQuery.of(context).size.width / 1.15,
-        child: FittedBox(
-          child: Image(
-            image: AssetImage(image),
-          ),
-          fit: BoxFit.fill,
+    return Container(
+      height: MediaQuery.of(context).size.height / 2.75,
+      width: MediaQuery.of(context).size.width / 1.15,
+      child: FittedBox(
+        child: Image(
+          image: AssetImage(image),
         ),
+        fit: BoxFit.fill,
       ),
     );
   }
 
-  Widget _buildMiddlePanel() {
+  Widget _buildBottomBar() {
     return Padding(
       padding: const EdgeInsets.only(left:30.0, right: 20.0, bottom: 10),
       child: Container(
@@ -137,17 +134,14 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
   }
 
   Widget _buildBottomBox(image) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10.0, right: 10),
-      child: Container(
-        height: MediaQuery.of(context).size.height / 2.75,
-        width: MediaQuery.of(context).size.width / 1.15,
-        child: FittedBox(
-          child: Image(
-            image: AssetImage(image),
-          ),
-          fit: BoxFit.fill,
+    return Container(
+      height: MediaQuery.of(context).size.height / 2.75,
+      width: MediaQuery.of(context).size.width / 1.15,
+      child: FittedBox(
+        child: Image(
+          image: AssetImage(image),
         ),
+        fit: BoxFit.fill,
       ),
     );
   }
@@ -159,17 +153,13 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
         value: SystemUiOverlayStyle.light,
         child: Column(
           children: [
-            // Container(
-            //   color: kTealColor,
-            //   height: 50,
-            // ),
             ClipPath(
               clipper: HeaderCustomClipper(),
               child: Column(children: [
                 Container(
                   color: kTealColor,
                   padding: const EdgeInsets.only(
-                      left: 15, right: 15, top: 50.0, bottom: 40.0),
+                      left: 15, right: 15, top: 40.0, bottom: 45.0),
                   alignment: Alignment.center,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -211,71 +201,78 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
             //     ),
             //   ),
             // ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(60),
-              child: Container(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      child:
-                          _buildTopBox(imageProgressionHyper(hyperopiaPressed)),
-                      onTap: () {
-                        if(widget.eyeType == EyeType.LEFT && hyperopiaImage==hyperopiaYellow02){
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                          Navigator.pop(context);
+            Material(
+              elevation: 16.0,
+              borderRadius: BorderRadius.circular(12.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12.0),
+                child: Container(
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(50)
+                  // ),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        child:
+                            _buildTopBox(imageProgressionHyper(hyperopiaPressed)),
+                        onTap: () {
+                          if(widget.eyeType == EyeType.LEFT && hyperopiaImage==hyperopiaYellow02){
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
 
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
-                            testType: VisionTestType.DUO,
-                          )));
-                        }
-                        else if(hyperopiaImage==hyperopiaYellow02){
-                          AlertWidget().generateDuoEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
-                        }
-                        if(widget.eyeType == EyeType.RIGHT){
-                          Provider.of<ProviderData>(context, listen: false).updateRightHyperopia();
-                          print(Provider.of<ProviderData>(context,listen:false).rightHyperopia);
-                        }
-                        else if(widget.eyeType == EyeType.LEFT){
-                          Provider.of<ProviderData>(context, listen: false).updateLeftHyperopia();
-                          print(Provider.of<ProviderData>(context,listen:false).leftHyperopia);
-                        }
-                        hyperopiaPressed = hyperopiaPressed + 1;
-                        setState(() {
-                          hyperopiaImage = imageProgressionHyper(hyperopiaPressed);
-                        });
-                      },
-                    ),
-                    GestureDetector(
-                      child: _buildBottomBox(
-                          imageProgressionMyopia(myopiaPressed)),
-                      onTap: () {
-                        if(widget.eyeType == EyeType.LEFT && myopiaImage==myopiaOrange02){
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
-                            testType: VisionTestType.DUO,
-                          )));
-                        }
-                        else if(myopiaImage==myopiaOrange02){
-                          AlertWidget().generateDuoEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
-                        }
-                        if(widget.eyeType == EyeType.RIGHT){
-                          Provider.of<ProviderData>(context, listen: false).updateRightMyopia();
-                          print(Provider.of<ProviderData>(context,listen:false).rightMyopia);
-                        }
-                        else if(widget.eyeType == EyeType.LEFT){
-                          Provider.of<ProviderData>(context, listen: false).updateLeftMyopia();
-                          print(Provider.of<ProviderData>(context,listen:false).leftMyopia);
-                        }
-                        myopiaPressed = myopiaPressed + 1;
-                        setState(() {
-                          myopiaImage = imageProgressionMyopia(myopiaPressed);
-                        });
-                      },
-                    ),
-                  ],
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
+                              testType: VisionTestType.DUO,
+                            )));
+                          }
+                          else if(hyperopiaImage==hyperopiaYellow02){
+                            AlertWidget().generateDuoEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                          }
+                          if(widget.eyeType == EyeType.RIGHT){
+                            Provider.of<ProviderData>(context, listen: false).updateRightHyperopia();
+                            print(Provider.of<ProviderData>(context,listen:false).rightHyperopia);
+                          }
+                          else if(widget.eyeType == EyeType.LEFT){
+                            Provider.of<ProviderData>(context, listen: false).updateLeftHyperopia();
+                            print(Provider.of<ProviderData>(context,listen:false).leftHyperopia);
+                          }
+                          hyperopiaPressed = hyperopiaPressed + 1;
+                          setState(() {
+                            hyperopiaImage = imageProgressionHyper(hyperopiaPressed);
+                          });
+                        },
+                      ),
+                      GestureDetector(
+                        child: _buildBottomBox(
+                            imageProgressionMyopia(myopiaPressed)),
+                        onTap: () {
+                          if(widget.eyeType == EyeType.LEFT && myopiaImage==myopiaOrange02){
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => VisionResultScreen(
+                              testType: VisionTestType.DUO,
+                            )));
+                          }
+                          else if(myopiaImage==myopiaOrange02){
+                            AlertWidget().generateDuoEyeAlert(context: context, title: "Cover Right Eye", description: "Please repeat the test with your right eye covered").show();
+                          }
+                          if(widget.eyeType == EyeType.RIGHT){
+                            Provider.of<ProviderData>(context, listen: false).updateRightMyopia();
+                            print(Provider.of<ProviderData>(context,listen:false).rightMyopia);
+                          }
+                          else if(widget.eyeType == EyeType.LEFT){
+                            Provider.of<ProviderData>(context, listen: false).updateLeftMyopia();
+                            print(Provider.of<ProviderData>(context,listen:false).leftMyopia);
+                          }
+                          myopiaPressed = myopiaPressed + 1;
+                          setState(() {
+                            myopiaImage = imageProgressionMyopia(myopiaPressed);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -283,7 +280,7 @@ class _DuochromeTestScreen extends State<DuochromeTestScreen> {
               child: Container(),
             ),
             GestureDetector(
-              child: _buildMiddlePanel(),
+              child: _buildBottomBar(),
               onTap: () {
                 if(widget.eyeType == EyeType.LEFT && hyperopiaPressed >=3 && hyperopiaPressed >= 3){
                   Navigator.pop(context);

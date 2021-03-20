@@ -209,12 +209,12 @@ class _AstigmatismInstructionsScreen extends State<AstigmatismInstructionsScreen
               alignment: Alignment.center,
               height: 100,
               width: 300,
-              child: FittedBox(
+              child: SizedBox(
                 child: Image(
                   image: AssetImage(image),
                   color: kDarkTealColor,
                 ),
-                fit: BoxFit.contain,
+                //fit: BoxFit.contain,
               ),
             ),
           ),

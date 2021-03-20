@@ -86,7 +86,7 @@ class _AstigmatismTestScreen extends State<AstigmatismTestScreen> {
                 Container(
                   color: kTealColor,
                   padding: const EdgeInsets.only(
-                      left: 15, right: 15, top: 50.0, bottom: 40.0),
+                      left: 15, right: 15, top: 40.0, bottom: 45.0),
                   alignment: Alignment.center,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -141,24 +141,28 @@ class _AstigmatismTestScreen extends State<AstigmatismTestScreen> {
                         _pressed+=1;
                       });
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: kTealColor.withOpacity(0.8)
-                      ),
-                      height: 100,
-                      width: 150,
-                      child: Center(
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            'Clear',
-                            style: kDashboardButtonLabelStyle.copyWith(color: kScaffoldBackgroundColor, fontSize: 34),
+                    child: Material(
+                      elevation: 10.0,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: kTealColor.withOpacity(0.8)
+                        ),
+                        height: 60,
+                        width: 150,
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.only(top: 6.0),
+                            child: Text(
+                              'Clear',
+                              style: kDashboardButtonLabelStyle.copyWith(color: kScaffoldBackgroundColor, fontSize: 34),
+                            ),
+                            // child: AutoSizeText(
+                            //   'This test checks visionary health',
+                            //   style: kDashboardButtonLabelStyle.copyWith(fontSize: 20),
+                            // ),
                           ),
-                          // child: AutoSizeText(
-                          //   'This test checks visionary health',
-                          //   style: kDashboardButtonLabelStyle.copyWith(fontSize: 20),
-                          // ),
                         ),
                       ),
                     ),
@@ -188,24 +192,28 @@ class _AstigmatismTestScreen extends State<AstigmatismTestScreen> {
                         _pressed+=1;
                       });
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: kTealColor.withOpacity(0.8)
-                      ),
-                      height: 100,
-                      width: 150,
-                      child: Center(
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          child: Text(
-                            'Blurry',
-                            style: kDashboardButtonLabelStyle.copyWith(color: kScaffoldBackgroundColor, fontSize: 34),
+                    child: Material(
+                      elevation: 10.0,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: kTealColor.withOpacity(0.8)
+                        ),
+                        height: 60,
+                        width: 150,
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.only(top: 6.0),
+                            child: Text(
+                              'Blurry',
+                              style: kDashboardButtonLabelStyle.copyWith(color: kScaffoldBackgroundColor, fontSize: 34),
+                            ),
+                            // child: AutoSizeText(
+                            //   'This test checks visionary health',
+                            //   style: kDashboardButtonLabelStyle.copyWith(fontSize: 20),
+                            // ),
                           ),
-                          // child: AutoSizeText(
-                          //   'This test checks visionary health',
-                          //   style: kDashboardButtonLabelStyle.copyWith(fontSize: 20),
-                          // ),
                         ),
                       ),
                     ),

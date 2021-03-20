@@ -29,8 +29,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    _biometricsEnabled = await _biometricService.isBiometricAuthEnabled();
     _isDeviceSupported = await _biometricService.isDeviceSupported();
+    _biometricsEnabled = await _biometricService.isBiometricAuthEnabled();
     setState(() {});
   }
 
@@ -157,7 +157,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                                 // Turn biometrics On
                                 if (val) {
-
 
                                   try {
                                     val = await _biometricService.authenticateWithBiometrics();

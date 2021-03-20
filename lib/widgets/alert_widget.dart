@@ -223,17 +223,12 @@ class AlertWidget{
         DialogButton(
           color: kTealColor,
           child: Text(
-            "Try Again",
+            "Dismiss",
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           onPressed: () {
-            /*
-            * popping the context 2 times
-            * first pops the dialog
-            * second pops the loading screen and returns back to the sign-in/reg screen
-            */
             Navigator.pop(context);
-            Navigator.pop(context);
+            // Navigator.pop(context);
           },
           width: 130,
         )
@@ -254,11 +249,6 @@ class AlertWidget{
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           onPressed: () {
-            /*
-            * popping the context 2 times
-            * first pops the dialog
-            * second pops the loading screen and returns back to the sign-in/reg screen
-            */
             Navigator.pop(context);
             Navigator.push(context, MaterialPageRoute(builder: (context) => DuochromeTestScreen(
               eyeType: EyeType.LEFT,

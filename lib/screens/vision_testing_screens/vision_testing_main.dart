@@ -503,14 +503,15 @@ class _VisionTestingMainState extends State<VisionTestingMain> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 34.0,
-        color: kScaffoldBackgroundColor,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 4.0),
         child: Row(
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom:20.0, right: 8.0, top: 4.0),
+            Container(
+              height: 34.0,
+              color: kScaffoldBackgroundColor,
               child: GestureDetector(
                 onTap: (){
                   AlertWidget().generateDisclaimer(context: context).show();
@@ -521,6 +522,9 @@ class _VisionTestingMainState extends State<VisionTestingMain> {
                   color: kAmberColor.withOpacity(0.8),
                 ),
               ),
+            ),
+            SizedBox(
+              width: 10.0,
             )
           ],
         ),
