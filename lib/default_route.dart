@@ -18,6 +18,8 @@ import 'package:eye_diagnostic_system/screens/sign_out_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/astigmatism_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/astigmatism_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_instructions_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/myopia_instructions_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/myopia_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/visual_acuity_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
@@ -75,6 +77,8 @@ class DefaultEyeSeeRoute{
     VisualAcuityInstructionsScreen.id: (context) => VisualAcuityInstructionsScreen(),
     AstigmatismInstructionsScreen.id: (context) => AstigmatismInstructionsScreen(),
     AstigmatismTestScreen.id: (context) => AstigmatismTestScreen(),
+    MyopiaInstructionsScreen.id:(context)=> MyopiaInstructionsScreen(),
+    MyopiaTestScreen.id:(context) => MyopiaTestScreen(),
     VisionResultScreen.id : (context) => VisionResultScreen(),
     ProfileScreen.id: (context) => ProfileScreen(),
     };

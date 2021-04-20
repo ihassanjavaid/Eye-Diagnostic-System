@@ -3,6 +3,7 @@ import 'package:eye_diagnostic_system/screens/diagnosis_screens/image_picker_scr
 import 'package:eye_diagnostic_system/screens/reminder_screens/reminder_main_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/astigmatism_test_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/myopia_test_screen.dart';
 import 'package:eye_diagnostic_system/services/firestore_reminder_services.dart';
 import 'package:eye_diagnostic_system/services/screen_arguments.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -288,6 +289,34 @@ class AlertWidget{
     );
   }
 
+  generateMyopiaEyeAlert({ @required context, @required title, @required description}){
+    return Alert(
+      context: context,
+      title: title,
+      desc: description,
+      buttons: [
+        DialogButton(
+          color: kTealColor,
+          child: Text(
+            "Proceed",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            /*
+            * popping the context 2 times
+            * first pops the dialog
+            * second pops the loading screen and returns back to the sign-in/reg screen
+            */
+            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MyopiaTestScreen(
+              eyeType: EyeType.LEFT,
+            )));
+          },
+          width: 130,
+        )
+      ],
+    );
+  }
   generateBiometricErrorAlert({@required context, @required title}){
     return Alert(
       context: context,

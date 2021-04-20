@@ -135,5 +135,25 @@ class ProviderData extends ChangeNotifier{
     notifyListeners();
   }
 
+  //=== for Myopia ===
+  double _rightMy = 0.0;
+  double _leftMy = 0.0;
+
+  double get rightMy => _rightMy;
+  double get leftMy => _leftMy;
+
+  void updateRightMy(double value){
+    this._rightMy = value;
+    notifyListeners();
+  }
+
+  void updateLeftMy(double value){
+    this._leftMy = value;
+    notifyListeners();
+  }
+
+
+
+
 
 }

@@ -24,12 +24,29 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
   String rightResult;
   String leftResult;
 
+  String getTestType(){
+    if(widget.testType ==VisionTestType.DUO){
+      return 'Duo-Chrome';
+    }
+    else if(widget.testType ==VisionTestType.MYOPIA){
+      return 'Myopia';
+    }
+    else if(widget.testType ==VisionTestType.ASTIG){
+      return 'Astigmatism';
+    }
+    else
+      return 'Visual Acuity';
+  }
+
   void _createResults(BuildContext context){
     if(widget.testType == VisionTestType.DUO){
       _calculateDuoResults(context);
     }
     else if(widget.testType == VisionTestType.ASTIG){
       _calculateAstigResults(context);
+    }
+    else if(widget.testType ==VisionTestType.MYOPIA){
+      _calculateMyopiaResults(context);
     }
   }
 
@@ -78,6 +95,58 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
     else if(leftHyperopia == leftMyopia){
       leftResult = 'no Ocular Error';
     }
+  }
+
+  String _calculateMyopiaResults(BuildContext context){
+    double right = Provider.of<ProviderData>(context,listen:false).rightMy;
+    double left = Provider.of<ProviderData>(context,listen:false).leftMy;
+
+    if(right == 0.0 && left == 0.0){
+      rightResult = 'no Myopia';
+      leftResult = 'no Myopia';
+    }
+    else{
+      if(right == 1.0){
+        rightResult = '+$right LogMar\n20/200 Myopia';
+      }
+      else if(right == 0.7){
+        rightResult = '+$right LogMar\n20/100 Myopia';
+      }
+      else if(right == 0.55){
+        rightResult = '+$right LogMar\n20/70 Myopia';
+      }
+      else if(right == 0.4){
+        rightResult = '+$right LogMar\n20/50 Myopia';
+      }
+      else if(right == 0.3){
+        rightResult = '+$right LogMar\n20/40 Myopia';
+      }
+      else if(right == 0.2){
+        rightResult = '+$right LogMar\n20/30 Myopia';
+      }
+
+      if(left == 1.0){
+        leftResult = '+$left LogMar\n20/200 Myopia';
+      }
+      if(left == 0.7){
+        leftResult = '+$left LogMar\n20/100 Myopia';
+      }
+      else if(left == 0.55){
+        leftResult = '+$left LogMar\n20/70 Myopia';
+      }
+      else if(left == 0.4){
+        leftResult = '+$left LogMar\n20/50 Myopia';
+      }
+      else if(left == 0.3){
+        leftResult = '+$left LogMar\n20/40 Myopia';
+      }
+      else if(left == 0.2){
+        leftResult = '+$left LogMar\n20/30 Myopia';
+      }
+
+
+
+    }
 
 
   }
@@ -107,14 +176,18 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                           textAlign: TextAlign.center,
                           text: TextSpan(children: [
                             TextSpan(
-                              text: 'Duo-Chrome\t',
+                              text: getTestType()+'\t',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kDarkTealColor),
+                                  color: kDarkTealColor,
+                                fontSize: 40
+                              ),
                             ),
                             TextSpan(
                               text: 'Test\n',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kDarkTealColor),
+                                  color: kDarkTealColor,
+                                fontSize: 40,
+                              ),
                             ),
                             TextSpan(
                               text: 'Results\n',

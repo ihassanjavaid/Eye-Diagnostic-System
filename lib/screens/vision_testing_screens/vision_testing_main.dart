@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/astigmatism_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_instructions_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/myopia_instructions_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/visual_acuity_instructions_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
@@ -352,72 +353,77 @@ class _VisionTestingMainState extends State<VisionTestingMain> {
                     //     )
                     //   ],
                     // ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: kTealColor.withOpacity(0.8)
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, MyopiaInstructionsScreen.id);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            color: kTealColor.withOpacity(0.8)
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
 
-                              // decoration: BoxDecoration(
-                              //   borderRadius: BorderRadius.all(Radius.circular(20)),
-                              //   color: kLightAmberColor
-                              // ),
-                              child: Column(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Image(
-                                      image: AssetImage('assets/images/vision_testing/main_icons/eyeglasses.png'),
-                                      height: 80,
-                                      width: 80,
+                                // decoration: BoxDecoration(
+                                //   borderRadius: BorderRadius.all(Radius.circular(20)),
+                                //   color: kLightAmberColor
+                                // ),
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Image(
+                                        image: AssetImage('assets/images/vision_testing/main_icons/eyeglasses.png'),
+                                        height: 80,
+                                        width: 80,
+                                      ),
                                     ),
-                                  ),
-                                  // SizedBox(
-                                  //   height: 20.0,
-                                  // ),
-                                  // Text(
-                                  //   'Visual Acuity',
-                                  //   style: kDashboardButtonLabelStyle.copyWith(color: kDarkTealColor, fontSize: 15),
-                                  // ),
-                                  // Text(
-                                  //   'Test',
-                                  //   style: kDashboardButtonLabelStyle,
-                                  // ),
-                                ],
+                                    // SizedBox(
+                                    //   height: 20.0,
+                                    // ),
+                                    // Text(
+                                    //   'Visual Acuity',
+                                    //   style: kDashboardButtonLabelStyle.copyWith(color: kDarkTealColor, fontSize: 15),
+                                    // ),
+                                    // Text(
+                                    //   'Test',
+                                    //   style: kDashboardButtonLabelStyle,
+                                    // ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 5.0, bottom: 20, top: 20, right: 20),
-                            width: 240,
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Myopia Sight Test',
-                                  style: kDashboardButtonLabelStyle.copyWith(color: kAmberColor, fontSize: 24),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'This test calculates your near-sightedness ocular health',
-                                  style: kDashboardSubtitleTextStyle.copyWith(color: kDarkTealColor, fontSize: 15),
-                                  textAlign: TextAlign.center,
-                                )
-                              ],
-                            ),
-                            // child: AutoSizeText(
-                            //   'This test checks visionary health',
-                            //   style: kDashboardButtonLabelStyle.copyWith(fontSize: 20),
-                            // ),
-                          )
-                        ],
+                            Container(
+                              padding: EdgeInsets.only(left: 5.0, bottom: 20, top: 20, right: 20),
+                              width: 240,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Myopia Sight Test',
+                                    style: kDashboardButtonLabelStyle.copyWith(color: kAmberColor, fontSize: 24),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'This test calculates your near-sightedness ocular health',
+                                    style: kDashboardSubtitleTextStyle.copyWith(color: kDarkTealColor, fontSize: 15),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              ),
+                              // child: AutoSizeText(
+                              //   'This test checks visionary health',
+                              //   style: kDashboardButtonLabelStyle.copyWith(fontSize: 20),
+                              // ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
