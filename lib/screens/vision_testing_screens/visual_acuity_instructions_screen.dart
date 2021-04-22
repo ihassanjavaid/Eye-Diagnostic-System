@@ -1,6 +1,7 @@
 import 'package:eye_diagnostic_system/screens/login_screen.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/vision_testing_main.dart';
 import 'package:eye_diagnostic_system/screens/vision_testing_screens/duochrome_test_screen.dart';
+import 'package:eye_diagnostic_system/screens/vision_testing_screens/visual_acuity_test_screen.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,8 @@ class _VisualAcuityInstructionsScreen extends State<VisualAcuityInstructionsScre
                       Container(
                         child: FlatButton(
                           onPressed: () {
-                            //TODO: add visual acuity screen
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => AcuityTestScreen(
+                                eyeType: EyeType.RIGHT)));
                           },
                           child: Text(
                             'SKIP',
@@ -173,9 +175,8 @@ class _VisualAcuityInstructionsScreen extends State<VisualAcuityInstructionsScre
                                   ? _pageController.nextPage(
                                   duration: Duration(milliseconds: 500),
                                   curve: Curves.ease)
-                                  // TODO: add visual acuity screen
-                                  : Navigator.popAndPushNamed(
-                                  context, DuochromeTestScreen.id);
+                                  : Navigator.push(context, MaterialPageRoute(builder: (context) => AcuityTestScreen(
+                                  eyeType: EyeType.RIGHT)));
                             },
                             child: Icon(
                                 _currentPage != _numPages-1
@@ -304,12 +305,11 @@ class _VisualAcuityInstructionsScreen extends State<VisualAcuityInstructionsScre
               alignment: Alignment.center,
               height: 100,
               width: 300,
-              child: FittedBox(
+              child: SizedBox(
                 child: Image(
                   image: AssetImage(image),
                   color: kDarkTealColor,
                 ),
-                fit: BoxFit.contain,
               ),
             ),
           ),

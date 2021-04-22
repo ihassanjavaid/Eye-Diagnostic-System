@@ -152,6 +152,36 @@ class ProviderData extends ChangeNotifier{
     notifyListeners();
   }
 
+  //=== for Visual Acuity ====
+
+  int _rightCorrect = 0;
+  int _rightIncorrect = 0;
+  int _leftCorrect = 0;
+  int _leftIncorrect = 0;
+
+  int get rightCorrect => _rightCorrect;
+  int get rightIncorrect => _rightIncorrect;
+  int get leftCorrect => _leftCorrect;
+  int get leftIncorrect => _leftIncorrect;
+
+  void updateRightCorrect(){
+    this._rightCorrect +=1;
+  }
+
+  void updateRightIncorrect(){
+    this._rightIncorrect+=1;
+  }
+
+  void updateLeftCorrect(){
+    this._leftCorrect+=1;
+  }
+
+  void updateLeftIncorrect(){
+    this._leftIncorrect+=1;
+  }
+
+
+
 
 
 

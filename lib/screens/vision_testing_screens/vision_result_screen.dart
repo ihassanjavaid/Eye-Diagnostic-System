@@ -48,6 +48,9 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
     else if(widget.testType ==VisionTestType.MYOPIA){
       _calculateMyopiaResults(context);
     }
+    else if(widget.testType == VisionTestType.ACUITY){
+      _calculateAcuityResults(context);
+    }
   }
 
   String _calculateAstigResults(BuildContext context){
@@ -143,13 +146,45 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
       else if(left == 0.2){
         leftResult = '+$left LogMar\n20/30 Myopia';
       }
+    }
+  }
 
+  String _calculateAcuityResults(BuildContext context){
+    int rightCorrect = Provider.of<ProviderData>(context,listen:false).rightCorrect;
+    int rightIncorrect = Provider.of<ProviderData>(context,listen:false).rightIncorrect;
 
+    int leftCorrect = Provider.of<ProviderData>(context,listen:false).leftCorrect;
+    int leftIncorrect = Provider.of<ProviderData>(context,listen:false).leftIncorrect;
 
+    
+
+    if(rightCorrect >10){
+      rightResult = '6/6 Acuity';
+    }
+    if(rightCorrect>=7 && rightCorrect<=10){
+      rightResult = '6/15 Acuity';
+    }
+    if(rightCorrect>=4 && rightCorrect<=7){
+      rightResult = '6/30 Acuity';
+    }
+    if(rightCorrect<=3){
+      rightResult = '6/60 Acuity';
     }
 
-
+    if(leftCorrect >10){
+      leftResult = '6/6 Acuity';
+    }
+    if(leftCorrect>=7 && leftCorrect<=10){
+      leftResult = '6/15 Acuity';
+    }
+    if(leftCorrect>=4 && leftCorrect<=7){
+      leftResult = '6/30 Acuity';
+    }
+    if(leftCorrect<=3){
+      leftResult = '6/60 Acuity';
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
