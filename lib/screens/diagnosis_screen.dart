@@ -160,8 +160,6 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-
-                        /// TODO : Testing only, remove from here
                         //Navigator.pushNamed(context, ReportingScreen.id);
 
                         // Initialize Camera
@@ -173,6 +171,11 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                         //   camera: firstCamera,
                         // ))
                         // );
+                        //Navigator.pushNamed(context, FetchingResultsScreen.id);
+                        Navigator.pushNamed(context,
+                            ImagePickerScreen.id,
+                            arguments: ScreenArguments(DiagnosisType.DISORDER)
+                        );
                       },
                       child: Icon(
                         FontAwesomeIcons.eye,

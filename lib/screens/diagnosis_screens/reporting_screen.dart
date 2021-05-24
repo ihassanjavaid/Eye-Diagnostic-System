@@ -269,14 +269,13 @@ class _ReportingScreenState extends State<ReportingScreen> {
                       GestureDetector(
                         onTap: () {
                           /// TODO : refine
-
                           while (Navigator.canPop(context)){
                             Navigator.pop(context);
                           }
                           //Navigator.pushNamed(context, Dashboard.id);
                         },
                         child: Icon(
-                          Icons.delete,
+                          Icons.home,
                           color: kTealColor,
                           size: 42.0,
                         ),
@@ -285,13 +284,13 @@ class _ReportingScreenState extends State<ReportingScreen> {
                         height: 10.0,
                       ),
                       Text(
-                        'Delete Report',
+                        'Go Home',
                         style: kDashboardButtonLabelStyle,
                       ),
                     ],
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 4,
+                    width: MediaQuery.of(context).size.width / 5.5,
                   ),
                   Column(
                     children: [
@@ -300,7 +299,7 @@ class _ReportingScreenState extends State<ReportingScreen> {
                           /// TODO : Implement
                         },
                         child: Icon(
-                          Icons.download_rounded,
+                          Icons.share,
                           color: kTealColor,
                           size: 42.0,
                         ),
@@ -309,7 +308,31 @@ class _ReportingScreenState extends State<ReportingScreen> {
                         height: 10.0,
                       ),
                       Text(
-                        'Download PDF',
+                        'Share',
+                        style: kDashboardButtonLabelStyle,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 6,
+                  ),
+                  Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          /// TODO : Implement
+                        },
+                        child: Icon(
+                          Icons.file_download,
+                          color: kTealColor,
+                          size: 42.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        'Save PDF',
                         style: kDashboardButtonLabelStyle,
                       ),
                     ],

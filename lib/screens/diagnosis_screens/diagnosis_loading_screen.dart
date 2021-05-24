@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:eye_diagnostic_system/models/diagnosis_models/disease_result.dart';
 import 'package:eye_diagnostic_system/models/diagnosis_models/fundus_result.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen.dart';
+import 'package:eye_diagnostic_system/models/diagnosis_models/disorder_result.dart';
 import 'package:eye_diagnostic_system/services/server_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
@@ -32,9 +33,9 @@ class _DiagnosisLoadingScreenState extends State<DiagnosisLoadingScreen> {
       _diagnoseDisease();
     else if (widget.diagnosisType == DiagnosisType.FUNDUS)
       _diagnoseFundus();
-
-
-    /// TODO add others
+    else if (widget.diagnosisType == DiagnosisType.DISORDER)
+      _diagnoseDisorder();
+    /// TODO add infection
   }
 
   Future<void> _diagnoseDisease() async {
@@ -94,6 +95,31 @@ class _DiagnosisLoadingScreenState extends State<DiagnosisLoadingScreen> {
                     text: result.result,
                     percentage: result.percentage,
                   )));
+    }
+  }
+
+  Future<void> _diagnoseDisorder() async {
+    DisorderResult result = await _server.diagnoseDisorder(widget.image);
+
+    if ( !result.predicted ){
+      debugPrint('can\'t predict!');
+      AlertWidget().generateAlertInvalidDiagnosis(
+          context: context,
+          title: 'Can\'t predict!',
+          description: 'The image couldn\'t be classified.',
+          diagnosisType: DiagnosisType.DISORDER)
+          .show();
+      return;
+    }
+    else
+    {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ReportingScreen(
+                text: result.result,
+                percentage: result.percentage,
+              )));
     }
   }
 
