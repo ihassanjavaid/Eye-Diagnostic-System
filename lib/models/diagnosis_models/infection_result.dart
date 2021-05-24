@@ -8,7 +8,7 @@ class InfectionResult {
   InfectionResult.fromJson(Map<String, dynamic> json) {
     isEye = json['is_eye'];
     result = json['result'];
-    percentage = json['percentage'];
+    percentage = json['percentage'].toString();
   }
 
   Map<String, dynamic> toJson() {

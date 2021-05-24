@@ -32,6 +32,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'screens/diagnosis_screens/camera_screen.dart';
 import 'screens/profile_screen.dart';
+import 'package:eye_diagnostic_system/screens/history_screen.dart';
+import 'screens/sympyom_screen.dart';
 
 class DefaultEyeSeeRoute{
 
@@ -83,6 +85,8 @@ class DefaultEyeSeeRoute{
     MyopiaTestScreen.id:(context) => MyopiaTestScreen(),
     VisionResultScreen.id : (context) => VisionResultScreen(),
     ProfileScreen.id: (context) => ProfileScreen(),
+    HistoryScreen.id: (context) => HistoryScreen(),
+    SymptomScreen.id: (context) => SymptomScreen()
     };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;

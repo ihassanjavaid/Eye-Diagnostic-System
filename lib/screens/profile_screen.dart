@@ -5,8 +5,11 @@ import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:eye_diagnostic_system/screens/history_screen.dart';
+import 'package:eye_diagnostic_system/screens/sympyom_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = 'profile_screen';
@@ -209,6 +212,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                               )
                         ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        //_symptyomDialog.announce(context);
+                        Navigator.pushNamed(context, SymptomScreen.id);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Symptoms',
+                              style: kReminderMainTextStyle,
+                            ),
+                            Icon(
+                              FontAwesomeIcons.chevronRight,
+                              size: 26,
+                              color: kTealColor,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, HistoryScreen.id);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'History',
+                              style: kReminderMainTextStyle,
+                            ),
+                            Icon(
+                              FontAwesomeIcons.chevronRight,
+                              size: 26,
+                              color: kTealColor,
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:eye_diagnostic_system/models/diagnosis_models/disease_result.dart';
 import 'package:eye_diagnostic_system/models/diagnosis_models/fundus_result.dart';
+import 'package:eye_diagnostic_system/models/diagnosis_models/infection_result.dart';
 import 'package:eye_diagnostic_system/screens/diagnosis_screens/reporting_screen.dart';
 import 'package:eye_diagnostic_system/models/diagnosis_models/disorder_result.dart';
 import 'package:eye_diagnostic_system/services/server_service.dart';
@@ -75,7 +76,7 @@ class _DiagnosisLoadingScreenState extends State<DiagnosisLoadingScreen> {
   }
 
   Future<void> _diagnoseInfection() async {
-    DiseaseResult result = await _server.diagnoseInfection(widget.image);
+    InfectionResult result = await _server.diagnoseInfection(widget.image);
 
     if (result.isEye == 'false'){
       debugPrint('not eye!');

@@ -3,10 +3,12 @@ import 'package:eye_diagnostic_system/screens/main_dashboard_screen.dart';
 import 'package:eye_diagnostic_system/services/greetings_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:eye_diagnostic_system/models/chart_data.dart';
+import 'package:eye_diagnostic_system/services/firestore_history_service.dart';
 import 'dart:math' as Math;
 
 class ReportingScreen extends StatefulWidget {
@@ -22,6 +24,7 @@ class ReportingScreen extends StatefulWidget {
 }
 
 class _ReportingScreenState extends State<ReportingScreen> {
+  FirestoreHistoryService _firestoreHistoryService = FirestoreHistoryService();
   /*List<ChartData> chartData = [
     getDiseaseValue(widget.percentage),
   ];*/
@@ -268,7 +271,6 @@ class _ReportingScreenState extends State<ReportingScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          /// TODO : refine
                           while (Navigator.canPop(context)){
                             Navigator.pop(context);
                           }
@@ -290,13 +292,13 @@ class _ReportingScreenState extends State<ReportingScreen> {
                     ],
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 5.5,
+                    width: MediaQuery.of(context).size.width / 6,
                   ),
                   Column(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          /// TODO : Implement
+                        onTap: () async {
+                          await share();
                         },
                         child: Icon(
                           Icons.share,
@@ -314,16 +316,32 @@ class _ReportingScreenState extends State<ReportingScreen> {
                     ],
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 6,
+                    width: MediaQuery.of(context).size.width / 4.8,
                   ),
                   Column(
                     children: [
                       GestureDetector(
                         onTap: () {
-                          /// TODO : Implement
+                          try{
+                            _firestoreHistoryService.postResult(widget.text,
+                                roundOff(widget.percentage).toString());
+                          }
+                          catch (err) {
+                            debugPrint(err.toString());
+                          }
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Your report has been saved!',
+                                  style: kReminderMainTextStyle.copyWith(
+                                      color: kGreyButtonColor
+                                  ),
+                                ),
+                              )
+                          );
                         },
                         child: Icon(
-                          Icons.file_download,
+                          Icons.save,
                           color: kTealColor,
                           size: 42.0,
                         ),
@@ -332,7 +350,7 @@ class _ReportingScreenState extends State<ReportingScreen> {
                         height: 10.0,
                       ),
                       Text(
-                        'Save PDF',
+                        'Save',
                         style: kDashboardButtonLabelStyle,
                       ),
                     ],
@@ -378,5 +396,13 @@ class _ReportingScreenState extends State<ReportingScreen> {
   getExtraValue(String perc){
     double percentage = double.parse(perc.substring(0, perc.indexOf('.')));
     return ChartData('1', (100 - percentage), kGreyButtonColor);
+  }
+
+  Future<void> share() async {
+    await FlutterShare.share(
+        title: 'EyeSee Diagnosis',
+        text: 'I\'ve been diagnosed with ${widget.text}, ${roundOff(widget.percentage)}%',
+        linkUrl: 'https://www.cdc.gov/visionhealth/basics/ced/index.html'
+    );
   }
 }
