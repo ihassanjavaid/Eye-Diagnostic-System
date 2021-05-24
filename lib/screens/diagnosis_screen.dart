@@ -208,13 +208,21 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                   children: [
                     GestureDetector(
                       onTap: () async {
-                        try{
-                          //await _server.checkServerConnection();
-                        }
-                        catch (err){
-                          print('here');
-                          ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
-                        }
+                        final cameras = await availableCameras();
+                        final firstCamera = cameras.first;
+
+
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) => CameraScreen(
+                              camera: firstCamera,
+                              diagnosisType: DiagnosisType.INFECTION,
+                            )
+                            ));
+                        // Navigator.pushNamed(context, ReportingScreen.id);
+                        // Navigator.pushNamed(context,
+                        //     CameraScreen.id,
+                        //     arguments: CamScreenArguments(DiagnosisType.DISEASE, firstCamera)
+                        // );
                       },
                       child: Icon(
                         FontAwesomeIcons.disease,

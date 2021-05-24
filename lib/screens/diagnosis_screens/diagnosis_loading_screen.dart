@@ -35,7 +35,8 @@ class _DiagnosisLoadingScreenState extends State<DiagnosisLoadingScreen> {
       _diagnoseFundus();
     else if (widget.diagnosisType == DiagnosisType.DISORDER)
       _diagnoseDisorder();
-    /// TODO add infection
+    else if(widget.diagnosisType == DiagnosisType.INFECTION)
+      _diagnoseInfection();
   }
 
   Future<void> _diagnoseDisease() async {
@@ -70,6 +71,31 @@ class _DiagnosisLoadingScreenState extends State<DiagnosisLoadingScreen> {
                     text: result.result,
                     percentage: result.percentage,
                   )));
+    }
+  }
+
+  Future<void> _diagnoseInfection() async {
+    DiseaseResult result = await _server.diagnoseInfection(widget.image);
+
+    if (result.isEye == 'false'){
+      debugPrint('not eye!');
+      AlertWidget().generateAlertInvalidDiagnosis(
+          context: context,
+          title: 'Invalid Image!',
+          description: 'The image was not identified as an image of eye.',
+          diagnosisType: DiagnosisType.INFECTION)
+          .show();
+      return;
+    }
+    else
+    {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ReportingScreen(
+                text: result.result,
+                percentage: result.percentage,
+              )));
     }
   }
 
