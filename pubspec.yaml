@@ -68,6 +68,7 @@ dependencies:
   local_auth: 0.6.3+4
   get_it: ^6.0.0
   flutter_share: ^2.0.0
+  firebase_storage: ^4.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/services/auth_service.dart';
 import 'package:eye_diagnostic_system/services/biometric_service.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
+import 'package:eye_diagnostic_system/services/firebase_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:eye_diagnostic_system/screens/history_screen.dart';
@@ -22,6 +26,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _biometricsEnabled;
   BiometricService _biometricService = BiometricService();
   bool _isDeviceSupported = true;
+  File profileImage = null;
+  FirebaseStorageService _firebaseStorageService = FirebaseStorageService();
 
   @override
   void initState() {
@@ -85,14 +91,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Container(
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      backgroundColor: kTealColor.withOpacity(0.75),
-                      radius: 80,
-                      child: Icon(
-                        Icons.person,
-                        color: kTealColor.withOpacity(0.55),
-                        size: 80,
-                      ),
+                    Stack(
+                      children: [
+                        FutureBuilder(
+                          future: _firebaseStorageService.getDownloadURL(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<dynamic> snapshot) {
+                            if (!snapshot.hasData){
+                              return CircleAvatar(
+                                backgroundColor: kTealColor.withOpacity(0.75),
+                                radius: 80,
+                                child: Icon(
+                                  Icons.person,
+                                  color: kTealColor.withOpacity(0.55),
+                                  size: 80,
+                                ),
+                              );
+                            }
+                            else {
+                              return CircleAvatar(
+                                backgroundColor: kTealColor.withOpacity(0.75),
+                                radius: 80,
+                                backgroundImage: NetworkImage(
+                                  snapshot.data.toString(),
+                                  //fit: BoxFit.contain,
+                                )
+                              );
+                            }
+                          },
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () async {
+                              profileImage = await ImagePicker.pickImage(
+                                  source: ImageSource.gallery);
+                              await _firebaseStorageService
+                                  .uploadProfilePicture(profileImage);
+                              // when done
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, ProfileScreen.id);
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: kLightAmberColor,
+                              radius: 22,
+                              child: Icon(
+                                Icons.edit,
+                                color: kTealColor.withOpacity(0.75),
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -146,71 +198,70 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             'Biometrics',
                             style: kReminderMainTextStyle,
                           ),
-                          _isDeviceSupported ?
-                          FlutterSwitch(
-                              //duration: Duration(milliseconds: 750),
-                              height: 30,
-                              width: 55,
-                              value: _biometricsEnabled,
-                              activeColor: kTealColor,
-                              onToggle: (val) async {
-                                setState(() {
-                                  _biometricsEnabled = val;
-                                });
-
-                                // Turn biometrics On
-                                if (val) {
-
-                                  try {
-                                    val = await _biometricService.authenticateWithBiometrics();
-                                  }
-                                  catch (err) {
-                                    val = false;
-                                    print(err.toString());
-                                    AlertWidget()
-                                    .generateBiometricErrorAlert(
-                                        context: context, title: err.toString()
-                                    ).show();
+                          _isDeviceSupported
+                              ? FlutterSwitch(
+                                  //duration: Duration(milliseconds: 750),
+                                  height: 30,
+                                  width: 55,
+                                  value: _biometricsEnabled,
+                                  activeColor: kTealColor,
+                                  onToggle: (val) async {
                                     setState(() {
                                       _biometricsEnabled = val;
                                     });
-                                  }
 
-                                  if (!val){
-                                    setState(() {
-                                      _biometricsEnabled = val;
-                                    });
-                                    return;
-                                  }
+                                    // Turn biometrics On
+                                    if (val) {
+                                      try {
+                                        val = await _biometricService
+                                            .authenticateWithBiometrics();
+                                      } catch (err) {
+                                        val = false;
+                                        print(err.toString());
+                                        AlertWidget()
+                                            .generateBiometricErrorAlert(
+                                                context: context,
+                                                title: err.toString())
+                                            .show();
+                                        setState(() {
+                                          _biometricsEnabled = val;
+                                        });
+                                      }
 
-                                  await _biometricService.turnOnBiometrics();
-                                }
-                                // Turn biometrics Off
-                                else if (!val) {
-                                  await _biometricService.turnOffBiometrics();
-                                  setState(() {
-                                    _biometricsEnabled = val;
-                                  });
-                                }
+                                      if (!val) {
+                                        setState(() {
+                                          _biometricsEnabled = val;
+                                        });
+                                        return;
+                                      }
 
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                      await _biometricService
+                                          .turnOnBiometrics();
+                                    }
+                                    // Turn biometrics Off
+                                    else if (!val) {
+                                      await _biometricService
+                                          .turnOffBiometrics();
+                                      setState(() {
+                                        _biometricsEnabled = val;
+                                      });
+                                    }
+
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
                                       content: Text(
                                         getSnackBarText(val),
                                         style: kReminderMainTextStyle.copyWith(
-                                            color: kGreyButtonColor
-                                        ),
+                                            color: kGreyButtonColor),
                                       ),
-                                    )
-                                );
-                              }) :
-                              Text(
-                                'Device Unsupported',
+                                    ));
+                                  })
+                              : Text(
+                                  'Device Unsupported',
                                   style: kReminderMainTextStyle.copyWith(
-                                    color: kTealColor.withOpacity(0.85),
-                                    fontSize: 16.0
-                                  ),
-                              )
+                                      color: kTealColor.withOpacity(0.85),
+                                      fontSize: 16.0),
+                                )
                         ],
                       ),
                     ),
@@ -287,7 +338,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   String getSnackBarText(bool value) {
-    if (value){
+    if (value) {
       return 'Biometric Authentication Enabled!';
     }
     return 'Biometric Authentication Disabled!';
