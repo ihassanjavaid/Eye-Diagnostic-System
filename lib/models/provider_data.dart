@@ -118,6 +118,14 @@ class ProviderData extends ChangeNotifier{
     notifyListeners();
   }
 
+  void revertDuo(){
+    this._leftHyperopia = 0;
+    this._rightHyperopia = 0;
+    this._leftMyopia = 0;
+    this._rightMyopia = 0;
+    notifyListeners();
+  }
+
   //=== for astigmatism ===
   int _right = 0;
   int _left = 0;
@@ -135,6 +143,12 @@ class ProviderData extends ChangeNotifier{
     notifyListeners();
   }
 
+  void revertAstig(){
+    this._leftMy = 0;
+    this._right = 0;
+    notifyListeners();
+  }
+
   //=== for Myopia ===
   double _rightMy = 0.0;
   double _leftMy = 0.0;
@@ -149,6 +163,12 @@ class ProviderData extends ChangeNotifier{
 
   void updateLeftMy(double value){
     this._leftMy = value;
+    notifyListeners();
+  }
+
+  void revertMy(){
+    this._leftMy = 0;
+    this._rightMy = 0;
     notifyListeners();
   }
 
@@ -178,6 +198,23 @@ class ProviderData extends ChangeNotifier{
 
   void updateLeftIncorrect(){
     this._leftIncorrect+=1;
+  }
+
+
+  void revertRightCorrect(){
+    this._rightCorrect = 0;
+  }
+
+  void revertRightIncorrect(){
+    this._rightIncorrect = 0;
+  }
+
+  void revertLeftCorrect(){
+    this._leftCorrect = 0;
+  }
+
+  void revertLeftIncorrect(){
+    this._leftIncorrect = 0;
   }
 
 

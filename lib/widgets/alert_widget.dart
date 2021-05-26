@@ -367,4 +367,87 @@ class AlertWidget{
       ],
     );
   }
+  generateTestInformationAlert({@required context, @required visionTestType}){
+    if (visionTestType == VisionTestType.ACUITY){
+      return Alert(
+        context: context,
+        title: 'Visual Acuity',
+        desc: 'Having 6/6 vision means that your visual acuity at 6 meters away from an object is normal. If you have 6/15 vision, for example, that means you need to be 6 feet away to see an object that people can normally see from 15 feet away. And so on for 6/n acuity',
+        buttons: [
+          DialogButton(
+            color: kTealColor,
+            child: Text(
+              "Dismiss",
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            width: 130,
+          )
+        ],
+      );
+    }
+    else if(visionTestType == VisionTestType.ASTIG){
+      return Alert(
+        context: context,
+        title: 'Astigmatism',
+        desc: 'Astigmatism is a condition in which your eye isn’t completely round. You see objects with high contrast as blurry. Please visit your local optometrist to get prescription lenses.',
+        buttons: [
+          DialogButton(
+            color: kTealColor,
+            child: Text(
+              "Dismiss",
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            width: 130,
+          )
+        ],
+      );
+
+    }
+    else if(visionTestType == VisionTestType.DUO){
+      return Alert(
+        context: context,
+        title: 'Duo-Chrome',
+        desc: 'This test checks the convergence of wavelengths of light on optic nerve. The the shorter, green wavelengths (Hyperopia) are focused in front optic nerve whereas longer red wavelengths converge at the back (Myopia).  ',
+        buttons: [
+          DialogButton(
+            color: kTealColor,
+            child: Text(
+              "Dismiss",
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            width: 130,
+          )
+        ],
+      );
+    }
+    else if(visionTestType == VisionTestType.MYOPIA){
+      return Alert(
+        context: context,
+        title: 'Myopia',
+        desc: 'Myopia tests your level of near sightedness. The size of the text determines the acuity and each acuity determines LogMAR - which is the correction required for prescription lenses.',
+        buttons: [
+          DialogButton(
+            color: kTealColor,
+            child: Text(
+              "Dismiss",
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            width: 130,
+          )
+        ],
+      );
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/models/provider_data.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
+import 'package:eye_diagnostic_system/widgets/alert_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
+
+import '../main_dashboard_screen.dart';
 
 class VisionResultScreen extends StatefulWidget {
   static const String id = 'vision_result_screen';
@@ -77,6 +80,7 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
     int rightHyperopia = Provider.of<ProviderData>(context,listen:false).rightHyperopia;
     int leftMyopia = Provider.of<ProviderData>(context,listen:false).leftMyopia;
     int leftHyperopia = Provider.of<ProviderData>(context,listen:false).leftHyperopia;
+
 
     if(rightMyopia > rightHyperopia){
       rightResult = 'Myopia\nNear Sightedness';
@@ -213,22 +217,22 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                             TextSpan(
                               text: getTestType()+'\t',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kDarkTealColor,
+                                  color: kAmberColor,
                                 fontSize: 40
                               ),
                             ),
                             TextSpan(
                               text: 'Test\n',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kDarkTealColor,
+                                  color: kAmberColor,
                                 fontSize: 40,
                               ),
                             ),
                             TextSpan(
                               text: 'Results\n',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kScaffoldBackgroundColor
-                                      .withOpacity(0.8)),
+                                  color: kAmberColor
+                                      .withOpacity(0.95)),
                             )
                           ]),
                         ),
@@ -238,7 +242,7 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                     child: Text(
                         "${DateFormat('EEEE').format(DateTime.now())}, ${DateFormat('jm').format(DateTime.now())}",
                         style: kDashboardTitleTextStyle.copyWith(
-                            fontSize: 20.0, color: kAmberColor)),
+                            fontSize: 20.0, color: kScaffoldBackgroundColor)),
                   ),
                 ],
               ),
@@ -335,10 +339,17 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      /// TODO : refine
+                      Provider.of<ProviderData>(context, listen: false).revertRightCorrect();
+                      Provider.of<ProviderData>(context, listen: false).revertRightIncorrect();
+                      Provider.of<ProviderData>(context, listen: false).revertLeftCorrect();
+                      Provider.of<ProviderData>(context, listen: false).revertLeftIncorrect();
+                      Provider.of<ProviderData>(context, listen: false).revertAstig();
+                      Provider.of<ProviderData>(context, listen: false).revertMy();
+                      Provider.of<ProviderData>(context, listen: false).revertDuo();
                       while (Navigator.canPop(context)){
                         Navigator.pop(context);
                       }
+                      Navigator.pushNamed(context, Dashboard.id);
                       //Navigator.pushNamed(context, Dashboard.id);
                     },
                     child: Icon(
@@ -351,7 +362,7 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                     height: 10.0,
                   ),
                   Text(
-                    'Delete Results',
+                    'Home',
                     style: kDashboardButtonLabelStyle,
                   ),
                 ],
@@ -363,10 +374,10 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      /// TODO : Implement
+                      AlertWidget().generateTestInformationAlert(context: context, visionTestType: widget.testType).show();
                     },
                     child: Icon(
-                      Icons.download_rounded,
+                      Icons.info_outline,
                       color: kTealColor,
                       size: 42.0,
                     ),
@@ -375,7 +386,7 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                     height: 10.0,
                   ),
                   Text(
-                    'Download PDF',
+                    'Learn More',
                     style: kDashboardButtonLabelStyle,
                   ),
                 ],
