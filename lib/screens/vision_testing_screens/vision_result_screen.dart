@@ -22,173 +22,157 @@ class VisionResultScreen extends StatefulWidget {
   _VisionResultScreenState createState() => _VisionResultScreenState();
 }
 
-
 class _VisionResultScreenState extends State<VisionResultScreen> {
   String rightResult;
   String leftResult;
 
-  String getTestType(){
-    if(widget.testType ==VisionTestType.DUO){
+  String getTestType() {
+    if (widget.testType == VisionTestType.DUO) {
       return 'Duo-Chrome';
-    }
-    else if(widget.testType ==VisionTestType.MYOPIA){
+    } else if (widget.testType == VisionTestType.MYOPIA) {
       return 'Myopia';
-    }
-    else if(widget.testType ==VisionTestType.ASTIG){
+    } else if (widget.testType == VisionTestType.ASTIG) {
       return 'Astigmatism';
-    }
-    else
+    } else
       return 'Visual Acuity';
   }
 
-  void _createResults(BuildContext context){
-    if(widget.testType == VisionTestType.DUO){
+  void _createResults(BuildContext context) {
+    if (widget.testType == VisionTestType.DUO) {
       _calculateDuoResults(context);
-    }
-    else if(widget.testType == VisionTestType.ASTIG){
+    } else if (widget.testType == VisionTestType.ASTIG) {
       _calculateAstigResults(context);
-    }
-    else if(widget.testType ==VisionTestType.MYOPIA){
+    } else if (widget.testType == VisionTestType.MYOPIA) {
       _calculateMyopiaResults(context);
-    }
-    else if(widget.testType == VisionTestType.ACUITY){
+    } else if (widget.testType == VisionTestType.ACUITY) {
       _calculateAcuityResults(context);
     }
   }
 
-  String _calculateAstigResults(BuildContext context){
-    int right = Provider.of<ProviderData>(context,listen:false).right;
-    int left = Provider.of<ProviderData>(context,listen:false).left;
+  String _calculateAstigResults(BuildContext context) {
+    int right = Provider.of<ProviderData>(context, listen: false).right;
+    int left = Provider.of<ProviderData>(context, listen: false).left;
 
-    if(right>=2){
+    if (right >= 2) {
       rightResult = 'Astigmatism';
-    }
-    else if (right <2){
+    } else if (right < 2) {
       rightResult = 'no Ocular Error';
     }
 
-    if(left >= 2){
+    if (left >= 2) {
       leftResult = 'Astigmatism';
-    }
-    else if (left <2){
+    } else if (left < 2) {
       leftResult = 'no Ocular Error';
     }
   }
 
-  String _calculateDuoResults(BuildContext context){
-    int rightMyopia = Provider.of<ProviderData>(context,listen:false).rightMyopia;
-    int rightHyperopia = Provider.of<ProviderData>(context,listen:false).rightHyperopia;
-    int leftMyopia = Provider.of<ProviderData>(context,listen:false).leftMyopia;
-    int leftHyperopia = Provider.of<ProviderData>(context,listen:false).leftHyperopia;
+  String _calculateDuoResults(BuildContext context) {
+    int rightMyopia =
+        Provider.of<ProviderData>(context, listen: false).rightMyopia;
+    int rightHyperopia =
+        Provider.of<ProviderData>(context, listen: false).rightHyperopia;
+    int leftMyopia =
+        Provider.of<ProviderData>(context, listen: false).leftMyopia;
+    int leftHyperopia =
+        Provider.of<ProviderData>(context, listen: false).leftHyperopia;
 
-
-    if(rightMyopia > rightHyperopia){
+    if (rightMyopia > rightHyperopia) {
       rightResult = 'Myopia\nNear Sightedness';
-    }
-    else if(rightHyperopia > rightMyopia){
+    } else if (rightHyperopia > rightMyopia) {
       rightResult = 'Hyperopia\nFar Sightedness';
-    }
-    else if(rightHyperopia == rightMyopia){
+    } else if (rightHyperopia == rightMyopia) {
       rightResult = 'no Ocular Error';
     }
 
-
-    if(leftMyopia > leftHyperopia){
+    if (leftMyopia > leftHyperopia) {
       leftResult = 'Myopia\n Near Sightedness';
-    }
-    else if(leftHyperopia > leftMyopia){
+    } else if (leftHyperopia > leftMyopia) {
       leftResult = 'Hyperopia\nFar Sightedness';
-    }
-    else if(leftHyperopia == leftMyopia){
+    } else if (leftHyperopia == leftMyopia) {
       leftResult = 'no Ocular Error';
     }
   }
 
-  String _calculateMyopiaResults(BuildContext context){
-    double right = Provider.of<ProviderData>(context,listen:false).rightMy;
-    double left = Provider.of<ProviderData>(context,listen:false).leftMy;
+  String _calculateMyopiaResults(BuildContext context) {
+    double right = Provider.of<ProviderData>(context, listen: false).rightMy;
+    double left = Provider.of<ProviderData>(context, listen: false).leftMy;
 
-    if(right == 0.0 && left == 0.0){
+    if (right == 0.0 && left == 0.0) {
       rightResult = 'no Myopia';
       leftResult = 'no Myopia';
-    }
-    else{
-      if(right == 1.0){
+    } else {
+      if (right == 1.0) {
         rightResult = '+$right LogMar\n20/200 Myopia';
-      }
-      else if(right == 0.7){
+      } else if (right == 0.7) {
         rightResult = '+$right LogMar\n20/100 Myopia';
-      }
-      else if(right == 0.55){
+      } else if (right == 0.55) {
         rightResult = '+$right LogMar\n20/70 Myopia';
-      }
-      else if(right == 0.4){
+      } else if (right == 0.4) {
         rightResult = '+$right LogMar\n20/50 Myopia';
-      }
-      else if(right == 0.3){
+      } else if (right == 0.3) {
         rightResult = '+$right LogMar\n20/40 Myopia';
-      }
-      else if(right == 0.2){
+      } else if (right == 0.2) {
         rightResult = '+$right LogMar\n20/30 Myopia';
+      } else if (right == 0.0) {
+        rightResult = 'no Myopia';
       }
 
-      if(left == 1.0){
+      if (left == 1.0) {
         leftResult = '+$left LogMar\n20/200 Myopia';
       }
-      if(left == 0.7){
+      if (left == 0.7) {
         leftResult = '+$left LogMar\n20/100 Myopia';
-      }
-      else if(left == 0.55){
+      } else if (left == 0.55) {
         leftResult = '+$left LogMar\n20/70 Myopia';
-      }
-      else if(left == 0.4){
+      } else if (left == 0.4) {
         leftResult = '+$left LogMar\n20/50 Myopia';
-      }
-      else if(left == 0.3){
+      } else if (left == 0.3) {
         leftResult = '+$left LogMar\n20/40 Myopia';
-      }
-      else if(left == 0.2){
+      } else if (left == 0.2) {
         leftResult = '+$left LogMar\n20/30 Myopia';
+      } else if (left == 0.0) {
+        leftResult = 'no Myopia';
       }
     }
   }
 
-  String _calculateAcuityResults(BuildContext context){
-    int rightCorrect = Provider.of<ProviderData>(context,listen:false).rightCorrect;
-    int rightIncorrect = Provider.of<ProviderData>(context,listen:false).rightIncorrect;
+  String _calculateAcuityResults(BuildContext context) {
+    int rightCorrect =
+        Provider.of<ProviderData>(context, listen: false).rightCorrect;
+    int rightIncorrect =
+        Provider.of<ProviderData>(context, listen: false).rightIncorrect;
 
-    int leftCorrect = Provider.of<ProviderData>(context,listen:false).leftCorrect;
-    int leftIncorrect = Provider.of<ProviderData>(context,listen:false).leftIncorrect;
+    int leftCorrect =
+        Provider.of<ProviderData>(context, listen: false).leftCorrect;
+    int leftIncorrect =
+        Provider.of<ProviderData>(context, listen: false).leftIncorrect;
 
-    
-
-    if(rightCorrect >10){
+    if (rightCorrect > 10) {
       rightResult = '6/6 Acuity';
     }
-    if(rightCorrect>=7 && rightCorrect<=10){
+    if (rightCorrect >= 7 && rightCorrect <= 10) {
       rightResult = '6/15 Acuity';
     }
-    if(rightCorrect>=4 && rightCorrect<=7){
+    if (rightCorrect >= 4 && rightCorrect <= 7) {
       rightResult = '6/30 Acuity';
     }
-    if(rightCorrect<=3){
+    if (rightCorrect <= 3) {
       rightResult = '6/60 Acuity';
     }
 
-    if(leftCorrect >10){
+    if (leftCorrect > 10) {
       leftResult = '6/6 Acuity';
     }
-    if(leftCorrect>=7 && leftCorrect<=10){
+    if (leftCorrect >= 7 && leftCorrect <= 10) {
       leftResult = '6/15 Acuity';
     }
-    if(leftCorrect>=4 && leftCorrect<=7){
+    if (leftCorrect >= 4 && leftCorrect <= 7) {
       leftResult = '6/30 Acuity';
     }
-    if(leftCorrect<=3){
+    if (leftCorrect <= 3) {
       leftResult = '6/60 Acuity';
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -215,24 +199,21 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                           textAlign: TextAlign.center,
                           text: TextSpan(children: [
                             TextSpan(
-                              text: getTestType()+'\t',
+                              text: getTestType() + '\t',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kAmberColor,
-                                fontSize: 40
-                              ),
+                                  color: kAmberColor, fontSize: 40),
                             ),
                             TextSpan(
                               text: 'Test\n',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kAmberColor,
+                                color: kAmberColor,
                                 fontSize: 40,
                               ),
                             ),
                             TextSpan(
                               text: 'Results\n',
                               style: kDashboardTitleTextStyle.copyWith(
-                                  color: kAmberColor
-                                      .withOpacity(0.95)),
+                                  color: kAmberColor.withOpacity(0.95)),
                             )
                           ]),
                         ),
@@ -258,7 +239,7 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom:10.0),
+                    padding: const EdgeInsets.only(bottom: 10.0),
                     child: Icon(
                       Icons.remove_red_eye,
                       size: 60,
@@ -283,16 +264,19 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                     child: Text(
                       'Your left eye\n suffers from\n $leftResult',
                       textAlign: TextAlign.center,
-                      style: kReminderSubtitleTextStyle.copyWith(color: kDarkTealColor, fontSize: 16),
+                      style: kReminderSubtitleTextStyle.copyWith(
+                          color: kDarkTealColor, fontSize: 16),
                     ),
                   ),
                 ],
               ),
-              Container(height: MediaQuery.of(context).size.height/3, child: VerticalDivider(color: kDarkTealColor)),
+              Container(
+                  height: MediaQuery.of(context).size.height / 3,
+                  child: VerticalDivider(color: kDarkTealColor)),
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom:10.0),
+                    padding: const EdgeInsets.only(bottom: 10.0),
                     child: Icon(
                       Icons.remove_red_eye,
                       size: 60,
@@ -311,19 +295,18 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                           style: kDashboardTitleTextStyle.copyWith(
                               color: kTealColor),
                         ),
-
                       ])),
                   Container(
                     padding: EdgeInsets.all(10),
                     child: Text(
                       'Your right eye\n suffers from\n $rightResult',
                       textAlign: TextAlign.center,
-                      style: kReminderSubtitleTextStyle.copyWith(color: kDarkTealColor, fontSize: 16),
+                      style: kReminderSubtitleTextStyle.copyWith(
+                          color: kDarkTealColor, fontSize: 16),
                     ),
                   ),
                 ],
               ),
-
             ],
           ),
         ),
@@ -339,21 +322,28 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Provider.of<ProviderData>(context, listen: false).revertRightCorrect();
-                      Provider.of<ProviderData>(context, listen: false).revertRightIncorrect();
-                      Provider.of<ProviderData>(context, listen: false).revertLeftCorrect();
-                      Provider.of<ProviderData>(context, listen: false).revertLeftIncorrect();
-                      Provider.of<ProviderData>(context, listen: false).revertAstig();
-                      Provider.of<ProviderData>(context, listen: false).revertMy();
-                      Provider.of<ProviderData>(context, listen: false).revertDuo();
-                      while (Navigator.canPop(context)){
+                      Provider.of<ProviderData>(context, listen: false)
+                          .revertRightCorrect();
+                      Provider.of<ProviderData>(context, listen: false)
+                          .revertRightIncorrect();
+                      Provider.of<ProviderData>(context, listen: false)
+                          .revertLeftCorrect();
+                      Provider.of<ProviderData>(context, listen: false)
+                          .revertLeftIncorrect();
+                      Provider.of<ProviderData>(context, listen: false)
+                          .revertAstig();
+                      Provider.of<ProviderData>(context, listen: false)
+                          .revertMy();
+                      Provider.of<ProviderData>(context, listen: false)
+                          .revertDuo();
+                      while (Navigator.canPop(context)) {
                         Navigator.pop(context);
                       }
                       Navigator.pushNamed(context, Dashboard.id);
                       //Navigator.pushNamed(context, Dashboard.id);
                     },
                     child: Icon(
-                      Icons.delete,
+                      Icons.home,
                       color: kTealColor,
                       size: 42.0,
                     ),
@@ -374,7 +364,10 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      AlertWidget().generateTestInformationAlert(context: context, visionTestType: widget.testType).show();
+                      AlertWidget()
+                          .generateTestInformationAlert(
+                              context: context, visionTestType: widget.testType)
+                          .show();
                     },
                     child: Icon(
                       Icons.info_outline,
@@ -397,7 +390,6 @@ class _VisionResultScreenState extends State<VisionResultScreen> {
         SizedBox(
           height: 20.0,
         ),
-
       ]),
     ));
   }
