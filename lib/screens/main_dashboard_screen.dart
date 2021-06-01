@@ -301,12 +301,12 @@ class _DashboardState extends State<Dashboard> {
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
     print("Current Loc: ${pos.latitude}, ${pos.longitude}");
 
-    String currLoc = await MyAddressService(l1: pos.latitude, l2: pos.longitude).getPlaceName();
+    //String currLoc = await MyAddressService(l1: pos.latitude, l2: pos.longitude).getPlaceName();
 
     Navigator.push(context, MaterialPageRoute(builder: (context) => MapBoxMainScreen(
       latitude: pos.latitude,
       longitude: pos.longitude,
-      currentLoc: currLoc,
+      //currentLoc: currLoc,
     )));
   }
 

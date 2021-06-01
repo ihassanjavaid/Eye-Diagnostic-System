@@ -20,10 +20,10 @@ class MapBoxMainScreen extends StatefulWidget {
 
   final double latitude;
   final double longitude;
-  final String currentLoc;
+  //final String currentLoc;
 
   const MapBoxMainScreen(
-      {Key key, this.latitude, this.longitude, this.currentLoc})
+      {Key key, this.latitude, this.longitude/*, this.currentLoc*/})
       : super(key: key);
 
   @override
@@ -169,11 +169,12 @@ class _MapBoxMainScreenState extends State<MapBoxMainScreen> {
             top: size.height / 12,
             child: Column(
                 children: [
+              // Text(
+              //     'Current Location:',
+              //     style: kMapsMainTextStyle.copyWith(fontSize: 20, fontStyle: FontStyle.italic)),
               Text(
-                  'Current Location:',
-                  style: kMapsMainTextStyle.copyWith(fontSize: 20, fontStyle: FontStyle.italic)),
-              Text(
-                  widget.currentLoc,
+                'Nearby Medicos',
+                  //widget.currentLoc,
                   style: kMapsMainTextStyle)
             ]
             ),
