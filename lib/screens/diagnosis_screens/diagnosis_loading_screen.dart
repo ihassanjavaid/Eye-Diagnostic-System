@@ -128,7 +128,7 @@ class _DiagnosisLoadingScreenState extends State<DiagnosisLoadingScreen> {
   Future<void> _diagnoseDisorder() async {
     DisorderResult result = await _server.diagnoseDisorder(widget.image);
 
-    if ( !result.predicted ){
+    if ( !result.isEye ){
       debugPrint('can\'t predict!');
       AlertWidget().generateAlertInvalidDiagnosis(
           context: context,

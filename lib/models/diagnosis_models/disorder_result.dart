@@ -1,14 +1,16 @@
 class DisorderResult {
   String percentage;
   bool predicted;
+  bool isEye;
   String result;
 
-  DisorderResult({this.percentage, this.predicted, this.result});
+  DisorderResult({this.percentage, this.predicted, this.result, this.isEye});
 
   DisorderResult.fromJson(Map<String, dynamic> json) {
     percentage = json['percentage'];
     predicted = json['predicted'];
     result = json['result'];
+    isEye = json['is_eye'];
   }
 
   Map<String, dynamic> toJson() {
