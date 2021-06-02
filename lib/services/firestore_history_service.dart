@@ -48,4 +48,21 @@ class FirestoreHistoryService{
 
     return querySnapshot.docs;
   }
+
+  Future<void> deleteDiagnosis(dynamic docRefToDel) async {
+    await checkInternConnection();
+
+    // QuerySnapshot _querySnapshot = await _firestore.collection('history')
+    //     .where('text', isEqualTo: text)
+    //     .where('date', isEqualTo: date)
+    //     .get();
+
+    DocumentReference _docRef = docRefToDel;
+
+    try{
+      await _docRef.delete();
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

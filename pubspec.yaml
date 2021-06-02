@@ -69,6 +69,9 @@ dependencies:
   get_it: ^6.0.0
   flutter_share: ^2.0.0
   firebase_storage: ^4.0.0
+  pdf: ^3.3.0
+  downloads_path_provider: ^0.1.0
+  open_file: ^3.1.0
 
 dev_dependencies:
   flutter_test:
