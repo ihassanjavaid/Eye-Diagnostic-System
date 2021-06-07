@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:eye_diagnostic_system/components/header_clipper_component.dart';
 import 'package:eye_diagnostic_system/utilities/constants.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:camera/camera.dart';
 import 'package:eye_diagnostic_system/services/screen_arguments.dart';
-
+import 'captured_screen.dart';
 import 'image_picker_screen.dart';
 
 
@@ -30,6 +31,7 @@ class _CameraScreenState extends State<CameraScreen> {
   Future<void> _initializeControllerFuture;
   double _containerHeight;
   //DiagnosisType diagnosisType2;
+  var _flashIcon = Icons.flash_off;
 
 
   @override
@@ -191,7 +193,24 @@ class _CameraScreenState extends State<CameraScreen> {
             endRadius: 48.0,
             child: FloatingActionButton(
               backgroundColor: kScaffoldBackgroundColor,
-              onPressed: () {  },
+              onPressed: () async {
+                // Capture a picture
+                try {
+                  await _initializeControllerFuture;
+
+                  final camImage = await _controller.takePicture();
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext context) => CapturedScreen(
+                        diagnosisType: widget.diagnosisType,
+                        image: File(camImage.path),
+                      )
+                      ));
+                }
+                catch (err) {
+                  debugPrint(err);
+                }
+              },
               child: Icon(
                 Icons.camera,
                 color: kTealColor,
@@ -295,9 +314,11 @@ class _CameraScreenState extends State<CameraScreen> {
                   FloatingActionButton(
                     heroTag: 'menu',
                     backgroundColor: kScaffoldBackgroundColor,
-                    onPressed: () {  },
+                    onPressed: () {
+                      toggleFlashIcon();
+                    },
                     child: Icon(
-                      Icons.menu,
+                      _flashIcon,
                       color: kTealColor,
                       size: 30.0,
                     ),
@@ -341,5 +362,24 @@ class _CameraScreenState extends State<CameraScreen> {
         _containerHeight = 0;
       });
     });
+  }
+
+  void toggleFlashIcon(){
+    if (_flashIcon == Icons.flash_off){
+      setState(() {
+        _flashIcon = Icons.flash_auto;
+      });
+    }
+    else if (_flashIcon == Icons.flash_auto){
+      setState(() {
+        _flashIcon = Icons.flash_on;
+      });
+    }
+    else if (_flashIcon == Icons.flash_on){
+      setState(() {
+        _flashIcon = Icons.flash_off;
+      });
+    }
+    else _flashIcon = Icons.flash_off;
   }
 }

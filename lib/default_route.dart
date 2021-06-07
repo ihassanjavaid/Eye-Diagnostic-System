@@ -34,6 +34,7 @@ import 'screens/diagnosis_screens/camera_screen.dart';
 import 'screens/profile_screen.dart';
 import 'package:eye_diagnostic_system/screens/history_screen.dart';
 import 'screens/sympyom_screen.dart';
+import 'screens/diagnosis_screens/captured_screen.dart';
 
 class DefaultEyeSeeRoute{
 
@@ -86,7 +87,8 @@ class DefaultEyeSeeRoute{
     VisionResultScreen.id : (context) => VisionResultScreen(),
     ProfileScreen.id: (context) => ProfileScreen(),
     HistoryScreen.id: (context) => HistoryScreen(),
-    SymptomScreen.id: (context) => SymptomScreen()
+    SymptomScreen.id: (context) => SymptomScreen(),
+    CapturedScreen.id: (context) => CapturedScreen()
     };
 
   static Map<String, WidgetBuilder> get DEFAULT_ROUTE => _defaultRoute;
