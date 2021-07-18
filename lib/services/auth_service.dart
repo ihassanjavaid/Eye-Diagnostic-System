@@ -62,7 +62,7 @@ class Auth {
           email: email, password: password);
     } catch (e) {
       print(e);
-      throw 'User already exists';
+      throw e.toString().split(']').last;
     }
   }
 
