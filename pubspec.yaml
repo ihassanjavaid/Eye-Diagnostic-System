@@ -72,6 +72,10 @@ dependencies:
   pdf: ^3.3.0
   downloads_path_provider: ^0.1.0
   open_file: ^3.1.0
+  # version 2
+  firebase_ml_custom: ^0.2.0+2
+  tflite: ^1.1.2
+#  tflite_flutter: ^0.9.0
 
 dev_dependencies:
   flutter_test:
@@ -103,6 +107,7 @@ flutter:
     - assets/images/vision_testing/duo-chrome tests/
     - assets/images/vision_testing/instructions_icons/
     - assets/images/vision_testing/astigmatism_tests/
+    - assets/extras/fundus_detection_labels.txt
 
   # fonts:
   #   - family: Schyler
